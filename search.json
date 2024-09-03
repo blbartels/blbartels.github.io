@@ -2,29 +2,8 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "PSC 2101: Scope and Methods",
+    "title": "Brandon Bartels",
     "section": "",
-    "text": "PSC 2101: Scope and Methods\n  George Washington University\nSpring 2023\nProfessor Brandon Bartels\n\nSyllabus\n\nTextbook (free via following link):\nIsmay, Chester, and Albert Y. Kim. 2023. Statistical Inference via Data Science: A ModernDive into R and the Tidyverse. CRC Press."
-  },
-  {
-    "objectID": "assignments.html",
-    "href": "assignments.html",
-    "title": "PSC 2101: Scope and Methods",
-    "section": "",
-    "text": "Assignments\n\n\n\n\n\n\n\n\nAssignment\n.zip archive (data and .qmd file)\n\n\n\n\nAssignment 1\nAssignment 1 .zip archive\n\n\nAssignment 2\nAssignment 2 .zip archive\n\n\nAssignment 3\nAssignment 3 .zip archive\n\n\nAssignment 4\nN/A\n\n\nAssignment 5\nN/A"
-  },
-  {
-    "objectID": "notes.html",
-    "href": "notes.html",
-    "title": "PSC 2101: Scope and Methods",
-    "section": "",
-    "text": "Topic\n\n\n\n\n1. Data Visualization\n\n\n2. Basic Regression (and maps tips)\n\n\n3. Basic and Multiple Regression\n\n\n4. Statistical Inference, Sampling, Central Limit Theorem\n\n\n5. Standard Errors, Condidence Intervals, and Statistical Significance\n\n\n6. Hypothesis Testing\n\n\n7. More Regression Topics"
-  },
-  {
-    "objectID": "data_sessions.html",
-    "href": "data_sessions.html",
-    "title": "PSC 2101: Scope and Methods",
-    "section": "",
-    "text": "Data Sessions \n\n\n\n\n\n\n\n\n\n\n\n\nTopic\nData session output\n.zip archive (R script & data)\n\n\n\n\nData Visualization\nData session output\n.zip archive\n\n\nMore Data Visualization\nData session output\n.zip archive\n\n\nGeographic, Choropleth Maps\nData session output\n.zip archive\n\n\nBasic Regression\nData session output\n.zip archive\n\n\nBasic and Multiple Regression\nData session output\n.zip archive\n\n\nMore Multiple Regression\nData session output\n.zip archive\n\n\nStandard Deviation, Sampling, and Standard Errors\nData session output\n.zip archive"
+    "text": "Professor Brandon Bartels\n\nGeorge Washington University\n\nPSC 8101, Fall 2024"
   }
 ]
