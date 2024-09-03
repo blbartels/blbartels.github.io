@@ -11,20 +11,20 @@
     "href": "notes.html",
     "title": "PSC 8101: Introduction to Empirical Political Analysis",
     "section": "",
-    "text": "Topic\n\n\n\n\n1. Data Visualization\n\n\n2. Basic Regression (and maps tips)\n\n\n3. Basic and Multiple Regression\n\n\n4. Statistical Inference, Sampling, Central Limit Theorem\n\n\n5. Standard Errors, Condidence Intervals, and Statistical Significance\n\n\n6. Hypothesis Testing\n\n\n7. More Regression Topics"
+    "text": "Class Notes\n\n\n\n\n\n\n\n\nDate\nTopic\n\n\n\n\n1. Aug. 28\nResearch Design, Data, Variables"
   },
   {
     "objectID": "assignments.html",
     "href": "assignments.html",
     "title": "PSC 8101: Introduction to Empirical Political Analysis",
     "section": "",
-    "text": "Assignments\n\n\n\n\n\n\n\n\nAssignment\n.zip archive (data and .qmd file)\n\n\n\n\nAssignment 1\nAssignment 1 .zip archive\n\n\nAssignment 2\nAssignment 2 .zip archive\n\n\nAssignment 3\nAssignment 3 .zip archive\n\n\nAssignment 4\nN/A\n\n\nAssignment 5\nN/A"
+    "text": "Assignments\n\n\n\n\n\n\n\n\nAssignment\n.zip archive (data and .qmd file)\n\n\n\n\nAssignment 1\nAssignment 1 .zip archive\n\n\nAssignment 2\nAssignment 2 .zip archive\n\n\nAssignment 3\nAssignment 3 .zip archive\n\n\nAssignment 4\nAssignment 4 .zip archive\n\n\nAssignment 5\nAssignment 5 .zip archive\n\n\nAssignment 6\nAssignment 6 .zip archive\n\n\nAssignment 7\nAssignment 7 .zip archive\n\n\nFinal Exam\nFinal Exam .zip archive"
   },
   {
     "objectID": "lab_sessions.html",
     "href": "lab_sessions.html",
     "title": "PSC 8101: Introduction to Empirical Political Analysis",
     "section": "",
-    "text": "Data Sessions \n\n\n\n\n\n\n\n\n\n\n\n\nTopic\nData session output\n.zip archive (R script & data)\n\n\n\n\nData Visualization\nData session output\n.zip archive\n\n\nMore Data Visualization\nData session output\n.zip archive\n\n\nGeographic, Choropleth Maps\nData session output\n.zip archive\n\n\nBasic Regression\nData session output\n.zip archive\n\n\nBasic and Multiple Regression\nData session output\n.zip archive\n\n\nMore Multiple Regression\nData session output\n.zip archive\n\n\nStandard Deviation, Sampling, and Standard Errors\nData session output\n.zip archive"
+    "text": "Lab Sessions \n\n\n\n\n\n\n\n\n\n\n\n\n\nDate and Topic\nLab Notes\nLab Session Output\n.zip archive (R script & data)\n\n\n\n\n1. Aug. 30: Intro to RStudio and Quarto\nLab Notes\n\n.zip archive"
   }
 ]
