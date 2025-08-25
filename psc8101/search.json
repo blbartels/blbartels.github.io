@@ -11,27 +11,27 @@
     "href": "notes.html",
     "title": "PSC 8101: Introduction to Empirical Political Analysis",
     "section": "",
-    "text": "Class Notes\n\n\n\n\n\n\n\n\nDate\nTopic\n\n\n\n\n1. Aug. 28\nResearch Design, Data, Variables\n\n\n2. Sept. 4\nData Visualization (lab session only)\n\n\n3. Sept. 11\nDescriptives and Probability\n\n\n4/5. Sept. 18 & 25\nDistributions\n\n\n5/6. Sept. 25 & Oct. 2\nInference\n\n\n7. Oct. 9\nSimple Regression\n\n\n8/9. Oct. 16\nMultiple Regression\n\n\n10. Oct. 30\nNonlinear Functional Forms\n\n\n11/12. Nov. 6 & 13\nInteractions\n\n\n12/13. Nov. 13 & 20\nRegression Diagnostics\n\n\n13. Nov. 20\nLogit/Probit and the LPM"
+    "text": "Class Notes\n\n\n\n\n\n\n\nDate\nTopic\n\n\n\n\n1. Aug. 28\nResearch Design, Data, Variables\n\n\n2. Sept. 4\nData Visualization (lab session only)\n\n\n3. Sept. 11\nDescriptives and Probability\n\n\n4/5. Sept. 18 & 25\nDistributions\n\n\n5/6. Sept. 25 & Oct. 2\nInference\n\n\n7. Oct. 9\nSimple Regression\n\n\n8/9. Oct. 16\nMultiple Regression\n\n\n10. Oct. 30\nNonlinear Functional Forms\n\n\n11/12. Nov. 6 & 13\nInteractions\n\n\n12/13. Nov. 13 & 20\nRegression Diagnostics\n\n\n13. Nov. 20\nLogit/Probit and the LPM"
   },
   {
     "objectID": "assignments.html",
     "href": "assignments.html",
     "title": "PSC 8101: Introduction to Empirical Political Analysis",
     "section": "",
-    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\n\nAssignment\n.zip archive (data and .qmd file)\nDue Date\n\n\n\n\nAssignment 1\nAssignment 1 .zip archive Assignment_1_V2.qmd.zip\nFri., Sept. 13\n\n\nAssignment 2\nAssignment 2 .zip archive\nFri., Sept. 27\n\n\nAssignment 3\nAssignment 3 .zip archive\nMon., Oct. 14\n\n\nAssignment 4\nAssignment 4 .zip archive\nFri., Oct. 25\n\n\nAssignment 5\nAssignment 5 .zip archive\nFri., Nov. 8\n\n\nAssignment 6\nAssignment 6 .zip archive\nMon., Nov. 25\n\n\nAssignment 7\nAssignment 7 .zip archive\nMon., Dec. 9\n\n\nFinal Exam\nFinal Exam .zip archive\nTues., Dec. 17"
+    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\nAssignment\n.zip archive (data and .qmd file)\nDue Date\n\n\n\n\nAssignment 1\nAssignment 1 .zip archive Assignment_1_V2.qmd.zip\nFri., Sept. 13\n\n\nAssignment 2\nAssignment 2 .zip archive\nFri., Sept. 27\n\n\nAssignment 3\nAssignment 3 .zip archive\nMon., Oct. 14\n\n\nAssignment 4\nAssignment 4 .zip archive\nFri., Oct. 25\n\n\nAssignment 5\nAssignment 5 .zip archive\nFri., Nov. 8\n\n\nAssignment 6\nAssignment 6 .zip archive\nMon., Nov. 25\n\n\nAssignment 7\nAssignment 7 .zip archive\nMon., Dec. 9\n\n\nFinal Exam\nFinal Exam .zip archive\nTues., Dec. 17"
   },
   {
     "objectID": "lab_sessions.html",
     "href": "lab_sessions.html",
     "title": "PSC 8101: Introduction to Empirical Political Analysis",
     "section": "",
-    "text": "Lab Sessions \n\n\n\n\n\n\n\n\n\n\n\n\n\nDate and Topic\nLab Notes\nLab Session Output\n.zip archive (R script & data)\n\n\n\n\n1. Aug. 30: Intro to RStudio and Quarto\nLab Notes\nN/A\n.zip archive\n\n\n2. Sept. 4: Data Visualization\nLab Notes\nOutput\n.zip archive\n\n\n3. Sept. 11: Maps, Descriptives, and Probability\nLab Notes, Maps\nOutput, Maps\n.zip archive, maps .zip archive, desc./prob.\n\n\n4/5. Sept. 18 & 25: Distributions\nN/A\nN/A\n.zip archive\n\n\n5/6. Sept. 25 & Oct. 2: Inference\nN/A\nN/A\nN/A\n\n\n7. Oct. 9: Simple Regression\nLab Notes, Simple Regression\nN/A\n.zip archive\n\n\n8/9. Oct. 16: Multiple Regression\nLab Notes, Multiple Regression\nN/A\n.zip archive\n\n\n10. Oct. 30: Nonlinear Functional Forms\nN/A\nN/A\n.zip archive\n\n\n11/12. Nov. 6 & 13: Dummy Variables and Interactions\nLab Notes, Dummy Variables Lab Notes, Interactions\nN/A\n.zip archive\n\n\n12/13. Nov. 13 & 20: Regression Diagnostics\nLab Notes\nN/A\n.zip archive\n\n\n13. Nov. 20: Logit/Probit and LPM\nLab Notes\nN/A\n.zip archive"
+    "text": "Lab Sessions \n\n\n\n\n\n\n\n\n\n\n\n\nDate and Topic\nLab Notes\nLab Session Output\n.zip archive (R script & data)\n\n\n\n\n1. Aug. 30: Intro to RStudio and Quarto\nLab Notes\nN/A\n.zip archive\n\n\n2. Sept. 4: Data Visualization\nLab Notes\nOutput\n.zip archive\n\n\n3. Sept. 11: Maps, Descriptives, and Probability\nLab Notes, Maps\nOutput, Maps\n.zip archive, maps .zip archive, desc./prob.\n\n\n4/5. Sept. 18 & 25: Distributions\nN/A\nN/A\n.zip archive\n\n\n5/6. Sept. 25 & Oct. 2: Inference\nN/A\nN/A\nN/A\n\n\n7. Oct. 9: Simple Regression\nLab Notes, Simple Regression\nN/A\n.zip archive\n\n\n8/9. Oct. 16: Multiple Regression\nLab Notes, Multiple Regression\nN/A\n.zip archive\n\n\n10. Oct. 30: Nonlinear Functional Forms\nN/A\nN/A\n.zip archive\n\n\n11/12. Nov. 6 & 13: Dummy Variables and Interactions\nLab Notes, Dummy Variables Lab Notes, Interactions\nN/A\n.zip archive\n\n\n12/13. Nov. 13 & 20: Regression Diagnostics\nLab Notes\nN/A\n.zip archive\n\n\n13. Nov. 20: Logit/Probit and LPM\nLab Notes\nN/A\n.zip archive"
   },
   {
     "objectID": "handouts.html",
     "href": "handouts.html",
     "title": "PSC 8101: Introduction to Empirical Political Analysis",
     "section": "",
-    "text": "Handouts\n\n\n\n\n\n\n\n\nHandout\n\n\n\n\nEquations in Quarto/Latex\n\n\nDerivation of OLS Estimator, Simple Regression (Scalar Approach)\n\n\nMatrix Rules\n\n\nDerivation of OLS Estimator (Matrix Approach)\n\n\nDerivation of OLS Sampling Variance (Matrix Approach)"
+    "text": "Handouts\n\n\n\n\n\n\n\nHandout\n\n\n\n\nEquations in Quarto/Latex\n\n\nDerivation of OLS Estimator, Simple Regression (Scalar Approach)\n\n\nMatrix Rules\n\n\nDerivation of OLS Estimator (Matrix Approach)\n\n\nDerivation of OLS Sampling Variance (Matrix Approach)"
   }
 ]
