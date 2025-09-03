@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "psc8101/handouts.html",
+    "href": "psc8101/handouts.html",
+    "title": "Brandon Bartels",
+    "section": "",
+    "text": "Handouts\n\n\n\n\n\n\n\nHandout\n\n\n\n\nEquations in Quarto/Latex\n\n\nDerivation of OLS Estimator, Simple Regression (Scalar Approach)\n\n\nMatrix Rules\n\n\nDerivation of OLS Estimator (Matrix Approach)\n\n\nDerivation of OLS Sampling Variance (Matrix Approach)"
+  },
+  {
+    "objectID": "psc8101/lab_sessions.html",
+    "href": "psc8101/lab_sessions.html",
+    "title": "Brandon Bartels",
+    "section": "",
+    "text": "Lab Sessions \n\n\n\n\n\n\n\n\n\n\n\n\nDate and Topic\nLab Notes\nLab Session Output\n.zip archive (R script & data)\n\n\n\n\n1. Aug. 27: Intro to RStudio and Quarto\nLab Notes\nN/A\n.zip archive\n\n\n2. Sept. 3: Data Visualization\nLab Notes\nOutput\n.zip archive\n\n\n3. Sept. 10: Maps, Descriptives, and Probability\nLab Notes, Maps\nOutput, Maps\n.zip archive, maps .zip archive, desc./prob.\n\n\n4/5. Sept. 17 & 24: Distributions\nN/A\nN/A\n.zip archive\n\n\n5/6. Sept. 24 & Oct. 1: Inference\nN/A\nN/A\nN/A\n\n\n7. Oct. 8: Simple Regression\nLab Notes, Simple Regression\nN/A\n.zip archive\n\n\n8/9. Oct. 15 & 22: Multiple Regression\nLab Notes, Multiple Regression\nN/A\n.zip archive\n\n\n10. Oct. 29: Nonlinear Functional Forms\nN/A\nN/A\n.zip archive\n\n\n11/12. Nov. 5 & 12: Dummy Variables and Interactions\nLab Notes, Dummy Variables Lab Notes, Interactions\nN/A\n.zip archive\n\n\n12/13. Nov. 12 & 19: Regression Diagnostics\nLab Notes\nN/A\n.zip archive\n\n\n13. Nov. 19: Logit/Probit and LPM\nLab Notes\nN/A\n.zip archive"
+  },
+  {
+    "objectID": "psc8101/assignments.html",
+    "href": "psc8101/assignments.html",
+    "title": "Brandon Bartels",
+    "section": "",
+    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\nAssignment\n.zip archive (data and .qmd file)\nDue Date\n\n\n\n\nAssignment 1\nAssignment 1 .zip archive\nFri., Sept. 12\n\n\nAssignment 2\nAssignment 2 .zip archive\nFri., Sept. 26\n\n\nAssignment 3\nAssignment 3 .zip archive\nMon., Oct. 13\n\n\nAssignment 4\nAssignment 4 .zip archive\nFri., Oct. 24\n\n\nAssignment 5\nAssignment 5 .zip archive\nFri., Nov. 7\n\n\nAssignment 6\nAssignment 6 .zip archive\nMon., Nov. 24\n\n\nAssignment 7\nAssignment 7 .zip archive\nMon., Dec. 8\n\n\nFinal Exam\nFinal Exam .zip archive\nTBA"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Brandon Bartels",
+    "section": "",
+    "text": "Professor Brandon Bartels\n\nGeorge Washington University\n\nPSC 8101, Fall 2025"
+  },
+  {
+    "objectID": "psc8101/notes.html",
+    "href": "psc8101/notes.html",
+    "title": "Brandon Bartels",
+    "section": "",
+    "text": "Class Notes\n\n\n\n\n\n\n\nDate\nTopic\n\n\n\n\n1. Aug. 27\nResearch Design, Data, Variables\n\n\n2. Sept. 3\nData Visualization (lab session only)\n\n\n3. Sept. 10\nDescriptives and Probability\n\n\n4/5. Sept. 17 & 24\nDistributions\n\n\n5/6. Sept. 24 & Oct. 1\nInference\n\n\n7. Oct. 8\nSimple Regression\n\n\n8/9. Oct. 15 & 22\nMultiple Regression\n\n\n10. Oct. 29\nNonlinear Functional Forms\n\n\n11/12. Nov. 5 & 12\nInteractions\n\n\n12/13. Nov. 12 & 19\nRegression Diagnostics\n\n\n13. Nov. 19\nLogit/Probit and the LPM"
+  },
+  {
+    "objectID": "psc8101/index.html",
+    "href": "psc8101/index.html",
+    "title": "Brandon Bartels",
+    "section": "",
+    "text": "PSC 8101: Introduction to Empirical Political Analysis\n  George Washington University\nFall 2025\nProfessor Brandon Bartels\n\nSyllabus"
+  }
+]
