@@ -1,0 +1,242 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Analysis and Statistics for Political Science",
+    "section": "",
+    "text": "Preface\n\nThis is a book primarily for undergraduate students taking a course in data analysis and statistics. Many statistics and data science books are geared toward general audiences or statistics students. Those books typically do not contain many political science examples. This book is designed to gives students a foundation in data analysis and statistics but with explicitly political science examples. The use of examples helps solidify complicated concepts surrounding statistics. Political science students will relate to these political science examples and facilitate mastery of the content.\nThis is a book primarily for undergraduate students taking a course in data analysis and statistics. Many statistics and data science books are geared toward general audiences or statistics students. Those books typically do not contain many political science examples. This book is designed to gives students a foundation in data analysis and statistics but with explicitly political science examples. The use of examples helps solidify complicated concepts surrounding statistics. Political science students will relate to these political science examples and facilitate mastery of the content.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About the Author",
+    "section": "",
+    "text": "Brandon L. Bartels is a Professor of Political Science at George Washington University.",
+    "crumbs": [
+      "About the Author"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "1.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#using-rstudio",
+    "href": "intro.html#using-rstudio",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "1.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "rstudio.html",
+    "href": "rstudio.html",
+    "title": "2  R and R Studio",
+    "section": "",
+    "text": "2.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R and R Studio</span>"
+    ]
+  },
+  {
+    "objectID": "rstudio.html#using-rstudio",
+    "href": "rstudio.html#using-rstudio",
+    "title": "2  R and R Studio",
+    "section": "",
+    "text": "2.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R and R Studio</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse.html",
+    "href": "tidyverse.html",
+    "title": "3  Data Organization Tools, Tidyverse",
+    "section": "",
+    "text": "3.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Organization Tools, Tidyverse</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse.html#using-rstudio",
+    "href": "tidyverse.html#using-rstudio",
+    "title": "3  Data Organization Tools, Tidyverse",
+    "section": "",
+    "text": "3.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Organization Tools, Tidyverse</span>"
+    ]
+  },
+  {
+    "objectID": "dataviz.html",
+    "href": "dataviz.html",
+    "title": "4  Data Visualization",
+    "section": "",
+    "text": "4.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "dataviz.html#using-rstudio",
+    "href": "dataviz.html#using-rstudio",
+    "title": "4  Data Visualization",
+    "section": "",
+    "text": "4.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "choropleth.html",
+    "href": "choropleth.html",
+    "title": "5  Choropleth Maps",
+    "section": "",
+    "text": "5.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Choropleth Maps</span>"
+    ]
+  },
+  {
+    "objectID": "choropleth.html#using-rstudio",
+    "href": "choropleth.html#using-rstudio",
+    "title": "5  Choropleth Maps",
+    "section": "",
+    "text": "5.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Choropleth Maps</span>"
+    ]
+  },
+  {
+    "objectID": "descriptive.html",
+    "href": "descriptive.html",
+    "title": "6  Descriptive Statistics",
+    "section": "",
+    "text": "6.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Descriptive Statistics</span>"
+    ]
+  },
+  {
+    "objectID": "descriptive.html#using-rstudio",
+    "href": "descriptive.html#using-rstudio",
+    "title": "6  Descriptive Statistics",
+    "section": "",
+    "text": "6.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Descriptive Statistics</span>"
+    ]
+  },
+  {
+    "objectID": "inferential.html",
+    "href": "inferential.html",
+    "title": "7  Inferential Statistics",
+    "section": "",
+    "text": "7.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Inferential Statistics</span>"
+    ]
+  },
+  {
+    "objectID": "inferential.html#using-rstudio",
+    "href": "inferential.html#using-rstudio",
+    "title": "7  Inferential Statistics",
+    "section": "",
+    "text": "7.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Inferential Statistics</span>"
+    ]
+  },
+  {
+    "objectID": "linreg1.html",
+    "href": "linreg1.html",
+    "title": "8  Linear Regression, Part I",
+    "section": "",
+    "text": "8.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Linear Regression, Part I</span>"
+    ]
+  },
+  {
+    "objectID": "linreg1.html#using-rstudio",
+    "href": "linreg1.html#using-rstudio",
+    "title": "8  Linear Regression, Part I",
+    "section": "",
+    "text": "8.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Linear Regression, Part I</span>"
+    ]
+  },
+  {
+    "objectID": "linreg2.html",
+    "href": "linreg2.html",
+    "title": "9  Linear Regression, Part II",
+    "section": "",
+    "text": "9.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Linear Regression, Part II</span>"
+    ]
+  },
+  {
+    "objectID": "linreg2.html#using-rstudio",
+    "href": "linreg2.html#using-rstudio",
+    "title": "9  Linear Regression, Part II",
+    "section": "",
+    "text": "9.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Linear Regression, Part II</span>"
+    ]
+  },
+  {
+    "objectID": "logit.html",
+    "href": "logit.html",
+    "title": "10  Regression for Binary Outcomes",
+    "section": "",
+    "text": "10.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Regression for Binary Outcomes</span>"
+    ]
+  },
+  {
+    "objectID": "logit.html#using-rstudio",
+    "href": "logit.html#using-rstudio",
+    "title": "10  Regression for Binary Outcomes",
+    "section": "",
+    "text": "10.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Regression for Binary Outcomes</span>"
+    ]
+  },
+  {
+    "objectID": "conclusion.html",
+    "href": "conclusion.html",
+    "title": "11  Future Directions",
+    "section": "",
+    "text": "In summary,",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Future Directions</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html",
+    "href": "quarto.html",
+    "title": "Appendix A: Creating .pdf and .html Documents Using Quarto",
+    "section": "",
+    "text": "Quarto",
+    "crumbs": [
+      "Appendix A: Creating .pdf and .html Documents Using Quarto"
+    ]
+  }
+]
