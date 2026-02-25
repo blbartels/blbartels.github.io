@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Data Visualization – Data Analysis and Statistics for Political Science</title>
+<title>4&nbsp; Data Visualization – Data Analysis and Statistics for Political Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./tidyverse.html" rel="next">
-<link href="./intro.html" rel="prev">
+<link href="./choropleth.html" rel="next">
+<link href="./tidyverse.html" rel="prev">
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataviz.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Visualization</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataviz.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualization</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -128,19 +128,19 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Analysis for Political Science: The Basics</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./dataviz.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Research and Data Analysis: The Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Organization and Wrangling, Tidyverse</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Organization and Wrangling, Tidyverse</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataviz.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -189,10 +189,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-visualization-principles" id="toc-data-visualization-principles" class="nav-link active" data-scroll-target="#data-visualization-principles"><span class="header-section-number">3.1</span> Data Visualization Principles</a></li>
-  <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2"><span class="header-section-number">3.2</span> <code>ggplot2</code></a></li>
-  <li><a href="#univariate-graphical-displays" id="toc-univariate-graphical-displays" class="nav-link" data-scroll-target="#univariate-graphical-displays"><span class="header-section-number">3.3</span> Univariate Graphical Displays</a></li>
-  <li><a href="#bivariate-graphical-displays" id="toc-bivariate-graphical-displays" class="nav-link" data-scroll-target="#bivariate-graphical-displays"><span class="header-section-number">3.4</span> Bivariate Graphical Displays</a></li>
+  <li><a href="#data-visualization-principles" id="toc-data-visualization-principles" class="nav-link active" data-scroll-target="#data-visualization-principles"><span class="header-section-number">4.1</span> Data Visualization Principles</a></li>
+  <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2"><span class="header-section-number">4.2</span> <code>ggplot2</code></a></li>
+  <li><a href="#univariate-graphical-displays" id="toc-univariate-graphical-displays" class="nav-link" data-scroll-target="#univariate-graphical-displays"><span class="header-section-number">4.3</span> Univariate Graphical Displays</a></li>
+  <li><a href="#bivariate-graphical-displays" id="toc-bivariate-graphical-displays" class="nav-link" data-scroll-target="#bivariate-graphical-displays"><span class="header-section-number">4.4</span> Bivariate Graphical Displays</a></li>
   </ul>
 </nav>
     </div>
@@ -202,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-viz" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></h1>
+<h1 class="title"><span id="sec-viz" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></h1>
 </div>
 
 
@@ -219,18 +219,18 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="data-visualization-principles" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="data-visualization-principles"><span class="header-section-number">3.1</span> Data Visualization Principles</h2>
+<section id="data-visualization-principles" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="data-visualization-principles"><span class="header-section-number">4.1</span> Data Visualization Principles</h2>
 </section>
-<section id="ggplot2" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="ggplot2"><span class="header-section-number">3.2</span> <code>ggplot2</code></h2>
+<section id="ggplot2" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="ggplot2"><span class="header-section-number">4.2</span> <code>ggplot2</code></h2>
 </section>
-<section id="univariate-graphical-displays" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="univariate-graphical-displays"><span class="header-section-number">3.3</span> Univariate Graphical Displays</h2>
+<section id="univariate-graphical-displays" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="univariate-graphical-displays"><span class="header-section-number">4.3</span> Univariate Graphical Displays</h2>
 <p>This is RStudio.</p>
 </section>
-<section id="bivariate-graphical-displays" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="bivariate-graphical-displays"><span class="header-section-number">3.4</span> Bivariate Graphical Displays</h2>
+<section id="bivariate-graphical-displays" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="bivariate-graphical-displays"><span class="header-section-number">4.4</span> Bivariate Graphical Displays</h2>
 
 
 </section>
@@ -655,13 +655,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./intro.html" class="pagination-link" aria-label="Data Analysis for Political Science: The Basics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Analysis for Political Science: The Basics</span></span>
+      <a href="./tidyverse.html" class="pagination-link" aria-label="Data Organization and Wrangling, Tidyverse">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Organization and Wrangling, Tidyverse</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./tidyverse.html" class="pagination-link" aria-label="Data Organization and Wrangling, Tidyverse">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Organization and Wrangling, Tidyverse</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./choropleth.html" class="pagination-link" aria-label="Choropleth Maps">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Choropleth Maps</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
