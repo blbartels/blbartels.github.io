@@ -22,21 +22,191 @@
   {
     "objectID": "rstudio.html",
     "href": "rstudio.html",
-    "title": "2  R and R Studio",
+    "title": "1  R, R Studio, and Quarto",
     "section": "",
-    "text": "2.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
+    "text": "1.1 Installing R\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R and R Studio</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
     ]
   },
   {
-    "objectID": "rstudio.html#using-rstudio",
-    "href": "rstudio.html#using-rstudio",
-    "title": "2  R and R Studio",
-    "section": "",
-    "text": "2.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
+    "objectID": "rstudio.html#installing-r-studio",
+    "href": "rstudio.html#installing-r-studio",
+    "title": "1  R, R Studio, and Quarto",
+    "section": "1.2 Installing R Studio",
+    "text": "1.2 Installing R Studio",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R and R Studio</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "rstudio.html#rstudio-as-your-one-stop-shop",
+    "href": "rstudio.html#rstudio-as-your-one-stop-shop",
+    "title": "1  R, R Studio, and Quarto",
+    "section": "1.3 RStudio as Your One-Stop Shop",
+    "text": "1.3 RStudio as Your One-Stop Shop",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "rstudio.html#using-quarto-to-create-documents-and-reports",
+    "href": "rstudio.html#using-quarto-to-create-documents-and-reports",
+    "title": "1  R, R Studio, and Quarto",
+    "section": "1.4 Using Quarto to Create Documents and Reports",
+    "text": "1.4 Using Quarto to Create Documents and Reports",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "rstudio.html#installing-texreg-for-creating-.pdf-documents",
+    "href": "rstudio.html#installing-texreg-for-creating-.pdf-documents",
+    "title": "1  R, R Studio, and Quarto",
+    "section": "1.5 Installing texreg for Creating .pdf Documents",
+    "text": "1.5 Installing texreg for Creating .pdf Documents",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "rstudio.html#installing-and-using-packages-in-r-studio",
+    "href": "rstudio.html#installing-and-using-packages-in-r-studio",
+    "title": "1  R, R Studio, and Quarto",
+    "section": "1.6 Installing and Using Packages in R Studio",
+    "text": "1.6 Installing and Using Packages in R Studio",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "rstudio.html#commands-and-coding",
+    "href": "rstudio.html#commands-and-coding",
+    "title": "1  R, R Studio, and Quarto",
+    "section": "1.7 Commands and Coding",
+    "text": "1.7 Commands and Coding",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "rstudio.html#tidyverse",
+    "href": "rstudio.html#tidyverse",
+    "title": "1  R, R Studio, and Quarto",
+    "section": "1.8 tidyverse",
+    "text": "1.8 tidyverse",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "rstudio.html#using-rproj-files",
+    "href": "rstudio.html#using-rproj-files",
+    "title": "1  R, R Studio, and Quarto",
+    "section": "1.9 Using “Rproj” files",
+    "text": "1.9 Using “Rproj” files",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "2  Data Analysis for Political Science: Getting Started",
+    "section": "",
+    "text": "2.1 Social Science Research",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#research-questions",
+    "href": "intro.html#research-questions",
+    "title": "2  Data Analysis for Political Science: Getting Started",
+    "section": "2.2 Research Questions",
+    "text": "2.2 Research Questions",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#concepts",
+    "href": "intro.html#concepts",
+    "title": "2  Data Analysis for Political Science: Getting Started",
+    "section": "2.3 Concepts",
+    "text": "2.3 Concepts",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#theory",
+    "href": "intro.html#theory",
+    "title": "2  Data Analysis for Political Science: Getting Started",
+    "section": "2.4 Theory",
+    "text": "2.4 Theory",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#importing-data",
+    "href": "intro.html#importing-data",
+    "title": "2  Data Analysis for Political Science: Getting Started",
+    "section": "2.5 Importing Data",
+    "text": "2.5 Importing Data",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#units-of-analysis",
+    "href": "intro.html#units-of-analysis",
+    "title": "2  Data Analysis for Political Science: Getting Started",
+    "section": "2.6 Units of Analysis",
+    "text": "2.6 Units of Analysis",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#variables",
+    "href": "intro.html#variables",
+    "title": "2  Data Analysis for Political Science: Getting Started",
+    "section": "2.7 Variables",
+    "text": "2.7 Variables",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#levels-of-measurement",
+    "href": "intro.html#levels-of-measurement",
+    "title": "2  Data Analysis for Political Science: Getting Started",
+    "section": "2.8 Levels of Measurement",
+    "text": "2.8 Levels of Measurement",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#dependent-variable",
+    "href": "intro.html#dependent-variable",
+    "title": "2  Data Analysis for Political Science: Getting Started",
+    "section": "2.9 Dependent Variable",
+    "text": "2.9 Dependent Variable",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#independent-variables",
+    "href": "intro.html#independent-variables",
+    "title": "2  Data Analysis for Political Science: Getting Started",
+    "section": "2.10 Independent Variables",
+    "text": "2.10 Independent Variables",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
     ]
   },
   {
@@ -44,17 +214,17 @@
     "href": "dataviz.html",
     "title": "3  Data Visualization",
     "section": "",
-    "text": "3.1 Data Visualization Principles\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.",
+    "text": "3.1 Data Visualization Principles",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualization</span>"
     ]
   },
   {
-    "objectID": "dataviz.html#ggplot",
-    "href": "dataviz.html#ggplot",
+    "objectID": "dataviz.html#ggplot2",
+    "href": "dataviz.html#ggplot2",
     "title": "3  Data Visualization",
-    "section": "3.2 ggplot",
-    "text": "3.2 ggplot",
+    "section": "3.2 ggplot2",
+    "text": "3.2 ggplot2",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualization</span>"
     ]
@@ -74,7 +244,7 @@
     "href": "dataviz.html#bivariate-graphical-displays",
     "title": "3  Data Visualization",
     "section": "3.4 Bivariate Graphical Displays",
-    "text": "3.4 Bivariate Graphical Displays\nggplot2 is the best graphing procedure out there.",
+    "text": "3.4 Bivariate Graphical Displays",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualization</span>"
     ]
@@ -82,21 +252,21 @@
   {
     "objectID": "tidyverse.html",
     "href": "tidyverse.html",
-    "title": "4  Data Organization Tools, Tidyverse",
+    "title": "4  Data Organization and Wrangling, Tidyverse",
     "section": "",
     "text": "4.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Organization Tools, Tidyverse</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Organization and Wrangling, Tidyverse</span>"
     ]
   },
   {
     "objectID": "tidyverse.html#using-rstudio",
     "href": "tidyverse.html#using-rstudio",
-    "title": "4  Data Organization Tools, Tidyverse",
+    "title": "4  Data Organization and Wrangling, Tidyverse",
     "section": "",
     "text": "4.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Organization Tools, Tidyverse</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Organization and Wrangling, Tidyverse</span>"
     ]
   },
   {
@@ -162,41 +332,21 @@
   {
     "objectID": "linreg1.html",
     "href": "linreg1.html",
-    "title": "8  Linear Regression, Part I",
+    "title": "8  Linear Regression",
     "section": "",
     "text": "This chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\n\\[y_i = \\hat{\\beta_0} + \\hat{\\beta_1}x_1 + \\hat{u}\\]\n\\[\\frac{\\partial y}{\\partial x} = \\beta_1\\]",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Linear Regression, Part I</span>"
-    ]
-  },
-  {
-    "objectID": "linreg2.html",
-    "href": "linreg2.html",
-    "title": "9  Linear Regression, Part II",
-    "section": "",
-    "text": "9.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Linear Regression, Part II</span>"
-    ]
-  },
-  {
-    "objectID": "linreg2.html#using-rstudio",
-    "href": "linreg2.html#using-rstudio",
-    "title": "9  Linear Regression, Part II",
-    "section": "",
-    "text": "9.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Linear Regression, Part II</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Linear Regression</span>"
     ]
   },
   {
     "objectID": "conclusion.html",
     "href": "conclusion.html",
-    "title": "10  Future Directions",
+    "title": "9  Putting it All Together",
     "section": "",
     "text": "In summary,",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Future Directions</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Putting it All Together</span>"
     ]
   }
 ]
