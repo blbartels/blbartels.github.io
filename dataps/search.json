@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Data Analysis and Statistics for Political Science",
     "section": "",
-    "text": "Preface\n\n\n\n\n\nThis is a book primarily for undergraduate students taking a course in data analysis and statistics. Many statistics and data science books are geared toward general audiences or statistics students. Those books typically do not contain many political science examples. This book is designed to gives students a foundation in data analysis and statistics but with explicitly political science examples. The use of examples helps solidify complicated concepts surrounding statistics. Political science students will relate to these political science examples and facilitate mastery of the content.\nBook outline",
+    "text": "Preface\n\nThis is a book primarily for undergraduate students taking a course in data analysis and statistics. Many statistics and data science books are geared toward general audiences or statistics students. Those books typically do not contain many political science examples. This book is designed to gives students a foundation in data analysis and statistics but with explicitly political science examples. The use of examples helps solidify complicated concepts surrounding statistics. Political science students will relate to these political science examples and facilitate mastery of the content.\nBook outline",
     "crumbs": [
       "Preface"
     ]
@@ -22,191 +22,181 @@
   {
     "objectID": "rstudio.html",
     "href": "rstudio.html",
-    "title": "1  R, R Studio, and Quarto",
+    "title": "1  R, RStudio, and Quarto",
     "section": "",
-    "text": "1.1 Installing R\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.",
+    "text": "1.1 Installing R and RStudio\nR is an “open-source” statistical software package that is free of charge. You will download this program to your computer. To run R on your computer, you will also need to download and install a program called “RStudio.” As Ismay and Kim put it, think of R as the engine of your car and RStudio as your dashboard. You will use RStudio (the dashboard features, like the steering wheel and radio) to run R (the engine). Once you have downloaded and installed R, you will never need open it again. Instead, you will perform all of the statistical computing commands using RStudio. Every once in a while (perhaps once per year), you will need to update your versions of R and RStudio on your computer. I will go over procedures for this below.\nAs a statistical program, RStudio runs on “packages.” As Ismay and Kim put it, think of RStudio as your smart phone and think of these packages as apps that you download and use. RStudio includes what are known as “base” packages that are available to use once you install R and RStudio. These include some basic features for summarizing variables and doing regression analysis. Many",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "rstudio.html#installing-r-studio",
-    "href": "rstudio.html#installing-r-studio",
-    "title": "1  R, R Studio, and Quarto",
-    "section": "1.2 Installing R Studio",
-    "text": "1.2 Installing R Studio",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, RStudio, and Quarto</span>"
     ]
   },
   {
     "objectID": "rstudio.html#rstudio-as-your-one-stop-shop",
     "href": "rstudio.html#rstudio-as-your-one-stop-shop",
-    "title": "1  R, R Studio, and Quarto",
-    "section": "1.3 RStudio as Your One-Stop Shop",
-    "text": "1.3 RStudio as Your One-Stop Shop",
+    "title": "1  R, RStudio, and Quarto",
+    "section": "1.2 RStudio as Your One-Stop Shop",
+    "text": "1.2 RStudio as Your One-Stop Shop",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, RStudio, and Quarto</span>"
     ]
   },
   {
     "objectID": "rstudio.html#using-quarto-to-create-documents-and-reports",
     "href": "rstudio.html#using-quarto-to-create-documents-and-reports",
-    "title": "1  R, R Studio, and Quarto",
-    "section": "1.4 Using Quarto to Create Documents and Reports",
-    "text": "1.4 Using Quarto to Create Documents and Reports",
+    "title": "1  R, RStudio, and Quarto",
+    "section": "1.3 Using Quarto to Create Documents and Reports",
+    "text": "1.3 Using Quarto to Create Documents and Reports",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, RStudio, and Quarto</span>"
     ]
   },
   {
     "objectID": "rstudio.html#installing-texreg-for-creating-.pdf-documents",
     "href": "rstudio.html#installing-texreg-for-creating-.pdf-documents",
-    "title": "1  R, R Studio, and Quarto",
-    "section": "1.5 Installing texreg for Creating .pdf Documents",
-    "text": "1.5 Installing texreg for Creating .pdf Documents",
+    "title": "1  R, RStudio, and Quarto",
+    "section": "1.4 Installing texreg for Creating .pdf Documents",
+    "text": "1.4 Installing texreg for Creating .pdf Documents",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, RStudio, and Quarto</span>"
     ]
   },
   {
     "objectID": "rstudio.html#installing-and-using-packages-in-r-studio",
     "href": "rstudio.html#installing-and-using-packages-in-r-studio",
-    "title": "1  R, R Studio, and Quarto",
-    "section": "1.6 Installing and Using Packages in R Studio",
-    "text": "1.6 Installing and Using Packages in R Studio",
+    "title": "1  R, RStudio, and Quarto",
+    "section": "1.5 Installing and Using Packages in R Studio",
+    "text": "1.5 Installing and Using Packages in R Studio",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, RStudio, and Quarto</span>"
     ]
   },
   {
     "objectID": "rstudio.html#commands-and-coding",
     "href": "rstudio.html#commands-and-coding",
-    "title": "1  R, R Studio, and Quarto",
-    "section": "1.7 Commands and Coding",
-    "text": "1.7 Commands and Coding",
+    "title": "1  R, RStudio, and Quarto",
+    "section": "1.6 Commands and Coding",
+    "text": "1.6 Commands and Coding",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, RStudio, and Quarto</span>"
     ]
   },
   {
     "objectID": "rstudio.html#tidyverse",
     "href": "rstudio.html#tidyverse",
-    "title": "1  R, R Studio, and Quarto",
-    "section": "1.8 tidyverse",
-    "text": "1.8 tidyverse",
+    "title": "1  R, RStudio, and Quarto",
+    "section": "1.7 tidyverse",
+    "text": "1.7 tidyverse",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, RStudio, and Quarto</span>"
     ]
   },
   {
     "objectID": "rstudio.html#using-rproj-files",
     "href": "rstudio.html#using-rproj-files",
-    "title": "1  R, R Studio, and Quarto",
-    "section": "1.9 Using “Rproj” files",
-    "text": "1.9 Using “Rproj” files",
+    "title": "1  R, RStudio, and Quarto",
+    "section": "1.8 Using “Rproj” files",
+    "text": "1.8 Using “Rproj” files",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, R Studio, and Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, RStudio, and Quarto</span>"
     ]
   },
   {
     "objectID": "intro.html",
     "href": "intro.html",
-    "title": "2  Data Analysis for Political Science: Getting Started",
+    "title": "2  Data Analysis for Political Science: The Basics",
     "section": "",
     "text": "2.1 Social Science Research",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: The Basics</span>"
     ]
   },
   {
     "objectID": "intro.html#research-questions",
     "href": "intro.html#research-questions",
-    "title": "2  Data Analysis for Political Science: Getting Started",
+    "title": "2  Data Analysis for Political Science: The Basics",
     "section": "2.2 Research Questions",
     "text": "2.2 Research Questions",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: The Basics</span>"
     ]
   },
   {
     "objectID": "intro.html#concepts",
     "href": "intro.html#concepts",
-    "title": "2  Data Analysis for Political Science: Getting Started",
+    "title": "2  Data Analysis for Political Science: The Basics",
     "section": "2.3 Concepts",
     "text": "2.3 Concepts",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: The Basics</span>"
     ]
   },
   {
     "objectID": "intro.html#theory",
     "href": "intro.html#theory",
-    "title": "2  Data Analysis for Political Science: Getting Started",
+    "title": "2  Data Analysis for Political Science: The Basics",
     "section": "2.4 Theory",
     "text": "2.4 Theory",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: The Basics</span>"
     ]
   },
   {
     "objectID": "intro.html#importing-data",
     "href": "intro.html#importing-data",
-    "title": "2  Data Analysis for Political Science: Getting Started",
+    "title": "2  Data Analysis for Political Science: The Basics",
     "section": "2.5 Importing Data",
     "text": "2.5 Importing Data",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: The Basics</span>"
     ]
   },
   {
     "objectID": "intro.html#units-of-analysis",
     "href": "intro.html#units-of-analysis",
-    "title": "2  Data Analysis for Political Science: Getting Started",
+    "title": "2  Data Analysis for Political Science: The Basics",
     "section": "2.6 Units of Analysis",
     "text": "2.6 Units of Analysis",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: The Basics</span>"
     ]
   },
   {
     "objectID": "intro.html#variables",
     "href": "intro.html#variables",
-    "title": "2  Data Analysis for Political Science: Getting Started",
+    "title": "2  Data Analysis for Political Science: The Basics",
     "section": "2.7 Variables",
     "text": "2.7 Variables",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: The Basics</span>"
     ]
   },
   {
     "objectID": "intro.html#levels-of-measurement",
     "href": "intro.html#levels-of-measurement",
-    "title": "2  Data Analysis for Political Science: Getting Started",
+    "title": "2  Data Analysis for Political Science: The Basics",
     "section": "2.8 Levels of Measurement",
     "text": "2.8 Levels of Measurement",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: The Basics</span>"
     ]
   },
   {
     "objectID": "intro.html#dependent-variable",
     "href": "intro.html#dependent-variable",
-    "title": "2  Data Analysis for Political Science: Getting Started",
+    "title": "2  Data Analysis for Political Science: The Basics",
     "section": "2.9 Dependent Variable",
     "text": "2.9 Dependent Variable",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: The Basics</span>"
     ]
   },
   {
     "objectID": "intro.html#independent-variables",
     "href": "intro.html#independent-variables",
-    "title": "2  Data Analysis for Political Science: Getting Started",
+    "title": "2  Data Analysis for Political Science: The Basics",
     "section": "2.10 Independent Variables",
     "text": "2.10 Independent Variables",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: Getting Started</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Analysis for Political Science: The Basics</span>"
     ]
   },
   {
