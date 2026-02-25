@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Data Analysis and Statistics for Political Science",
     "section": "",
-    "text": "Preface\n\nThis is a book primarily for undergraduate students taking a course in data analysis and statistics. Many statistics and data science books are geared toward general audiences or statistics students. Those books typically do not contain many political science examples. This book is designed to gives students a foundation in data analysis and statistics but with explicitly political science examples. The use of examples helps solidify complicated concepts surrounding statistics. Political science students will relate to these political science examples and facilitate mastery of the content.\nThis is a book primarily for undergraduate students taking a course in data analysis and statistics. Many statistics and data science books are geared toward general audiences or statistics students. Those books typically do not contain many political science examples. This book is designed to gives students a foundation in data analysis and statistics but with explicitly political science examples. The use of examples helps solidify complicated concepts surrounding statistics. Political science students will relate to these political science examples and facilitate mastery of the content.",
+    "text": "Preface\n\n\n\n\n\nThis is a book primarily for undergraduate students taking a course in data analysis and statistics. Many statistics and data science books are geared toward general audiences or statistics students. Those books typically do not contain many political science examples. This book is designed to gives students a foundation in data analysis and statistics but with explicitly political science examples. The use of examples helps solidify complicated concepts surrounding statistics. Political science students will relate to these political science examples and facilitate mastery of the content.\nBook outline",
     "crumbs": [
       "Preface"
     ]
@@ -17,26 +17,6 @@
     "text": "Brandon L. Bartels is a Professor of Political Science at George Washington University.",
     "crumbs": [
       "About the Author"
-    ]
-  },
-  {
-    "objectID": "intro.html",
-    "href": "intro.html",
-    "title": "1  Introduction",
-    "section": "",
-    "text": "1.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "intro.html#using-rstudio",
-    "href": "intro.html#using-rstudio",
-    "title": "1  Introduction",
-    "section": "",
-    "text": "1.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
@@ -60,43 +40,63 @@
     ]
   },
   {
+    "objectID": "dataviz.html",
+    "href": "dataviz.html",
+    "title": "3  Data Visualization",
+    "section": "",
+    "text": "3.1 Data Visualization Principles\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "dataviz.html#ggplot",
+    "href": "dataviz.html#ggplot",
+    "title": "3  Data Visualization",
+    "section": "3.2 ggplot",
+    "text": "3.2 ggplot",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "dataviz.html#univariate-graphical-displays",
+    "href": "dataviz.html#univariate-graphical-displays",
+    "title": "3  Data Visualization",
+    "section": "3.3 Univariate Graphical Displays",
+    "text": "3.3 Univariate Graphical Displays\nThis is RStudio.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
+    "objectID": "dataviz.html#bivariate-graphical-displays",
+    "href": "dataviz.html#bivariate-graphical-displays",
+    "title": "3  Data Visualization",
+    "section": "3.4 Bivariate Graphical Displays",
+    "text": "3.4 Bivariate Graphical Displays\nggplot2 is the best graphing procedure out there.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualization</span>"
+    ]
+  },
+  {
     "objectID": "tidyverse.html",
     "href": "tidyverse.html",
-    "title": "3  Data Organization Tools, Tidyverse",
+    "title": "4  Data Organization Tools, Tidyverse",
     "section": "",
-    "text": "3.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
+    "text": "4.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Organization Tools, Tidyverse</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Organization Tools, Tidyverse</span>"
     ]
   },
   {
     "objectID": "tidyverse.html#using-rstudio",
     "href": "tidyverse.html#using-rstudio",
-    "title": "3  Data Organization Tools, Tidyverse",
-    "section": "",
-    "text": "3.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Organization Tools, Tidyverse</span>"
-    ]
-  },
-  {
-    "objectID": "dataviz.html",
-    "href": "dataviz.html",
-    "title": "4  Data Visualization",
-    "section": "",
-    "text": "4.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Visualization</span>"
-    ]
-  },
-  {
-    "objectID": "dataviz.html#using-rstudio",
-    "href": "dataviz.html#using-rstudio",
-    "title": "4  Data Visualization",
+    "title": "4  Data Organization Tools, Tidyverse",
     "section": "",
     "text": "4.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Visualization</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Organization Tools, Tidyverse</span>"
     ]
   },
   {
@@ -124,17 +124,17 @@
     "href": "descriptive.html",
     "title": "6  Descriptive Statistics",
     "section": "",
-    "text": "6.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
+    "text": "6.1 Univariate Descriptive Statistics\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Descriptive Statistics</span>"
     ]
   },
   {
-    "objectID": "descriptive.html#using-rstudio",
-    "href": "descriptive.html#using-rstudio",
+    "objectID": "descriptive.html#bivariate-descriptive-statistics",
+    "href": "descriptive.html#bivariate-descriptive-statistics",
     "title": "6  Descriptive Statistics",
-    "section": "",
-    "text": "6.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
+    "section": "6.2 Bivariate Descriptive Statistics",
+    "text": "6.2 Bivariate Descriptive Statistics\n\n6.2.1 Crosstabs",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Descriptive Statistics</span>"
     ]
@@ -164,17 +164,7 @@
     "href": "linreg1.html",
     "title": "8  Linear Regression, Part I",
     "section": "",
-    "text": "8.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Linear Regression, Part I</span>"
-    ]
-  },
-  {
-    "objectID": "linreg1.html#using-rstudio",
-    "href": "linreg1.html#using-rstudio",
-    "title": "8  Linear Regression, Part I",
-    "section": "",
-    "text": "8.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
+    "text": "This chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\n\\[y_i = \\hat{\\beta_0} + \\hat{\\beta_1}x_1 + \\hat{u}\\]\n\\[\\frac{\\partial y}{\\partial x} = \\beta_1\\]",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Linear Regression, Part I</span>"
     ]
@@ -200,43 +190,13 @@
     ]
   },
   {
-    "objectID": "logit.html",
-    "href": "logit.html",
-    "title": "10  Regression for Binary Outcomes",
-    "section": "",
-    "text": "10.1 Using RStudio\nThis chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.\nThis is Rstudtio.",
-    "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Regression for Binary Outcomes</span>"
-    ]
-  },
-  {
-    "objectID": "logit.html#using-rstudio",
-    "href": "logit.html#using-rstudio",
-    "title": "10  Regression for Binary Outcomes",
-    "section": "",
-    "text": "10.1.1 Using ggplot2\nggplot2 is the best graphing procedure out there.",
-    "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Regression for Binary Outcomes</span>"
-    ]
-  },
-  {
     "objectID": "conclusion.html",
     "href": "conclusion.html",
-    "title": "11  Future Directions",
+    "title": "10  Future Directions",
     "section": "",
     "text": "In summary,",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Future Directions</span>"
-    ]
-  },
-  {
-    "objectID": "quarto.html",
-    "href": "quarto.html",
-    "title": "Appendix A: Creating .pdf and .html Documents Using Quarto",
-    "section": "",
-    "text": "Quarto",
-    "crumbs": [
-      "Appendix A: Creating .pdf and .html Documents Using Quarto"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Future Directions</span>"
     ]
   }
 ]
