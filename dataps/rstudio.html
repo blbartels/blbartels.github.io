@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; R, RStudio, and Quarto – Data Analysis and Statistics for Political Science</title>
+<title>1&nbsp; Using R and RStudio – Data Analysis and Statistics for Political Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rstudio.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R, RStudio, and Quarto</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rstudio.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Using R and RStudio</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -122,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rstudio.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R, RStudio, and Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Using R and RStudio</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -191,12 +191,13 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#installing-r-and-rstudio" id="toc-installing-r-and-rstudio" class="nav-link active" data-scroll-target="#installing-r-and-rstudio"><span class="header-section-number">1.1</span> Installing R and RStudio</a></li>
   <li><a href="#rstudio-as-your-one-stop-shop" id="toc-rstudio-as-your-one-stop-shop" class="nav-link" data-scroll-target="#rstudio-as-your-one-stop-shop"><span class="header-section-number">1.2</span> RStudio as Your One-Stop Shop</a></li>
-  <li><a href="#using-quarto-to-create-documents-and-reports" id="toc-using-quarto-to-create-documents-and-reports" class="nav-link" data-scroll-target="#using-quarto-to-create-documents-and-reports"><span class="header-section-number">1.3</span> Using Quarto to Create Documents and Reports</a></li>
-  <li><a href="#installing-texreg-for-creating-.pdf-documents" id="toc-installing-texreg-for-creating-.pdf-documents" class="nav-link" data-scroll-target="#installing-texreg-for-creating-.pdf-documents"><span class="header-section-number">1.4</span> Installing <code>texreg</code> for Creating .pdf Documents</a></li>
-  <li><a href="#installing-and-using-packages-in-r-studio" id="toc-installing-and-using-packages-in-r-studio" class="nav-link" data-scroll-target="#installing-and-using-packages-in-r-studio"><span class="header-section-number">1.5</span> Installing and Using Packages in R Studio</a></li>
-  <li><a href="#commands-and-coding" id="toc-commands-and-coding" class="nav-link" data-scroll-target="#commands-and-coding"><span class="header-section-number">1.6</span> Commands and Coding</a></li>
-  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"><span class="header-section-number">1.7</span> <code>tidyverse</code></a></li>
-  <li><a href="#using-rproj-files" id="toc-using-rproj-files" class="nav-link" data-scroll-target="#using-rproj-files"><span class="header-section-number">1.8</span> Using “Rproj” files</a></li>
+  <li><a href="#installing-and-using-packages-in-r-studio" id="toc-installing-and-using-packages-in-r-studio" class="nav-link" data-scroll-target="#installing-and-using-packages-in-r-studio"><span class="header-section-number">1.3</span> Installing and Using Packages in R Studio</a></li>
+  <li><a href="#commands-and-coding" id="toc-commands-and-coding" class="nav-link" data-scroll-target="#commands-and-coding"><span class="header-section-number">1.4</span> Commands and Coding</a></li>
+  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"><span class="header-section-number">1.5</span> <code>tidyverse</code></a></li>
+  <li><a href="#file-types-.r-rproj-.qmd" id="toc-file-types-.r-rproj-.qmd" class="nav-link" data-scroll-target="#file-types-.r-rproj-.qmd"><span class="header-section-number">1.6</span> File types: .R, “Rproj”, .qmd</a></li>
+  <li><a href="#updating-r-and-rstudio" id="toc-updating-r-and-rstudio" class="nav-link" data-scroll-target="#updating-r-and-rstudio"><span class="header-section-number">1.7</span> Updating R and RStudio</a></li>
+  <li><a href="#using-quarto-to-create-documents-and-reports" id="toc-using-quarto-to-create-documents-and-reports" class="nav-link" data-scroll-target="#using-quarto-to-create-documents-and-reports"><span class="header-section-number">1.8</span> Using Quarto to Create Documents and Reports</a></li>
+  <li><a href="#installing-texreg-for-creating-.pdf-documents" id="toc-installing-texreg-for-creating-.pdf-documents" class="nav-link" data-scroll-target="#installing-texreg-for-creating-.pdf-documents"><span class="header-section-number">1.9</span> Installing <code>texreg</code> for Creating .pdf Documents</a></li>
   </ul>
 </nav>
     </div>
@@ -206,7 +207,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R, RStudio, and Quarto</span></h1>
+<h1 class="title"><span id="sec-r" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Using R and RStudio</span></span></h1>
 </div>
 
 
@@ -228,31 +229,39 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="images/rstudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
-<p>R is an “open-source” statistical software package that is free of charge. You will download this program to your computer. To run R on your computer, you will also need to download and install a program called “RStudio.” As Ismay and Kim put it, think of R as the engine of your car and RStudio as your dashboard. You will use RStudio (the dashboard features, like the steering wheel and radio) to run R (the engine). Once you have downloaded and installed R, you will never need open it again. <em>Instead, you will perform all of the statistical computing commands using RStudio</em>. Every once in a while (perhaps once per year), you will need to update your versions of R and RStudio on your computer. I will go over procedures for this below.</p>
-<p>As a statistical program, RStudio runs on “packages.” As Ismay and Kim put it, think of RStudio as your smart phone and think of these packages as apps that you download and use. RStudio includes what are known as “base” packages that are available to use once you install R and RStudio. These include some basic features for summarizing variables and doing regression analysis. Many</p>
+<p>R is an “open-source” statistical software package that is free of charge. You will download this program to your computer. To run R on your computer, you will also need to download and install a program called “RStudio.” As Ismay and Kim put it, think of R as the engine of your car and RStudio as your dashboard and other levers inside the car. You will use RStudio (the dashboard features, the steering wheel, and gas pedal) to run R (the engine). Once you have downloaded and installed R, you will never need open it again (just like you may have never opened the hood of your car to inspect the engine). <em>Instead, you will perform all statistical computing commands using RStudio</em>. Every once in a while (perhaps once per year), you will need to update your versions of R and RStudio on your computer. I will go over procedures for this below.</p>
+<p>As a statistical program, RStudio runs on “packages.” As Ismay and Kim put it, think of RStudio as your smart phone and think of these packages as apps that you download and use. RStudio includes what are known as “base” packages that are available to use once you install R and RStudio. These include some basic commands for summarizing variables and doing regression analysis. Moreover, most of the commands a typical RStudio user will employ involve add-on packages that you need to install and load. Once you install a package, it stays on your computer However, every time you open RStudio (after closing it previously), you need to load packages. I will discuss this below.</p>
+<p>This book will also discuss a program called Quarto, which is available to use in RStudio. Using this program, one can create .pdf and .html documents that integrate graphical and statistical results output with your narrative explaining your results—all in a single document. One can actually write an entire paper using Quarto that includes your writing and your analyses. Quarto renders this document into a .pdf or .hmtl. Some instructors have their students complete assignments for a class using Quarto.</p>
 <section id="installing-r-and-rstudio" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="installing-r-and-rstudio"><span class="header-section-number">1.1</span> Installing R and RStudio</h2>
+<p>Installing R and RStudio is easy and takes 5-10 minutes. Download and install R first using this link: <a href="https://cloud.r-project.org/" target="_blank">https://cloud.r-project.org/</a>.</p>
+<p>Next, download and install RStudio via this link: <a href="https://posit.co/download/rstudio-desktop/" target="_blank">https://posit.co/download/rstudio-desktop/</a>. Skip step 1 (“Install R”), since you have already done that. Go to step 2 (“Install RStudio”) and click on your operating system. You can also scroll down to “All Installers and Tarballs.”</p>
 </section>
 <section id="rstudio-as-your-one-stop-shop" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="rstudio-as-your-one-stop-shop"><span class="header-section-number">1.2</span> RStudio as Your One-Stop Shop</h2>
+<p>As discussed, you will use RStudio to do all of your analyses. You never need to open R itself. RStudio can run R without R being opened. When you open RStudio for the first time, you will see something like this image:</p>
+<p>This book will discuss these features throughout, but I will give a brief overview here. Note that there are four panes. In the upper-left pane, you will use</p>
 </section>
-<section id="using-quarto-to-create-documents-and-reports" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="using-quarto-to-create-documents-and-reports"><span class="header-section-number">1.3</span> Using Quarto to Create Documents and Reports</h2>
+<section id="installing-and-using-packages-in-r-studio" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="installing-and-using-packages-in-r-studio"><span class="header-section-number">1.3</span> Installing and Using Packages in R Studio</h2>
 </section>
-<section id="installing-texreg-for-creating-.pdf-documents" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="installing-texreg-for-creating-.pdf-documents"><span class="header-section-number">1.4</span> Installing <code>texreg</code> for Creating .pdf Documents</h2>
+<section id="commands-and-coding" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="commands-and-coding"><span class="header-section-number">1.4</span> Commands and Coding</h2>
 </section>
-<section id="installing-and-using-packages-in-r-studio" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="installing-and-using-packages-in-r-studio"><span class="header-section-number">1.5</span> Installing and Using Packages in R Studio</h2>
+<section id="tidyverse" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">1.5</span> <code>tidyverse</code></h2>
 </section>
-<section id="commands-and-coding" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="commands-and-coding"><span class="header-section-number">1.6</span> Commands and Coding</h2>
+<section id="file-types-.r-rproj-.qmd" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="file-types-.r-rproj-.qmd"><span class="header-section-number">1.6</span> File types: .R, “Rproj”, .qmd</h2>
 </section>
-<section id="tidyverse" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">1.7</span> <code>tidyverse</code></h2>
+<section id="updating-r-and-rstudio" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="updating-r-and-rstudio"><span class="header-section-number">1.7</span> Updating R and RStudio</h2>
 </section>
-<section id="using-rproj-files" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="using-rproj-files"><span class="header-section-number">1.8</span> Using “Rproj” files</h2>
+<section id="using-quarto-to-create-documents-and-reports" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="using-quarto-to-create-documents-and-reports"><span class="header-section-number">1.8</span> Using Quarto to Create Documents and Reports</h2>
+</section>
+<section id="installing-texreg-for-creating-.pdf-documents" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="installing-texreg-for-creating-.pdf-documents"><span class="header-section-number">1.9</span> Installing <code>texreg</code> for Creating .pdf Documents</h2>
 
 
 </section>

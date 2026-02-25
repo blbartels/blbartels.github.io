@@ -14,7 +14,7 @@
     "href": "about.html",
     "title": "About the Author",
     "section": "",
-    "text": "Brandon L. Bartels is a Professor of Political Science at George Washington University. His research and teaching interests center on American politics, judicial politics, the U.S. Supreme Court, public perceptions of law and courts, institutional legitimacy, and judicial power and court-curbing in comparative context. Brandon’s work has appeared in the American Political Science Review, American Journal of Political Science, Journal of Politics, Public Opinion Quarterly, and other outlets. My research has also been supported by the National Science Foundation. His book with Christopher D. Johnston, Curbing the Court: Why the Public Constrains Judicial Independence, was published in 2020 by Cambridge University Press.",
+    "text": "Brandon L. Bartels is a Professor of Political Science at George Washington University. His research and teaching interests center on American politics, judicial politics, the U.S. Supreme Court, public perceptions of law and courts, institutional legitimacy, judicial power and court-curbing in comparative context, and political methodology. Brandon’s work has appeared in the American Political Science Review, American Journal of Political Science, Journal of Politics, Public Opinion Quarterly, and other outlets. His research has also been supported by the National Science Foundation. His book with Christopher D. Johnston, Curbing the Court: Why the Public Constrains Judicial Independence, was published in 2020 by Cambridge University Press.\nBrandon has been teaching data analysis and statistics courses for over 20 years. He has taught undergraduate statistics as well as several Ph.D. courses. This book is a culmination of many of the things he has taught and learned over time – including from his students.",
     "crumbs": [
       "About the Author"
     ]
@@ -22,81 +22,91 @@
   {
     "objectID": "rstudio.html",
     "href": "rstudio.html",
-    "title": "1  R, RStudio, and Quarto",
+    "title": "1  Using R and RStudio",
     "section": "",
-    "text": "1.1 Installing R and RStudio\nR is an “open-source” statistical software package that is free of charge. You will download this program to your computer. To run R on your computer, you will also need to download and install a program called “RStudio.” As Ismay and Kim put it, think of R as the engine of your car and RStudio as your dashboard. You will use RStudio (the dashboard features, like the steering wheel and radio) to run R (the engine). Once you have downloaded and installed R, you will never need open it again. Instead, you will perform all of the statistical computing commands using RStudio. Every once in a while (perhaps once per year), you will need to update your versions of R and RStudio on your computer. I will go over procedures for this below.\nAs a statistical program, RStudio runs on “packages.” As Ismay and Kim put it, think of RStudio as your smart phone and think of these packages as apps that you download and use. RStudio includes what are known as “base” packages that are available to use once you install R and RStudio. These include some basic features for summarizing variables and doing regression analysis. Many",
+    "text": "1.1 Installing R and RStudio\nR is an “open-source” statistical software package that is free of charge. You will download this program to your computer. To run R on your computer, you will also need to download and install a program called “RStudio.” As Ismay and Kim put it, think of R as the engine of your car and RStudio as your dashboard and other levers inside the car. You will use RStudio (the dashboard features, the steering wheel, and gas pedal) to run R (the engine). Once you have downloaded and installed R, you will never need open it again (just like you may have never opened the hood of your car to inspect the engine). Instead, you will perform all statistical computing commands using RStudio. Every once in a while (perhaps once per year), you will need to update your versions of R and RStudio on your computer. I will go over procedures for this below.\nAs a statistical program, RStudio runs on “packages.” As Ismay and Kim put it, think of RStudio as your smart phone and think of these packages as apps that you download and use. RStudio includes what are known as “base” packages that are available to use once you install R and RStudio. These include some basic commands for summarizing variables and doing regression analysis. Moreover, most of the commands a typical RStudio user will employ involve add-on packages that you need to install and load. Once you install a package, it stays on your computer However, every time you open RStudio (after closing it previously), you need to load packages. I will discuss this below.\nThis book will also discuss a program called Quarto, which is available to use in RStudio. Using this program, one can create .pdf and .html documents that integrate graphical and statistical results output with your narrative explaining your results—all in a single document. One can actually write an entire paper using Quarto that includes your writing and your analyses. Quarto renders this document into a .pdf or .hmtl. Some instructors have their students complete assignments for a class using Quarto.\nInstalling R and RStudio is easy and takes 5-10 minutes. Download and install R first using this link: https://cloud.r-project.org/.\nNext, download and install RStudio via this link: https://posit.co/download/rstudio-desktop/. Skip step 1 (“Install R”), since you have already done that. Go to step 2 (“Install RStudio”) and click on your operating system. You can also scroll down to “All Installers and Tarballs.”",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, RStudio, and Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Using R and RStudio</span>"
     ]
   },
   {
     "objectID": "rstudio.html#rstudio-as-your-one-stop-shop",
     "href": "rstudio.html#rstudio-as-your-one-stop-shop",
-    "title": "1  R, RStudio, and Quarto",
+    "title": "1  Using R and RStudio",
     "section": "1.2 RStudio as Your One-Stop Shop",
-    "text": "1.2 RStudio as Your One-Stop Shop",
+    "text": "1.2 RStudio as Your One-Stop Shop\nAs discussed, you will use RStudio to do all of your analyses. You never need to open R itself. RStudio can run R without R being opened. When you open RStudio for the first time, you will see something like this image:\nThis book will discuss these features throughout, but I will give a brief overview here. Note that there are four panes. In the upper-left pane, you will use",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, RStudio, and Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "rstudio.html#using-quarto-to-create-documents-and-reports",
-    "href": "rstudio.html#using-quarto-to-create-documents-and-reports",
-    "title": "1  R, RStudio, and Quarto",
-    "section": "1.3 Using Quarto to Create Documents and Reports",
-    "text": "1.3 Using Quarto to Create Documents and Reports",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, RStudio, and Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "rstudio.html#installing-texreg-for-creating-.pdf-documents",
-    "href": "rstudio.html#installing-texreg-for-creating-.pdf-documents",
-    "title": "1  R, RStudio, and Quarto",
-    "section": "1.4 Installing texreg for Creating .pdf Documents",
-    "text": "1.4 Installing texreg for Creating .pdf Documents",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, RStudio, and Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Using R and RStudio</span>"
     ]
   },
   {
     "objectID": "rstudio.html#installing-and-using-packages-in-r-studio",
     "href": "rstudio.html#installing-and-using-packages-in-r-studio",
-    "title": "1  R, RStudio, and Quarto",
-    "section": "1.5 Installing and Using Packages in R Studio",
-    "text": "1.5 Installing and Using Packages in R Studio",
+    "title": "1  Using R and RStudio",
+    "section": "1.3 Installing and Using Packages in R Studio",
+    "text": "1.3 Installing and Using Packages in R Studio",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, RStudio, and Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Using R and RStudio</span>"
     ]
   },
   {
     "objectID": "rstudio.html#commands-and-coding",
     "href": "rstudio.html#commands-and-coding",
-    "title": "1  R, RStudio, and Quarto",
-    "section": "1.6 Commands and Coding",
-    "text": "1.6 Commands and Coding",
+    "title": "1  Using R and RStudio",
+    "section": "1.4 Commands and Coding",
+    "text": "1.4 Commands and Coding",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, RStudio, and Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Using R and RStudio</span>"
     ]
   },
   {
     "objectID": "rstudio.html#tidyverse",
     "href": "rstudio.html#tidyverse",
-    "title": "1  R, RStudio, and Quarto",
-    "section": "1.7 tidyverse",
-    "text": "1.7 tidyverse",
+    "title": "1  Using R and RStudio",
+    "section": "1.5 tidyverse",
+    "text": "1.5 tidyverse",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, RStudio, and Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Using R and RStudio</span>"
     ]
   },
   {
-    "objectID": "rstudio.html#using-rproj-files",
-    "href": "rstudio.html#using-rproj-files",
-    "title": "1  R, RStudio, and Quarto",
-    "section": "1.8 Using “Rproj” files",
-    "text": "1.8 Using “Rproj” files",
+    "objectID": "rstudio.html#file-types-.r-rproj-.qmd",
+    "href": "rstudio.html#file-types-.r-rproj-.qmd",
+    "title": "1  Using R and RStudio",
+    "section": "1.6 File types: .R, “Rproj”, .qmd",
+    "text": "1.6 File types: .R, “Rproj”, .qmd",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R, RStudio, and Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Using R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "rstudio.html#updating-r-and-rstudio",
+    "href": "rstudio.html#updating-r-and-rstudio",
+    "title": "1  Using R and RStudio",
+    "section": "1.7 Updating R and RStudio",
+    "text": "1.7 Updating R and RStudio",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Using R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "rstudio.html#using-quarto-to-create-documents-and-reports",
+    "href": "rstudio.html#using-quarto-to-create-documents-and-reports",
+    "title": "1  Using R and RStudio",
+    "section": "1.8 Using Quarto to Create Documents and Reports",
+    "text": "1.8 Using Quarto to Create Documents and Reports",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Using R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "rstudio.html#installing-texreg-for-creating-.pdf-documents",
+    "href": "rstudio.html#installing-texreg-for-creating-.pdf-documents",
+    "title": "1  Using R and RStudio",
+    "section": "1.9 Installing texreg for Creating .pdf Documents",
+    "text": "1.9 Installing texreg for Creating .pdf Documents",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Using R and RStudio</span>"
     ]
   },
   {
