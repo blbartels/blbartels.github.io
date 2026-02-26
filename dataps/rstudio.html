@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -233,8 +253,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="images/rstudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
-<p>R is an “open-source” statistical software package that is free of charge to download, install, and use. You will download this program to your computer. To run R on your computer, you will also need to download and install a program called “RStudio,” which is also free. As Ismay and Kim put it, think of R as the “stuff” under the hood of and underneath your car (e.g., engine, breaks) and RStudio as your dashboard and levers inside the car. You will use RStudio to run R. Once you have downloaded and installed R, you will never need to open it again (just like you may have never opened the hood of your car to inspect the engine). <em>Instead, you will perform all statistical computing commands using RStudio</em>. Every once in a while (perhaps once per year), you will need to update your versions of R and RStudio on your computer. I will go over procedures for this below (<a href="#sec-update" class="quarto-xref"><span>Section 1.7</span></a>).</p>
-<p>As a statistical program, RStudio runs on “packages.” As Ismay and Kim put it, think of RStudio as your smart phone and think of these packages as apps that you download and use. RStudio includes what are known as “base” packages that are available to use once you install R and RStudio. These include some basic commands for summarizing variables and doing regression analysis. Moreover, most of the commands a typical RStudio user will employ involve add-on packages that you need to install and load. Once you install a package, it stays on your computer. However, every time you open RStudio (after closing it previously), you need to load packages that are required to execute your commands. I will discuss this below.</p>
+<p>R is an “open-source” statistical software package that is free of charge to download, install, and use. You will download this program to your computer. To run R on your computer, you will also need to download and install a program called “RStudio,” which is also free. As <span class="citation" data-cites="ismay2020">Ismay and Kim (<a href="references.html#ref-ismay2020" role="doc-biblioref">2020</a>)</span> put it, think of R as the “stuff” under the hood of and underneath your car (e.g., engine, breaks) and RStudio as your dashboard and levers inside the car. You will use RStudio to run R. Once you have downloaded and installed R, you will never need to open it again (just like you may have never opened the hood of your car to inspect the engine). <em>Instead, you will perform all statistical computing commands using RStudio</em>. Every once in a while (perhaps once per year), you will need to update your versions of R and RStudio on your computer. I will go over procedures for this below (<a href="#sec-update" class="quarto-xref"><span>Section 1.7</span></a>).</p>
+<p>As a statistical program, RStudio runs on “packages.” As <span class="citation" data-cites="ismay2020">Ismay and Kim (<a href="references.html#ref-ismay2020" role="doc-biblioref">2020</a>)</span> put it, think of RStudio as your smart phone and think of these packages as apps that you download and use. RStudio includes what are known as “base” packages that are available to use once you install R and RStudio. These include some basic commands for summarizing variables and doing regression analysis. Moreover, most of the commands a typical RStudio user will employ involve add-on packages that you need to install and load. Once you install a package, it stays on your computer. However, every time you open RStudio (after closing it previously), you need to load packages that are required to execute your commands. I will discuss this below.</p>
 <p>This book will also discuss a program called Quarto, which is available to use in RStudio. Quarto allows users to create .pdf and .html documents that integrate graphical and statistical results and output with your narrative explaining your results—all in a single document. Users can actually write an entire paper using Quarto that includes your writing and your analyses (figures and tables). Quarto renders this document into a .pdf or .hmtl. Some instructors have their students to use Quarto to complete assignments.</p>
 <section id="installing-r-and-rstudio" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="installing-r-and-rstudio"><span class="header-section-number">1.1</span> Installing R and RStudio</h2>
@@ -303,6 +323,11 @@ Figure&nbsp;1.1: <strong>RStudio Screen Shot</strong>
 <p>Soon after you have downloaded and started running RStudio, you will likely begin getting notifications that new versions of RStudio and R are available. My own practice is to ignore those notifications for a while and then update both R and RStudio about once per year. The downside of updating R and RStudio is that all of the packages you have installed are <em>not</em> carried over to your new versions. Thankfully, there are workarounds to this issue. I have created code and commands to save the packages one has installed on their current version. Then, after downloading and installing the new versions of R and RStudio, the user resintalls those packages in the new version of RStudio. Click HERE to download a .zip archive for executing this procedure.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-ismay2020" class="csl-entry" role="listitem">
+Ismay, Chester, and Albert Y. Kim. 2020. <em>Statistical Inference via Data Science: A ModernDive into <span>R</span> and the Tidyverse: A ModernDive into <span>R</span> and the Tidyverse</em>. Boca Raton, FL: Chapman; Hall/CRC.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
