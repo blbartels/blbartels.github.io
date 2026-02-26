@@ -247,12 +247,12 @@ ul.task-list li input[type="checkbox"] {
 <p>This book will discuss these features throughout, but I will give a brief overview here. Note that RStudio has four panes or quadrants. In the <strong>upper-left quadrant</strong>, users can write data coding and statistical commands in an “R script” (a .R file, which is discussed more in <a href="#sec-file" class="quarto-xref"><span>Section 1.5</span></a> below) that they can save to their hard drive for future use. One can run these commands right within an R script in this window. Users can also use this quadrant to write Quarto files (.qmd files, see <a href="#sec-quarto" class="quarto-xref"><span>Section 1.6</span></a> below). One can also view a data object in this window. In sum, this quadrant is for viewing or editing various files are saved on one’s computer or stored in the RStudio environment.</p>
 <div id="fig-rs" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-rs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: <strong>RStudio Screen Shot</strong>
+</figcaption>
 <div aria-describedby="fig-rs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/rstudio_screen.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.1: <strong>RStudio Screen Shot</strong>
-</figcaption>
 </figure>
 </div>
 <p>The <strong>lower-left quadrant</strong> is a command window. You will see three tabs: Console, Terminal and Background Jobs. The quadrant defaults to the Console tab, where one can enter coding and data commands “on demand.” This is equivalent to writing out commands in an R script (.R file just discussed) and running them from there. The Terminal window is for more advanced commands, like installing a feature for running Quarto to produce .pdf documents. Most users rarely use this Terminal tab. Same goes for the Background Jobs tab, which shows the progress of a particular job, like rendering a Quarto document.</p>
@@ -290,7 +290,7 @@ Figure&nbsp;1.1: <strong>RStudio Screen Shot</strong>
 <p>Quarto is a powerful program within RStudio that can create documents, in .pdf or .html format, communicating your results and interpretation from a quantitative data analysis project. Quarto works by employing: (1) <code>knitr</code> to run the statistical computing commands and gather the results; (2) Pandoc to convert the text and results into a document (.pdf or .html); and (3) for .pdf’s specifically, LaTex for typesetting features. Quarto users can use LaTex code within Quarto when creating a .pdf document. Users can integrate figures, tables, and writing into a .pdf document that one can use for journal submission, submission of an assignment, etc. Quarto can also create websites (which I have used to create this book), slide decks (as either .pdf or html), and .html output.</p>
 <section id="installing-tinytex-for-creating-.pdf-documents" class="level3" data-number="1.6.1">
 <h3 data-number="1.6.1" class="anchored" data-anchor-id="installing-tinytex-for-creating-.pdf-documents"><span class="header-section-number">1.6.1</span> Installing <code>tinytex</code> for Creating .pdf Documents</h3>
-<p>To use Quarto to create .pdf documents, users must first install a package called <code>texreg</code>. This package uses LaTex for typesetting. To install texreg, go to the Terminal tab in the lower-left quadrant and type:</p>
+<p>To use Quarto to create .pdf documents, users must first install a package called <code>tinytex</code>. This package uses LaTex for typesetting. To install <code>tinytex</code>, go to the Terminal tab in the lower-left quadrant and type:</p>
 <blockquote class="blockquote">
 <p><code>quarto install tinytex</code></p>
 </blockquote>
