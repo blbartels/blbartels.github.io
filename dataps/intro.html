@@ -213,9 +213,10 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions"><span class="header-section-number">2.1.1</span> Research Questions</a></li>
   <li><a href="#concepts" id="toc-concepts" class="nav-link" data-scroll-target="#concepts"><span class="header-section-number">2.1.2</span> Concepts</a></li>
-  <li><a href="#theory-and-hypotheses" id="toc-theory-and-hypotheses" class="nav-link" data-scroll-target="#theory-and-hypotheses"><span class="header-section-number">2.1.3</span> Theory and Hypotheses</a></li>
-  <li><a href="#empirical-testing" id="toc-empirical-testing" class="nav-link" data-scroll-target="#empirical-testing"><span class="header-section-number">2.1.4</span> Empirical Testing</a></li>
+  <li><a href="#sec-theory" id="toc-sec-theory" class="nav-link" data-scroll-target="#sec-theory"><span class="header-section-number">2.1.3</span> Theory and Hypotheses</a></li>
+  <li><a href="#measurement" id="toc-measurement" class="nav-link" data-scroll-target="#measurement"><span class="header-section-number">2.1.4</span> Measurement</a></li>
   <li><a href="#research-design-and-causal-inference" id="toc-research-design-and-causal-inference" class="nav-link" data-scroll-target="#research-design-and-causal-inference"><span class="header-section-number">2.1.5</span> Research Design and Causal Inference</a></li>
+  <li><a href="#empirical-testing" id="toc-empirical-testing" class="nav-link" data-scroll-target="#empirical-testing"><span class="header-section-number">2.1.6</span> Empirical Testing</a></li>
   </ul></li>
   <li><a href="#sec-data" id="toc-sec-data" class="nav-link" data-scroll-target="#sec-data"><span class="header-section-number">2.2</span> Data</a>
   <ul class="collapse">
@@ -252,24 +253,33 @@ div.csl-indent {
 </header>
 
 
-<p>This chapter seeks to accomplish two major tasks. First, <a href="#sec-ssr" class="quarto-xref"><span>Section 2.1</span></a> explains the nuts and bolts of the social science research process. It provides a bit of a “whirlwind tour” of how research analysts get from a substantive research question about a political phenomenon to an empirical, quantitative analysis of the topic. Readers who want more detail on these topics can consult <span class="citation" data-cites="king2021">King, Keohane, and Verba (<a href="references.html#ref-king2021" role="doc-biblioref">2021</a>)</span>.</p>
-<p>Second, <a href="#sec-data" class="quarto-xref"><span>Section 2.2</span></a></p>
+<p>This chapter seeks to accomplish two major tasks. First, <a href="#sec-ssr" class="quarto-xref"><span>Section 2.1</span></a> explains the nuts and bolts of the social science research process. It provides a bit of a “whirlwind tour” of how research analysts get from a substantive research question about a political phenomenon to an empirical, quantitative analysis of the topic. Readers who want more detail on these topics can consult <span class="citation" data-cites="king2021">King, Keohane, and Verba (<a href="references.html#ref-king2021" role="doc-biblioref">2021</a>)</span> and <span class="citation" data-cites="brady2010">Brady and Collier (<a href="references.html#ref-brady2010" role="doc-biblioref">2010</a>)</span>.</p>
+<p>Second, <a href="#sec-data" class="quarto-xref"><span>Section 2.2</span></a> covers the basic building blocks of understanding and analyzing data and the variables within the data. This section will cover some concrete RStudio tasks, including methods of importing data for analysis in RStudio and understanding key elements of the data and variables.</p>
 <section id="sec-ssr" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="sec-ssr"><span class="header-section-number">2.1</span> Social Science Research Approach</h2>
+<p>Political science research falls within the broader social science research umbrella that contains shared principles for explaining political phenonema. Additional social science disciplines include economics, sociology, and psychology. The social science research approach centers on both <em>substance</em> and <em>method</em>.</p>
+<p>By <em>substance</em>, I mean that social scientists are focused on describing and explaining phenomena, outcomes, and processes. Broadly conceived, we want to “understand how the world works.” Social scientists seek to attain explanations of certain quantities and effects that were either previously unknown or previously disputed. Thus, perhaps the core mission for social scientists is <em>to create and disseminate new knowledge about a phenomenon of interest</em>. Social scientists use <em>theory</em> — a comprehensive explanation for a phenomena (see <a href="#sec-theory" class="quarto-xref"><span>Section 2.1.3</span></a>) — as currency for engaging in discourse with other social scientists. A large part of theory building and knowledge accumulation centers on scholarly disagreement: All research is essentially a response, a dispute, or a disagreement with prior research. Researchers contribute new knowledge in the context of prior knowledge — attaining knowledge is fundamentally a cumulative process. This logic informs another critical component at the heart of knowledge creation: <em>Inference</em>, or the discovery of previously “unknown facts” based on “known facts” <span class="citation" data-cites="king2021">(see <a href="references.html#ref-king2021" role="doc-biblioref">King, Keohane, and Verba 2021</a>)</span>. Inference is at the heart of both substance and method.</p>
+<p>By <em>method</em>, I mean the tools social scientists use to analyze, evaluate, and test social science explanations, theories, and hypotheses. Many students are likely aware of the folk definition of a hypothesis as an “educated guess” about an explanation.</p>
+<p>Empirical v. normative</p>
+<p>qual v quant</p>
 <section id="research-questions" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="research-questions"><span class="header-section-number">2.1.1</span> Research Questions</h3>
+<p>All research begins with a question.</p>
 </section>
 <section id="concepts" class="level3" data-number="2.1.2">
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="concepts"><span class="header-section-number">2.1.2</span> Concepts</h3>
 </section>
-<section id="theory-and-hypotheses" class="level3" data-number="2.1.3">
-<h3 data-number="2.1.3" class="anchored" data-anchor-id="theory-and-hypotheses"><span class="header-section-number">2.1.3</span> Theory and Hypotheses</h3>
+<section id="sec-theory" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="sec-theory"><span class="header-section-number">2.1.3</span> Theory and Hypotheses</h3>
 </section>
-<section id="empirical-testing" class="level3" data-number="2.1.4">
-<h3 data-number="2.1.4" class="anchored" data-anchor-id="empirical-testing"><span class="header-section-number">2.1.4</span> Empirical Testing</h3>
+<section id="measurement" class="level3" data-number="2.1.4">
+<h3 data-number="2.1.4" class="anchored" data-anchor-id="measurement"><span class="header-section-number">2.1.4</span> Measurement</h3>
 </section>
 <section id="research-design-and-causal-inference" class="level3" data-number="2.1.5">
 <h3 data-number="2.1.5" class="anchored" data-anchor-id="research-design-and-causal-inference"><span class="header-section-number">2.1.5</span> Research Design and Causal Inference</h3>
+</section>
+<section id="empirical-testing" class="level3" data-number="2.1.6">
+<h3 data-number="2.1.6" class="anchored" data-anchor-id="empirical-testing"><span class="header-section-number">2.1.6</span> Empirical Testing</h3>
 </section>
 </section>
 <section id="sec-data" class="level2" data-number="2.2">
@@ -294,6 +304,9 @@ div.csl-indent {
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-brady2010" class="csl-entry" role="listitem">
+Brady, Henry E, and David Collier. 2010. <em>Rethinking Social Inquiry: Diverse Tools, Shared Standards</em>. Lanham, Md.: Rowman &amp; Littlefield Publishers.
+</div>
 <div id="ref-king2021" class="csl-entry" role="listitem">
 King, Gary, Robert O. Keohane, and Sidney Verba. 2021. <em>Designing Social Inquiry: Scientific Inference in Qualitative Research, New Edition</em>. Princeton, NJ: Princeton University Press.
 </div>
