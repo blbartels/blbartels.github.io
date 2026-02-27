@@ -90,6 +90,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -209,7 +238,7 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-ssr" id="toc-sec-ssr" class="nav-link active" data-scroll-target="#sec-ssr"><span class="header-section-number">2.1</span> Social Science Research Approach</a>
+  <li><a href="#sec-ssr" id="toc-sec-ssr" class="nav-link active" data-scroll-target="#sec-ssr"><span class="header-section-number">2.1</span> Social Science Research</a>
   <ul class="collapse">
   <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions"><span class="header-section-number">2.1.1</span> Research Questions</a></li>
   <li><a href="#concepts" id="toc-concepts" class="nav-link" data-scroll-target="#concepts"><span class="header-section-number">2.1.2</span> Concepts</a></li>
@@ -256,12 +285,14 @@ div.csl-indent {
 <p>This chapter seeks to accomplish two major tasks. First, <a href="#sec-ssr" class="quarto-xref"><span>Section 2.1</span></a> explains the nuts and bolts of the social science research process. It provides a bit of a “whirlwind tour” of how research analysts get from a substantive research question about a political phenomenon to an empirical, quantitative analysis of the topic. Readers who want more detail on these topics can consult <span class="citation" data-cites="king2021">King, Keohane, and Verba (<a href="references.html#ref-king2021" role="doc-biblioref">2021</a>)</span> and <span class="citation" data-cites="brady2010">Brady and Collier (<a href="references.html#ref-brady2010" role="doc-biblioref">2010</a>)</span>.</p>
 <p>Second, <a href="#sec-data" class="quarto-xref"><span>Section 2.2</span></a> covers the basic building blocks of understanding and analyzing data and the variables within the data. This section will cover some concrete RStudio tasks, including methods of importing data for analysis in RStudio and understanding key elements of the data and variables.</p>
 <section id="sec-ssr" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="sec-ssr"><span class="header-section-number">2.1</span> Social Science Research Approach</h2>
-<p>Political science research falls within the broader social science research umbrella that contains shared principles for explaining political phenonema. Additional social science disciplines include economics, sociology, and psychology. The social science research approach centers on both <em>substance</em> and <em>method</em>.</p>
-<p>By <em>substance</em>, I mean that social scientists are focused on describing and explaining phenomena, outcomes, and processes. Broadly conceived, we want to “understand how the world works.” Social scientists seek to attain explanations of certain quantities and effects that were either previously unknown or previously disputed. Thus, perhaps the core mission for social scientists is <em>to create and disseminate new knowledge about a phenomenon of interest</em>. Social scientists use <em>theory</em> — a comprehensive explanation for a phenomena (see <a href="#sec-theory" class="quarto-xref"><span>Section 2.1.3</span></a>) — as currency for engaging in discourse with other social scientists. A large part of theory building and knowledge accumulation centers on scholarly disagreement: All research is essentially a response, a dispute, or a disagreement with prior research. Researchers contribute new knowledge in the context of prior knowledge — attaining knowledge is fundamentally a cumulative process. This logic informs another critical component at the heart of knowledge creation: <em>Inference</em>, or the discovery of previously “unknown facts” based on “known facts” <span class="citation" data-cites="king2021">(see <a href="references.html#ref-king2021" role="doc-biblioref">King, Keohane, and Verba 2021</a>)</span>. Inference is at the heart of both substance and method.</p>
-<p>By <em>method</em>, I mean the tools social scientists use to analyze, evaluate, and test social science explanations, theories, and hypotheses. Many students are likely aware of the folk definition of a hypothesis as an “educated guess” about an explanation.</p>
-<p>Empirical v. normative</p>
-<p>qual v quant</p>
+<h2 data-number="2.1" class="anchored" data-anchor-id="sec-ssr"><span class="header-section-number">2.1</span> Social Science Research</h2>
+<p>Political science research falls within the broader social science research umbrella that contains shared principles for explaining phenonema. Additional social science disciplines include economics, sociology, and psychology. The social science research approach centers on both <em>substance</em> and <em>method</em>.</p>
+<p>By <em>substance</em>, I mean that social scientists are focused on describing and explaining phenomena, outcomes, and processes. Broadly conceived, we want to “understand how the world works.” Social scientists seek to attain explanations of certain quantities and effects that were either previously unknown or previously disputed. This is why all research begins with a question, usually centering on “Why?” Thus, perhaps the core mission for social scientists is <em>to create and disseminate new knowledge about a phenomenon of interest</em>. Social scientists use <em>theory</em> — a comprehensive explanation for a phenomena (see <a href="#sec-theory" class="quarto-xref"><span>Section 2.1.3</span></a>) — as currency for engaging in discourse with other social scientists.</p>
+<p>A large part of theory building and knowledge accumulation centers on scholarly disagreement: All research is essentially a response, a dispute, or a disagreement with prior research. Researchers contribute new knowledge in the context of prior knowledge — attaining knowledge is fundamentally a cumulative process. This logic informs another critical component at the heart of knowledge creation: <em>Inference</em>, or the discovery of previously “unknown facts” based on “known facts” <span class="citation" data-cites="king2021">(see <a href="references.html#ref-king2021" role="doc-biblioref">King, Keohane, and Verba 2021</a>)</span>. Inference is at the heart of both substance and method.</p>
+<p>By <em>method</em>, I mean the set of procedures and tools social scientists use to analyze, evaluate, and test social science explanations, theories, and hypotheses. Many students are likely aware of the folk definition of a hypothesis as an “educated guess.” A social science research hypothesis is more than just a guess, of course. Most hypotheses represent a statement about “cause and effect.” What is the effect or impact of factor <span class="math inline">\(x\)</span> on factor <span class="math inline">\(y\)</span>? The theory one brings to bear for explaining a phenomenon implies the hypothesis. “Hypothesis testing” centers on using methods — means of analyzing data — to evaluate whether a hypothesis is right or wrong. Does <span class="math inline">\(x\)</span> influence <span class="math inline">\(y\)</span> or doesn’t it? Method includes both a “research design” that can objectively render a verdict on the hypothesis and “data analysis and statistics” that carries out that plan.</p>
+<p>Importantly, and bringing it back to substance, data analysis and statistics are means to substantive ends, which include answering research questions, creating new knowledge, evaluating hypotheses, and building theory.</p>
+<p>Data analysis and statistics are at the heart of this book, of course. The process I have been describing is <em>empirical research</em>, which seeks to explain “how stuff <em>actually</em> works.” In political science, empirical research is often contrasted with <em>normative research</em>, which focuses “how stuff <em>should</em> work.” Normative queries in political science are associated with political philosophy and is sometimes referred to as “normative political theory.” In contrast, the type of theory described in this chapter is “empirically-oriented theory.” Empirical = “is,” while normative = “ought.”</p>
+<p>Empirical research includes both quantitative and qualitative analysis. This book centers on quantitative analysis, which involves the use of large amounts of data</p>
 <section id="research-questions" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="research-questions"><span class="header-section-number">2.1.1</span> Research Questions</h3>
 <p>All research begins with a question.</p>
