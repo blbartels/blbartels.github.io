@@ -241,20 +241,18 @@ window.Quarto = {
   <li><a href="#sec-ssr" id="toc-sec-ssr" class="nav-link active" data-scroll-target="#sec-ssr"><span class="header-section-number">2.1</span> Social Science Research</a>
   <ul class="collapse">
   <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions"><span class="header-section-number">2.1.1</span> Research Questions</a></li>
-  <li><a href="#concepts" id="toc-concepts" class="nav-link" data-scroll-target="#concepts"><span class="header-section-number">2.1.2</span> Concepts</a></li>
+  <li><a href="#sec-concept" id="toc-sec-concept" class="nav-link" data-scroll-target="#sec-concept"><span class="header-section-number">2.1.2</span> Concepts</a></li>
   <li><a href="#sec-theory" id="toc-sec-theory" class="nav-link" data-scroll-target="#sec-theory"><span class="header-section-number">2.1.3</span> Theory and Hypotheses</a></li>
   <li><a href="#measurement" id="toc-measurement" class="nav-link" data-scroll-target="#measurement"><span class="header-section-number">2.1.4</span> Measurement</a></li>
-  <li><a href="#research-design-and-causal-inference" id="toc-research-design-and-causal-inference" class="nav-link" data-scroll-target="#research-design-and-causal-inference"><span class="header-section-number">2.1.5</span> Research Design and Causal Inference</a></li>
+  <li><a href="#sec-rd" id="toc-sec-rd" class="nav-link" data-scroll-target="#sec-rd"><span class="header-section-number">2.1.5</span> Research Design and Causal Inference</a></li>
   <li><a href="#empirical-testing" id="toc-empirical-testing" class="nav-link" data-scroll-target="#empirical-testing"><span class="header-section-number">2.1.6</span> Empirical Testing</a></li>
   </ul></li>
   <li><a href="#sec-data" id="toc-sec-data" class="nav-link" data-scroll-target="#sec-data"><span class="header-section-number">2.2</span> Data</a>
   <ul class="collapse">
   <li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data"><span class="header-section-number">2.2.1</span> Importing Data</a></li>
   <li><a href="#units-of-analysis" id="toc-units-of-analysis" class="nav-link" data-scroll-target="#units-of-analysis"><span class="header-section-number">2.2.2</span> Units of Analysis</a></li>
-  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><span class="header-section-number">2.2.3</span> Variables</a></li>
+  <li><a href="#sec-var" id="toc-sec-var" class="nav-link" data-scroll-target="#sec-var"><span class="header-section-number">2.2.3</span> Variables</a></li>
   <li><a href="#levels-of-measurement" id="toc-levels-of-measurement" class="nav-link" data-scroll-target="#levels-of-measurement"><span class="header-section-number">2.2.4</span> Levels of Measurement</a></li>
-  <li><a href="#dependent-variable" id="toc-dependent-variable" class="nav-link" data-scroll-target="#dependent-variable"><span class="header-section-number">2.2.5</span> Dependent Variable</a></li>
-  <li><a href="#independent-variables" id="toc-independent-variables" class="nav-link" data-scroll-target="#independent-variables"><span class="header-section-number">2.2.6</span> Independent Variables</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -301,13 +299,21 @@ window.Quarto = {
 <p>All research begins with a question. Readers are most likely familiar with the phrase “intellectual curiosity.” This trait applies to political and social scientists in how they conduct research. They may read a large group of studies (articles and books) and be curious why scholarship has not addressed a particular topic. Political scientists are always asking, “Why?” That curiosity forms more concrete questions in their minds, which then winnows down to a particular research question at the heart of an article or book. Posing a research question may seem like a simple task, but framing it in the right way takes time and incurs revisions. One’s research question structures the entire research process.</p>
 <p>In general, a good research question:</p>
 <ol type="1">
-<li><p><strong>Is “answerable.”</strong> Political scientists want to ask questions but also answer them. As discussed above, drawing inferences and answering questions comes with some level of uncertainty that researchers quantify and communicate. But researchers seek to be clear about which side of the question the evidence leans toward; sometimes the evidence is overwhelming thus begging a clear answer while other times the evidence is tepid. Some questions are answerable with a “yes or no,” while thers are answerable with an explanation or theory. I will discuss this</p></li>
-<li><p><strong>Confronts a knowledge gap in the scholarly literature</strong>. Since researchers seek to create and disseminate new knowledge about how the world works, research questions should issue a query regarding something we do not know about. This aspect implies that researchers are widely aware of existing knowledge and research on the subject, which is another important part of the research process. Three Rs of being a researcher: Read, read, and read.</p></li>
-<li><p><strong>Structures the entire research process</strong>: Coming up with a good research question structures the rest of the research process. For example</p></li>
+<li><p><strong>Is “answerable.”</strong> Political scientists want to ask questions but also answer them. As discussed above, drawing inferences and answering questions comes with some level of uncertainty that researchers quantify and communicate. But researchers seek to be clear about which side of the question the evidence leans toward; sometimes the evidence is overwhelming thus begging a clear answer while other times the evidence is tepid. Research questions being answerable also relates to the issue of “falsifiability” discussed below in <a href="#sec-theory" class="quarto-xref"><span>Section 2.1.3</span></a>. Some questions are answerable with a “yes or no,” while others are answerable with an explanation or theory. I return to this immediately following this list.</p></li>
+<li><p><strong>Confronts a knowledge gap in the scholarly literature</strong>. Since researchers seek to create and disseminate new knowledge about how the world works, research questions should issue a query regarding something we do not know about. This aspect implies that researchers are widely aware of existing knowledge and research on the subject, which is another important part of the research process. Three Rs of being a researcher and asking good research questions: <em>Read, read, and read</em>.</p></li>
+<li><p><strong>Structures the entire research process</strong>: Coming up with a good research question structures the rest of the research process, from theory to hypotheses to research design to data analysis.</p></li>
+<li><p><strong>Sets up the direction of causality from “influencing factor” to “outcome”</strong>: Almost all research centers on the effect of some “influencing factor,” <span class="math inline">\(x\)</span>, on an outcome, <span class="math inline">\(y\)</span>. In my prior voting example, the influencing factor is one’s party affiliation and the outcome is vote choice. When we operationalize these concepts (<a href="#sec-concept" class="quarto-xref"><span>Section 2.1.2</span></a>) as variables (<a href="#sec-var" class="quarto-xref"><span>Section 2.2.3</span></a>), we refer to <span class="math inline">\(x\)</span> as the “independent variable” and <span class="math inline">\(y\)</span> as the “dependent variable” (see <a href="#sec-var" class="quarto-xref"><span>Section 2.2.3</span></a>). Theory and explanation specify the causal nature of this relationship, i.e., <span class="math inline">\(x\)</span> causes <span class="math inline">\(y\)</span>, or <span class="math inline">\(x\)</span> <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(y\)</span>. <a href="#sec-rd" class="quarto-xref"><span>Section 2.1.5</span></a> will discuss issues of cause-and-effect in greater detail.</p></li>
 </ol>
+<p><strong>Varieties of Research Questions</strong>: Extending these points, research employs different types of research questions. Some questions are answerable with a “yes” or “no.” A good example involves the longstanding debate on “modernization theory” in comparative politics research <span class="citation" data-cites="treisman2020 przeworski1997">(see, e.g., <a href="references.html#ref-treisman2020" role="doc-biblioref">Treisman 2020</a>; <a href="references.html#ref-przeworski1997" role="doc-biblioref">Przeworski and Limongi 1997</a>)</span>. A recurring research question persists throughout this research: <em>Does economic development lead to and sustain democracy</em>? First, related to point #3 above, this research question immediately makes clear what the “influencing factor” (<span class="math inline">\(x\)</span>) is and what the outcome (<span class="math inline">\(y\)</span>) is:</p>
+<ul>
+<li><span class="math inline">\(x\)</span> = economic development (how rich or poor a country is)</li>
+<li><span class="math inline">\(y\)</span> = democracy (how democratic versus authoritarian a country is)</li>
+</ul>
+<p>Second, as mentioned, this research question is answerable with a “yes” or “no.” Those who answer “yes” claim that economic development does indeed influence levels of democracies in regimes around the world. Those who answer “no” would say that economic development does not influence democracy (or what researchers often call a “null effect”). When a research question persists for decades, like this one, another answer often becomes “it depends,” or “yes <em>and</em> no.” This issue relates to “conditional effects” and “scope conditions.” A corollary style of research question reflecting this aspect is <em>When</em> or <em>under what conditions</em> does economic development influence democracy?</p>
+<p>Immediate qualities of this research question are its importance and broad scope. The answer to this question matters for political regimes around the world. One can also envision how research on this question will spur lots of future research; scholars will inevitability disagree with prior perspectives, which will spur additional research.</p>
 </section>
-<section id="concepts" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="concepts"><span class="header-section-number">2.1.2</span> Concepts</h3>
+<section id="sec-concept" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="sec-concept"><span class="header-section-number">2.1.2</span> Concepts</h3>
 </section>
 <section id="sec-theory" class="level3" data-number="2.1.3">
 <h3 data-number="2.1.3" class="anchored" data-anchor-id="sec-theory"><span class="header-section-number">2.1.3</span> Theory and Hypotheses</h3>
@@ -316,8 +322,8 @@ window.Quarto = {
 <section id="measurement" class="level3" data-number="2.1.4">
 <h3 data-number="2.1.4" class="anchored" data-anchor-id="measurement"><span class="header-section-number">2.1.4</span> Measurement</h3>
 </section>
-<section id="research-design-and-causal-inference" class="level3" data-number="2.1.5">
-<h3 data-number="2.1.5" class="anchored" data-anchor-id="research-design-and-causal-inference"><span class="header-section-number">2.1.5</span> Research Design and Causal Inference</h3>
+<section id="sec-rd" class="level3" data-number="2.1.5">
+<h3 data-number="2.1.5" class="anchored" data-anchor-id="sec-rd"><span class="header-section-number">2.1.5</span> Research Design and Causal Inference</h3>
 </section>
 <section id="empirical-testing" class="level3" data-number="2.1.6">
 <h3 data-number="2.1.6" class="anchored" data-anchor-id="empirical-testing"><span class="header-section-number">2.1.6</span> Empirical Testing</h3>
@@ -332,25 +338,25 @@ window.Quarto = {
 <section id="units-of-analysis" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="units-of-analysis"><span class="header-section-number">2.2.2</span> Units of Analysis</h3>
 </section>
-<section id="variables" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="variables"><span class="header-section-number">2.2.3</span> Variables</h3>
+<section id="sec-var" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="sec-var"><span class="header-section-number">2.2.3</span> Variables</h3>
 </section>
 <section id="levels-of-measurement" class="level3" data-number="2.2.4">
 <h3 data-number="2.2.4" class="anchored" data-anchor-id="levels-of-measurement"><span class="header-section-number">2.2.4</span> Levels of Measurement</h3>
-</section>
-<section id="dependent-variable" class="level3" data-number="2.2.5">
-<h3 data-number="2.2.5" class="anchored" data-anchor-id="dependent-variable"><span class="header-section-number">2.2.5</span> Dependent Variable</h3>
-</section>
-<section id="independent-variables" class="level3" data-number="2.2.6">
-<h3 data-number="2.2.6" class="anchored" data-anchor-id="independent-variables"><span class="header-section-number">2.2.6</span> Independent Variables</h3>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-brady2010" class="csl-entry" role="listitem">
-Brady, Henry E, and David Collier. 2010. <em>Rethinking Social Inquiry: Diverse Tools, Shared Standards</em>. Lanham, Md.: Rowman &amp; Littlefield Publishers.
+Brady, Henry E, and David Collier. 2010. <em>Rethinking Social Inquiry: Diverse Tools, Shared Standards</em>. Lanham, MD: Rowman &amp; Littlefield Publishers.
 </div>
 <div id="ref-king2021" class="csl-entry" role="listitem">
 King, Gary, Robert O. Keohane, and Sidney Verba. 2021. <em>Designing Social Inquiry: Scientific Inference in Qualitative Research, New Edition</em>. Princeton, NJ: Princeton University Press.
+</div>
+<div id="ref-przeworski1997" class="csl-entry" role="listitem">
+Przeworski, Adam, and Fernando Limongi. 1997. <span>“Modernization: Theories and Facts.”</span> <em>World Politics</em> 49 (2): 155–83. <a href="https://doi.org/10.1353/wp.1997.0004">https://doi.org/10.1353/wp.1997.0004</a>.
+</div>
+<div id="ref-treisman2020" class="csl-entry" role="listitem">
+Treisman, Daniel. 2020. <span>“Economic Development and Democracy: Predispositions and Triggers.”</span> <em>Annual Review of Political Science</em> 23 (1): 241–57. <a href="https://doi.org/10.1146/annurev-polisci-050718-043546">https://doi.org/10.1146/annurev-polisci-050718-043546</a>.
 </div>
 </div>
 </section>
