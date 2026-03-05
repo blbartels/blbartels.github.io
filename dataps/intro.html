@@ -250,6 +250,7 @@ window.Quarto = {
   <li><a href="#sec-var" id="toc-sec-var" class="nav-link" data-scroll-target="#sec-var"><span class="header-section-number">2.2.1</span> Measurement: Variables and Units of Analysis</a></li>
   <li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data"><span class="header-section-number">2.2.2</span> Importing Data</a></li>
   <li><a href="#levels-of-measurement" id="toc-levels-of-measurement" class="nav-link" data-scroll-target="#levels-of-measurement"><span class="header-section-number">2.2.3</span> Levels of Measurement</a></li>
+  <li><a href="#empirical-testing" id="toc-empirical-testing" class="nav-link" data-scroll-target="#empirical-testing"><span class="header-section-number">2.2.4</span> Empirical Testing</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -344,7 +345,13 @@ window.Quarto = {
 <h3 data-number="2.1.4" class="anchored" data-anchor-id="sec-rd"><span class="header-section-number">2.1.4</span> Research Design and Causal Inference</h3>
 <p>A research design is a plan or blueprint for conducting an empirical analysis capable of testing hypotheses emanating from a theory. Since theory specifies a causal relation between an explanatory factor and an outcome, scholars develop research designs that can maximize causality with respect to the effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span>. As discussed below, some research designs (experiments) are better equipped to generate causal inferences than others. Readers have probably heard the phrase “correlation is not causation.” Correlation is a general association between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> (they “go together”), but causation captures something deeper: The effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> when controlling for, or holding constant, alternative influences. A causal inference about the effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> rules out all alternative causes.</p>
 <p>This causal goal is sometimes called <em>internal validity</em>. Recall that external validity is generalization, so researchers are often attuned to whether causal inferences, which have high internal validity, are also generalizable, or have high external validity as well.</p>
-<p><strong><em>Causality in Theory</em></strong>: Causal inference is rooted in the notion of the “counterfactual” and often referred to by social scientists as the “potential outcomes framework,” which was formalized by statistician Donald Rubin <span class="citation" data-cites="rubin1974">(<a href="references.html#ref-rubin1974" role="doc-biblioref">1974</a>)</span>. A counterfactual is a state of the world that never existed — it is a “what if?” Contrast that with what might be called a “factual,” which is the state of the world that does exist.</p>
+<p><strong><em>Causality in Theory</em></strong>: Causal inference is rooted in the notion of the “counterfactual” and often referred to by social scientists as the “potential outcomes framework,” which was formalized by statistician Donald Rubin <span class="citation" data-cites="rubin1974">(<a href="references.html#ref-rubin1974" role="doc-biblioref">1974</a>)</span>. A counterfactual is a state of the world that never existed — it is a “what if?” Contrast that with the state of the world did exist, what might colloquially be called a “factual.” If we wanted to generate a genuine causal effect of some explanatory factor, <span class="math inline">\(x\)</span>, on an outcome, <span class="math inline">\(y\)</span>, we would first need to observe that outcome for one value of <span class="math inline">\(x\)</span> (let’s say the presence of <span class="math inline">\(x\)</span>) as it actually happened. Then, we would need to re-run history — the counterfactual — by changing <em>only</em> the value <span class="math inline">\(x\)</span> (the absence of <span class="math inline">\(x\)</span>) and then observe <span class="math inline">\(y\)</span>. When we rerun history in the counterfactual, every other occurrence other than absence of <span class="math inline">\(x\)</span> remains the same, or is held constant. That is the key to defining a causal inference in theory.</p>
+<p>If we define <span class="math inline">\(y_i^O\)</span> value of outcome for a particular observation, i, in reality observed state of the world (the “O” superscript is for “observed”) and <span class="math inline">\(y_i^C\)</span> as the value of the outcome under the counterfactual, then we can define the causal effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> as:</p>
+<blockquote class="blockquote">
+<p><em>Causal effect</em> = <span class="math inline">\(y_i^O - y_i^C\)</span></p>
+</blockquote>
+<p>Scholars who apply this logic of causal inference often define <span class="math inline">\(x\)</span> as the <em>treatment</em>.</p>
+<p>Returning to the “economic voting” example, how can we think of the causal effect of economic performance on presidential vote choice within this framework.</p>
 <p><span class="citation" data-cites="cunningham2021">(For an accessible overview of causality, see <a href="references.html#ref-cunningham2021" role="doc-biblioref">Cunningham 2021</a>, Ch. 4.)</span></p>
 <p>Quantitative empirical researchers employ two general types of research design: Experiments and observational studies. As I will discuss, this book will focus primarily on observational studies.</p>
 <p><strong><em>Experiments</em></strong>: Experiments are the gold standard for causal inference and essentially define what it means to generate causal inferences.</p>
@@ -363,6 +370,9 @@ window.Quarto = {
 </section>
 <section id="levels-of-measurement" class="level3" data-number="2.2.3">
 <h3 data-number="2.2.3" class="anchored" data-anchor-id="levels-of-measurement"><span class="header-section-number">2.2.3</span> Levels of Measurement</h3>
+</section>
+<section id="empirical-testing" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="empirical-testing"><span class="header-section-number">2.2.4</span> Empirical Testing</h3>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
