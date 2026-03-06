@@ -124,7 +124,7 @@
     "href": "intro.html#footnotes",
     "title": "2  Research and Data: The Basics",
     "section": "",
-    "text": "The more technical specification for deriving the treatment effect involves the following notation (see Cunningham 2021, Ch. 4): \\(y_i = D_iy_i^O + (1+D_i)y_i^C\\), where \\(D_i=1\\) if observation \\(i\\) received the treatment and \\(D_i=0\\) if observation \\(i\\) did not receive the treatment. The treatment effect is the difference between the potential outcomes of \\(y_i\\) when \\(D_i=1\\) compared to when \\(D_i=0\\). When \\(D_i=1\\), \\(y_i=y_i^O\\) (the outcome under the observed state of the world). When \\(D_i=0\\), \\(y_i=y_i^C\\) (the outcome under the counterfactual state of the world). Thus the treatment effect, \\(\\delta_i\\), is: \\(\\delta_i = y_i^O - y_i^C\\).↩︎",
+    "text": "The more technical specification for deriving the treatment effect involves the following notation (see Cunningham 2021, Ch. 4): \\(y_i = D_iy_i^O + (1-D_i)y_i^C\\), where \\(D_i=1\\) if observation \\(i\\) received the treatment and \\(D_i=0\\) if observation \\(i\\) did not receive the treatment. The treatment effect is the difference between the potential outcomes of \\(y_i\\) when \\(D_i=1\\) compared to when \\(D_i=0\\). When \\(D_i=1\\), \\(y_i=y_i^O\\) (the outcome under the observed state of the world). When \\(D_i=0\\), \\(y_i=y_i^C\\) (the outcome under the counterfactual state of the world). Thus the treatment effect, \\(\\delta_i\\), is: \\(\\delta_i = y_i^O - y_i^C\\).↩︎",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Research and Data: The Basics</span>"
     ]
