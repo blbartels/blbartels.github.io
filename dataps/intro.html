@@ -240,7 +240,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendixa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publicly Available Political Science Datasets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Widely-Used Political Science Datasets</span></span></a>
   </div>
 </li>
       </ul>
@@ -459,6 +459,65 @@ window.Quarto = {
 <section id="sec-import" class="level3" data-number="2.2.3">
 <h3 data-number="2.2.3" class="anchored" data-anchor-id="sec-import"><span class="header-section-number">2.2.3</span> Importing Data</h3>
 <p>Once researchers have either collected their data or have accessed stock data from a public website (such as in <a href="appendixa.html#tbl-psdata" class="quarto-xref">Table&nbsp;<span>A.1</span></a> in <a href="appendixa.html" class="quarto-xref"><span>Appendix A</span></a>), they need to import it into RStudio so they can analyze it. Three general ways exist for importing data into RStudio: (1) save the dataset on your hard drive (using the “projects” approach I recommended in <a href="rstudio.html#sec-rp" class="quarto-xref"><span>Section 1.5.1</span></a>) and import within RStudio; (2) use a dataset that is stored within an R package that you have installed and loaded; and (3) import a dataset that is stored on a website (via a url).</p>
+<p><strong><em>1. Importing Data Saved to Your Hard Drive</em></strong>: RStudio can easily and seamlessly import data in just about any format you can imagine with both base R packages and certain add-on packages. <a href="#tbl-import" class="quarto-xref">Table&nbsp;<span>2.1</span></a> includes the most common data formats in political science, the R packages required, and the command from the package to use in order to import the data.</p>
+<div id="tbl-import" class="table-striped table-hover table-bordered table-sm quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-import-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.1: <strong>Data Formats, R Packages, and R Commands for Importing Datasets</strong>
+</figcaption>
+<div aria-describedby="tbl-import-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover table-bordered table-sm small caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 29%">
+<col style="width: 13%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">File Extension</th>
+<th style="text-align: left;">Source Software</th>
+<th style="text-align: left;">R Package</th>
+<th style="text-align: left;">Import Command</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>.rds</code></td>
+<td style="text-align: left;">R (Single Object)</td>
+<td style="text-align: left;"><code>readr</code></td>
+<td style="text-align: left;"><code>read_rds()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>.csv</code></td>
+<td style="text-align: left;">Universal (Spreadsheet)</td>
+<td style="text-align: left;"><code>readr</code></td>
+<td style="text-align: left;"><code>read_csv()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>.dta</code></td>
+<td style="text-align: left;">Stata</td>
+<td style="text-align: left;"><code>haven</code></td>
+<td style="text-align: left;"><code>read_dta()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>.sav</code> / <code>.por</code></td>
+<td style="text-align: left;">SPSS</td>
+<td style="text-align: left;"><code>haven</code></td>
+<td style="text-align: left;"><code>read_sav()</code> / <code>read_por()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>.xls</code> / <code>.xlsx</code></td>
+<td style="text-align: left;">Excel</td>
+<td style="text-align: left;"><code>readxl</code></td>
+<td style="text-align: left;"><code>read_excel()</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Again, these are the most common data formats in political science, but this is not an exhaustive list.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
