@@ -377,7 +377,10 @@ window.Quarto = {
 </section>
 <section id="sec-data" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="sec-data"><span class="header-section-number">2.2</span> Data</h2>
-<p>What are “data?” (And yes, <em>data are plural</em>.) Where do data come from? Data are pieces of information that represent how a concept varies across units of observation. A “dataset” contains a record of this information in the form of numbers and strings, e.g., economic development and democracy for each country and perhaps over time. Some data come from public opinion surveys that measure people’s attitudes, preferences, and evaluations of political issues and politicians. Other data come from researchers’ efforts to measure characteristics of countries around the world or the 50 states (in the U.S.). When researchers do experiments, they generate data consisting of individuals who are randomly assigned to a treatment or a control group. Finally, readers may have heard of “big data,” which can entail analyzing and attempting to synthesize extremely large volumes of information, e.g., millions of social media responses on a particular topic.</p>
+<p>What are “data?” (And yes, <em>data are plural</em>.) Where do data come from? Data are pieces of information that represent how a concept varies across units of observation. A “dataset” contains a record of this information in the form of numbers and strings, e.g., economic development and democracy for each country and perhaps over time.</p>
+<p>Many researchers frequently analyze data from what I will call “stock datasets” collected, funded, and organized by large organizations. An example that I will use in this book is the <a href="https://electionstudies.org/" target="_blank">American National Election Studies</a> (ANES), which has been conducting regular surveys of Americans since 1948. This survey data has been a mainstay in political science research elections and voting behavior. Another stock dataset that I will use in this book is the <a href="https://www.v-dem.net/" target="_blank">Varieties of Democracy</a> data (V-Dem), which is increasingly used in comparative politics research. In international relations research, the <a href="https://correlatesofwar.org/" target="_blank">Correlates of War</a> dataset is a popular stock dataset. <a href="#tbl-stock" class="quarto-xref">Table&nbsp;<span>2.1</span></a> at the end of this chapter includes a table of stock datasets frequently used in political science research.</p>
+<p>Some data come from commercial public opinion surveys conducted by media organizations (e.g., the New York Times or CBS News) that measure people’s attitudes, preferences, and evaluations of political issues and politicians. The <a href="https://ropercenter.cornell.edu/" target="_blank">Roper Center</a> keeps an archive of these types of survey questions, and for some surveys, it provides the full dataset (typically requires an institutional subscription).</p>
+<p>Other data come from researchers’ efforts to measure characteristics of countries around the world or the 50 states (in the U.S.). When researchers do experiments, they generate data consisting of individuals who are randomly assigned to a treatment or a control group. Finally, readers may have heard of “big data,” which can entail analyzing and attempting to synthesize extremely large volumes of information, e.g., millions of social media responses on a particular topic.</p>
 <p>This book will use relatively large datasets consisting of many observations, or “units of analysis” (individuals, countries, U.S. states), and many “variables” (empirical measures of concepts for each of those observations). These datasets are often called “large-<em>N</em>” data, where “<em>N</em>” is the number of observations in a dataset. By “large,” I mean an <em>N</em> that exceeds 100. In many public opinion surveys, N is greater than 1,000. We will analyze datasets in this book with Ns larger or smaller than this number. Researchers analyze a large number of observations so as to maximize the quality of generalizations and inferences about the population.</p>
 <p>The datasets we will examine in this book include various types of survey data (including political and public opinion surveys) and data analyzing characteristics of countries around the world and the U.S. states.</p>
 <section id="sec-var" class="level3" data-number="2.2.1">
@@ -432,11 +435,387 @@ window.Quarto = {
 <li><p><strong>Ordinal</strong>: Ordinal variables capture <em>relative differences</em> between values of a variable. Consider item #1 in the trust battery above. The variable is the degree of trust in the government to do what is right and is measured with five categories. The differences between values are not exact numerical differences but instead communicate that one value is higher than another. “Always” is a higher value than “just about always, which is in turn higher than”some of the time.” We cannot communicate exact differences but instead relative differences. We can also define extremes of high trust versus low trust.</p></li>
 <li><p><strong>Nominal</strong>: Nominal variables capture merely <em>differences</em> between values of a variable. These variables capture the lowest degree of precision in values of a variable, whereas interval variables capture the highest level. An example of a nominal variable is race, where individuals may be white, black, Hispanic, or Asian-American. Unlike ordinal variables, nominal variables contain no relative ordering. No on value is “higher” or “lower” than another value. The variable does not have a spectrum. World region is another nominal variable with no relative ordering: the Americas, Western Europe, Eastern Europe, Sub-Saharan Africa, Middle East/North Africa, and Asia-Pacific.</p></li>
 </ol>
-<p>Nominal variables are typically viewed as “categorical” variables, but ordinal variables with few categories are often considered categorical as well. Importantly, the level of measurement associated with a variable dictates how one will analyze that variable in all aspects of data analysis — data visualization, descriptive statistics, and regression analysis. I will revisit levels of measurement on a recurring basis throughout this book.</p>
+<p>Nominal variables are “categorical” in nature, but ordinal variables with few categories are often considered categorical as well. Ordinal variables with lots and lots of categories/values can sometimes fall into a gray area between ordinal and interval. Importantly, the level of measurement associated with a variable dictates how one will analyze that variable in all aspects of data analysis — data visualization, descriptive statistics, and regression analysis. I will revisit levels of measurement on a recurring basis throughout this book.</p>
 <!-- ### Empirical Testing -->
 </section>
 <section id="sec-import" class="level3" data-number="2.2.3">
 <h3 data-number="2.2.3" class="anchored" data-anchor-id="sec-import"><span class="header-section-number">2.2.3</span> Importing Data</h3>
+<p>Once researchers have their data have our data collected</p>
+<div id="tbl-stock" class="table-striped table-hover quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-stock-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.1: <strong>Publicly Available “Stock” Datasets in Political Science</strong>
+</figcaption>
+<div aria-describedby="tbl-stock-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table style="text-align: left; width: 100%;">
+<thead>
+<tr>
+<th style="text-align: left;">
+Dataset Name
+</th>
+<th style="text-align: left;">
+Research Focus
+</th>
+<th style="text-align: left;">
+Website Link
+</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #f2f2f2;">
+<td colspan="3">
+<strong>Public Opinion &amp; Electoral Behavior</strong>
+</td>
+</tr>
+<tr>
+<td>
+American National Election Studies (ANES)
+</td>
+<td>
+U.S. voting behavior, public opinion, and political participation.
+</td>
+<td>
+<a href="https://electionstudies.org/">electionstudies.org</a>
+</td>
+</tr>
+<tr>
+<td>
+Cooperative Election Study (CES)
+</td>
+<td>
+Extremely large-scale U.S. survey on political attitudes (formerly CCES).
+</td>
+<td>
+<a href="https://ces.fas.harvard.edu/">ces.fas.harvard.edu</a>
+</td>
+</tr>
+<tr>
+<td>
+Comparative Study of Electoral Systems (CSES)
+</td>
+<td>
+Cross-national post-election surveys examining voting behavior and institutions.
+</td>
+<td>
+<a href="https://cses.org/">cses.org</a>
+</td>
+</tr>
+<tr>
+<td>
+World Values Survey (WVS)
+</td>
+<td>
+Cross-national data on changing beliefs, values, and cultural shifts.
+</td>
+<td>
+<a href="https://www.worldvaluessurvey.org/">worldvaluessurvey.org</a>
+</td>
+</tr>
+<tr>
+<td>
+General Social Survey (GSS)
+</td>
+<td>
+Long-running survey of U.S. societal trends, demographics, and political attitudes.
+</td>
+<td>
+<a href="https://gss.norc.org/">gss.norc.org</a>
+</td>
+</tr>
+<tr style="background-color: #f2f2f2;">
+<td colspan="3">
+<strong>Regional &amp; Global Barometers</strong>
+</td>
+</tr>
+<tr>
+<td>
+Afrobarometer
+</td>
+<td>
+Public attitudes on democracy, governance, and society across African countries.
+</td>
+<td>
+<a href="https://www.afrobarometer.org/">afrobarometer.org</a>
+</td>
+</tr>
+<tr>
+<td>
+AmericasBarometer (LAPOP)
+</td>
+<td>
+Survey data on democratic values and behaviors across the Americas.
+</td>
+<td>
+<a href="https://www.vanderbilt.edu/lapop/">vanderbilt.edu/lapop</a>
+</td>
+</tr>
+<tr>
+<td>
+Arab Barometer
+</td>
+<td>
+Public opinion surveys in the Middle East and North Africa on politics and society.
+</td>
+<td>
+<a href="https://www.arabbarometer.org/">arabbarometer.org</a>
+</td>
+</tr>
+<tr>
+<td>
+Asian Barometer Survey (ABS)
+</td>
+<td>
+Comparative survey of public opinion on political values and democracy in Asia.
+</td>
+<td>
+<a href="https://www.asianbarometer.org/">asianbarometer.org</a>
+</td>
+</tr>
+<tr>
+<td>
+Eurasia Barometer
+</td>
+<td>
+Public opinion on political and social transformations in post-communist Eurasia.
+</td>
+<td>
+<a href="https://www.eurasiabarometer.org/">eurasiabarometer.org</a>
+</td>
+</tr>
+<tr>
+<td>
+Eurobarometer
+</td>
+<td>
+Official polling instrument of the EU tracking public perception of European issues.
+</td>
+<td>
+<a href="https://europa.eu/eurobarometer/screen/home">europa.eu/eurobarometer</a>
+</td>
+</tr>
+<tr>
+<td>
+Latinobarómetro
+</td>
+<td>
+Annual public opinion survey of Latin American countries on democracy and economy.
+</td>
+<td>
+<a href="https://www.latinobarometro.org/">latinobarometro.org</a>
+</td>
+</tr>
+<tr style="background-color: #f2f2f2;">
+<td colspan="3">
+<strong>Democracy, Institutions &amp; Governance</strong>
+</td>
+</tr>
+<tr>
+<td>
+Varieties of Democracy (V-Dem)
+</td>
+<td>
+Multi-dimensional, global measures of democracy, autocracy, and governance.
+</td>
+<td>
+<a href="https://v-dem.net/">v-dem.net</a>
+</td>
+</tr>
+<tr>
+<td>
+Quality of Government (QoG)
+</td>
+<td>
+Comparative data on corruption, democratic quality, and bureaucratic structures.
+</td>
+<td>
+<a href="https://www.gu.se/en/quality-of-government">gu.se</a>
+</td>
+</tr>
+<tr>
+<td>
+Polity Project (Center for Systemic Peace)
+</td>
+<td>
+Historical regime characteristics, transitions, and state fragility (Polity IV/V).
+</td>
+<td>
+<a href="https://www.systemicpeace.org/inscrdata.html">systemicpeace.org</a>
+</td>
+</tr>
+<tr>
+<td>
+Comparative Political Data Set (CPDS)
+</td>
+<td>
+Institutional, political, and demographic data for OECD and EU democratic countries.
+</td>
+<td>
+<a href="https://cpds-data.org/">cpds-data.org</a>
+</td>
+</tr>
+<tr style="background-color: #f2f2f2;">
+<td colspan="3">
+<strong>Int’l Relations, Conflict &amp; Human Rights</strong>
+</td>
+</tr>
+<tr>
+<td>
+Correlates of War (COW)
+</td>
+<td>
+International relations, interstate conflicts, alliances, and military capabilities.
+</td>
+<td>
+<a href="https://correlatesofwar.org/">correlatesofwar.org</a>
+</td>
+</tr>
+<tr>
+<td>
+Uppsala Conflict Data Program (UCDP)
+</td>
+<td>
+Global data on organized violence, civil war, and armed conflict.
+</td>
+<td>
+<a href="https://ucdp.uu.se/">ucdp.uu.se</a>
+</td>
+</tr>
+<tr>
+<td>
+CIRIGHTS Human Rights Dataset
+</td>
+<td>
+Global quantitative measures of government respect for 30+ internationally recognized human rights.
+</td>
+<td>
+<a href="https://humanrightsdata.com/">humanrightsdata.com</a>
+</td>
+</tr>
+<tr>
+<td>
+UN Human Rights Agreements Database
+</td>
+<td>
+Information on the design, adoption, and legal status of all UN human rights conventions.
+</td>
+<td>
+<a href="https://politicsir.cass.anu.edu.au/research/projects/human-rights/un-human-rights-agreements">anu.edu.au</a>
+</td>
+</tr>
+<tr style="background-color: #f2f2f2;">
+<td colspan="3">
+<strong>Legislative Behavior &amp; Policy Outputs</strong>
+</td>
+</tr>
+<tr>
+<td>
+MIT Election Data &amp; Science Lab (MEDSL)
+</td>
+<td>
+Precinct, county, and state-level U.S. election returns and cast vote records.
+</td>
+<td>
+<a href="https://electionlab.mit.edu/data">electionlab.mit.edu</a>
+</td>
+</tr>
+<tr>
+<td>
+Constituency-Level Elections Archive (CLEA)
+</td>
+<td>
+Highly detailed repository of lower-house legislative election results globally.
+</td>
+<td>
+<a href="https://electiondataarchive.org/">electiondataarchive.org</a>
+</td>
+</tr>
+<tr>
+<td>
+Legislative Effectiveness Scores (LES)
+</td>
+<td>
+Data scoring how successful U.S. Congress members are at moving their sponsored bills into law.
+</td>
+<td>
+<a href="https://thelawmakers.org/data-download">thelawmakers.org</a>
+</td>
+</tr>
+<tr>
+<td>
+Intergovernmental Policy Output Dataset (IPOD)
+</td>
+<td>
+Measures the thematic focus and functional types of policy outputs by international organizations.
+</td>
+<td>
+<a href="https://dataverse.harvard.edu/">dataverse.harvard.edu</a>
+</td>
+</tr>
+<tr>
+<td>
+Supreme Court Database (SCDB)
+</td>
+<td>
+Comprehensive data on U.S. Supreme Court decisions, justice voting behavior, and case outcomes.
+</td>
+<td>
+<a href="https://scdb.la.psu.edu/">scdb.la.psu.edu</a>
+</td>
+</tr>
+<tr style="background-color: #f2f2f2;">
+<td colspan="3">
+<strong>Political Economy &amp; Environmental Policy</strong>
+</td>
+</tr>
+<tr>
+<td>
+World Economics and Politics (WEP)
+</td>
+<td>
+Over 900 variables covering bilateral trade, politics, and macroeconomic factors.
+</td>
+<td>
+<a href="https://niehaus.princeton.edu/data">princeton.edu</a>
+</td>
+</tr>
+<tr>
+<td>
+Policy Instruments for the Environment (PINE)
+</td>
+<td>
+OECD database tracking environmental taxes, fees, subsidies, and tradable permits.
+</td>
+<td>
+<a href="https://www.oecd.org/en/data/datasets/policy-instruments-for-the-environment-pine-database.html">oecd.org</a>
+</td>
+</tr>
+<tr>
+<td>
+Climate Change Laws of the World
+</td>
+<td>
+Global tracking of climate-related legislation, low-carbon policies, and climate litigation.
+</td>
+<td>
+<a href="https://www.lse.ac.uk/granthaminstitute/climate-change-laws-of-the-world-/">lse.ac.uk</a>
+</td>
+</tr>
+<tr>
+<td>
+Policlim Dataset
+</td>
+<td>
+Data tracking the salience and discourse of climate change within political party manifestos.
+</td>
+<td>
+<a href="https://www.cambridge.org/core/journals/british-journal-of-political-science/article/policlim-a-dataset-of-climate-change-discourse-in-the-political-manifestos-of-fortyfive-countries-from-1990-to-2022/6EDB6B14410810A9E57A45F68BB09B47">cambridge.org</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
