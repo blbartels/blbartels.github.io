@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -266,7 +300,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#sec-var" id="toc-sec-var" class="nav-link" data-scroll-target="#sec-var"><span class="header-section-number">2.2.1</span> Measurement: From Concepts to Variables</a></li>
   <li><a href="#sec-lom" id="toc-sec-lom" class="nav-link" data-scroll-target="#sec-lom"><span class="header-section-number">2.2.2</span> Levels of Measurement</a></li>
-  <li><a href="#sec-import" id="toc-sec-import" class="nav-link" data-scroll-target="#sec-import"><span class="header-section-number">2.2.3</span> Importing Data</a></li>
+  </ul></li>
+  <li><a href="#sec-import" id="toc-sec-import" class="nav-link" data-scroll-target="#sec-import"><span class="header-section-number">2.3</span> Importing Data</a>
+  <ul class="collapse">
+  <li><a href="#importing-data-saved-to-your-hard-drive" id="toc-importing-data-saved-to-your-hard-drive" class="nav-link" data-scroll-target="#importing-data-saved-to-your-hard-drive"><span class="header-section-number">2.3.1</span> Importing Data Saved to Your Hard Drive</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -403,7 +440,7 @@ window.Quarto = {
 <p>The datasets we will examine in this book include various types of survey data (including political and public opinion surveys) and data analyzing characteristics of countries around the world and the U.S. states.</p>
 <section id="sec-var" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="sec-var"><span class="header-section-number">2.2.1</span> Measurement: From Concepts to Variables</h3>
-<p>The core aspect of data collection is the <strong>measurement of concepts</strong> that are central to one’s theory. Measurement is the process by which concepts are converted into <strong>variables</strong> that one can analyze empirically and quantitatively. As discussed, a variable captures variation in a concept across <strong>units of analysis</strong>, which are the observations we are studying (e.g., individual persons in a survey, countryes, states, congressional districts). A <strong>dataset</strong> is a collection of variables for <em>N</em> units of analysis. As <a href="#sec-import" class="quarto-xref"><span>Section 2.2.3</span></a> will discuss, each column of a dataset is a variable, while each row of a dataset is a unit of analysis.</p>
+<p>The core aspect of data collection is the <strong>measurement of concepts</strong> that are central to one’s theory. Measurement is the process by which concepts are converted into <strong>variables</strong> that one can analyze empirically and quantitatively. As discussed, a variable captures variation in a concept across <strong>units of analysis</strong>, which are the observations we are studying (e.g., individual persons in a survey, countryes, states, congressional districts). A <strong>dataset</strong> is a collection of variables for <em>N</em> units of analysis. As <a href="#sec-import" class="quarto-xref"><span>Section 2.3</span></a> will discuss, each column of a dataset is a variable, while each row of a dataset is a unit of analysis.</p>
 <p>In a dataset, a variable records a value (a numeric value or a string) for each unit of analysis. For example, a democracy variable would record degrees of democracy versus authoritarianism across countries; each country contains a value of this variable (typically as a numeric value; see <a href="#sec-lom" class="quarto-xref"><span>Section 2.2.2</span></a> below). A variable is true to its name: <em>Able to vary</em>. That may seem obvious, but variables must maintain at least some variation across units of analysis. The opposite of a variable is a “constant,” where the value would be exactly the same for every unit of analysis. Constants are not amenable to quantitative data analysis; variables are.</p>
 <p>The two core properties of measurement are: Validity and reliability.</p>
 <p><strong><em>Validity</em></strong>: Validity is the extent to which a variable reflects the essence of the concept or its core characteristics. When researchers measure concepts, they seek to maximize congruence between the concept and the measure. A concept is a theoretical construct, however, so we can never truly evaluate whether a measure has 100% validity. Instead, we use methods to estimate and evaluate validity. One way to evaluate measure is consider the types of measurement errors that are present. A measure is a function of the underlying concept plus underlying sources of error: Systematic and random measurement error.</p>
@@ -456,10 +493,13 @@ window.Quarto = {
 <p>Nominal variables are “categorical” in nature, but ordinal variables with few categories are often considered categorical as well. Ordinal variables with lots and lots of categories/values can sometimes fall into a gray area between ordinal and interval. Importantly, the level of measurement associated with a variable dictates how one will analyze that variable in all aspects of data analysis — data visualization, descriptive statistics, and regression analysis. I will revisit levels of measurement on a recurring basis throughout this book.</p>
 <!-- ### Empirical Testing -->
 </section>
-<section id="sec-import" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="sec-import"><span class="header-section-number">2.2.3</span> Importing Data</h3>
+</section>
+<section id="sec-import" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-import"><span class="header-section-number">2.3</span> Importing Data</h2>
 <p>Once researchers have either collected their data or have accessed stock data from a public website (such as in <a href="appendixa.html#tbl-psdata" class="quarto-xref">Table&nbsp;<span>A.1</span></a> in <a href="appendixa.html" class="quarto-xref"><span>Appendix A</span></a>), they need to import it into RStudio so they can analyze it. Three general ways exist for importing data into RStudio: (1) save the dataset on your hard drive (using the “projects” approach I recommended in <a href="rstudio.html#sec-rp" class="quarto-xref"><span>Section 1.5.1</span></a>) and import within RStudio; (2) use a dataset that is stored within an R package that you have installed and loaded; and (3) import a dataset that is stored on a website (via a url).</p>
-<p><strong><em>1. Importing Data Saved to Your Hard Drive</em></strong>: RStudio can easily and seamlessly import data in just about any format you can imagine with both base R packages and certain add-on packages. <a href="#tbl-import" class="quarto-xref">Table&nbsp;<span>2.1</span></a> includes the most common data formats in political science, the R packages required, and the command from the package to use in order to import the data.</p>
+<section id="importing-data-saved-to-your-hard-drive" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="importing-data-saved-to-your-hard-drive"><span class="header-section-number">2.3.1</span> Importing Data Saved to Your Hard Drive</h3>
+<p>RStudio can easily and seamlessly import data in just about any format you can imagine with both base R packages and certain add-on packages. <a href="#tbl-import" class="quarto-xref">Table&nbsp;<span>2.1</span></a> includes the most common data formats in political science, the R packages required, and the command from the package to use in order to import the data.</p>
 <div id="tbl-import" class="table-striped table-hover table-bordered table-sm quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-import-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -517,7 +557,123 @@ Table&nbsp;2.1: <strong>Data Formats, R Packages, and R Commands for Importing D
 </div>
 </figure>
 </div>
-<p>Again, these are the most common data formats in political science, but this is not an exhaustive list.</p>
+<p>Again, these are the most common data formats in political science, but this is not an exhaustive list. I will start with a simple example of importing a small dataset containing information on the 50 states. Following the “projects” recommendation from <a href="rstudio.html#sec-rp" class="quarto-xref"><span>Section 1.5.1</span></a>, I have created folder called “Data Analysis” on my hard drive. Inside that folder is an .Rproj called “Data Analysis.Rproj.” Recall that anytime I want to work in this project, I simply double click on the .Rproj file to begin a new RStudio session, and RStudio will automatically set my “Data Analysis” folder as the home directory. That means when I import my data, I do not need enter the entire file path. If my dataset is in my home directory, I can simply type the name of the file when importing it (see <a href="rstudio.html#sec-rp" class="quarto-xref"><span>Section 1.5.1</span></a>). <a href="#fig-importcsv" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> shows my screen. Looking to the lower-right quadrant, the dataset called “states.csv” appears in my home directory.</p>
+<div id="fig-importcsv" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-importcsv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: <strong>Screen Shot Showing the Dataset “states.csv” Saved on my Hard Drive Folder Set as the Home Directory</strong>
+</figcaption>
+<div aria-describedby="fig-importcsv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/import_csv.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+</figure>
+</div>
+<p>Now we need to issue a command to RStudio to import the data. Recall from <a href="rstudio.html" class="quarto-xref"><span>Chapter 1</span></a> that users can run commands in R in two ways: (1) Entering the command in the “Console” (lower-left quadrant) where the cursor is blinking or (2) entering commands in an .R script (which opens in the upper-left quadrant) file that you can save to your hard drive for future use (keep them as a record of the packages you need to load the commands that you have run). I will mostly do the latter in this book. Recall from <a href="rstudio.html" class="quarto-xref"><span>Chapter 1</span></a> that to open an .R script, click on File –&gt; New File –&gt; R Script. <a href="#fig-importcsv" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> shows that I have an opened .R script called untiled. I will udpate this below. To run commands within an .R script, you can place your cursor anywhere in the command line and click the “Run” button in the menu bar right above the .R script (the one with a green arrow to the left of it). You can also use a keystroke. For Macs, put the cursor anywhere on the line and click command-return. For PCs, click ctrl-enter.</p>
+<p>As <a href="#tbl-import" class="quarto-xref">Table&nbsp;<span>2.1</span></a> highlights, we will need the <code>readr</code> package to import a .csv file. <code>readr</code> is one of the packages in the <code>tidyverse</code> suite of packages, so if you already installed <code>tidyverse</code> after reading <a href="rstudio.html#sec-tv" class="quarto-xref"><span>Section 1.4</span></a>, then you do not need to install it again. If you have not yet installed <code>tidyverse</code>, you can do so now by typing: <code>install.packages("tidyverse")</code>. Here is the code to import the states.csv dataset into RStudio. Note that I have called up the <code>tidyverse</code> package (see <a href="rstudio.html" class="quarto-xref"><span>Chapter 1</span></a>), which also calls up the <code>readr</code> package needed to import the .csv. file.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"states.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the second line, notice the notation I have used. I am creating a new data object called “states” and then I use the assignment operator, <code>&lt;-</code>, which tells RStudio, “Give me a data object called ‘states’ that is the ‘states.csv’ file in my home directory.” <code>read_csv</code> is the command (from the <code>readr</code> package) that imports the dataset into the RStudio environment.</p>
+<p>Now, my RStudio screen looks like <a href="#fig-importcsvpost" class="quarto-xref">Figure&nbsp;<span>2.2</span></a>:</p>
+<div id="fig-importcsvpost" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-importcsvpost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: <strong>Screen Shot After Importing “states.csv”</strong>
+</figcaption>
+<div aria-describedby="fig-importcsvpost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/import_csv_post.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+</figure>
+</div>
+<p>First, I saved my .R script as “Commands to Run.R,” which also now appears in my home directory. The same two lines appear in the .R script. After I load the states.csv dataset, the object “states” appears in the “Environment” window in the upper-right quadrant. That means the data are successfully loaded. Next to the data name, the Environment tab lists that the states data has 50 observations (or rows) and 6 variables. In a dataset, the units of analysis are rows, while the columns are the variables. States are the units of analysis (N=50), and the dataset contains 6 variables.</p>
+<p>To view the data, users can click on the “states” object in the Environment window or type <code>View(states)</code> in the command window or the .R script. <a href="#fig-csv-data" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> shows a zoomed-in view of the upper-left quadrant. Each row is a state, and one can see the state name and abbreviation. The data also include turnout percentage in the 2024 presidential election, the percentage of voters voting for Trump, whether the state is a Southern state or not, and the percentage of adults in the state with a college degree or higher.</p>
+<div id="fig-csv-data" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-csv-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: <strong>Screen Shot of the States Data</strong>
+</figcaption>
+<div aria-describedby="fig-csv-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/csv_data.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
+</div>
+</figure>
+</div>
+<p>Another way to see the first few observations in the state is use the <code>head</code> command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  State      Abbreviation Turnout_2024_Pct Trump_2024_Pct Southern_State
+  &lt;chr&gt;      &lt;chr&gt;                   &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+1 Alabama    AL                       58.8           64.8              1
+2 Alaska     AK                       63.7           55.5              0
+3 Arizona    AZ                       63.6           52.6              0
+4 Arkansas   AR                       53.5           64.2              1
+5 California CA                       62.1           38.3              0
+6 Colorado   CO                       73.1           43.5              0
+# ℹ 1 more variable: College_Grad_Pct &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Or I can specific the number of observations I want to see:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(states, <span class="at">n=</span><span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 6
+   State       Abbreviation Turnout_2024_Pct Trump_2024_Pct Southern_State
+   &lt;chr&gt;       &lt;chr&gt;                   &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+ 1 Alabama     AL                       58.8           64.8              1
+ 2 Alaska      AK                       63.7           55.5              0
+ 3 Arizona     AZ                       63.6           52.6              0
+ 4 Arkansas    AR                       53.5           64.2              1
+ 5 California  CA                       62.1           38.3              0
+ 6 Colorado    CO                       73.1           43.5              0
+ 7 Connecticut CT                       67.1           41                0
+ 8 Delaware    DE                       67             41                1
+ 9 Florida     FL                       66.7           56.1              1
+10 Georgia     GA                       68.3           50.7              1
+11 Hawaii      HI                       50.3           38                0
+12 Idaho       ID                       63.4           66.9              0
+# ℹ 1 more variable: College_Grad_Pct &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Note that it includes as many variables as it can fit on the screen. Connecting to the discussion of “levels of measurement” (<a href="#sec-lom" class="quarto-xref"><span>Section 2.2.2</span></a>), note the labels <code>chr</code> and <code>dbl</code> at the top of each variable. <code>chr</code> = “character” or a string variable (letters only or a mix of letters and numbers). <code>dbl</code> = “double,” which in RStudio means a numeric variable (in this case an interval variable) with decimal points. Note that even the South variable is is <code>dbl</code>.</p>
+<p>In datasets with many variables, it is helpful to use the <code>names</code> command to list all of the variables in the dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "State"            "Abbreviation"     "Turnout_2024_Pct" "Trump_2024_Pct"  
+[5] "Southern_State"   "College_Grad_Pct"</code></pre>
+</div>
+</div>
+<p>Another way to see how the variables are stored (numeric, character) is by using the “class” command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Abbreviation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Turnout_2024_Pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Trump_2024_Pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Southern_State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>College_Grad_Pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+</div>
+<p>Note the naming convention used here, which is common in “base R.” The <code>class</code> command tells the user how the variable is stored. To specify a variable, we use the “dollar sign” method: Before the dollar sign is the name of the data object (states) and after is the variable name. State and Abbreviation are character variables (strings), while the remaining variables are numeric. Knowing the class of a variable, and the level of measurement a variable takes on, becomes very important many subsequent analyses.</p>
+<p>The “Southern_State” variable, which takes on a value of 1 for Southern states and 0 for non-Southern states, gets a special name in data analysis and statistics: a <strong>dummy variable.</strong> A dummy variable is a binary variable (i.e., a variable that takes on only two values); researchers typically refer to independent variables (not dependent variables) as dummy variables. Note that the dummy variables are always coded as 0 or 1 (as opposed to 1 versus 2 or 3 versus 4).</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
