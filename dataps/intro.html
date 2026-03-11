@@ -228,12 +228,23 @@ window.Quarto = {
  <span class="menu-text">References</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendixa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Appendix A: Publicly Available Political Science Datasets</span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publicly Available Political Science Datasets</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -384,7 +395,7 @@ window.Quarto = {
 <section id="sec-data" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="sec-data"><span class="header-section-number">2.2</span> Data</h2>
 <p>What are “data?” (And yes, <em>data are plural</em>.) Data are pieces of information that represent how a concept varies across units of observation. A “dataset” contains a record of this information in the form of numbers and strings, e.g., economic development and democracy for each country and perhaps over time.</p>
-<p>Where do data come from? Many researchers frequently analyze data from “stock datasets,” which large organizations organize, fund, and coordinate data collection for. An example that I will use in this book is the <a href="https://electionstudies.org/" target="_blank">American National Election Studies</a> (ANES), which has been conducting regular surveys of Americans since 1948. This survey data has been a mainstay in political science research elections and voting behavior. Another stock dataset that I will use in this book is the <a href="https://www.v-dem.net/" target="_blank">Varieties of Democracy</a> data (V-Dem), which is increasingly used in comparative politics research. In international relations research, the <a href="https://correlatesofwar.org/" target="_blank">Correlates of War</a> dataset is a popular stock dataset. <a href="appendixa.html#tbl-stock" class="quarto-xref">Table&nbsp;<span>1</span></a> at the end of this chapter includes a table of stock datasets frequently used in political science research.</p>
+<p>Where do data come from? Many researchers frequently analyze data from “stock datasets,” which large organizations organize, fund, and coordinate data collection for. An example that I will use in this book is the <a href="https://electionstudies.org/" target="_blank">American National Election Studies</a> (ANES), which has been conducting regular surveys of Americans since 1948. This survey data has been a mainstay in political science research elections and voting behavior. Another stock dataset that I will use in this book is the <a href="https://www.v-dem.net/" target="_blank">Varieties of Democracy</a> data (V-Dem), which is increasingly used in comparative politics research. In international relations research, the <a href="https://correlatesofwar.org/" target="_blank">Correlates of War</a> dataset is a popular stock dataset. <a href="appendixa.html#tbl-psdata" class="quarto-xref">Table&nbsp;<span>A.1</span></a> in <a href="appendixa.html" class="quarto-xref"><span>Appendix A</span></a> includes a table of stock datasets frequently used in political science research.</p>
 <p>Some data come from commercial public opinion surveys conducted by media organizations (e.g., the New York Times or CBS News) that measure people’s attitudes, preferences, and evaluations of political issues and politicians. The <a href="https://ropercenter.cornell.edu/" target="_blank">Roper Center</a> maintains an archive of survey questions from these surveys, and for some surveys, Roper Center provides the full dataset (typically requires an institutional subscription).</p>
 <p>Another massive archive of data is the <a href="https://dataverse.harvard.edu/" target="_blank">Harvard Dataverse</a>, which is a repository for researchers to place their data in a public archive that anyone can access. All major journals in political science and other disciplines now require that authors deposit their data in archives such as this one. The Harvard Dataverse is probably the most prominent of these public archives.</p>
 <p>Other data come from researchers’ efforts to measure characteristics of countries around the world or the 50 states (in the U.S.). When researchers do experiments, they generate data consisting of individuals who are randomly assigned to a treatment or a control group. Finally, readers may have heard of “big data,” which can entail analyzing and attempting to synthesize extremely large volumes of information, e.g., millions of social media responses on a particular topic.</p>
@@ -447,7 +458,7 @@ window.Quarto = {
 </section>
 <section id="sec-import" class="level3" data-number="2.2.3">
 <h3 data-number="2.2.3" class="anchored" data-anchor-id="sec-import"><span class="header-section-number">2.2.3</span> Importing Data</h3>
-<p>Once researchers have either collected their data or have accessed stock data from a public website (such as in <a href="appendixa.html#tbl-stock" class="quarto-xref">Table&nbsp;<span>1</span></a> in the Appendix), they need to import it into RStudio so they can analyze it. Three general ways exist for importing data into RStudio: (1) save the dataset on your hard drive (using the “projects” approach I recommended in <a href="rstudio.html#sec-rp" class="quarto-xref"><span>Section 1.5.1</span></a>) and import within RStudio; (2) use a dataset that is stored within an R package that you have installed and loaded; and (3) import a dataset that is stored on a website (via a url).</p>
+<p>Once researchers have either collected their data or have accessed stock data from a public website (such as in <a href="appendixa.html#tbl-psdata" class="quarto-xref">Table&nbsp;<span>A.1</span></a> in <a href="appendixa.html" class="quarto-xref"><span>Appendix A</span></a>), they need to import it into RStudio so they can analyze it. Three general ways exist for importing data into RStudio: (1) save the dataset on your hard drive (using the “projects” approach I recommended in <a href="rstudio.html#sec-rp" class="quarto-xref"><span>Section 1.5.1</span></a>) and import within RStudio; (2) use a dataset that is stored within an R package that you have installed and loaded; and (3) import a dataset that is stored on a website (via a url).</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
