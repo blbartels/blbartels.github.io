@@ -896,7 +896,7 @@ Table&nbsp;2.2: <strong>Associating Numeric Coding Values with Verbal Values Lab
 </div>
 </div>
 <p>This first command “updates” the “states” data object with this new information. Note also that I can do a “hard return” after the …<code>states$Southern_State,</code> in this command and RStudio recognizes it as one command. Now when I issue the <code>class</code> command, the “Southern_State” variable is “haven-labelled” — it contains a verbal value label connected to each numeric value of the variable.</p>
-<p>Now when I do a <code>freq</code> command (from <code>questionr</code>), I get the following output:</p>
+<p>Now when I do a <code>freq</code> command (from <code>questionr</code>), I get the following output that includes these newly-added verbal value labels:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(states<span class="sc">$</span>Southern_State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -905,7 +905,7 @@ Table&nbsp;2.2: <strong>Associating Numeric Coding Values with Verbal Values Lab
 [1] Southern State     16 32   32</code></pre>
 </div>
 </div>
-<p><a href="tidyverse.html" class="quarto-xref"><span>Chapter 3</span></a> will review additional options for adding value labels to variables.</p>
+<p><a href="tidyverse.html" class="quarto-xref"><span>Chapter 3</span></a> will review additional options for adding value labels to variables. <a href="tidyverse.html" class="quarto-xref"><span>Chapter 3</span></a> will also expand on commands and ideas for “cleaning” data, generating and coding new variables, and streamlining data analysis using commands within the <code>tidyverse</code> suite of packages.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
