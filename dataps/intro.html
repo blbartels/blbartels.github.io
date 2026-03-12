@@ -306,8 +306,8 @@ window.Quarto = {
   <li><a href="#sec-hd" id="toc-sec-hd" class="nav-link" data-scroll-target="#sec-hd"><span class="header-section-number">2.3.1</span> Importing Data Saved to Your Hard Drive</a></li>
   <li><a href="#importing-data-from-a-dataset-saved-on-a-website" id="toc-importing-data-from-a-dataset-saved-on-a-website" class="nav-link" data-scroll-target="#importing-data-from-a-dataset-saved-on-a-website"><span class="header-section-number">2.3.2</span> Importing Data From a Dataset Saved on a Website</a></li>
   <li><a href="#importing-data-from-an-r-package" id="toc-importing-data-from-an-r-package" class="nav-link" data-scroll-target="#importing-data-from-an-r-package"><span class="header-section-number">2.3.3</span> Importing Data From an R Package</a></li>
-  <li><a href="#value-labels-for-variables" id="toc-value-labels-for-variables" class="nav-link" data-scroll-target="#value-labels-for-variables"><span class="header-section-number">2.3.4</span> Value Labels for Variables</a></li>
   </ul></li>
+  <li><a href="#value-labels-for-variables" id="toc-value-labels-for-variables" class="nav-link" data-scroll-target="#value-labels-for-variables"><span class="header-section-number">2.4</span> Value Labels for Variables</a></li>
   </ul>
 </nav>
     </div>
@@ -509,10 +509,10 @@ Table&nbsp;2.1: <strong>Data Formats, R Packages, and R Commands for Importing D
 <div aria-describedby="tbl-import-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped table-hover table-bordered table-sm small caption-top table">
 <colgroup>
-<col style="width: 21%">
+<col style="width: 22%">
+<col style="width: 25%">
+<col style="width: 22%">
 <col style="width: 29%">
-<col style="width: 13%">
-<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -704,7 +704,7 @@ $ College_Grad_Pct &lt;dbl&gt; 29.9, 32.8, 34.7, 27.1, 38.1, 47.8, 42.6, 36.0, 3
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>states_web <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://blbartels.github.io/dataps/states.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><a href="#fig-importcsvweb" class="quarto-xref">Figure&nbsp;<span>2.4</span></a> shows my screen after importing the same states.csv dataset from a website. I named this data “states_web,” but it is the exact same dataset as “states.” This object now appears in the Environment window (upper-right quadrant) in addition to the “states” object. Herein lies a major advantage of RStudio over other statistical software packages such as Stata and SPSS: <em>The ability to import multiple datasets at a time</em>. This feature is extremely useful in many data analysis contexts, which I will highlight in parts of the book.</p>
+<p><a href="#fig-importcsvweb" class="quarto-xref">Figure&nbsp;<span>2.4</span></a> shows my screen after importing the same states.csv dataset from a website. I named this dataset “states_web,” but it is the exact same dataset as “states.” This object now appears in the Environment window (upper-right quadrant) in addition to the “states” object. Herein lies a major advantage of RStudio over other statistical software packages such as Stata and SPSS: <em>The ability to import multiple datasets at a time</em>. This feature is extremely useful in many data analysis contexts, which I will highlight in other parts of the book. Moreover, users can save objects other than datasets, including regression model results or a stored value from a particular calculation or equation.</p>
 <div id="fig-importcsvweb" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-importcsvweb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -787,10 +787,61 @@ Figure&nbsp;2.4: <strong>Screen Shot After Importing “states.csv” from the W
 20 Albania     Europe     1987    72    3075321     3739.</code></pre>
 </div>
 </div>
-<p>After running this command, one will see the “gm” object (the gapminder dataset) in the Environment” window. Note that I do not need to issue a “read_” command like in <a href="#sec-hd" class="quarto-xref"><span>Section 2.3.1</span></a>. That is because the dataset in the <code>gapminder</code> package is already “R-ready.” All the user needs to do is save it in one’s current RStudio environment as is. Now when I begin analyzing the data, I can specify “gm” as the data object, as I have done in the command above; the same output appears as in the previous command that did not import the dataset into the RStudio environment.</p>
+<p>After running this command, one will see the “gm” object (the gapminder dataset) in the Environment” window. Since the dataset in the <code>gapminder</code> package is already “R-ready,” I do not need to issue a “read_” command like in <a href="#sec-hd" class="quarto-xref"><span>Section 2.3.1</span></a>. All the user needs to do is import it to one’s current RStudio environment as is. Now when I begin analyzing the data, I can specify “gm” as the data object, as I have done in the command above; the same output appears as in the previous command that did not import the dataset into the RStudio environment.</p>
 </section>
-<section id="value-labels-for-variables" class="level3" data-number="2.3.4">
-<h3 data-number="2.3.4" class="anchored" data-anchor-id="value-labels-for-variables"><span class="header-section-number">2.3.4</span> Value Labels for Variables</h3>
+</section>
+<section id="value-labels-for-variables" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="value-labels-for-variables"><span class="header-section-number">2.4</span> Value Labels for Variables</h2>
+<p>Researchers often find it useful to provide verbal “value labels” associated with a variable’s numeric values. For interval/continuous levels of measurement (e.g., voter turnout percentages in the states data), defining such value labels is neither practical nor necessary. The values (e.g., 55.6% turnout) are self-explanatory. However, for certain ordinal variables and most nominal variables, it is often helpful to associate the numerical values of the variable with an intuitive verbal label. Returning to our trust in government example (from <a href="#sec-var" class="quarto-xref"><span>Section 2.2.1</span></a>), recall the first question:</p>
+<blockquote class="blockquote">
+<p>“How much of the time do you think you can trust the government in Washington to do what is right?” <em>Always, Just about always, Some of the time, Hardly ever, Never</em></p>
+</blockquote>
+<p>With</p>
+<center>
+<div id="tbl-values" class="table-striped table-hover table-bordered table-sm column quarto-float quarto-figure quarto-figure-center anchored" style="width:60%;">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.2: <strong>Associating Numeric Coding Values with Verbal Values Labels</strong>
+</figcaption>
+<div aria-describedby="tbl-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover table-bordered table-sm column small caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Numeric Value</th>
+<th style="text-align: left;">Verbal Value Label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Never</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Hardly ever</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Some of the time</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Just about always</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Always</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</center>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -855,7 +906,6 @@ Staton, Jeffrey K., Christopher Reenock, and Jordan Holsinger. 2022. <em>Can Cou
 Treisman, Daniel. 2020. <span>“Economic Development and Democracy: Predispositions and Triggers.”</span> <em>Annual Review of Political Science</em> 23 (1): 241–57. <a href="https://doi.org/10.1146/annurev-polisci-050718-043546">https://doi.org/10.1146/annurev-polisci-050718-043546</a>.
 </div>
 </div>
-</section>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
