@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -84,7 +50,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./tidyverse.html" rel="next">
+<link href="./dataorg.html" rel="next">
 <link href="./rstudio.html" rel="prev">
 <link href="./images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -216,8 +182,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Organization and Wrangling, Tidyverse</span></span></a>
+  <a href="./dataorg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Importing, Organization, and Wrangling, Tidyverse</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -298,19 +264,9 @@ window.Quarto = {
   </ul></li>
   <li><a href="#sec-data" id="toc-sec-data" class="nav-link" data-scroll-target="#sec-data"><span class="header-section-number">2.2</span> Data</a>
   <ul class="collapse">
-  <li><a href="#sec-var" id="toc-sec-var" class="nav-link" data-scroll-target="#sec-var"><span class="header-section-number">2.2.1</span> Measurement: From Concepts to Variables</a></li>
-  <li><a href="#sec-lom" id="toc-sec-lom" class="nav-link" data-scroll-target="#sec-lom"><span class="header-section-number">2.2.2</span> Levels of Measurement</a></li>
-  </ul></li>
-  <li><a href="#sec-import" id="toc-sec-import" class="nav-link" data-scroll-target="#sec-import"><span class="header-section-number">2.3</span> Importing Data</a>
-  <ul class="collapse">
-  <li><a href="#sec-hd" id="toc-sec-hd" class="nav-link" data-scroll-target="#sec-hd"><span class="header-section-number">2.3.1</span> Importing Data Saved to Your Hard Drive</a></li>
-  <li><a href="#importing-data-from-a-dataset-saved-on-a-website" id="toc-importing-data-from-a-dataset-saved-on-a-website" class="nav-link" data-scroll-target="#importing-data-from-a-dataset-saved-on-a-website"><span class="header-section-number">2.3.2</span> Importing Data From a Dataset Saved on a Website</a></li>
-  <li><a href="#importing-data-from-an-r-package" id="toc-importing-data-from-an-r-package" class="nav-link" data-scroll-target="#importing-data-from-an-r-package"><span class="header-section-number">2.3.3</span> Importing Data From an R Package</a></li>
-  </ul></li>
-  <li><a href="#value-labels-for-variables" id="toc-value-labels-for-variables" class="nav-link" data-scroll-target="#value-labels-for-variables"><span class="header-section-number">2.4</span> Value Labels for Variables</a>
-  <ul class="collapse">
-  <li><a href="#importing-stock-data-with-preexisting-value-labels" id="toc-importing-stock-data-with-preexisting-value-labels" class="nav-link" data-scroll-target="#importing-stock-data-with-preexisting-value-labels"><span class="header-section-number">2.4.1</span> Importing Stock Data with Preexisting Value Labels</a></li>
-  <li><a href="#manually-adding-value-labels-to-variables" id="toc-manually-adding-value-labels-to-variables" class="nav-link" data-scroll-target="#manually-adding-value-labels-to-variables"><span class="header-section-number">2.4.2</span> Manually Adding Value Labels to Variables</a></li>
+  <li><a href="#where-do-data-come-from" id="toc-where-do-data-come-from" class="nav-link" data-scroll-target="#where-do-data-come-from"><span class="header-section-number">2.2.1</span> Where Do Data Come From?</a></li>
+  <li><a href="#sec-var" id="toc-sec-var" class="nav-link" data-scroll-target="#sec-var"><span class="header-section-number">2.2.2</span> Measurement: From Concepts to Variables</a></li>
+  <li><a href="#sec-lom" id="toc-sec-lom" class="nav-link" data-scroll-target="#sec-lom"><span class="header-section-number">2.2.3</span> Levels of Measurement</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -361,7 +317,7 @@ window.Quarto = {
 <li><p><strong>Is “answerable.”</strong> Political scientists want to ask questions but also answer them. As discussed above, drawing inferences and answering questions comes with some level of uncertainty that researchers quantify and communicate. But researchers seek to be clear about which side of the question the evidence leans toward; sometimes the evidence is overwhelming thus begging a clear answer while other times the evidence is tepid. Research questions being answerable also relates to the issue of “falsifiability” discussed below in <a href="#sec-theory" class="quarto-xref"><span>Section 2.1.3</span></a>. Some questions are answerable with a “yes or no,” while others are answerable with an explanation or theory. I return to this immediately following this list.</p></li>
 <li><p><strong>Confronts a knowledge gap in the scholarly literature</strong>: Since researchers seek to create and disseminate new knowledge about how the world works, research questions should advance a query regarding something we do not know about. This aspect implies that researchers are widely aware of existing knowledge and research on the subject, which is another important part of the research process. Three Rs of being a researcher and asking good research questions: <em>Read, read, and read</em>.</p></li>
 <li><p><strong>Structures the entire research process</strong>: Coming up with a good research question structures the rest of the research process, from theory to hypotheses to research design to data analysis.</p></li>
-<li><p><strong>Sets up the direction of causality between an “explanatory factor” and an “outcome”</strong>: Almost all research examines the effect of some “explanatory factor,” <span class="math inline">\(x\)</span>, on an outcome, <span class="math inline">\(y\)</span>. In my prior voting example, the explanatory factor is one’s party identification and the outcome is vote choice. When we operationalize these concepts (<a href="#sec-concept" class="quarto-xref"><span>Section 2.1.2</span></a>) as variables (<a href="#sec-var" class="quarto-xref"><span>Section 2.2.1</span></a>), we refer to <span class="math inline">\(x\)</span> as the “independent variable” and <span class="math inline">\(y\)</span> as the “dependent variable” (see <a href="#sec-var" class="quarto-xref"><span>Section 2.2.1</span></a>). Theory and explanation specify the causal nature of this relationship, i.e., <span class="math inline">\(x\)</span> causes <span class="math inline">\(y\)</span>, or <span class="math inline">\(x\)</span> <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(y\)</span>. <a href="#sec-rd" class="quarto-xref"><span>Section 2.1.4</span></a> will discuss issues of cause-and-effect in greater detail.</p></li>
+<li><p><strong>Sets up the direction of causality between an “explanatory factor” and an “outcome”</strong>: Almost all research examines the effect of some “explanatory factor,” <span class="math inline">\(x\)</span>, on an outcome, <span class="math inline">\(y\)</span>. In my prior voting example, the explanatory factor is one’s party identification and the outcome is vote choice. When we operationalize these concepts (<a href="#sec-concept" class="quarto-xref"><span>Section 2.1.2</span></a>) as variables (<a href="#sec-var" class="quarto-xref"><span>Section 2.2.2</span></a>), we refer to <span class="math inline">\(x\)</span> as the “independent variable” and <span class="math inline">\(y\)</span> as the “dependent variable” (see <a href="#sec-var" class="quarto-xref"><span>Section 2.2.2</span></a>). Theory and explanation specify the causal nature of this relationship, i.e., <span class="math inline">\(x\)</span> causes <span class="math inline">\(y\)</span>, or <span class="math inline">\(x\)</span> <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(y\)</span>. <a href="#sec-rd" class="quarto-xref"><span>Section 2.1.4</span></a> will discuss issues of cause-and-effect in greater detail.</p></li>
 </ol>
 <p>Extending these points, the next sections discuss research employing different types of research questions. Each section uses examples from political science research. I will continue to use those examples in the concepts and theory and hypotheses sections.</p>
 <p><strong><em>Research Questions Answerable with “Yes” or “No”</em></strong>: Some questions are answerable with a “yes” or “no.” A good example involves the longstanding debate on “modernization theory” in comparative politics research <span class="citation" data-cites="treisman2020 przeworski1997">(see, e.g., <a href="references.html#ref-treisman2020" role="doc-biblioref">Treisman 2020</a>; <a href="references.html#ref-przeworski1997" role="doc-biblioref">Przeworski and Limongi 1997</a>)</span>. A recurring research question persists throughout this research: <em>Does economic development lead to and sustain democracy</em>? First, related to point #3 above, this research question immediately makes clear what the “explanatory factor” (<span class="math inline">\(x\)</span>) is and what the outcome (<span class="math inline">\(y\)</span>) is:</p>
@@ -428,24 +384,27 @@ window.Quarto = {
 <li><p>Motivated reasoning in political judgments; such judgments are rationalizations for preexisting attitudes and beliefs as opposed to deliberative, learning processes <span class="citation" data-cites="lodge2013">(<a href="references.html#ref-lodge2013" role="doc-biblioref">Lodge and Taber 2013</a>)</span>.</p></li>
 </ol>
 <p>While experiments carry high appeal for making causal inferences, not every explanatory variable, <span class="math inline">\(x\)</span>, can be subjected to “experimental manipulation,” which is a phrase that explains the process of random assignment and the creation of a treatment factor that carries a substantive political science meaning. In modernization theory, researchers cannot randomly assign countries to treatment versus control groups that capture variation in economic development. The goes for economic voting in presidential elections. These examples and many others imply the necessity of observational studies.</p>
-<p><strong><em>Observational Studies</em></strong>: In observational studies, researchers do not experimentally manipulate the explanatory factors (<span class="math inline">\(x\)</span>) but instead observe and <em>measure</em> those factors (on which <a href="#sec-var" class="quarto-xref"><span>Section 2.2.1</span></a> will elaborate). Many of the aforementioned examples in this chapter — modernization theory, oil-rich countries, economic voting, insurance theory and judicial independence — rely on observational studies to analyze their theoretical claims. Studies of economic voting rely on survey research and public opinion polls; we observe survey respondents’ answers to questions in order to measure concepts. Studies of countries around the world require researchers to collect and code the data themselves, which is a time-consuming endeavor (<a href="#sec-data" class="quarto-xref"><span>Section 2.2</span></a> picks up on this point immediately below).</p>
+<p><strong><em>Observational Studies</em></strong>: In observational studies, researchers do not experimentally manipulate the explanatory factors (<span class="math inline">\(x\)</span>) but instead observe and <em>measure</em> those factors (on which <a href="#sec-var" class="quarto-xref"><span>Section 2.2.2</span></a> will elaborate). Many of the aforementioned examples in this chapter — modernization theory, oil-rich countries, economic voting, insurance theory and judicial independence — rely on observational studies to analyze their theoretical claims. Studies of economic voting rely on survey research and public opinion polls; we observe survey respondents’ answers to questions in order to measure concepts. Studies of countries around the world require researchers to collect and code the data themselves, which is a time-consuming endeavor (<a href="#sec-data" class="quarto-xref"><span>Section 2.2</span></a> picks up on this point immediately below).</p>
 <p>Observational studies can never achieve the degree of causal inference, or internal validity, that experimental studies attain. As discussed, some observational studies exploit natural experiments to mimic random assignment (“as-if” random assignment). But the lion’s share of observational studies instead rely on statistics to make inferences that do not reach the standard of causality central to the potential outcomes framework. As discussed, this book focuses on these types of analyses. Statistical analyses of observational data tend toward this goal by estimating the effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> while <em>controlling for alternative factors</em>. But the researcher manually specifies a finite set of factors to control for, meaning that such analyses can never attain the causal standards that experimental studies reach. Multiple regression analysis (at the heart of <a href="linreg1.html" class="quarto-xref"><span>Chapter 8</span></a>) is the widely-used tool for carrying out empirical analyses of observational data.</p>
 </section>
 </section>
 <section id="sec-data" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="sec-data"><span class="header-section-number">2.2</span> Data</h2>
 <p>What are “data?” (And yes, <em>data are plural</em>.) Data are pieces of information that represent how a concept varies across units of observation. A “dataset” contains a record of this information in the form of numbers and strings, e.g., economic development and democracy for each country and perhaps over time.</p>
-<p><strong>Where do data come from</strong>? Many researchers frequently analyze data from “stock datasets,” which large organizations organize, fund, and coordinate data collection for. An example that I will use in this book is the <a href="https://electionstudies.org/" target="_blank">American National Election Studies</a> (ANES), which has been conducting regular surveys of Americans since 1948. This survey data has been a mainstay in political science research elections and voting behavior. Another stock dataset that I will use in this book is the <a href="https://www.v-dem.net/" target="_blank">Varieties of Democracy</a> data (V-Dem), which is increasingly used in comparative politics research. In international relations research, the <a href="https://correlatesofwar.org/" target="_blank">Correlates of War</a> dataset is a popular stock dataset. <a href="appendixa.html#tbl-psdata" class="quarto-xref">Table&nbsp;<span>A.1</span></a> in <a href="appendixa.html" class="quarto-xref"><span>Appendix A</span></a> includes a table of publicly available datasets frequently used in political science research.</p>
+<section id="where-do-data-come-from" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="where-do-data-come-from"><span class="header-section-number">2.2.1</span> Where Do Data Come From?</h3>
+<p>Many researchers frequently analyze data from “stock datasets,” which large organizations organize, fund, and coordinate data collection for. An example that I will use in this book is the <a href="https://electionstudies.org/" target="_blank">American National Election Studies</a> (ANES), which has been conducting regular surveys of Americans since 1948. This survey data has been a mainstay in political science research elections and voting behavior. Another stock dataset that I will use in this book is the <a href="https://www.v-dem.net/" target="_blank">Varieties of Democracy</a> data (V-Dem), which is increasingly used in comparative politics research. In international relations research, the <a href="https://correlatesofwar.org/" target="_blank">Correlates of War</a> dataset is a popular stock dataset. <a href="appendixa.html#tbl-psdata" class="quarto-xref">Table&nbsp;<span>A.1</span></a> in <a href="appendixa.html" class="quarto-xref"><span>Appendix A</span></a> includes a table of publicly available datasets frequently used in political science research.</p>
 <p>Some data come from commercial public opinion surveys conducted by media organizations (e.g., the New York Times or CBS News) that measure people’s attitudes, preferences, and evaluations of political issues and politicians. The <a href="https://ropercenter.cornell.edu/" target="_blank">Roper Center</a> maintains an archive of survey questions from these surveys, and for some surveys, it provides the full dataset (typically requires an institutional subscription).</p>
 <p>Another massive archive of data is the <a href="https://dataverse.harvard.edu/" target="_blank">Harvard Dataverse</a>, which is a repository for researchers to place their data in a public archive that anyone can access. All major journals in political science and other disciplines now require that authors deposit their data in archives such as this one. The Harvard Dataverse is probably the most prominent of these public archives.</p>
 <p>Other data come from researchers’ efforts to measure characteristics of countries around the world or the 50 states (in the U.S.). When researchers do experiments, they generate data consisting of individuals who are randomly assigned to a treatment or a control group. Still other researchers may combine their own measures of characteristics with stock datasets by merging the two together.</p>
 <p>Finally, readers may have heard of “big data,” which can entail analyzing and attempting to synthesize extremely large volumes of information, e.g., millions of social media posts on a particular topic. Artificial intelligence (AI) and the use the large language models (LLMs) are essentially the epitome of “big data” efforts.</p>
 <p>This book will use relatively large datasets consisting of many observations, or “units of analysis” (individuals, countries, U.S. states), and many “variables” (empirical measures of concepts for those observations). These datasets are often called “large-<em>N</em>” data, where “<em>N</em>” is the number of observations in a dataset. For many researchers, “large” implies an <em>N</em> that exceeds 1,000. In many public opinion surveys, <em>N</em> is greater than 1,000. For other researchers, large may entail an <em>N</em> greater than 100 (e.g., studying countries around the world). We will analyze datasets in this book with <em>N</em>s larger than 1,000 or around 100. The “states” data example I will use below has an <em>N</em> of 50. Researchers analyze a large number of observations so as to maximize the quality of generalizations and inferences about the population.</p>
 <p>The datasets we will examine in this book include various types of survey data (including political and public opinion surveys) and data analyzing characteristics of countries around the world and the U.S. states.</p>
-<section id="sec-var" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="sec-var"><span class="header-section-number">2.2.1</span> Measurement: From Concepts to Variables</h3>
-<p>The core aspect of data collection is the <strong>measurement of concepts</strong> that are central to one’s theory. Measurement is the process by which concepts are converted into <strong>variables</strong> that one can analyze empirically and quantitatively. A variable captures variation in a concept across <strong>units of analysis</strong>, which are the observations we are studying (e.g., individual persons in a survey, countries, states, congressional districts). A <strong>dataset</strong> is a collection of variables for <em>N</em> units of analysis. As <a href="#sec-import" class="quarto-xref"><span>Section 2.3</span></a> will discuss, each column of a dataset is a variable, while each row of a dataset is a unit of analysis.</p>
-<p>In a dataset, a variable records a value (a numeric value or a string) for each unit of analysis. For example, a democracy variable would record degrees of democracy versus authoritarianism across countries; each country contains a value of this variable (typically as a numeric value; see <a href="#sec-lom" class="quarto-xref"><span>Section 2.2.2</span></a> below). A variable is true to its name: <em>Able to vary</em>. That may seem obvious, but variables must maintain at least some variation across units of analysis. The opposite of a variable is a “constant,” where the value would be exactly the same for every unit of analysis. Constants are not amenable to quantitative data analysis; variables are.</p>
+</section>
+<section id="sec-var" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="sec-var"><span class="header-section-number">2.2.2</span> Measurement: From Concepts to Variables</h3>
+<p>The core aspect of data collection is the <strong>measurement of concepts</strong> that are central to one’s theory. Measurement is the process by which concepts are converted into <strong>variables</strong> that one can analyze empirically and quantitatively. A variable captures variation in a concept across <strong>units of analysis</strong>, which are the observations we are studying (e.g., individual persons in a survey, countries, states, congressional districts). A <strong>dataset</strong> is a collection of variables for <em>N</em> units of analysis. As <a href="dataorg.html#sec-import" class="quarto-xref"><span>Section 3.1</span></a> will discuss, each column of a dataset is a variable, while each row of a dataset is a unit of analysis.</p>
+<p>In a dataset, a variable records a value (a numeric value or a string) for each unit of analysis. For example, a democracy variable would record degrees of democracy versus authoritarianism across countries; each country contains a value of this variable (typically as a numeric value; see <a href="#sec-lom" class="quarto-xref"><span>Section 2.2.3</span></a> below). A variable is true to its name: <em>Able to vary</em>. That may seem obvious, but variables must maintain at least some variation across units of analysis. The opposite of a variable is a “constant,” where the value would be exactly the same for every unit of analysis. Constants are not amenable to quantitative data analysis; variables are.</p>
 <p>The two core properties of measurement are: Validity and reliability.</p>
 <p><strong><em>Validity</em></strong>: Validity is the extent to which a variable reflects the essence of the concept or its core characteristics. When researchers measure concepts, they seek to maximize congruence between the concept and the measure. A concept is a theoretical construct, however, so we can never truly evaluate whether a measure has 100% validity. Instead, we use methods to estimate and evaluate validity. One way to evaluate a measure is to consider the types of measurement errors that are present. A measure is a function of the underlying concept plus underlying sources of error: Systematic and random measurement error.</p>
 <p>The primary threat to validity is <strong>systematic measurement error</strong>. This type of error biases a measure. It systematically undermines concept-measure congruence. A systematic measurement error is one that will consistently bias a measure every time we attempt to measure a concept. Revisiting the democracy example from <a href="#sec-concept" class="quarto-xref"><span>Section 2.1.2</span></a>, recall that democracy is often associated with free and fair elections, organizing political parties that can seek political power, robust political competition between parties, and elected officials (as opposed to the military) making laws. Imagine our measure failed to incorporate the first facet of free and fair elections. As a critical characteristic of this concept, omission of it in any democracy measure would be deemed as something less than valid.</p>
@@ -487,8 +446,8 @@ window.Quarto = {
 <p>The goal is generate a single measure of trust that averages over these four items (a scale). “Internal consistency” means that survey respondents answer the questions in same way given their underlying level of trust. Someone high in trust would reflect that level of trust across each of the four measures. Methods like factor analysis and statistics such as Cronbach’s alpha assess this form of reliability <span class="citation" data-cites="devellis2021">(see <a href="references.html#ref-devellis2021" role="doc-biblioref">DeVellis and Thorpe 2021</a> for a comprehensive primer on these topics)</span>.</p>
 <p><strong><em>Independent versus Dependent Variables</em></strong>: In the discussion of the causal effect of an explanatory factor, <span class="math inline">\(x\)</span>, on an outcome, <span class="math inline">\(y\)</span>, these factors are concepts at the heart of theory. Once we measure, or “operationalize,” those concepts and they become variables in our dataset, these variables get special names. The explanatory factor, <span class="math inline">\(x\)</span>, is called the <strong>independent variable</strong>. The outcome, <span class="math inline">\(y\)</span>, is called the <strong>dependent variable</strong>. Once we discuss bivariate (i.e., two-variable) associations in <a href="dataviz.html" class="quarto-xref"><span>Chapter 4</span></a> and <a href="descriptive.html" class="quarto-xref"><span>Chapter 6</span></a>, each analysis will consist of one independent variable and one dependent variable. Once we cover multiple regression in <a href="linreg1.html" class="quarto-xref"><span>Chapter 8</span></a>, each analysis will consist of <em>multiple</em> independent variables but still one dependent variable.</p>
 </section>
-<section id="sec-lom" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="sec-lom"><span class="header-section-number">2.2.2</span> Levels of Measurement</h3>
+<section id="sec-lom" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="sec-lom"><span class="header-section-number">2.2.3</span> Levels of Measurement</h3>
 <p>A critical consideration in both measuring and analyzing variables centers on the level of measurement they take on. Readers may have heard about “continuous” variables that have lots of values, like age, income, or gross domestic product (GDP). Other variables are “categorical” in nature — they have just a few values and capture group differences, like sex, race, or education level, and regional or geographic characterizations. Below, I discuss three specific levels of measurement that provide a deeper meaning underlying who variables are measured. Each level of measurement varies in specificity or precision regarding the nature of the differences between values of the variable.</p>
 <ol type="1">
 <li><p><strong>Interval</strong>, or continuous: Variables measured at the interval level capture <em>exact numerical differences</em> between values of a variable. A classic example is age measured in years. If observation A is 85 years old and observation B is 45 years old, we can communicate an exact numerical difference (40 years) between these two observations. Measuring GDP for countries around the world allows researchers to communicate exact numeric differences in GDP between countries.</p></li>
@@ -497,424 +456,6 @@ window.Quarto = {
 </ol>
 <p>Nominal variables are “categorical” in nature, but ordinal variables with few categories are often considered categorical as well. Ordinal variables with lots and lots of categories/values can sometimes fall into a gray area between ordinal and interval. Importantly, the level of measurement associated with a variable dictates how one will analyze that variable in all aspects of data analysis — data visualization, descriptive statistics, and regression analysis. I will revisit levels of measurement on a recurring basis throughout this book.</p>
 <!-- ### Empirical Testing -->
-</section>
-</section>
-<section id="sec-import" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="sec-import"><span class="header-section-number">2.3</span> Importing Data</h2>
-<p>Once researchers have either collected their data or have accessed stock data from a public website (such as in <a href="appendixa.html#tbl-psdata" class="quarto-xref">Table&nbsp;<span>A.1</span></a> in <a href="appendixa.html" class="quarto-xref"><span>Appendix A</span></a>), they need to import it into RStudio so they can analyze it. Three general ways exist for importing data into RStudio: (1) save the dataset on your hard drive (using the “projects” approach I recommended in <a href="rstudio.html#sec-rp" class="quarto-xref"><span>Section 1.5.1</span></a>) and import it within RStudio; (2) import a dataset that is stored on a website (via a url); and (3) use and/or import a dataset that is stored within an R package that you have installed and loaded.</p>
-<section id="sec-hd" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="sec-hd"><span class="header-section-number">2.3.1</span> Importing Data Saved to Your Hard Drive</h3>
-<p>RStudio can easily and seamlessly import data in just about any format you can imagine with both base R packages and certain add-on packages. <a href="#tbl-import" class="quarto-xref">Table&nbsp;<span>2.1</span></a> includes the most common data formats in political science, the R packages required (I focus here on add-on packages), and the command from the package to import the data.</p>
-<div id="tbl-import" class="table-striped table-hover table-bordered table-sm quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-import-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2.1: <strong>Data Formats, R Packages, and R Commands for Importing Datasets</strong>
-</figcaption>
-<div aria-describedby="tbl-import-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-striped table-hover table-bordered table-sm small caption-top table">
-<colgroup>
-<col style="width: 22%">
-<col style="width: 25%">
-<col style="width: 22%">
-<col style="width: 29%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">File Extension</th>
-<th style="text-align: left;">Source Software</th>
-<th style="text-align: left;">R Package</th>
-<th style="text-align: left;">Import Command</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>.rds</code></td>
-<td style="text-align: left;">R (Single Object)</td>
-<td style="text-align: left;"><code>readr</code></td>
-<td style="text-align: left;"><code>read_rds()</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>.csv</code></td>
-<td style="text-align: left;">Universal (Spreadsheet)</td>
-<td style="text-align: left;"><code>readr</code></td>
-<td style="text-align: left;"><code>read_csv()</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>.dta</code></td>
-<td style="text-align: left;">Stata</td>
-<td style="text-align: left;"><code>haven</code></td>
-<td style="text-align: left;"><code>read_dta()</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>.sav</code> / <code>.por</code></td>
-<td style="text-align: left;">SPSS</td>
-<td style="text-align: left;"><code>haven</code></td>
-<td style="text-align: left;"><code>read_sav()</code> / <code>read_por()</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>.xls</code> / <code>.xlsx</code></td>
-<td style="text-align: left;">Excel</td>
-<td style="text-align: left;"><code>readxl</code></td>
-<td style="text-align: left;"><code>read_excel()</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>Again, these are the most common data formats in political science, but this is not an exhaustive list. I will start with a simple example of importing a small dataset containing information on the 50 states. Following the “projects” recommendation from <a href="rstudio.html#sec-rp" class="quarto-xref"><span>Section 1.5.1</span></a>, I have created a folder called “Data Analysis” on my hard drive. Inside that folder is an .Rproj called “Data Analysis.Rproj.” Recall that anytime I want to work in this project, I simply double click on the .Rproj file to begin a new RStudio session, and RStudio will automatically set my “Data Analysis” folder as the home directory. That means when I import my data, I do not need enter the entire file path. If my dataset is in my home directory, I can simply type the name of the file when importing it (see <a href="rstudio.html#sec-rp" class="quarto-xref"><span>Section 1.5.1</span></a>). <a href="#fig-importcsv" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> displays my screen upon starting my RStudio session. Looking to the lower-right quadrant, the dataset called “states.csv” appears in my home directory.</p>
-<div id="fig-importcsv" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-importcsv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.1: <strong>Screen Shot Showing the Dataset “states.csv” Saved on my Hard Drive Folder Set as the Home Directory</strong>
-</figcaption>
-<div aria-describedby="fig-importcsv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/import_csv.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-</figure>
-</div>
-<p>Now we need to issue a command to RStudio to import the data. Recall from <a href="rstudio.html" class="quarto-xref"><span>Chapter 1</span></a> that users can run commands in R in two ways: (1) Entering the command in the “Console” (lower-left quadrant) where the cursor is blinking or (2) entering commands in an .R script file (which opens in the upper-left quadrant) that you can save to your hard drive for future use (keeping them as a record of the packages you need to load and the commands that you ran). I will mostly do the latter in this book. Recall from <a href="rstudio.html" class="quarto-xref"><span>Chapter 1</span></a> that to open an .R script, click on File –&gt; New File –&gt; R Script. <a href="#fig-importcsv" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> shows that I have an opened .R script that by default is called “Untitled.” I will show that I saved the file below.</p>
-<p>Users can run commands within an .R script in multiple ways:</p>
-<ul>
-<li>Simply place your cursor anywhere in the command line and click the “Run” button in the menu bar right above the .R script (the one with a green arrow to the left of it).</li>
-<li>Use a keystroke: For Macs, put the cursor anywhere on the line and type command-return. For PCs, type ctrl-enter.</li>
-<li>Highlight all of the text in a command line and then type this same keystroke.</li>
-<li>Users can also run multiple commands with one keystroke: Simply highlight multiple command lines and use the same keystroke (or click on “Run”).</li>
-</ul>
-<p>As <a href="#tbl-import" class="quarto-xref">Table&nbsp;<span>2.1</span></a> highlights, we will need the <code>readr</code> package to import a .csv (“comma separated values”) file. <code>readr</code> is one of the packages in the <code>tidyverse</code> suite of packages, so if you already installed <code>tidyverse</code> after reading <a href="rstudio.html#sec-tv" class="quarto-xref"><span>Section 1.4</span></a>, then you do not need to install it again. If you have not yet installed <code>tidyverse</code>, you can do so now by typing: <code>install.packages("tidyverse")</code>. Here is the code to import the states.csv dataset into RStudio. Note that I have called up the <code>tidyverse</code> package (see <a href="rstudio.html" class="quarto-xref"><span>Chapter 1</span></a>), which also calls up the <code>readr</code> package needed to import the .csv. file.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"states.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>In the second line, notice the notation I have used. I am creating a new data object called “states.” I use the <strong>assignment operator</strong>, <code>&lt;-</code>, to tell RStudio, “Give me a data object called ‘states’ that is the ‘states.csv’ file in my home directory.” <code>read_csv</code> is the command (from the <code>readr</code> package) that imports the dataset into the RStudio environment.</p>
-<p>Now, my RStudio screen looks like <a href="#fig-importcsvpost" class="quarto-xref">Figure&nbsp;<span>2.2</span></a>:</p>
-<div id="fig-importcsvpost" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-importcsvpost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.2: <strong>Screen Shot After Importing “states.csv”</strong>
-</figcaption>
-<div aria-describedby="fig-importcsvpost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/import_csv_post.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-</figure>
-</div>
-<p>First, I saved my .R script as “Commands to Run.R,” which also now appears in my home directory. The same two command lines as above are in the .R script. After I load states.csv, the object “states” appears in the “Environment” window in the upper-right quadrant. That means the data are successfully loaded. Next to the data name, the Environment tab lists that the states data has 50 observations (rows) and 6 variables (columns). In a dataset, the units of analysis are rows, while the columns are the variables. States are the units of analysis (<em>N</em>=50), and the dataset contains 6 variables.</p>
-<p>To view the data, users can click on the “states” object in the Environment window or type <code>View(states)</code> in the command window or the .R script. <a href="#fig-csv-data" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> shows a zoomed-in view of the upper-left quadrant. Each row is a state, and one can see the state name and abbreviation. The data also include turnout percentage in the 2024 presidential election, the percentage of voters voting for Trump, whether the state is a Southern state or not, and the percentage of adults in the state with a college degree or higher.</p>
-<div id="fig-csv-data" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-csv-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.3: <strong>Screen Shot of the States Data</strong>
-</figcaption>
-<div aria-describedby="fig-csv-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/csv_data.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
-</div>
-</figure>
-</div>
-<p>Another way to see the first few observations in the state is use the <code>head</code> command:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-  State      Abbreviation Turnout_2024_Pct Trump_2024_Pct Southern_State
-  &lt;chr&gt;      &lt;chr&gt;                   &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
-1 Alabama    AL                       58.8           64.8              1
-2 Alaska     AK                       63.7           55.5              0
-3 Arizona    AZ                       63.6           52.6              0
-4 Arkansas   AR                       53.5           64.2              1
-5 California CA                       62.1           38.3              0
-6 Colorado   CO                       73.1           43.5              0
-# ℹ 1 more variable: College_Grad_Pct &lt;dbl&gt;</code></pre>
-</div>
-</div>
-<p>Or I can specify the number of observations I want to see:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(states, <span class="at">n=</span><span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 12 × 6
-   State       Abbreviation Turnout_2024_Pct Trump_2024_Pct Southern_State
-   &lt;chr&gt;       &lt;chr&gt;                   &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
- 1 Alabama     AL                       58.8           64.8              1
- 2 Alaska      AK                       63.7           55.5              0
- 3 Arizona     AZ                       63.6           52.6              0
- 4 Arkansas    AR                       53.5           64.2              1
- 5 California  CA                       62.1           38.3              0
- 6 Colorado    CO                       73.1           43.5              0
- 7 Connecticut CT                       67.1           41                0
- 8 Delaware    DE                       67             41                1
- 9 Florida     FL                       66.7           56.1              1
-10 Georgia     GA                       68.3           50.7              1
-11 Hawaii      HI                       50.3           38                0
-12 Idaho       ID                       63.4           66.9              0
-# ℹ 1 more variable: College_Grad_Pct &lt;dbl&gt;</code></pre>
-</div>
-</div>
-<p>Note that it includes as many variables as it can fit on the screen. Connecting to the discussion of “levels of measurement” (<a href="#sec-lom" class="quarto-xref"><span>Section 2.2.2</span></a>), the output includes the labels <code>chr</code> and <code>dbl</code> at the top of each variable. <code>chr</code> = “character” or a string variable (letters only or a mix of letters and numbers). <code>dbl</code> = “double,” which in RStudio means a numeric variable (in this case an interval variable) with decimal points. Note that even the South variable has the <code>dbl</code> format despite not having decimals.</p>
-<p>A similar command that comes from the <code>tidyverse</code> is called <code>glimpse</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 50
-Columns: 6
-$ State            &lt;chr&gt; "Alabama", "Alaska", "Arizona", "Arkansas", "Californ…
-$ Abbreviation     &lt;chr&gt; "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL",…
-$ Turnout_2024_Pct &lt;dbl&gt; 58.8, 63.7, 63.6, 53.5, 62.1, 73.1, 67.1, 67.0, 66.7,…
-$ Trump_2024_Pct   &lt;dbl&gt; 64.8, 55.5, 52.6, 64.2, 38.3, 43.5, 41.0, 41.0, 56.1,…
-$ Southern_State   &lt;dbl&gt; 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1,…
-$ College_Grad_Pct &lt;dbl&gt; 29.9, 32.8, 34.7, 27.1, 38.1, 47.8, 42.6, 36.0, 35.8,…</code></pre>
-</div>
-</div>
-<p>Notice that <code>glimpse</code> inverts the rows and columns, which makes it a bit counterintuitive to some. However, one point of <code>glimpse</code> is to highlight the variables in the dataset.</p>
-<p>In datasets with many variables, another helpful command is <code>names</code>, which lists all of the variables in the dataset:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "State"            "Abbreviation"     "Turnout_2024_Pct" "Trump_2024_Pct"  
-[5] "Southern_State"   "College_Grad_Pct"</code></pre>
-</div>
-</div>
-<p>Another way to see how the variables are stored (e.g., numeric, character) is by using the “class” command:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "character"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Abbreviation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "character"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Turnout_2024_Pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "numeric"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Trump_2024_Pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "numeric"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Southern_State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "numeric"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>College_Grad_Pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "numeric"</code></pre>
-</div>
-</div>
-<p>The <code>class</code> command tells the user how the variable is stored. Note the naming convention used here, which is common in “base R.” To specify a variable, we use the “dollar sign” method: Before the dollar sign is the name of the data object (states) and after is the variable name. “State” and “Abbreviation” are character variables (strings), while the remaining variables are numeric. Knowing the class of a variable, and the level of measurement a variable takes on, becomes very important for many subsequent analyses in RStudio. I will return to that issue throughout the book.</p>
-<p>The “Southern_State” variable, which takes on a value of 1 for Southern states and 0 for non-Southern states, gets a special name in data analysis and statistics: a <strong>dummy variable.</strong> A dummy variable is a binary variable (i.e., a variable that takes on only two values); researchers typically refer to independent variables (not dependent variables) as dummy variables. Note that dummy variables are always coded as 0 or 1 (as opposed to 1 versus 2 or 3 versus 4).</p>
-</section>
-<section id="importing-data-from-a-dataset-saved-on-a-website" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="importing-data-from-a-dataset-saved-on-a-website"><span class="header-section-number">2.3.2</span> Importing Data From a Dataset Saved on a Website</h3>
-<p>Some datasets are stored on institutional websites or on a researcher’s website. Instead of having to download the dataset to your hard drive, you can simply tell RStudio to import the data from the website into your RStudio environment. You need to have an internet connection to execute this procedure, of course. The procedure is simple and requires the same packages and commands as discussed in <a href="#sec-hd" class="quarto-xref"><span>Section 2.3.1</span></a>. But instead of inserting the dataset name (e.g., “states.csv”), one enters the entire url. I have stored this same “states.csv” dataset on a website, which means the dataset has its own unique url. To import it straight from the web, I execute the following command:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>states_web <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://blbartels.github.io/dataps/states.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><a href="#fig-importcsvweb" class="quarto-xref">Figure&nbsp;<span>2.4</span></a> shows my screen after importing this same states.csv dataset but from a website instead. I named this dataset “states_web,” but it is the exact same dataset as “states.” This object now appears in the Environment window (upper-right quadrant) in addition to the “states” object. Herein lies a major advantage of RStudio over other statistical software packages such as Stata and SPSS: <em>The ability to import multiple datasets at a time</em>. This feature is extremely useful in many data analysis contexts, which I will highlight in other parts of the book. Moreover, users can save objects other than datasets, including regression model results or a stored value from a particular calculation or equation.</p>
-<div id="fig-importcsvweb" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-importcsvweb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.4: <strong>Screen Shot After Importing “states.csv” from the Web</strong>
-</figcaption>
-<div aria-describedby="fig-importcsvweb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/import_csv_web.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-</figure>
-</div>
-</section>
-<section id="importing-data-from-an-r-package" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="importing-data-from-an-r-package"><span class="header-section-number">2.3.3</span> Importing Data From an R Package</h3>
-<p>Some R packages contain datasets that researchers can analyze in RStudio without having to download them on one’s hard drive or even having to import them to one’s RStudio environment. An example is a well-known dataset called “gapminder,” which contains data on 142 countries over a select number of years from 1952-2007. To install the gapminder package, type: <code>install.packages("gapminder")</code></p>
-<p>Once you load the package using the <code>library</code> command, you can actually begin analyzing the dataset called “gapminder” without even having to import it into your RStudio environment. For instance, consider this code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "country"   "continent" "year"      "lifeExp"   "pop"       "gdpPercap"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gapminder, <span class="at">n=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 20 × 6
-   country     continent  year lifeExp      pop gdpPercap
-   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
- 1 Afghanistan Asia       1952    28.8  8425333      779.
- 2 Afghanistan Asia       1957    30.3  9240934      821.
- 3 Afghanistan Asia       1962    32.0 10267083      853.
- 4 Afghanistan Asia       1967    34.0 11537966      836.
- 5 Afghanistan Asia       1972    36.1 13079460      740.
- 6 Afghanistan Asia       1977    38.4 14880372      786.
- 7 Afghanistan Asia       1982    39.9 12881816      978.
- 8 Afghanistan Asia       1987    40.8 13867957      852.
- 9 Afghanistan Asia       1992    41.7 16317921      649.
-10 Afghanistan Asia       1997    41.8 22227415      635.
-11 Afghanistan Asia       2002    42.1 25268405      727.
-12 Afghanistan Asia       2007    43.8 31889923      975.
-13 Albania     Europe     1952    55.2  1282697     1601.
-14 Albania     Europe     1957    59.3  1476505     1942.
-15 Albania     Europe     1962    64.8  1728137     2313.
-16 Albania     Europe     1967    66.2  1984060     2760.
-17 Albania     Europe     1972    67.7  2263554     3313.
-18 Albania     Europe     1977    68.9  2509048     3533.
-19 Albania     Europe     1982    70.4  2780097     3631.
-20 Albania     Europe     1987    72    3075321     3739.</code></pre>
-</div>
-</div>
-<p>Note that I did not import the data to my RStudio environment in order to begin analyzing the data. However, users can import datasets like this one into their environment by issuing the following command:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gapminder</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(gm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "country"   "continent" "year"      "lifeExp"   "pop"       "gdpPercap"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gm, <span class="at">n=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 20 × 6
-   country     continent  year lifeExp      pop gdpPercap
-   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
- 1 Afghanistan Asia       1952    28.8  8425333      779.
- 2 Afghanistan Asia       1957    30.3  9240934      821.
- 3 Afghanistan Asia       1962    32.0 10267083      853.
- 4 Afghanistan Asia       1967    34.0 11537966      836.
- 5 Afghanistan Asia       1972    36.1 13079460      740.
- 6 Afghanistan Asia       1977    38.4 14880372      786.
- 7 Afghanistan Asia       1982    39.9 12881816      978.
- 8 Afghanistan Asia       1987    40.8 13867957      852.
- 9 Afghanistan Asia       1992    41.7 16317921      649.
-10 Afghanistan Asia       1997    41.8 22227415      635.
-11 Afghanistan Asia       2002    42.1 25268405      727.
-12 Afghanistan Asia       2007    43.8 31889923      975.
-13 Albania     Europe     1952    55.2  1282697     1601.
-14 Albania     Europe     1957    59.3  1476505     1942.
-15 Albania     Europe     1962    64.8  1728137     2313.
-16 Albania     Europe     1967    66.2  1984060     2760.
-17 Albania     Europe     1972    67.7  2263554     3313.
-18 Albania     Europe     1977    68.9  2509048     3533.
-19 Albania     Europe     1982    70.4  2780097     3631.
-20 Albania     Europe     1987    72    3075321     3739.</code></pre>
-</div>
-</div>
-<p>After running this command, one will see the “gm” object (the gapminder dataset) in the “Environment” window. Since the dataset in the <code>gapminder</code> package is “R-ready,” I do not need to issue a “read_” command like in <a href="#sec-hd" class="quarto-xref"><span>Section 2.3.1</span></a>. All the user needs to do is import it to one’s current RStudio environment as is. Now when I begin analyzing the data, I can specify “gm” as the data object, as I have done in the command above; the same output appears as in the previous command that did not import the dataset into the RStudio environment.</p>
-</section>
-</section>
-<section id="value-labels-for-variables" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="value-labels-for-variables"><span class="header-section-number">2.4</span> Value Labels for Variables</h2>
-<p>Researchers often find it useful to provide verbal “value labels” associated with a variable’s numeric values. For interval/continuous levels of measurement (e.g., voter turnout percentages in the states data), defining such value labels is neither practical nor necessary. The values (e.g., 55.6% turnout) are self-explanatory. However, for certain ordinal variables and most nominal variables, it is often helpful to associate the numerical values of the variable with an intuitive verbal label. Returning to our trust in government example (from <a href="#sec-var" class="quarto-xref"><span>Section 2.2.1</span></a>), recall the first question:</p>
-<blockquote class="blockquote">
-<p>“How much of the time do you think you can trust the government in Washington to do what is right?” <em>Always, Just about always, Some of the time, Hardly ever, Never</em></p>
-</blockquote>
-<p>Thus, I may want to associate each numeric value with these response options like what is displayed in <a href="#tbl-values" class="quarto-xref">Table&nbsp;<span>2.2</span></a>. Value labels are useful both for one’s own purposes (to remember which numeric value means what) and for when one starts analyzing data and reporting results in graphs and tables.</p>
-<center>
-<div id="tbl-values" class="table-striped table-hover table-bordered table-sm column quarto-float quarto-figure quarto-figure-center anchored" style="width:60%;">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2.2: <strong>Associating Numeric Coding Values with Verbal Values Labels</strong>
-</figcaption>
-<div aria-describedby="tbl-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-striped table-hover table-bordered table-sm column small caption-top table">
-<colgroup>
-<col style="width: 35%">
-<col style="width: 65%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Numeric Value</th>
-<th style="text-align: left;">Verbal Value Label</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">1</td>
-<td style="text-align: left;">Never</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: left;">Hardly ever</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">3</td>
-<td style="text-align: left;">Some of the time</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">4</td>
-<td style="text-align: left;">Just about always</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">5</td>
-<td style="text-align: left;">Always</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-</center>
-<p>Note that neither of the two datasets I have discussed so far — states and gapminder — has value labels attached to the numeric values (for the numeric variables). Many publicly available stock datasets contain preexisting value labels that the organization coordinating the data effort has added in manually. Researchers can always change those labels or add their own labels for variables that lack value labels.</p>
-<section id="importing-stock-data-with-preexisting-value-labels" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="importing-stock-data-with-preexisting-value-labels"><span class="header-section-number">2.4.1</span> Importing Stock Data with Preexisting Value Labels</h3>
-<p>For stock data with preexisting value labels attached to the numeric values, I will often download the Stata version (.dta). Stata datasets have a very clean way of attaching verbal value labels. I will use an example from the 2024 American National Election Studies (ANES). Users who go to the <a href="https://electionstudies.org/data-center/2024-time-series-study/" target="_blank">ANES website</a> to download data the 2024 data will see options to download a .csv, .dta (Stata), or .sav (SPSS) file. The downloadable file from the site is actually a .zip file that contains both the dataset and the codebook. I take this opportunity to emphasize that users should definitely consult the codebooks associated with stock datasets so that they can read the variable explanations and understand how they are coded.</p>
-<p>I have created a unique url for users to import the 2024 ANES data; I have also created this <a href="https://blbartels.github.io/dataps/anes24.pdf" target="_blank">link to the codebook</a>. Recall from <a href="#tbl-import" class="quarto-xref">Table&nbsp;<span>2.1</span></a> that to import a Stata (.dta) dataset into RStudio, users need to use the <code>haven</code> package. To install <code>haven</code>, simply run the following command: <code>install.packages("haven")</code>. Next, users should load the package and import the data into the RStudio environment using the <code>read_dta</code> command from <code>haven</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"https://blbartels.github.io/dataps/anes24.dta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Readers will see that this dataset contains 5,521 voters (i.e., <em>N</em>=5,521) and 1,722 variables. The dataset comes from a nationally representative probability sample of American voters. This is quite a large dataset. Readers who want to run the <code>names(anes)</code> command to list all 1,722 variables can do so on their own. Users who view this dataset will immediately see that the variable names make no sense. Nearly all variables begin with “V24” (for 2024) and then contain a series of numbers and perhaps a letter. This makes the codebook especially critical when analyzing a stock dataset like this one. I will discuss some more themes for generating and recoding new variables in <a href="tidyverse.html" class="quarto-xref"><span>Chapter 3</span></a>.</p>
-<p>The example variable I will below is party identification; the variable name is “V241227x.” Below, I include a command to show the “class” of this variable:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(anes<span class="sc">$</span>V241227x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "haven_labelled" "vctrs_vctr"     "double"        </code></pre>
-</div>
-</div>
-<p>First, “double” means that the variable is stored as a numeric variable capable of having decimal points (even if it doesn’t in this case). The description “haven_labelled” and “vctsr_vctr” are associated with the importation into RStudio via the <code>read_dta</code> command from <code>haven</code>. These descriptions mean that the variables have verbal value labels associated with the numeric values for the variable. The “anes” data object in our RStudio environment includes both the numeric values and the verbal value labels. Some RStudio commands that we enter will only recognize the numeric values. Consider the “base R” command <code>table</code>, which gives a frequency distribution of this party identification variable:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(anes<span class="sc">$</span>V241227x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  -9   -8   -4    1    2    3    4    5    6    7 
-  31    5    2 1314  616  714  380  716  577 1166 </code></pre>
-</div>
-</div>
-<p>Without consulting the codebook, we would have no idea what these numeric values mean. Which ones represent Republicans versus Democrats? Of course, we should definitely consult the codebook, but since we have value labels attached, we can use “value-label-friendly” packages that report <em>both</em> the numeric values <em>and</em> the verbal value labels. One option for a categorical variable like party identification is the <code>freq</code> command from the <code>questionr</code> package (make sure to install <code>questionr</code> first):</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(questionr)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>V241227x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                                     n    % val%
-[-9] -9. Refused                    31  0.6  0.6
-[-8] -8. Don't know                  5  0.1  0.1
-[-4] -4. Error                       2  0.0  0.0
-[1] 1. Strong Democrat            1314 23.8 23.8
-[2] 2. Not very strong Democrat    616 11.2 11.2
-[3] 3. Independent-Democrat        714 12.9 12.9
-[4] 4. Independent                 380  6.9  6.9
-[5] 5. Independent-Republican      716 13.0 13.0
-[6] 6. Not very strong Republican  577 10.5 10.5
-[7] 7. Strong Republican          1166 21.1 21.1</code></pre>
-</div>
-</div>
-<p>In brackets on the left side are the numeric values of the variable followed by verbal value labels that come with the stock dataset (again, someone had to code those and thankfully it wasn’t us!). One can see that the “core” party values range from strong Democrat (=1) to strong Republican (=7). ANES also manually codes values that we would normally categorize as “missing data,” i.e., values of the variable that are not amenable to quantitative analysis because they deviate from the core variable values. Those values are “Refused” (-9), “Don’t know” (-8), and “Error” (-4). I will discuss how to deal with and code missing data in <a href="tidyverse.html" class="quarto-xref"><span>Chapter 3</span></a>.</p>
-</section>
-<section id="manually-adding-value-labels-to-variables" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="manually-adding-value-labels-to-variables"><span class="header-section-number">2.4.2</span> Manually Adding Value Labels to Variables</h3>
-<p>Adding value labels to variables that do not contain preexisting value labels is simple. Several packages and commands exist for adding value labels, and I will show an example using the <code>labelled</code> command from the <code>haven</code> package. Returning to our “states” data, let’s say we wanted to add a value label to the “Southern_state” variable, where 0=“Non-Southern State” and 1=“Southern State”:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>Southern_State <span class="ot">&lt;-</span> <span class="fu">labelled</span>(states<span class="sc">$</span>Southern_State, </span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Non-Southern State"</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">"Southern State"</span> <span class="ot">=</span> <span class="dv">1</span>))</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Southern_State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "haven_labelled" "vctrs_vctr"     "double"        </code></pre>
-</div>
-</div>
-<p>This first command “updates” the “states” data object with this new information. Note also that I can do a “hard return” after the …<code>states$Southern_State</code> in the first line in this command and RStudio recognizes it as one command. Now when I issue the <code>class</code> command, the “Southern_State” variable is now “haven-labelled” — it contains a verbal value label for each numeric value of the variable.</p>
-<p>Now when I do a <code>freq</code> command (from <code>questionr</code>), I get the following output that includes these newly-added value labels:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(states<span class="sc">$</span>Southern_State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                        n  % val%
-[0] Non-Southern State 34 68   68
-[1] Southern State     16 32   32</code></pre>
-</div>
-</div>
-<p><a href="tidyverse.html" class="quarto-xref"><span>Chapter 3</span></a> will review additional options for adding value labels to variables. <a href="tidyverse.html" class="quarto-xref"><span>Chapter 3</span></a> will also expand on commands and ideas for “cleaning” data, generating and coding new variables, and streamlining data analysis using commands within the <code>tidyverse</code> suite of packages.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -1413,8 +954,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./tidyverse.html" class="pagination-link" aria-label="Data Organization and Wrangling, Tidyverse">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Organization and Wrangling, Tidyverse</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./dataorg.html" class="pagination-link" aria-label="Data Importing, Organization, and Wrangling, Tidyverse">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Importing, Organization, and Wrangling, Tidyverse</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

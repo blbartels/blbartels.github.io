@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Data Importing, Organization, and Wrangling, Tidyverse – Data Analysis and Statistics for Political Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./dataviz.html" rel="next">
+<link href="./intro.html" rel="prev">
+<link href="./images/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-427913099b0a9f0709402a55d3c778ba.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataorg.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Importing, Organization, and Wrangling, Tidyverse</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Analysis and Statistics for Political Science</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the Author</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Using R and RStudio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Research and Data: The Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataorg.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Importing, Organization, and Wrangling, Tidyverse</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataviz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./choropleth.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Choropleth Maps</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inferential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linreg1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Putting it All Together</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendixa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Widely-Used Political Science Datasets</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-import" id="toc-sec-import" class="nav-link active" data-scroll-target="#sec-import"><span class="header-section-number">3.1</span> Importing Data</a>
+  <ul class="collapse">
+  <li><a href="#sec-hd" id="toc-sec-hd" class="nav-link" data-scroll-target="#sec-hd"><span class="header-section-number">3.1.1</span> Importing Data Saved to Your Hard Drive</a></li>
+  <li><a href="#importing-data-from-a-dataset-saved-on-a-website" id="toc-importing-data-from-a-dataset-saved-on-a-website" class="nav-link" data-scroll-target="#importing-data-from-a-dataset-saved-on-a-website"><span class="header-section-number">3.1.2</span> Importing Data From a Dataset Saved on a Website</a></li>
+  <li><a href="#importing-data-from-an-r-package" id="toc-importing-data-from-an-r-package" class="nav-link" data-scroll-target="#importing-data-from-an-r-package"><span class="header-section-number">3.1.3</span> Importing Data From an R Package</a></li>
+  </ul></li>
+  <li><a href="#value-labels-for-variables" id="toc-value-labels-for-variables" class="nav-link" data-scroll-target="#value-labels-for-variables"><span class="header-section-number">3.2</span> Value Labels for Variables</a>
+  <ul class="collapse">
+  <li><a href="#stock-data-with-preexisting-value-labels" id="toc-stock-data-with-preexisting-value-labels" class="nav-link" data-scroll-target="#stock-data-with-preexisting-value-labels"><span class="header-section-number">3.2.1</span> Stock Data with Preexisting Value Labels</a></li>
+  <li><a href="#manually-adding-value-labels-to-variables" id="toc-manually-adding-value-labels-to-variables" class="nav-link" data-scroll-target="#manually-adding-value-labels-to-variables"><span class="header-section-number">3.2.2</span> Manually Adding Value Labels to Variables</a></li>
+  </ul></li>
+  <li><a href="#generating-and-recoding-new-variables" id="toc-generating-and-recoding-new-variables" class="nav-link" data-scroll-target="#generating-and-recoding-new-variables"><span class="header-section-number">3.3</span> Generating and Recoding New Variables</a></li>
+  <li><a href="#streamling-and-simplifying-data-analysis" id="toc-streamling-and-simplifying-data-analysis" class="nav-link" data-scroll-target="#streamling-and-simplifying-data-analysis"><span class="header-section-number">3.4</span> Streamling and Simplifying Data Analysis</a></li>
+  <li><a href="#cleaning-and-organizing-data-for-data-analysis" id="toc-cleaning-and-organizing-data-for-data-analysis" class="nav-link" data-scroll-target="#cleaning-and-organizing-data-for-data-analysis"><span class="header-section-number">3.5</span> Cleaning and Organizing Data for Data Analysis</a></li>
+  <li><a href="#merging-two-datasets-together" id="toc-merging-two-datasets-together" class="nav-link" data-scroll-target="#merging-two-datasets-together"><span class="header-section-number">3.6</span> Merging Two Datasets Together</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<img src="images/banner.png" style="width: 100%; height: auto; margin-bottom: 20px;">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-org" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Importing, Organization, and Wrangling, Tidyverse</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Once researchers have either collected their data or have accessed stock data from a public website (such as in <a href="appendixa.html#tbl-psdata" class="quarto-xref">Table&nbsp;<span>A.1</span></a> in <a href="appendixa.html" class="quarto-xref"><span>Appendix A</span></a>), they often need to conduct multiple steps in preparation for data analysis in the subsequent chapters: (1) import data into RStudio and understand data features, (2) understand and/or create value lablels in your dataset, (3) generate and recode new variables, (4) execute procedures to streamline and simplify data analysis, and (5) organize and clean data.</p>
+<section id="sec-import" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="sec-import"><span class="header-section-number">3.1</span> Importing Data</h2>
+<p>Three general ways exist for importing data into RStudio: (1) save the dataset on your hard drive (using the “projects” approach I recommended in <a href="rstudio.html#sec-rp" class="quarto-xref"><span>Section 1.5.1</span></a>) and import it within RStudio; (2) import a dataset that is stored on a website (via a url); and (3) use and/or import a dataset that is stored within an R package that you have installed and loaded.</p>
+<section id="sec-hd" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="sec-hd"><span class="header-section-number">3.1.1</span> Importing Data Saved to Your Hard Drive</h3>
+<p>RStudio can easily and seamlessly import data in just about any format you can imagine with both base R packages and certain add-on packages. <a href="#tbl-import" class="quarto-xref">Table&nbsp;<span>3.1</span></a> includes the most common data formats in political science, the R packages required (I focus here on add-on packages), and the command from the package to import the data.</p>
+<div id="tbl-import" class="table-striped table-hover table-bordered table-sm quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-import-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.1: <strong>Data Formats, R Packages, and R Commands for Importing Datasets</strong>
+</figcaption>
+<div aria-describedby="tbl-import-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover table-bordered table-sm small caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 25%">
+<col style="width: 22%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">File Extension</th>
+<th style="text-align: left;">Source Software</th>
+<th style="text-align: left;">R Package</th>
+<th style="text-align: left;">Import Command</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>.rds</code></td>
+<td style="text-align: left;">R (Single Object)</td>
+<td style="text-align: left;"><code>readr</code></td>
+<td style="text-align: left;"><code>read_rds()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>.csv</code></td>
+<td style="text-align: left;">Universal (Spreadsheet)</td>
+<td style="text-align: left;"><code>readr</code></td>
+<td style="text-align: left;"><code>read_csv()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>.dta</code></td>
+<td style="text-align: left;">Stata</td>
+<td style="text-align: left;"><code>haven</code></td>
+<td style="text-align: left;"><code>read_dta()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>.sav</code> / <code>.por</code></td>
+<td style="text-align: left;">SPSS</td>
+<td style="text-align: left;"><code>haven</code></td>
+<td style="text-align: left;"><code>read_sav()</code> / <code>read_por()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>.xls</code> / <code>.xlsx</code></td>
+<td style="text-align: left;">Excel</td>
+<td style="text-align: left;"><code>readxl</code></td>
+<td style="text-align: left;"><code>read_excel()</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Again, these are the most common data formats in political science, but this is not an exhaustive list. I will start with a simple example of importing a small dataset containing information on the 50 states. Following the “projects” recommendation from <a href="rstudio.html#sec-rp" class="quarto-xref"><span>Section 1.5.1</span></a>, I have created a folder called “Data Analysis” on my hard drive. Inside that folder is an .Rproj called “Data Analysis.Rproj.” Recall that anytime I want to work in this project, I simply double click on the .Rproj file to begin a new RStudio session, and RStudio will automatically set my “Data Analysis” folder as the home directory. That means when I import my data, I do not need enter the entire file path. If my dataset is in my home directory, I can simply type the name of the file when importing it (see <a href="rstudio.html#sec-rp" class="quarto-xref"><span>Section 1.5.1</span></a>). <a href="#fig-importcsv" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> displays my screen upon starting my RStudio session. Looking to the lower-right quadrant, the dataset called “states.csv” appears in my home directory.</p>
+<div id="fig-importcsv" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-importcsv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: <strong>Screen Shot Showing the Dataset “states.csv” Saved on my Hard Drive Folder Set as the Home Directory</strong>
+</figcaption>
+<div aria-describedby="fig-importcsv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/import_csv.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+</figure>
+</div>
+<p>Now we need to issue a command to RStudio to import the data. Recall from <a href="rstudio.html" class="quarto-xref"><span>Chapter 1</span></a> that users can run commands in R in two ways: (1) Entering the command in the “Console” (lower-left quadrant) where the cursor is blinking or (2) entering commands in an .R script file (which opens in the upper-left quadrant) that you can save to your hard drive for future use (keeping them as a record of the packages you need to load and the commands that you ran). I will mostly do the latter in this book. Recall from <a href="rstudio.html" class="quarto-xref"><span>Chapter 1</span></a> that to open an .R script, click on File –&gt; New File –&gt; R Script. <a href="#fig-importcsv" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> shows that I have an opened .R script that by default is called “Untitled.” I will show that I saved the file below.</p>
+<p>Users can run commands within an .R script in multiple ways:</p>
+<ul>
+<li>Simply place your cursor anywhere in the command line and click the “Run” button in the menu bar right above the .R script (the one with a green arrow to the left of it).</li>
+<li>Use a keystroke: For Macs, put the cursor anywhere on the line and type command-return. For PCs, type ctrl-enter.</li>
+<li>Highlight all of the text in a command line and then type this same keystroke.</li>
+<li>Users can also run multiple commands with one keystroke: Simply highlight multiple command lines and use the same keystroke (or click on “Run”).</li>
+</ul>
+<p>As <a href="#tbl-import" class="quarto-xref">Table&nbsp;<span>3.1</span></a> highlights, we will need the <code>readr</code> package to import a .csv (“comma separated values”) file. <code>readr</code> is one of the packages in the <code>tidyverse</code> suite of packages, so if you already installed <code>tidyverse</code> after reading <a href="rstudio.html#sec-tv" class="quarto-xref"><span>Section 1.4</span></a>, then you do not need to install it again. If you have not yet installed <code>tidyverse</code>, you can do so now by typing: <code>install.packages("tidyverse")</code>. Here is the code to import the states.csv dataset into RStudio. Note that I have called up the <code>tidyverse</code> package (see <a href="rstudio.html" class="quarto-xref"><span>Chapter 1</span></a>), which also calls up the <code>readr</code> package needed to import the .csv. file.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"states.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the second line, notice the notation I have used. I am creating a new data object called “states.” I use the <strong>assignment operator</strong>, <code>&lt;-</code>, to tell RStudio, “Give me a data object called ‘states’ that is the ‘states.csv’ file in my home directory.” <code>read_csv</code> is the command (from the <code>readr</code> package) that imports the dataset into the RStudio environment.</p>
+<p>Now, my RStudio screen looks like <a href="#fig-importcsvpost" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>:</p>
+<div id="fig-importcsvpost" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-importcsvpost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: <strong>Screen Shot After Importing “states.csv”</strong>
+</figcaption>
+<div aria-describedby="fig-importcsvpost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/import_csv_post.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+</figure>
+</div>
+<p>First, I saved my .R script as “Commands to Run.R,” which also now appears in my home directory. The same two command lines as above are in the .R script. After I load states.csv, the object “states” appears in the “Environment” window in the upper-right quadrant. That means the data are successfully loaded. Next to the data name, the Environment tab lists that the states data has 50 observations (rows) and 6 variables (columns). In a dataset, the units of analysis are rows, while the columns are the variables. States are the units of analysis (<em>N</em>=50), and the dataset contains 6 variables.</p>
+<p>To view the data, users can click on the “states” object in the Environment window or type <code>View(states)</code> in the command window or the .R script. <a href="#fig-csv-data" class="quarto-xref">Figure&nbsp;<span>3.3</span></a> shows a zoomed-in view of the upper-left quadrant. Each row is a state, and one can see the state name and abbreviation. The data also include turnout percentage in the 2024 presidential election, the percentage of voters voting for Trump, whether the state is a Southern state or not, and the percentage of adults in the state with a college degree or higher.</p>
+<div id="fig-csv-data" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-csv-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: <strong>Screen Shot of the States Data</strong>
+</figcaption>
+<div aria-describedby="fig-csv-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/csv_data.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
+</div>
+</figure>
+</div>
+<p>Another way to see the first few observations in the state is use the <code>head</code> command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  State      Abbreviation Turnout_2024_Pct Trump_2024_Pct Southern_State
+  &lt;chr&gt;      &lt;chr&gt;                   &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+1 Alabama    AL                       58.8           64.8              1
+2 Alaska     AK                       63.7           55.5              0
+3 Arizona    AZ                       63.6           52.6              0
+4 Arkansas   AR                       53.5           64.2              1
+5 California CA                       62.1           38.3              0
+6 Colorado   CO                       73.1           43.5              0
+# ℹ 1 more variable: College_Grad_Pct &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Or I can specify the number of observations I want to see:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(states, <span class="at">n=</span><span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 6
+   State       Abbreviation Turnout_2024_Pct Trump_2024_Pct Southern_State
+   &lt;chr&gt;       &lt;chr&gt;                   &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+ 1 Alabama     AL                       58.8           64.8              1
+ 2 Alaska      AK                       63.7           55.5              0
+ 3 Arizona     AZ                       63.6           52.6              0
+ 4 Arkansas    AR                       53.5           64.2              1
+ 5 California  CA                       62.1           38.3              0
+ 6 Colorado    CO                       73.1           43.5              0
+ 7 Connecticut CT                       67.1           41                0
+ 8 Delaware    DE                       67             41                1
+ 9 Florida     FL                       66.7           56.1              1
+10 Georgia     GA                       68.3           50.7              1
+11 Hawaii      HI                       50.3           38                0
+12 Idaho       ID                       63.4           66.9              0
+# ℹ 1 more variable: College_Grad_Pct &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Note that it includes as many variables as it can fit on the screen. Connecting to the discussion of “levels of measurement” (<a href="intro.html#sec-lom" class="quarto-xref"><span>Section 2.2.3</span></a>), the output includes the labels <code>chr</code> and <code>dbl</code> at the top of each variable. <code>chr</code> = “character” or a string variable (letters only or a mix of letters and numbers). <code>dbl</code> = “double,” which in RStudio means a numeric variable (in this case an interval variable) with decimal points. Note that even the South variable has the <code>dbl</code> format despite not having decimals.</p>
+<p>A similar command that comes from the <code>tidyverse</code> is called <code>glimpse</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 50
+Columns: 6
+$ State            &lt;chr&gt; "Alabama", "Alaska", "Arizona", "Arkansas", "Californ…
+$ Abbreviation     &lt;chr&gt; "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL",…
+$ Turnout_2024_Pct &lt;dbl&gt; 58.8, 63.7, 63.6, 53.5, 62.1, 73.1, 67.1, 67.0, 66.7,…
+$ Trump_2024_Pct   &lt;dbl&gt; 64.8, 55.5, 52.6, 64.2, 38.3, 43.5, 41.0, 41.0, 56.1,…
+$ Southern_State   &lt;dbl&gt; 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1,…
+$ College_Grad_Pct &lt;dbl&gt; 29.9, 32.8, 34.7, 27.1, 38.1, 47.8, 42.6, 36.0, 35.8,…</code></pre>
+</div>
+</div>
+<p>Notice that <code>glimpse</code> inverts the rows and columns, which makes it a bit counterintuitive to some. However, one point of <code>glimpse</code> is to highlight the variables in the dataset.</p>
+<p>In datasets with many variables, another helpful command is <code>names</code>, which lists all of the variables in the dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "State"            "Abbreviation"     "Turnout_2024_Pct" "Trump_2024_Pct"  
+[5] "Southern_State"   "College_Grad_Pct"</code></pre>
+</div>
+</div>
+<p>Another way to see how the variables are stored (e.g., numeric, character) is by using the “class” command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Abbreviation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Turnout_2024_Pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Trump_2024_Pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Southern_State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>College_Grad_Pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+</div>
+<p>The <code>class</code> command tells the user how the variable is stored. Note the naming convention used here, which is common in “base R.” To specify a variable, we use the “dollar sign” method: Before the dollar sign is the name of the data object (states) and after is the variable name. “State” and “Abbreviation” are character variables (strings), while the remaining variables are numeric. Knowing the class of a variable, and the level of measurement a variable takes on, becomes very important for many subsequent analyses in RStudio. I will return to that issue throughout the book.</p>
+<p>The “Southern_State” variable, which takes on a value of 1 for Southern states and 0 for non-Southern states, gets a special name in data analysis and statistics: a <strong>dummy variable.</strong> A dummy variable is a binary variable (i.e., a variable that takes on only two values); researchers typically refer to independent variables (not dependent variables) as dummy variables. Note that dummy variables are always coded as 0 or 1 (as opposed to 1 versus 2 or 3 versus 4).</p>
+</section>
+<section id="importing-data-from-a-dataset-saved-on-a-website" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="importing-data-from-a-dataset-saved-on-a-website"><span class="header-section-number">3.1.2</span> Importing Data From a Dataset Saved on a Website</h3>
+<p>Some datasets are stored on institutional websites or on a researcher’s website. Instead of having to download the dataset to your hard drive, you can simply tell RStudio to import the data from the website into your RStudio environment. You need to have an internet connection to execute this procedure, of course. The procedure is simple and requires the same packages and commands as discussed in <a href="#sec-hd" class="quarto-xref"><span>Section 3.1.1</span></a>. But instead of inserting the dataset name (e.g., “states.csv”), one enters the entire url. I have stored this same “states.csv” dataset on a website, which means the dataset has its own unique url. To import it straight from the web, I execute the following command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>states_web <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://blbartels.github.io/dataps/states.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="#fig-importcsvweb" class="quarto-xref">Figure&nbsp;<span>3.4</span></a> shows my screen after importing this same states.csv dataset but from a website instead. I named this dataset “states_web,” but it is the exact same dataset as “states.” This object now appears in the Environment window (upper-right quadrant) in addition to the “states” object. Herein lies a major advantage of RStudio over other statistical software packages such as Stata and SPSS: <em>The ability to import multiple datasets at a time</em>. This feature is extremely useful in many data analysis contexts, which I will highlight in other parts of the book. Moreover, users can save objects other than datasets, including regression model results or a stored value from a particular calculation or equation.</p>
+<div id="fig-importcsvweb" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-importcsvweb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.4: <strong>Screen Shot After Importing “states.csv” from the Web</strong>
+</figcaption>
+<div aria-describedby="fig-importcsvweb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/import_csv_web.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+</figure>
+</div>
+</section>
+<section id="importing-data-from-an-r-package" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="importing-data-from-an-r-package"><span class="header-section-number">3.1.3</span> Importing Data From an R Package</h3>
+<p>Some R packages contain datasets that researchers can analyze in RStudio without having to download them on one’s hard drive or even having to import them to one’s RStudio environment. An example is a well-known dataset called “gapminder,” which contains data on 142 countries over a select number of years from 1952-2007. To install the gapminder package, type: <code>install.packages("gapminder")</code></p>
+<p>Once you load the package using the <code>library</code> command, you can actually begin analyzing the dataset called “gapminder” without even having to import it into your RStudio environment. For instance, consider this code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "country"   "continent" "year"      "lifeExp"   "pop"       "gdpPercap"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gapminder, <span class="at">n=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+11 Afghanistan Asia       2002    42.1 25268405      727.
+12 Afghanistan Asia       2007    43.8 31889923      975.
+13 Albania     Europe     1952    55.2  1282697     1601.
+14 Albania     Europe     1957    59.3  1476505     1942.
+15 Albania     Europe     1962    64.8  1728137     2313.
+16 Albania     Europe     1967    66.2  1984060     2760.
+17 Albania     Europe     1972    67.7  2263554     3313.
+18 Albania     Europe     1977    68.9  2509048     3533.
+19 Albania     Europe     1982    70.4  2780097     3631.
+20 Albania     Europe     1987    72    3075321     3739.</code></pre>
+</div>
+</div>
+<p>Note that I did not import the data to my RStudio environment in order to begin analyzing the data. However, users can import datasets like this one into their environment by issuing the following command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gapminder</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(gm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "country"   "continent" "year"      "lifeExp"   "pop"       "gdpPercap"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gm, <span class="at">n=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+11 Afghanistan Asia       2002    42.1 25268405      727.
+12 Afghanistan Asia       2007    43.8 31889923      975.
+13 Albania     Europe     1952    55.2  1282697     1601.
+14 Albania     Europe     1957    59.3  1476505     1942.
+15 Albania     Europe     1962    64.8  1728137     2313.
+16 Albania     Europe     1967    66.2  1984060     2760.
+17 Albania     Europe     1972    67.7  2263554     3313.
+18 Albania     Europe     1977    68.9  2509048     3533.
+19 Albania     Europe     1982    70.4  2780097     3631.
+20 Albania     Europe     1987    72    3075321     3739.</code></pre>
+</div>
+</div>
+<p>After running this command, one will see the “gm” object (the gapminder dataset) in the “Environment” window. Since the dataset in the <code>gapminder</code> package is “R-ready,” I do not need to issue a “read_” command like in <a href="#sec-hd" class="quarto-xref"><span>Section 3.1.1</span></a>. All the user needs to do is import it to one’s current RStudio environment as is. Now when I begin analyzing the data, I can specify “gm” as the data object, as I have done in the command above; the same output appears as in the previous command that did not import the dataset into the RStudio environment.</p>
+</section>
+</section>
+<section id="value-labels-for-variables" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="value-labels-for-variables"><span class="header-section-number">3.2</span> Value Labels for Variables</h2>
+<p>Researchers often find it useful to provide verbal “value labels” associated with a variable’s numeric values. For interval/continuous levels of measurement (e.g., voter turnout percentages in the states data), defining such value labels is neither practical nor necessary. The values (e.g., 55.6% turnout) are self-explanatory. However, for certain ordinal variables and most nominal variables, it is often helpful to associate the numerical values of the variable with an intuitive verbal label. Returning to our trust in government example (from <a href="intro.html#sec-var" class="quarto-xref"><span>Section 2.2.2</span></a>), recall the first question:</p>
+<blockquote class="blockquote">
+<p>“How much of the time do you think you can trust the government in Washington to do what is right?” <em>Always, Just about always, Some of the time, Hardly ever, Never</em></p>
+</blockquote>
+<p>Thus, I may want to associate each numeric value with these response options like what is displayed in <a href="#tbl-values" class="quarto-xref">Table&nbsp;<span>3.2</span></a>. Value labels are useful both for one’s own purposes (to remember which numeric value means what) and for when one starts analyzing data and reporting results in graphs and tables.</p>
+<center>
+<div id="tbl-values" class="table-striped table-hover table-bordered table-sm column quarto-float quarto-figure quarto-figure-center anchored" style="width:60%;">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.2: <strong>Associating Numeric Coding Values with Verbal Values Labels</strong>
+</figcaption>
+<div aria-describedby="tbl-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover table-bordered table-sm column small caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Numeric Value</th>
+<th style="text-align: left;">Verbal Value Label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Never</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Hardly ever</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Some of the time</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Just about always</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">Always</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</center>
+<p>Note that neither of the two datasets I have discussed so far — states and gapminder — has value labels attached to the numeric values (for the numeric variables). Many publicly available stock datasets contain preexisting value labels that the organization coordinating the data effort has added in manually. Researchers can always change those labels or add their own labels for variables that lack value labels.</p>
+<section id="stock-data-with-preexisting-value-labels" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="stock-data-with-preexisting-value-labels"><span class="header-section-number">3.2.1</span> Stock Data with Preexisting Value Labels</h3>
+<p>For stock data with preexisting value labels attached to the numeric values, I will often download the Stata version (.dta). Stata datasets have a very clean way of attaching verbal value labels. I will use an example from the 2024 American National Election Studies (ANES). Users who go to the <a href="https://electionstudies.org/data-center/2024-time-series-study/" target="_blank">ANES website</a> to download data the 2024 data will see options to download a .csv, .dta (Stata), or .sav (SPSS) file. The downloadable file from the site is actually a .zip file that contains both the dataset and the codebook. I take this opportunity to emphasize that users should definitely consult the codebooks associated with stock datasets so that they can read the variable explanations and understand how they are coded.</p>
+<p>I have created a unique url for users to import the 2024 ANES data; I have also created this <a href="https://blbartels.github.io/dataps/anes24.pdf" target="_blank">link to the codebook</a>. Recall from <a href="#tbl-import" class="quarto-xref">Table&nbsp;<span>3.1</span></a> that to import a Stata (.dta) dataset into RStudio, users need to use the <code>haven</code> package. To install <code>haven</code>, simply run the following command: <code>install.packages("haven")</code>. Next, users should load the package and import the data into the RStudio environment using the <code>read_dta</code> command from <code>haven</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"https://blbartels.github.io/dataps/anes24.dta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Readers will see that this dataset contains 5,521 voters (i.e., <em>N</em>=5,521) and 1,722 variables. The dataset comes from a nationally representative probability sample of American voters. This is quite a large dataset. Readers who want to run the <code>names(anes)</code> command to list all 1,722 variables can do so on their own. Users who view this dataset will immediately see that the variable names make no sense. Nearly all variables begin with “V24” (for 2024) and then contain a series of numbers and perhaps a letter. This makes the codebook especially critical when analyzing a stock dataset like this one. I will discuss some more themes for generating and recoding new variables in <a href="#sec-org" class="quarto-xref"><span>Chapter 3</span></a>.</p>
+<p>The example variable I will below is party identification; the variable name is “V241227x.” Below, I include a command to show the “class” of this variable:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(anes<span class="sc">$</span>V241227x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "haven_labelled" "vctrs_vctr"     "double"        </code></pre>
+</div>
+</div>
+<p>First, “double” means that the variable is stored as a numeric variable capable of having decimal points (even if it doesn’t in this case). The description “haven_labelled” and “vctsr_vctr” are associated with the importation into RStudio via the <code>read_dta</code> command from <code>haven</code>. These descriptions mean that the variables have verbal value labels associated with the numeric values for the variable. The “anes” data object in our RStudio environment includes both the numeric values and the verbal value labels. Some RStudio commands that we enter will only recognize the numeric values. Consider the “base R” command <code>table</code>, which gives a frequency distribution of this party identification variable:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(anes<span class="sc">$</span>V241227x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  -9   -8   -4    1    2    3    4    5    6    7 
+  31    5    2 1314  616  714  380  716  577 1166 </code></pre>
+</div>
+</div>
+<p>Without consulting the codebook, we would have no idea what these numeric values mean. Which ones represent Republicans versus Democrats? Of course, we should definitely consult the codebook, but since we have value labels attached, we can use “value-label-friendly” packages that report <em>both</em> the numeric values <em>and</em> the verbal value labels. One option for a categorical variable like party identification is the <code>freq</code> command from the <code>questionr</code> package (make sure to install <code>questionr</code> first):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(questionr)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>V241227x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                     n    % val%
+[-9] -9. Refused                    31  0.6  0.6
+[-8] -8. Don't know                  5  0.1  0.1
+[-4] -4. Error                       2  0.0  0.0
+[1] 1. Strong Democrat            1314 23.8 23.8
+[2] 2. Not very strong Democrat    616 11.2 11.2
+[3] 3. Independent-Democrat        714 12.9 12.9
+[4] 4. Independent                 380  6.9  6.9
+[5] 5. Independent-Republican      716 13.0 13.0
+[6] 6. Not very strong Republican  577 10.5 10.5
+[7] 7. Strong Republican          1166 21.1 21.1</code></pre>
+</div>
+</div>
+<p>In brackets on the left side are the numeric values of the variable followed by verbal value labels that come with the stock dataset (again, someone had to code those and thankfully it wasn’t us!). One can see that the “core” party values range from strong Democrat (=1) to strong Republican (=7). ANES also manually codes values that we would normally categorize as “missing data,” i.e., values of the variable that are not amenable to quantitative analysis because they deviate from the core variable values. Those values are “Refused” (-9), “Don’t know” (-8), and “Error” (-4). I will discuss how to deal with and code missing data in <a href="#sec-org" class="quarto-xref"><span>Chapter 3</span></a>.</p>
+</section>
+<section id="manually-adding-value-labels-to-variables" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="manually-adding-value-labels-to-variables"><span class="header-section-number">3.2.2</span> Manually Adding Value Labels to Variables</h3>
+<p>Adding value labels to variables that do not contain preexisting value labels is simple. Several packages and commands exist for adding value labels, and I will show an example using the <code>labelled</code> command from the <code>haven</code> package. Returning to our “states” data, let’s say we wanted to add value labels to the “Southern_state” variable, where 0=“Non-Southern State” and 1=“Southern State”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>Southern_State <span class="ot">&lt;-</span> <span class="fu">labelled</span>(states<span class="sc">$</span>Southern_State, </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Non-Southern State"</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">"Southern State"</span> <span class="ot">=</span> <span class="dv">1</span>))</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Southern_State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "haven_labelled" "vctrs_vctr"     "double"        </code></pre>
+</div>
+</div>
+<p>This first command “updates” the “states” data object with this new information. Note also that I can do a “hard return” after the …<code>states$Southern_State</code> in the first line in this command and RStudio recognizes it as one command. Now when I issue the <code>class</code> command, the “Southern_State” variable is now “haven-labelled” — it contains a verbal value label for each numeric value of the variable.</p>
+<p>Now when I do a <code>freq</code> command (from <code>questionr</code>), I get the following output that includes these newly-added value labels:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(states<span class="sc">$</span>Southern_State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                        n  % val%
+[0] Non-Southern State 34 68   68
+[1] Southern State     16 32   32</code></pre>
+</div>
+</div>
+<!-- ![](images/tidyverse.png){fig-align="center" width=50%} -->
+<p>pipe operator, mutate, group_by, summarize, filter, select, arrange, join</p>
+</section>
+</section>
+<section id="generating-and-recoding-new-variables" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="generating-and-recoding-new-variables"><span class="header-section-number">3.3</span> Generating and Recoding New Variables</h2>
+<p>creating new variable with intuitive name; party id example and missing data</p>
+<p>ifelse and case_when</p>
+<p>recoding from 0 to 1</p>
+<p>Other coding conventions</p>
+</section>
+<section id="streamling-and-simplifying-data-analysis" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="streamling-and-simplifying-data-analysis"><span class="header-section-number">3.4</span> Streamling and Simplifying Data Analysis</h2>
+</section>
+<section id="cleaning-and-organizing-data-for-data-analysis" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="cleaning-and-organizing-data-for-data-analysis"><span class="header-section-number">3.5</span> Cleaning and Organizing Data for Data Analysis</h2>
+</section>
+<section id="merging-two-datasets-together" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="merging-two-datasets-together"><span class="header-section-number">3.6</span> Merging Two Datasets Together</h2>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./intro.html" class="pagination-link" aria-label="Research and Data: The Basics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Research and Data: The Basics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./dataviz.html" class="pagination-link" aria-label="Data Visualization">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualization</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
