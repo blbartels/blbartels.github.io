@@ -251,9 +251,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#stock-data-with-preexisting-value-labels" id="toc-stock-data-with-preexisting-value-labels" class="nav-link" data-scroll-target="#stock-data-with-preexisting-value-labels"><span class="header-section-number">3.2.1</span> Stock Data with Preexisting Value Labels</a></li>
   <li><a href="#manually-adding-value-labels-to-variables" id="toc-manually-adding-value-labels-to-variables" class="nav-link" data-scroll-target="#manually-adding-value-labels-to-variables"><span class="header-section-number">3.2.2</span> Manually Adding Value Labels to Variables</a></li>
   </ul></li>
-  <li><a href="#generating-and-recoding-new-variables" id="toc-generating-and-recoding-new-variables" class="nav-link" data-scroll-target="#generating-and-recoding-new-variables"><span class="header-section-number">3.3</span> Generating and Recoding New Variables</a></li>
-  <li><a href="#streamling-and-simplifying-data-analysis" id="toc-streamling-and-simplifying-data-analysis" class="nav-link" data-scroll-target="#streamling-and-simplifying-data-analysis"><span class="header-section-number">3.4</span> Streamling and Simplifying Data Analysis</a></li>
-  <li><a href="#cleaning-and-organizing-data-for-data-analysis" id="toc-cleaning-and-organizing-data-for-data-analysis" class="nav-link" data-scroll-target="#cleaning-and-organizing-data-for-data-analysis"><span class="header-section-number">3.5</span> Cleaning and Organizing Data for Data Analysis</a></li>
+  <li><a href="#sec-gen" id="toc-sec-gen" class="nav-link" data-scroll-target="#sec-gen"><span class="header-section-number">3.3</span> Generating and Recoding New Variables</a>
+  <ul class="collapse">
+  <li><a href="#introducing-the-pipe-operator-and" id="toc-introducing-the-pipe-operator-and" class="nav-link" data-scroll-target="#introducing-the-pipe-operator-and"><span class="header-section-number">3.3.1</span> Introducing the Pipe Operator (<code>%&gt;%</code> and <code>|&gt;</code>)</a></li>
+  </ul></li>
+  <li><a href="#streamlining-and-simplifying-data-analysis" id="toc-streamlining-and-simplifying-data-analysis" class="nav-link" data-scroll-target="#streamlining-and-simplifying-data-analysis"><span class="header-section-number">3.4</span> Streamlining and Simplifying Data Analysis</a></li>
+  <li><a href="#cleaning-and-organizing-data-for-quantitative-analysis" id="toc-cleaning-and-organizing-data-for-quantitative-analysis" class="nav-link" data-scroll-target="#cleaning-and-organizing-data-for-quantitative-analysis"><span class="header-section-number">3.5</span> Cleaning and Organizing Data for Quantitative Analysis</a></li>
   <li><a href="#merging-two-datasets-together" id="toc-merging-two-datasets-together" class="nav-link" data-scroll-target="#merging-two-datasets-together"><span class="header-section-number">3.6</span> Merging Two Datasets Together</a></li>
   </ul>
 </nav>
@@ -281,7 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Once researchers have either collected their data or have accessed stock data from a public website (such as in <a href="appendixa.html#tbl-psdata" class="quarto-xref">Table&nbsp;<span>A.1</span></a> in <a href="appendixa.html" class="quarto-xref"><span>Appendix A</span></a>), they often need to conduct all or a subset of the following steps in preparation for data analysis in the subsequent chapters:</p>
+<p>Once researchers have either collected their data or have accessed stock data from a public website (such as in <a href="appendixa.html#tbl-psdata" class="quarto-xref">Table&nbsp;<span>A.1</span></a> in <a href="appendixa.html" class="quarto-xref"><span>Appendix A</span></a>), they will need to engage with the following steps in preparation for data analysis in the subsequent chapters:</p>
 <ol type="1">
 <li>Import data into RStudio and understand data features.</li>
 <li>Understand and/or create value labels for variables in your dataset.</li>
@@ -290,6 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Organize and clean data.</li>
 <li>Merge two datasets together.</li>
 </ol>
+<p>This chapter will make extensive use of many of the <code>tidyverse</code> packages and commands, which are extremely useful for the topics discussed in this chapter.</p>
 <section id="sec-import" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="sec-import"><span class="header-section-number">3.1</span> Importing Data</h2>
 <p>Three general ways exist for importing data into RStudio: (1) save the dataset on your hard drive (using the “projects” approach I recommended in <a href="rstudio.html#sec-rp" class="quarto-xref"><span>Section 1.5.1</span></a>) and import it within RStudio; (2) import a dataset that is stored on a website (via a url); and (3) use and/or import a dataset that is stored within an R package that you have installed and loaded.</p>
@@ -321,13 +325,13 @@ Table&nbsp;3.1: <strong>Data Formats, R Packages, and R Commands for Importing D
 <tr class="odd">
 <td style="text-align: left;"><code>.rds</code></td>
 <td style="text-align: left;">R (Single Object)</td>
-<td style="text-align: left;"><code>readr</code></td>
+<td style="text-align: left;"><code>readr</code> (<code>tidyverse</code>)</td>
 <td style="text-align: left;"><code>read_rds()</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>.csv</code></td>
 <td style="text-align: left;">Universal (Spreadsheet)</td>
-<td style="text-align: left;"><code>readr</code></td>
+<td style="text-align: left;"><code>readr</code> (<code>tidyverse</code>)</td>
 <td style="text-align: left;"><code>read_csv()</code></td>
 </tr>
 <tr class="odd">
@@ -372,7 +376,7 @@ Figure&nbsp;3.1: <strong>Screen Shot Showing the Dataset “states.csv” Saved 
 <li>Highlight all of the text in a command line and then type this same keystroke.</li>
 <li>Users can also run multiple commands with one keystroke: Simply highlight multiple command lines and use the same keystroke (or click on “Run”).</li>
 </ul>
-<p>As <a href="#tbl-import" class="quarto-xref">Table&nbsp;<span>3.1</span></a> highlights, we will need the <code>readr</code> package to import a .csv (“comma separated values”) file. <code>readr</code> is one of the packages in the <code>tidyverse</code> suite of packages, so if you already installed <code>tidyverse</code> after reading <a href="rstudio.html#sec-tv" class="quarto-xref"><span>Section 1.4</span></a>, then you do not need to install it again. If you have not yet installed <code>tidyverse</code>, you can do so now by typing: <code>install.packages("tidyverse")</code>. Here is the code to import the states.csv dataset into RStudio. Note that I have called up the <code>tidyverse</code> package (see <a href="rstudio.html" class="quarto-xref"><span>Chapter 1</span></a>), which also calls up the <code>readr</code> package needed to import the .csv. file.</p>
+<p>As <a href="#tbl-import" class="quarto-xref">Table&nbsp;<span>3.1</span></a> highlights, we will need the <code>readr</code> package to import a .csv (“comma separated values”) file. <code>readr</code> is in the <code>tidyverse</code> suite of packages; when you load the <code>tidyverse</code> package, <code>readr</code> is 1 of the 9 packages that is loaded. If you already installed <code>tidyverse</code> after reading <a href="rstudio.html#sec-tv" class="quarto-xref"><span>Section 1.4</span></a>, then you do not need to install it again. If you have not yet installed <code>tidyverse</code>, you can do so now by typing: <code>install.packages("tidyverse")</code>. Here is the code to import the states.csv dataset into RStudio. Note that I have called up the <code>tidyverse</code> package (see <a href="rstudio.html" class="quarto-xref"><span>Chapter 1</span></a>), which also calls up the <code>readr</code> package needed to import the .csv. file.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"states.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -705,22 +709,84 @@ Table&nbsp;3.2: <strong>Associating Numeric Coding Values with Verbal Values Lab
 [1] Southern State     16 32   32</code></pre>
 </div>
 </div>
-<!-- ![](images/tidyverse.png){fig-align="center" width=50%} -->
-<p>pipe operator, mutate, group_by, summarize, filter, select, arrange, join</p>
+<p><a href="#sec-gen" class="quarto-xref"><span>Section 3.3</span></a> below will introduce commands to create and recode new variables in a dataset. It will also cover additional ways to add value labels within those commands.</p>
 </section>
 </section>
-<section id="generating-and-recoding-new-variables" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="generating-and-recoding-new-variables"><span class="header-section-number">3.3</span> Generating and Recoding New Variables</h2>
-<p>creating new variable with intuitive name; party id example and missing data</p>
-<p>ifelse and case_when</p>
-<p>recoding from 0 to 1</p>
-<p>Other coding conventions</p>
+<section id="sec-gen" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="sec-gen"><span class="header-section-number">3.3</span> Generating and Recoding New Variables</h2>
+<p>Once researchers import data and understand how their variables are stored and labelled, they need to generate and recode new variables that they will subject to quantitative analysis. I will review procedures and strategies for coding variables and also introduce an extremely useful <code>tidyverse</code> command for executing these steps called <code>mutate</code>.</p>
+<p>I will stick with the party identification variable from ANES to introduce the <code>mutate</code> command. After one has imported a dataset (whether it be a stock dataset or a dataset created by the researcher), researchers should never alter or recode the original variables in the dataset. Keep the original variables as is. For variables one wants to recode, <em>generate a new variable and make changes to that variable</em>. For the ANES data in particular, recall that the variable names make no sense in terms of indicating what the variable means. Instead of V241227x, we should create a new variable that is more desriptive of the actual variable. I like to keep variable names short, so something “partyid” is sufficient — it is short and descriptive.</p>
+<p>The following command will generate a new variable in the ANES dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> <span class="fu">mutate</span>(anes, <span class="at">partyid=</span>V241227x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This command updates the anes data object via the assignment operator, <code>&lt;-</code>. The <code>mutate</code> command generates a new variable, “partyid”, at the end of the dataset that is a duplicate of the “V241227x” variable we analyzed earlier. Note the syntax used here. In the parentheses of the mutate command, the data object (anes) comes first followed by a comma and then the variable creation command. As discussed, <code>mutate</code> represents the <code>tidyverse</code> way of generating new variables. The “base R” equivalent of generating this partyid variable is:</p>
+<blockquote class="blockquote">
+<p><code>anes$partyid &lt;- anes$V241227x</code></p>
+</blockquote>
+<p>An advantage of <code>mutate</code> over “base R” is that <code>mutate</code> allows a user to combine commands for generating multiple variables or running multiple operations within a single <code>mutate</code> command.</p>
+<p>The frequency distribution of “partyid” is the same as for V241227x we analyzed earlier:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>partyid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                     n    % val%
+[-9] -9. Refused                    31  0.6  0.6
+[-8] -8. Don't know                  5  0.1  0.1
+[-4] -4. Error                       2  0.0  0.0
+[1] 1. Strong Democrat            1314 23.8 23.8
+[2] 2. Not very strong Democrat    616 11.2 11.2
+[3] 3. Independent-Democrat        714 12.9 12.9
+[4] 4. Independent                 380  6.9  6.9
+[5] 5. Independent-Republican      716 13.0 13.0
+[6] 6. Not very strong Republican  577 10.5 10.5
+[7] 7. Strong Republican          1166 21.1 21.1</code></pre>
+</div>
+</div>
+<p>Note that <code>mutate</code> preserves the verbal value labels for partyid that were already in V241227x.</p>
+<p>Next, we need to deal with missing data. In this situation, most researchers would treat “Refused,” “Don’t konw,” and “Error” as missing data. When an observation is treated as missing data, quantitative analysis procedures do not include those missing data in the results. In RStudio, missing data is denoted by <code>NA</code>. Since the numeric values of partyid that I want to be missing data are given numeric values (i.e., -9, -8, and -4), I need to recode those values to <code>NA</code> using the <code>if_else</code> command from a <code>tidyverse</code> package called <code>dplyr</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> <span class="fu">mutate</span>(anes, <span class="at">partyid =</span> <span class="fu">if_else</span>(partyid<span class="sc">&lt;</span><span class="dv">0</span>, <span class="cn">NA</span>, partyid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I will explain the syntax first. First, the anes data already includes the partyid variable that is a straight duplicate of V241227x. Using the assignment operator, I am telling RStudio to update this partyid variable within the anes dataset. The basic logic of <code>if_else</code> is to enter 3 pieces of information regarding partyid:</p>
+<blockquote class="blockquote">
+<p>if_else(<em>if</em> this condition is true, <em>then</em> code as this, else code as that)</p>
+</blockquote>
+<p>The commmand tells RStudio, if partyid is less than zero, then code those observations as missing data (<code>NA</code>), otherwise code them as they were coded before (the partyid values that already exist).</p>
+<p>Now when I generate a frequency distribution, the 38 observations that were either -9, -8, or -4 are recoded as <code>NA</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>partyid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                     n    % val%
+[-9] -9. Refused                     0  0.0  0.0
+[-8] -8. Don't know                  0  0.0  0.0
+[-4] -4. Error                       0  0.0  0.0
+[1] 1. Strong Democrat            1314 23.8 24.0
+[2] 2. Not very strong Democrat    616 11.2 11.2
+[3] 3. Independent-Democrat        714 12.9 13.0
+[4] 4. Independent                 380  6.9  6.9
+[5] 5. Independent-Republican      716 13.0 13.1
+[6] 6. Not very strong Republican  577 10.5 10.5
+[7] 7. Strong Republican          1166 21.1 21.3
+NA                                  38  0.7   NA</code></pre>
+</div>
+</div>
+<p>Note that the numeric values and value labels for -9, -8, and -4 remain preserved but there are now 0 observations for each. The <code>freq</code> output also makes an adjustment now that it officially recognizes missing data. The “n” column reports how many survey respondents/individuals are in each party category (e.g., 1,314 respondents are strong Democrats). The “%” column reports the percentage of all respondents, <em>including</em> missing data (<code>NA</code>) observations, that fall within each category (e.g., 23.8% of individuals in the survey are strong Democrats). In the final column, “val%” stands for “valid percentage” of respondents in each category, which <em>omits</em> missing data. Of the respondents who are coded as missing data on this variable, 24% are strong Democrats.</p>
+<section id="introducing-the-pipe-operator-and" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="introducing-the-pipe-operator-and"><span class="header-section-number">3.3.1</span> Introducing the Pipe Operator (<code>%&gt;%</code> and <code>|&gt;</code>)</h3>
+<ul>
+<li>pipe operator, mutate, group_by, summarize, filter, select, arrange, join</li>
+<li>creating new variable with intuitive name; party id example and missing data</li>
+<li>ifelse and case_when</li>
+<li>recoding from 0 to 1</li>
+<li>Other coding conventions</li>
+</ul>
 </section>
-<section id="streamling-and-simplifying-data-analysis" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="streamling-and-simplifying-data-analysis"><span class="header-section-number">3.4</span> Streamling and Simplifying Data Analysis</h2>
 </section>
-<section id="cleaning-and-organizing-data-for-data-analysis" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="cleaning-and-organizing-data-for-data-analysis"><span class="header-section-number">3.5</span> Cleaning and Organizing Data for Data Analysis</h2>
+<section id="streamlining-and-simplifying-data-analysis" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="streamlining-and-simplifying-data-analysis"><span class="header-section-number">3.4</span> Streamlining and Simplifying Data Analysis</h2>
+</section>
+<section id="cleaning-and-organizing-data-for-quantitative-analysis" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="cleaning-and-organizing-data-for-quantitative-analysis"><span class="header-section-number">3.5</span> Cleaning and Organizing Data for Quantitative Analysis</h2>
 </section>
 <section id="merging-two-datasets-together" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="merging-two-datasets-together"><span class="header-section-number">3.6</span> Merging Two Datasets Together</h2>
