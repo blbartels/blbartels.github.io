@@ -896,19 +896,291 @@ NA                38  0.7   NA</code></pre>
 </div>
 </div>
 <p>Now the party3 variable is both recoded and labelled, all in one unified command.</p>
+<p>A final note on the <code>mutate</code> command is that users can generate and recode multiple variables in one <code>mutate</code> command. Let’s say that in addition to party identification, we also want to code education and income (in reality, we would have several variables up to generate and code for a project). ANES has a variable, “V241465x,” that measures education level and “V241566x,” which measures family income. The variables are measured as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>V241465x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                                              n
+[-9] -9. Refused                                                             26
+[-8] -8. Don't know                                                           1
+[-4] -4. Error                                                                6
+[-2] -2. Insufficent information to code other/specify open-ended response   23
+[1] 1. Less than high school credential                                     283
+[2] 2. High school credential                                               973
+[3] 3. Some post-high school, no bachelor's degree                         1738
+[4] 4. Bachelor's degree                                                   1384
+[5] 5. Graduate degree                                                     1087
+                                                                              %
+[-9] -9. Refused                                                            0.5
+[-8] -8. Don't know                                                         0.0
+[-4] -4. Error                                                              0.1
+[-2] -2. Insufficent information to code other/specify open-ended response  0.4
+[1] 1. Less than high school credential                                     5.1
+[2] 2. High school credential                                              17.6
+[3] 3. Some post-high school, no bachelor's degree                         31.5
+[4] 4. Bachelor's degree                                                   25.1
+[5] 5. Graduate degree                                                     19.7
+                                                                           val%
+[-9] -9. Refused                                                            0.5
+[-8] -8. Don't know                                                         0.0
+[-4] -4. Error                                                              0.1
+[-2] -2. Insufficent information to code other/specify open-ended response  0.4
+[1] 1. Less than high school credential                                     5.1
+[2] 2. High school credential                                              17.6
+[3] 3. Some post-high school, no bachelor's degree                         31.5
+[4] 4. Bachelor's degree                                                   25.1
+[5] 5. Graduate degree                                                     19.7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>V241566x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                         n   % val%
+[-9] -9. Refused                       301 5.5  5.5
+[-5] -5. Break off, sufficient partial  10 0.2  0.2
+[-4] -4. Error                           0 0.0  0.0
+[-1] -1. Inapplicable                  245 4.4  4.4
+[1] 1. Under $5,000                    405 7.3  7.3
+[2] 2. $5,000-9,999                     51 0.9  0.9
+[3] 3. $10,000-12,499                  108 2.0  2.0
+[4] 4. $12,500-14,999                   37 0.7  0.7
+[5] 5. $15,000-17,499                   75 1.4  1.4
+[6] 6. $17,500-19,999                   31 0.6  0.6
+[7] 7. $20,000-22,499                  104 1.9  1.9
+[8] 8. $22,500-24,999                   45 0.8  0.8
+[9] 9. $25,000-27,499                   92 1.7  1.7
+[10] 10. $27,500-29,999                 29 0.5  0.5
+[11] 11. $30,000-34,999                171 3.1  3.1
+[12] 12. $35,000-39,999                149 2.7  2.7
+[13] 13. $40,000-44,999                199 3.6  3.6
+[14] 14. $45,000-49,999                124 2.2  2.2
+[15] 15. $50,000-54,999                233 4.2  4.2
+[16] 16. $55,000-59,999                102 1.8  1.8
+[17] 17. $60,000-64,999                204 3.7  3.7
+[18] 18. $65,000-69,999                 98 1.8  1.8
+[19] 19. $70,000-74,999                156 2.8  2.8
+[20] 20. $75,000-79,999                142 2.6  2.6
+[21] 21. $80,000-89,999                262 4.7  4.7
+[22] 22. $90,000-99,999                194 3.5  3.5
+[23] 23. $100,000-109,999              331 6.0  6.0
+[24] 24. $110,000-124,999              268 4.9  4.9
+[25] 25. $125,000-149,999              260 4.7  4.7
+[26] 26. $150,000-174,999              297 5.4  5.4
+[27] 27. $175,000-249,999              416 7.5  7.5
+[28] 28. $250,000 or more              382 6.9  6.9</code></pre>
+</div>
+</div>
+<p>Note that with the long verbal value labels for education, the output is a bit messy and separates the output by “n,” “%,” and “val%.”</p>
+<p>I could do all of the prior coding for party, education, and income in one <code>mutate</code> command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">partyid =</span> <span class="fu">if_else</span>(V241227x<span class="sc">&lt;</span><span class="dv">0</span>, <span class="cn">NA</span>, V241227x), </span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">party3 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>           partyid<span class="sc">&gt;</span><span class="dv">0</span> <span class="sc">&amp;</span> partyid<span class="sc">&lt;</span><span class="dv">4</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>           partyid <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>           partyid<span class="sc">&gt;</span><span class="dv">4</span> <span class="sc">~</span> <span class="dv">3</span>), </span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">educ =</span> <span class="fu">if_else</span>(V241465x <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="cn">NA</span>, V241465x), </span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">income =</span> <span class="fu">if_else</span>(V241566x <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="cn">NA</span>, V241566x)</span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">|&gt;</span> </span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_value_labels</span>(<span class="at">party3=</span><span class="fu">c</span>(<span class="st">"Democrat"</span><span class="ot">=</span><span class="dv">1</span>, <span class="st">"Independent"</span><span class="ot">=</span><span class="dv">2</span>, <span class="st">"Republican"</span><span class="ot">=</span><span class="dv">3</span>))</span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>partyid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                     n    % val%
+[-9] -9. Refused                     0  0.0  0.0
+[-8] -8. Don't know                  0  0.0  0.0
+[-4] -4. Error                       0  0.0  0.0
+[1] 1. Strong Democrat            1314 23.8 24.0
+[2] 2. Not very strong Democrat    616 11.2 11.2
+[3] 3. Independent-Democrat        714 12.9 13.0
+[4] 4. Independent                 380  6.9  6.9
+[5] 5. Independent-Republican      716 13.0 13.1
+[6] 6. Not very strong Republican  577 10.5 10.5
+[7] 7. Strong Republican          1166 21.1 21.3
+NA                                  38  0.7   NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>party3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   n    % val%
+[1] Democrat    2644 47.9 48.2
+[2] Independent  380  6.9  6.9
+[3] Republican  2459 44.5 44.8
+NA                38  0.7   NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>educ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                                              n
+[-9] -9. Refused                                                              0
+[-8] -8. Don't know                                                           0
+[-4] -4. Error                                                                0
+[-2] -2. Insufficent information to code other/specify open-ended response    0
+[1] 1. Less than high school credential                                     283
+[2] 2. High school credential                                               973
+[3] 3. Some post-high school, no bachelor's degree                         1738
+[4] 4. Bachelor's degree                                                   1384
+[5] 5. Graduate degree                                                     1087
+NA                                                                           56
+                                                                              %
+[-9] -9. Refused                                                            0.0
+[-8] -8. Don't know                                                         0.0
+[-4] -4. Error                                                              0.0
+[-2] -2. Insufficent information to code other/specify open-ended response  0.0
+[1] 1. Less than high school credential                                     5.1
+[2] 2. High school credential                                              17.6
+[3] 3. Some post-high school, no bachelor's degree                         31.5
+[4] 4. Bachelor's degree                                                   25.1
+[5] 5. Graduate degree                                                     19.7
+NA                                                                          1.0
+                                                                           val%
+[-9] -9. Refused                                                            0.0
+[-8] -8. Don't know                                                         0.0
+[-4] -4. Error                                                              0.0
+[-2] -2. Insufficent information to code other/specify open-ended response  0.0
+[1] 1. Less than high school credential                                     5.2
+[2] 2. High school credential                                              17.8
+[3] 3. Some post-high school, no bachelor's degree                         31.8
+[4] 4. Bachelor's degree                                                   25.3
+[5] 5. Graduate degree                                                     19.9
+NA                                                                           NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>income)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                         n    % val%
+[-9] -9. Refused                         0  0.0  0.0
+[-5] -5. Break off, sufficient partial   0  0.0  0.0
+[-4] -4. Error                           0  0.0  0.0
+[-1] -1. Inapplicable                    0  0.0  0.0
+[1] 1. Under $5,000                    405  7.3  8.2
+[2] 2. $5,000-9,999                     51  0.9  1.0
+[3] 3. $10,000-12,499                  108  2.0  2.2
+[4] 4. $12,500-14,999                   37  0.7  0.7
+[5] 5. $15,000-17,499                   75  1.4  1.5
+[6] 6. $17,500-19,999                   31  0.6  0.6
+[7] 7. $20,000-22,499                  104  1.9  2.1
+[8] 8. $22,500-24,999                   45  0.8  0.9
+[9] 9. $25,000-27,499                   92  1.7  1.9
+[10] 10. $27,500-29,999                 29  0.5  0.6
+[11] 11. $30,000-34,999                171  3.1  3.4
+[12] 12. $35,000-39,999                149  2.7  3.0
+[13] 13. $40,000-44,999                199  3.6  4.0
+[14] 14. $45,000-49,999                124  2.2  2.5
+[15] 15. $50,000-54,999                233  4.2  4.7
+[16] 16. $55,000-59,999                102  1.8  2.1
+[17] 17. $60,000-64,999                204  3.7  4.1
+[18] 18. $65,000-69,999                 98  1.8  2.0
+[19] 19. $70,000-74,999                156  2.8  3.1
+[20] 20. $75,000-79,999                142  2.6  2.9
+[21] 21. $80,000-89,999                262  4.7  5.3
+[22] 22. $90,000-99,999                194  3.5  3.9
+[23] 23. $100,000-109,999              331  6.0  6.7
+[24] 24. $110,000-124,999              268  4.9  5.4
+[25] 25. $125,000-149,999              260  4.7  5.2
+[26] 26. $150,000-174,999              297  5.4  6.0
+[27] 27. $175,000-249,999              416  7.5  8.4
+[28] 28. $250,000 or more              382  6.9  7.7
+NA                                     556 10.1   NA</code></pre>
+</div>
+</div>
+<p>Note that this one mutate command generates and recodes four variables. Each variable creation is separated by a comma.</p>
 </section>
 <section id="recoding-variables-to-range-from-0-to-1" class="level3" data-number="3.3.3">
 <h3 data-number="3.3.3" class="anchored" data-anchor-id="recoding-variables-to-range-from-0-to-1"><span class="header-section-number">3.3.3</span> Recoding Variables to Range from 0 to 1</h3>
 <p>Researchers will often use various coding conventions to make interpretations of results easier to communicate. For some variables, keeping the variable coded as is makes sense, e.g., in the states dataset for percent voter turnout. In many survey research contexts, and other contexts as well, researchers often find it useful for interpretation purposes to recode their variables to range from 0 to 1. Readers will see the utility of this strategy once we get to linear regression analysis in <a href="linreg1.html" class="quarto-xref"><span>Chapter 8</span></a>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<p>Sticking with the</p>
-<ul>
-<li>group_by, summarize, filter, select, arrange, join</li>
-<li>Other coding conventions</li>
-</ul>
+<p>Sticking with the party identification example, let’s say we want recode the 7-category variable (partyid) to range from 0 to 1. The following code represents the most inuitive way to execute this strategy:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">partyid01 =</span> partyid <span class="sc">-</span> <span class="dv">1</span>,</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">partyid01 =</span> partyid01<span class="sc">/</span><span class="dv">6</span>)</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>partyid01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     n    % val%
+0                 1314 23.8 24.0
+0.166666666666667  616 11.2 11.2
+0.333333333333333  714 12.9 13.0
+0.5                380  6.9  6.9
+0.666666666666667  716 13.0 13.1
+0.833333333333333  577 10.5 10.5
+1                 1166 21.1 21.3
+NA                  38  0.7   NA</code></pre>
+</div>
+</div>
+<p>First, notice the <code>mutate</code> notation. Recall that the partyid ranges from 1 to 7. Recoding that variable therefore requires two steps: (1) subtract 1 from each value to get it to range from 0 to 6 and (2) divided that new 0 to 6 variable by 6, its maximum value. The first line in the <code>mutate</code> notation executes the first step. The second line in the <code>mutate</code> command takes that newly-created partyid01 variable from the first line and divides it by 6. The result of this newly transformed variable, partyid01, is displayed in the frequency distribution. “0” is now strong Democrat, and “1” is now strong Republican.</p>
+<p>When it comes to variables recoded to range from 0 to 1, my own practice is to: (1) name the new variable the old variable plus “01” appended at the end (like I have done here) and (2) leave the transformed variable unlabelled. Any analyses users want to conduct on the 7-category variable (e.g., data visualization in <a href="dataviz.html" class="quarto-xref"><span>Chapter 4</span></a>) can be done on the originally coded variable, partyid, that ranges from 1 to 7 and contains value labels. The utility of the 0-1 recoding is mainly for inclusion in a regression analysis (<a href="linreg1.html" class="quarto-xref"><span>Chapter 8</span></a>).</p>
+<p>Researchers love automated code. While the above code is intuitive and works perfectly well (and could accommodate recoding multiple variables at a time using similar code), some users will want more automated code that can recode multiple variables at a time. The code below does exactly that, based on the general formula for recoding variables from 0 to 1:</p>
+<p><span class="math display">\[x_{i01} = \frac{x_i - x_{min}}{x_{max} - x_{min}}\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.cols =</span> <span class="fu">c</span>(partyid, educ, income), </span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span> (.x <span class="sc">-</span> <span class="fu">min</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> </span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>           (<span class="fu">max</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.names =</span> <span class="st">"{.col}01"</span></span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>partyid01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     n    % val%
+0                 1314 23.8 24.0
+0.166666666666667  616 11.2 11.2
+0.333333333333333  714 12.9 13.0
+0.5                380  6.9  6.9
+0.666666666666667  716 13.0 13.1
+0.833333333333333  577 10.5 10.5
+1                 1166 21.1 21.3
+NA                  38  0.7   NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>educ01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        n    % val%
+0     283  5.1  5.2
+0.25  973 17.6 17.8
+0.5  1738 31.5 31.8
+0.75 1384 25.1 25.3
+1    1087 19.7 19.9
+NA     56  1.0   NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>income01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     n    % val%
+0                  405  7.3  8.2
+0.037037037037037   51  0.9  1.0
+0.0740740740740741 108  2.0  2.2
+0.111111111111111   37  0.7  0.7
+0.148148148148148   75  1.4  1.5
+0.185185185185185   31  0.6  0.6
+0.222222222222222  104  1.9  2.1
+0.259259259259259   45  0.8  0.9
+0.296296296296296   92  1.7  1.9
+0.333333333333333   29  0.5  0.6
+0.37037037037037   171  3.1  3.4
+0.407407407407407  149  2.7  3.0
+0.444444444444444  199  3.6  4.0
+0.481481481481481  124  2.2  2.5
+0.518518518518518  233  4.2  4.7
+0.555555555555556  102  1.8  2.1
+0.592592592592593  204  3.7  4.1
+0.62962962962963    98  1.8  2.0
+0.666666666666667  156  2.8  3.1
+0.703703703703704  142  2.6  2.9
+0.740740740740741  262  4.7  5.3
+0.777777777777778  194  3.5  3.9
+0.814814814814815  331  6.0  6.7
+0.851851851851852  268  4.9  5.4
+0.888888888888889  260  4.7  5.2
+0.925925925925926  297  5.4  6.0
+0.962962962962963  416  7.5  8.4
+1                  382  6.9  7.7
+NA                 556 10.1   NA</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="streamlining-and-simplifying-data-analysis" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="streamlining-and-simplifying-data-analysis"><span class="header-section-number">3.4</span> Streamlining and Simplifying Data Analysis</h2>
+<ul>
+<li>group_by, summarize, filter, select, arrange, join</li>
+<li>Other coding conventions</li>
+</ul>
 </section>
 <section id="cleaning-and-organizing-data-for-quantitative-analysis" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="cleaning-and-organizing-data-for-quantitative-analysis"><span class="header-section-number">3.5</span> Cleaning and Organizing Data for Quantitative Analysis</h2>
