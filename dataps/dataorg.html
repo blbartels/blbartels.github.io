@@ -104,6 +104,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -249,7 +278,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#value-labels-for-variables" id="toc-value-labels-for-variables" class="nav-link" data-scroll-target="#value-labels-for-variables"><span class="header-section-number">3.2</span> Value Labels for Variables</a>
   <ul class="collapse">
   <li><a href="#stock-data-with-preexisting-value-labels" id="toc-stock-data-with-preexisting-value-labels" class="nav-link" data-scroll-target="#stock-data-with-preexisting-value-labels"><span class="header-section-number">3.2.1</span> Stock Data with Preexisting Value Labels</a></li>
-  <li><a href="#manually-adding-value-labels-to-variables" id="toc-manually-adding-value-labels-to-variables" class="nav-link" data-scroll-target="#manually-adding-value-labels-to-variables"><span class="header-section-number">3.2.2</span> Manually Adding Value Labels to Variables</a></li>
+  <li><a href="#sec-man" id="toc-sec-man" class="nav-link" data-scroll-target="#sec-man"><span class="header-section-number">3.2.2</span> Manually Adding Value Labels to Variables</a></li>
   </ul></li>
   <li><a href="#sec-gen" id="toc-sec-gen" class="nav-link" data-scroll-target="#sec-gen"><span class="header-section-number">3.3</span> Generating and Recoding New Variables</a>
   <ul class="collapse">
@@ -689,8 +718,8 @@ Table&nbsp;3.2: <strong>Associating Numeric Coding Values with Verbal Values Lab
 </div>
 <p>In brackets on the left side are the numeric values of the variable followed by verbal value labels that come with the stock dataset (again, someone had to code those and thankfully it wasn’t us!). One can see that the “core” party values range from strong Democrat (=1) to strong Republican (=7). ANES also manually codes values that we would normally categorize as “missing data,” i.e., values of the variable that are not amenable to quantitative analysis because they deviate from the core variable values. Those values are “Refused” (-9), “Don’t know” (-8), and “Error” (-4). I will discuss how to deal with and code missing data in <a href="#sec-org" class="quarto-xref"><span>Chapter 3</span></a>.</p>
 </section>
-<section id="manually-adding-value-labels-to-variables" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="manually-adding-value-labels-to-variables"><span class="header-section-number">3.2.2</span> Manually Adding Value Labels to Variables</h3>
+<section id="sec-man" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="sec-man"><span class="header-section-number">3.2.2</span> Manually Adding Value Labels to Variables</h3>
 <p>Adding value labels to variables that do not contain preexisting value labels is simple. Several packages and commands exist for adding value labels, and I will show an example using the <code>labelled</code> command from the <code>haven</code> package. Returning to our “states” data, let’s say we wanted to add value labels to the “Southern_state” variable, where 0=“Non-Southern State” and 1=“Southern State”:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>Southern_State <span class="ot">&lt;-</span> <span class="fu">labelled</span>(states<span class="sc">$</span>Southern_State, </span>
@@ -716,7 +745,7 @@ Table&nbsp;3.2: <strong>Associating Numeric Coding Values with Verbal Values Lab
 </section>
 <section id="sec-gen" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="sec-gen"><span class="header-section-number">3.3</span> Generating and Recoding New Variables</h2>
-<p>Once researchers import data and understand how their variables are stored and labelled, they need to generate and recode new variables that they will subject to quantitative analysis. I will review procedures and strategies for coding variables and also introduce an extremely useful <code>tidyverse</code> command for executing these steps called <code>mutate</code>.</p>
+<p>Once researchers import data and understand how their variables are stored and labelled, they need to generate and recode new variables that they will subject to quantitative analysis. I will review procedures and strategies for coding variables and also introduce an extremely useful command for executing these steps called <code>mutate</code>, which comes from the widely-used <code>dplyr</code> package within the <code>tidyverse</code>.</p>
 <p>I will stick with the party identification variable from ANES to introduce the <code>mutate</code> command. After one has imported a dataset (whether it be a stock dataset or a dataset created by the researcher), researchers should never alter or recode the original variables in the dataset. Keep the original variables as is. For variables one wants to recode, <em>generate a new variable and make changes to that variable</em>. For the ANES data in particular, recall that the variable names make no sense in terms of indicating what the variable means. Instead of V241227x, we should create a new variable that is more desriptive of the actual variable. I like to keep variable names short, so something “partyid” is sufficient — it is short and descriptive.</p>
 <p>The following command will generate a new variable in the ANES dataset:</p>
 <div class="cell">
@@ -745,7 +774,7 @@ Table&nbsp;3.2: <strong>Associating Numeric Coding Values with Verbal Values Lab
 </div>
 </div>
 <p>Note that <code>mutate</code> preserves the verbal value labels for partyid that were already in V241227x.</p>
-<p>Next, we need to deal with missing data. In this situation, most researchers would treat “Refused,” “Don’t konw,” and “Error” as missing data. When an observation is treated as missing data, quantitative analysis procedures do not include those missing data in the results. In RStudio, missing data is denoted by <code>NA</code>. Since the numeric values of partyid that I want to be missing data are given numeric values (i.e., -9, -8, and -4), I need to recode those values to <code>NA</code> using the <code>if_else</code> command from a <code>tidyverse</code> package called <code>dplyr</code>:</p>
+<p>Next, we need to deal with missing data. In this situation, most researchers would treat “Refused,” “Don’t konw,” and “Error” as missing data. When an observation is treated as missing data, quantitative analysis procedures do not include those missing data in the results. In RStudio, missing data is denoted by <code>NA</code>. Since the numeric values of partyid that I want to be missing data are given numeric values (i.e., -9, -8, and -4), I need to recode those values to <code>NA</code> using the <code>if_else</code> command (also from <code>dplyr</code> within the <code>tidyverse</code>):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> <span class="fu">mutate</span>(anes, <span class="at">partyid =</span> <span class="fu">if_else</span>(partyid<span class="sc">&lt;</span><span class="dv">0</span>, <span class="cn">NA</span>, partyid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -844,7 +873,8 @@ NA   38  0.7   NA</code></pre>
 NA   38  0.7   NA</code></pre>
 </div>
 </div>
-<p>If I wanted to add verbal value labels to the 3-category party variable, I could use <code>haven</code> as I did above, or I could use the <code>labelled</code> package, which can be combined with the mutate (and <code>case_when</code>) using the pipe operator (make sure to install the <code>labelled</code> package first):</p>
+<p>Using <code>case_when</code>, I tell <code>mutate</code> the three conditions of partyid that should translate to the new coding of the party3 variable. <code>case_when</code> uses if-then logic. In the first line, <em>if</em> partyid is greater than 0 or less than 4 (i.e., for values 1, 2, and 3, which are the three Democratic categories), <em>then</em> the new party3 variable will equal 1. Users often run into errors from RStudio with these kinds of commands that include lots of parentheses. One quick trick is to remember for the number of opening parentheses should equal the number of closing parentheses. Also, RStudio will highlight the opening parenthesis associated with your closing parenthesis when your cursor is next to, e.g., closing one.</p>
+<p>If I wanted to add verbal value labels to the 3-category party variable, I could use <code>haven</code> as I did in <a href="#sec-man" class="quarto-xref"><span>Section 3.2.2</span></a>, or I could use the <code>labelled</code> package (make sure to install it first), which is particularly useful in this context because it can be combined with <code>mutate</code> (and <code>case_when</code>) using the pipe operator:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(labelled)</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -865,15 +895,14 @@ NA   38  0.7   NA</code></pre>
 NA                38  0.7   NA</code></pre>
 </div>
 </div>
-<p>Now the party3 variable is both recoded and labelled.</p>
+<p>Now the party3 variable is both recoded and labelled, all in one unified command.</p>
 </section>
 <section id="recoding-variables-to-range-from-0-to-1" class="level3" data-number="3.3.3">
 <h3 data-number="3.3.3" class="anchored" data-anchor-id="recoding-variables-to-range-from-0-to-1"><span class="header-section-number">3.3.3</span> Recoding Variables to Range from 0 to 1</h3>
+<p>Researchers will often use various coding conventions to make interpretations of results easier to communicate. For some variables, keeping the variable coded as is makes sense, e.g., in the states dataset for percent voter turnout. In many survey research contexts, and other contexts as well, researchers often find it useful for interpretation purposes to recode their variables to range from 0 to 1. Readers will see the utility of this strategy once we get to linear regression analysis in <a href="linreg1.html" class="quarto-xref"><span>Chapter 8</span></a>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Sticking with the</p>
 <ul>
-<li>pipe operator, mutate, group_by, summarize, filter, select, arrange, join</li>
-<li>creating new variable with intuitive name; party id example and missing data</li>
-<li>ifelse and case_when</li>
-<li>recoding from 0 to 1</li>
+<li>group_by, summarize, filter, select, arrange, join</li>
 <li>Other coding conventions</li>
 </ul>
 </section>
@@ -888,6 +917,12 @@ NA                38  0.7   NA</code></pre>
 <h2 data-number="3.6" class="anchored" data-anchor-id="merging-two-datasets-together"><span class="header-section-number">3.6</span> Merging Two Datasets Together</h2>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>A baseline interpretation of a regression coefficient centers on communicating how much the dependent variable, <span class="math inline">\(y\)</span>, changes given a 1-unit increase in the independent variable, <span class="math inline">\(x\)</span>. When researchers recode their variables to range from 0 to 1, a 1-unit increase represents an change in <span class="math inline">\(x\)</span> from the minimum to maximum value.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
