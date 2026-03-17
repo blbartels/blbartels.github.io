@@ -286,9 +286,13 @@ window.Quarto = {
   <li><a href="#additional-recoding-procedures-using-if_else-and-case_when" id="toc-additional-recoding-procedures-using-if_else-and-case_when" class="nav-link" data-scroll-target="#additional-recoding-procedures-using-if_else-and-case_when"><span class="header-section-number">3.3.2</span> Additional Recoding Procedures Using <code>if_else</code> and <code>case_when</code></a></li>
   <li><a href="#recoding-variables-to-range-from-0-to-1" id="toc-recoding-variables-to-range-from-0-to-1" class="nav-link" data-scroll-target="#recoding-variables-to-range-from-0-to-1"><span class="header-section-number">3.3.3</span> Recoding Variables to Range from 0 to 1</a></li>
   </ul></li>
-  <li><a href="#streamlining-and-simplifying-data-analysis" id="toc-streamlining-and-simplifying-data-analysis" class="nav-link" data-scroll-target="#streamlining-and-simplifying-data-analysis"><span class="header-section-number">3.4</span> Streamlining and Simplifying Data Analysis</a></li>
-  <li><a href="#cleaning-and-organizing-data-for-quantitative-analysis" id="toc-cleaning-and-organizing-data-for-quantitative-analysis" class="nav-link" data-scroll-target="#cleaning-and-organizing-data-for-quantitative-analysis"><span class="header-section-number">3.5</span> Cleaning and Organizing Data for Quantitative Analysis</a></li>
-  <li><a href="#merging-two-datasets-together" id="toc-merging-two-datasets-together" class="nav-link" data-scroll-target="#merging-two-datasets-together"><span class="header-section-number">3.6</span> Merging Two Datasets Together</a></li>
+  <li><a href="#streamlining-and-simplifying-data-analysis" id="toc-streamlining-and-simplifying-data-analysis" class="nav-link" data-scroll-target="#streamlining-and-simplifying-data-analysis"><span class="header-section-number">3.4</span> Streamlining and Simplifying Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#subsetting-observations" id="toc-subsetting-observations" class="nav-link" data-scroll-target="#subsetting-observations"><span class="header-section-number">3.4.1</span> Subsetting Observations</a></li>
+  <li><a href="#subsetting-variables" id="toc-subsetting-variables" class="nav-link" data-scroll-target="#subsetting-variables"><span class="header-section-number">3.4.2</span> Subsetting Variables</a></li>
+  <li><a href="#grouped-and-clustered-data" id="toc-grouped-and-clustered-data" class="nav-link" data-scroll-target="#grouped-and-clustered-data"><span class="header-section-number">3.4.3</span> Grouped and Clustered Data</a></li>
+  </ul></li>
+  <li><a href="#merging-two-datasets-together" id="toc-merging-two-datasets-together" class="nav-link" data-scroll-target="#merging-two-datasets-together"><span class="header-section-number">3.5</span> Merging Two Datasets Together</a></li>
   </ul>
 </nav>
     </div>
@@ -320,8 +324,7 @@ window.Quarto = {
 <li>Import data into RStudio and understand data features.</li>
 <li>Understand and/or create value labels for variables in your dataset.</li>
 <li>Generate and recode new variables.</li>
-<li>Execute procedures to streamline and simplify data analysis.</li>
-<li>Organize and clean data.</li>
+<li>Execute procedures to streamline and simplify data analysis. <!-- 5.  Organize and clean data.  --></li>
 <li>Merge two datasets together.</li>
 </ol>
 <p>This chapter will make extensive use of many of the <code>tidyverse</code> packages and commands, which are extremely useful for the topics discussed in this chapter.</p>
@@ -855,7 +858,9 @@ NA                                  38  0.7   NA</code></pre>
 NA   38  0.7   NA</code></pre>
 </div>
 </div>
-<p>Notice the boolean syntax here with the use of <code>&gt;</code> and <code>&lt;</code>. Also, for the third line, note the use of two equal signs, <code>==</code> to indicate equality. One can also use <code>&gt;=</code> or <code>&lt;=</code>. Additional tools can be used as well. In these situations, I prefer <code>case_when</code>, which is a bit more intuitive:</p>
+<p>Notice the Boolean expression here with the use of <code>&gt;</code> and <code>&lt;</code>. That is separated by <code>&amp;</code> for “and.” The first line of the <code>mutate</code> code says if partyid is greater than 0 <em>and</em> less than 4 (i.e., values 1, 2, or 3), then party3 should equal 1 (Democrat). Otherwise, it should equal 3 (Republican). Also, in the third line, note the use of two equal signs, <code>==</code> to indicate equality. I then update the measure by changing party3 to 2 (Independent) if partyid is equal to 4, and otherwise, other values should remain at the party3 values defined in the prior line.</p>
+<p>For the opposite condition of “not equal to,” one can use <code>!=</code>. One can also use <code>&gt;=</code> (greater than or equal to) or <code>&lt;=</code> (less than or equal to).</p>
+<p>In this particular situation of generating and recoding a new 3-category variable from a 7-category variable, I actually prefer <code>case_when</code>, which is a bit more intuitive:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">party3 =</span> <span class="fu">case_when</span>(</span>
@@ -873,7 +878,7 @@ NA   38  0.7   NA</code></pre>
 NA   38  0.7   NA</code></pre>
 </div>
 </div>
-<p>Using <code>case_when</code>, I tell <code>mutate</code> the three conditions of partyid that should translate to the new coding of the party3 variable. <code>case_when</code> uses if-then logic. In the first line, <em>if</em> partyid is greater than 0 or less than 4 (i.e., for values 1, 2, and 3, which are the three Democratic categories), <em>then</em> the new party3 variable will equal 1. Users often run into errors from RStudio with these kinds of commands that include lots of parentheses. One quick trick is to remember for the number of opening parentheses should equal the number of closing parentheses. Also, RStudio will highlight the opening parenthesis associated with your closing parenthesis when your cursor is next to, e.g., closing one.</p>
+<p>Using <code>case_when</code>, I tell <code>mutate</code> the three conditions of partyid that should translate to the new coding of the party3 variable. <code>case_when</code> also uses if-then logic. In the first line, <em>if</em> partyid is greater than 0 and less than 4 (i.e., for values 1, 2, and 3), <em>then</em> the new party3 variable will equal 1. And note the use of straigtforward syntax in the remaining lines.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>If I wanted to add verbal value labels to the 3-category party variable, I could use <code>haven</code> as I did in <a href="#sec-man" class="quarto-xref"><span>Section 3.2.2</span></a>, or I could use the <code>labelled</code> package (make sure to install it first), which is particularly useful in this context because it can be combined with <code>mutate</code> (and <code>case_when</code>) using the pipe operator:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(labelled)</span>
@@ -1084,7 +1089,7 @@ NA                                     556 10.1   NA</code></pre>
 </section>
 <section id="recoding-variables-to-range-from-0-to-1" class="level3" data-number="3.3.3">
 <h3 data-number="3.3.3" class="anchored" data-anchor-id="recoding-variables-to-range-from-0-to-1"><span class="header-section-number">3.3.3</span> Recoding Variables to Range from 0 to 1</h3>
-<p>Researchers will often use various coding conventions to make interpretations of results easier to communicate. For some variables, keeping the variable coded as is makes sense, e.g., in the states dataset for percent voter turnout. In many survey research contexts, and other contexts as well, researchers often find it useful for interpretation purposes to recode their variables to range from 0 to 1. Readers will see the utility of this strategy once we get to linear regression analysis in <a href="linreg1.html" class="quarto-xref"><span>Chapter 8</span></a>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Researchers will often use various coding conventions to make interpretations of results easier to communicate. For some variables, keeping the variable coded as is makes sense, e.g., in the states dataset for percent voter turnout. In many survey research contexts, and other contexts as well, researchers often find it useful for interpretation purposes to recode their variables to range from 0 to 1. Readers will see the utility of this strategy once we get to linear regression analysis in <a href="linreg1.html" class="quarto-xref"><span>Chapter 8</span></a>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p>Sticking with the party identification example, let’s say we want recode the 7-category variable (partyid) to range from 0 to 1. The following code represents the most inuitive way to execute this strategy:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
@@ -1108,7 +1113,7 @@ NA                  38  0.7   NA</code></pre>
 <p>When it comes to variables recoded to range from 0 to 1, my own practice is to: (1) name the new variable the old variable plus “01” appended at the end (like I have done here) and (2) leave the transformed variable unlabelled. Any analyses users want to conduct on the 7-category variable (e.g., data visualization in <a href="dataviz.html" class="quarto-xref"><span>Chapter 4</span></a>) can be done on the originally coded variable, partyid, that ranges from 1 to 7 and contains value labels. The utility of the 0-1 recoding is mainly for inclusion in a regression analysis (<a href="linreg1.html" class="quarto-xref"><span>Chapter 8</span></a>).</p>
 <p>Researchers love automated code. While the above code is intuitive and works perfectly well (and could accommodate recoding multiple variables at a time using similar code), some users will want more automated code that can recode multiple variables at a time. The code below does exactly that, based on the general formula for recoding variables from 0 to 1:</p>
 <p><span class="math display">\[x_{i01} = \frac{x_i - x_{min}}{x_{max} - x_{min}}\]</span></p>
-<p>The command is below, followed by frequency distributions to verify that the formula did the coding correctly. The formula is automated because a researcher could run this one command for as many variables as they want to enter. The third line of the code specifies the variables that the researcher wants to recode from 0 to 1. Once again, a user could specify many variables here. I have speicified three. The following line implements the formula from above equation preceded by <code>~</code>. The equation uses built-in RStudio functions for the minimum and maximum values of a variable. The code gets complicated with the use of <code>na.rm = TRUE</code>. That addition is required to handle missing data. If we did not put that in lines 4 and 5, the command would try to include missing data for each calculation and we get <code>NA</code> for every observation. The last line (<code>.names = ....</code>) is also automated. It automatically names each new recoded variable with the original name (e.g., “partyid”) plus “01” appended to the end.</p>
+<p>The command is below, followed by frequency distributions to verify that the formula did the coding correctly. The formula is automated because a researcher could run this one command for as many variables as they want to enter. The third line of the code specifies the variables that the researcher wants to recode from 0 to 1. Once again, a user could specify many variables here. I have speicified three. The following line implements the formula from above equation preceded by <code>~</code>. The equation uses built-in RStudio functions for the minimum and maximum values of a variable. The code gets complicated with the use of <code>na.rm = TRUE</code>. That addition is required to handle missing data. <code>na.rm</code> means “remove missing data” from the calculation. Since it is set to <code>TRUE</code>, it will indeed omit any observation with <code>NA</code> when calculating the formula. If we did not put that in lines 4 and 5, the command would try to include missing data for each calculation and we get <code>NA</code> for every observation. The last line (<code>.names = ....</code>) is also automated. It automatically names each new recoded variable with the original name (e.g., “partyid”) plus “01” appended to the end.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(</span>
@@ -1178,23 +1183,38 @@ NA                 556 10.1   NA</code></pre>
 </section>
 <section id="streamlining-and-simplifying-data-analysis" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="streamlining-and-simplifying-data-analysis"><span class="header-section-number">3.4</span> Streamlining and Simplifying Data Analysis</h2>
+<p>In this section, I will provide some streamlining techniques that can make data analysis more manageable and also simplify the task in an intuitive way. Many of the commands I will use are from the <code>tidyverse</code>.</p>
+<section id="subsetting-observations" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="subsetting-observations"><span class="header-section-number">3.4.1</span> Subsetting Observations</h3>
+<p>filter, drop_na</p>
+</section>
+<section id="subsetting-variables" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="subsetting-variables"><span class="header-section-number">3.4.2</span> Subsetting Variables</h3>
+<p>select</p>
+</section>
+<section id="grouped-and-clustered-data" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="grouped-and-clustered-data"><span class="header-section-number">3.4.3</span> Grouped and Clustered Data</h3>
+<p>The first</p>
 <ul>
-<li>group_by, summarize, filter, select, arrange, join</li>
+<li>group_by, summarize, arrange</li>
 <li>Other coding conventions</li>
+<li>Generating numeric variables for country names</li>
 </ul>
 </section>
-<section id="cleaning-and-organizing-data-for-quantitative-analysis" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="cleaning-and-organizing-data-for-quantitative-analysis"><span class="header-section-number">3.5</span> Cleaning and Organizing Data for Quantitative Analysis</h2>
 </section>
-<section id="merging-two-datasets-together" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="merging-two-datasets-together"><span class="header-section-number">3.6</span> Merging Two Datasets Together</h2>
+<section id="merging-two-datasets-together" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="merging-two-datasets-together"><span class="header-section-number">3.5</span> Merging Two Datasets Together</h2>
+<ul>
+<li>join, bind_rows, bind_cols</li>
+</ul>
 
 
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>A baseline interpretation of a regression coefficient centers on communicating how much the dependent variable, <span class="math inline">\(y\)</span>, changes given a 1-unit increase in the independent variable, <span class="math inline">\(x\)</span>. When researchers recode their variables to range from 0 to 1, a 1-unit increase represents an change in <span class="math inline">\(x\)</span> from the minimum to maximum value.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Users often run into errors from RStudio with these kinds of commands that include lots of parentheses. One quick trick is to remember for the number of opening parentheses should equal the number of closing parentheses. Also, RStudio will highlight the opening parenthesis associated with your closing parenthesis when your cursor is next to, e.g., closing one.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>A baseline interpretation of a regression coefficient centers on communicating how much the dependent variable, <span class="math inline">\(y\)</span>, changes given a 1-unit increase in the independent variable, <span class="math inline">\(x\)</span>. When researchers recode their variables to range from 0 to 1, a 1-unit increase represents an change in <span class="math inline">\(x\)</span> from the minimum to maximum value.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
