@@ -428,7 +428,7 @@ Figure&nbsp;3.2: <strong>Screen Shot After Importing “states.csv”</strong>
 </figure>
 </div>
 <p>First, I saved my .R script as “Commands to Run.R,” which also now appears in my home directory. The same two command lines as above are in the .R script. After I load states.csv, the object “states” appears in the “Environment” window in the upper-right quadrant. That means the data are successfully loaded. Next to the data name, the Environment tab lists that the states data has 50 observations (rows) and 6 variables (columns). In a dataset, the units of analysis are rows, while the columns are the variables. States are the units of analysis (<em>N</em>=50), and the dataset contains 6 variables.</p>
-<p>To view the data, users can click on the “states” object in the Environment window or type <code>View(states)</code> in the command window or the .R script. <a href="#fig-csv-data" class="quarto-xref">Figure&nbsp;<span>3.3</span></a> shows a zoomed-in view of the upper-left quadrant. Each row is a state, and one can see the state name and abbreviation. The data also include turnout percentage in the 2024 presidential election, the percentage of voters voting for Trump, whether the state is a Southern state or not, and the percentage of adults in the state with a college degree or higher.</p>
+<p>To view the data, users can click on the “states” object in the Environment window or type <code>View(states)</code> in the command window or the .R script. <a href="#fig-csv-data" class="quarto-xref">Figure&nbsp;<span>3.3</span></a> shows a zoomed-in view of the upper-left quadrant. Notice this cross-sectional data. Each row is a state, and one can see the state name and abbreviation. The data also include turnout percentage in the 2024 presidential election, the percentage of voters voting for Trump, whether the state is a Southern state or not, and the percentage of adults in the state with a college degree or higher.</p>
 <div id="fig-csv-data" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-csv-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -620,7 +620,7 @@ Figure&nbsp;3.4: <strong>Screen Shot After Importing “states.csv” from the W
 20 Albania     Europe     1987    72    3075321     3739.</code></pre>
 </div>
 </div>
-<p>After running this command, one will see the “gm” object (the gapminder dataset) in the “Environment” window. Since the dataset in the <code>gapminder</code> package is “R-ready,” I do not need to issue a “read_” command like in <a href="#sec-hd" class="quarto-xref"><span>Section 3.1.1</span></a>. All the user needs to do is import it to one’s current RStudio environment as is. Now when I begin analyzing the data, I can specify “gm” as the data object, as I have done in the command above; the same output appears as in the previous command that did not import the dataset into the RStudio environment.</p>
+<p>After running this command, one will see the “gm” object (the gapminder dataset) in the “Environment” window. Since the dataset in the <code>gapminder</code> package is “R-ready,” I do not need to issue a “read_” command like in <a href="#sec-hd" class="quarto-xref"><span>Section 3.1.1</span></a>. All the user needs to do is import it to one’s current RStudio environment as is. Now when I begin analyzing the data, I can specify “gm” as the data object, as I have done in the command above; the same output appears as in the previous command that did not import the dataset into the RStudio environment. Note also that this dataset is time-series cross-sectional (TSCS) data. It is tracking 147 over time multiple years on a variety of characteristics.</p>
 </section>
 </section>
 <section id="value-labels-for-variables" class="level2" data-number="3.2">
@@ -684,7 +684,7 @@ Table&nbsp;3.2: <strong>Associating Numeric Coding Values with Verbal Values Lab
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"https://blbartels.github.io/dataps/anes24.dta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Readers will see that this dataset contains 5,521 voters (i.e., <em>N</em>=5,521) and 1,722 variables. The dataset comes from a nationally representative probability sample of American voters. This is quite a large dataset. Readers who want to run the <code>names(anes)</code> command to list all 1,722 variables can do so on their own. Users who view this dataset will immediately see that the variable names make no sense. Nearly all variables begin with “V24” (for 2024) and then contain a series of numbers and perhaps a letter. This makes the codebook especially critical when analyzing a stock dataset like this one. I will discuss some more themes for generating and recoding new variables in <a href="#sec-org" class="quarto-xref"><span>Chapter 3</span></a>.</p>
+<p>Readers will see that this dataset contains 5,521 voters (i.e., <em>N</em>=5,521) and 1,722 variables. This cross-sectional dataset comes from a nationally representative probability sample of American voters. This is quite a large dataset. Readers who want to run the <code>names(anes)</code> command to list all 1,722 variables can do so on their own. Users who view this dataset will immediately see that the variable names make no sense. Nearly all variables begin with “V24” (for 2024) and then contain a series of numbers and perhaps a letter. This makes the codebook especially critical when analyzing a stock dataset like this one. I will discuss some more themes for generating and recoding new variables in <a href="#sec-org" class="quarto-xref"><span>Chapter 3</span></a>.</p>
 <p>The example variable I will below is party identification; the variable name is “V241227x.” Below, I include a command to show the “class” of this variable:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(anes<span class="sc">$</span>V241227x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -785,7 +785,7 @@ Table&nbsp;3.2: <strong>Associating Numeric Coding Values with Verbal Values Lab
 <blockquote class="blockquote">
 <p>if_else(<em>if</em> this condition is true, <em>then</em> code as this, else code as that)</p>
 </blockquote>
-<p>The commmand tells RStudio, if partyid is less than zero, then code those observations as missing data (<code>NA</code>), otherwise code them as they were coded before (the partyid values that already exist).</p>
+<p>The commmand tells RStudio, if partyid is less than zero (using the <code>&lt;</code> operator), then code those observations as missing data (<code>NA</code>), otherwise code them as they were coded before (the partyid values that already exist).</p>
 <p>Now when I generate a frequency distribution, the 38 observations that were either -9, -8, or -4 are recoded as <code>NA</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>partyid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -858,8 +858,80 @@ NA                                  38  0.7   NA</code></pre>
 NA   38  0.7   NA</code></pre>
 </div>
 </div>
-<p>Notice the Boolean expression here with the use of <code>&gt;</code> and <code>&lt;</code>. That is separated by <code>&amp;</code> for “and.” The first line of the <code>mutate</code> code says if partyid is greater than 0 <em>and</em> less than 4 (i.e., values 1, 2, or 3), then party3 should equal 1 (Democrat). Otherwise, it should equal 3 (Republican). Also, in the third line, note the use of two equal signs, <code>==</code> to indicate equality. I then update the measure by changing party3 to 2 (Independent) if partyid is equal to 4, and otherwise, other values should remain at the party3 values defined in the prior line.</p>
-<p>For the opposite condition of “not equal to,” one can use <code>!=</code>. One can also use <code>&gt;=</code> (greater than or equal to) or <code>&lt;=</code> (less than or equal to).</p>
+<p>Notice my use of comparison operators, <code>&gt;</code> and <code>&lt;</code>, in the syntax above. That is separated by <code>&amp;</code> for “and.” The first line of the <code>mutate</code> code says if partyid is greater than 0 <em>and</em> less than 4 (i.e., values 1, 2, or 3), then party3 should equal 1 (Democrat). Otherwise, it should equal 3 (Republican). Also, in the third line, note the use of two equal signs, <code>==</code> to indicate equality. I then update the measure by changing party3 to 2 (Independent) if partyid is equal to 4, and otherwise, other values should remain at the party3 values defined in the prior line.</p>
+<p>Since I have now used these comparison and logical operators on a few occasions, <a href="#tbl-ops" class="quarto-xref">Table&nbsp;<span>3.3</span></a> below summarizes these comparison and logical operators and what they do:</p>
+<center>
+<div id="tbl-ops" class="table-striped table-hover table-bordered table-sm column quarto-float quarto-figure quarto-figure-center anchored" style="width:70%;">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ops-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.3: <strong>Data Formats, R Packages, and R Commands for Importing Datasets</strong>
+</figcaption>
+<div aria-describedby="tbl-ops-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover table-bordered table-sm column small caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 35%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Operator</th>
+<th style="text-align: left;">Type of Operator</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>&gt;</code></td>
+<td style="text-align: left;">Comparison</td>
+<td style="text-align: left;">Greater than</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>&lt;</code></td>
+<td style="text-align: left;">Comparison</td>
+<td style="text-align: left;">Less than</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>==</code></td>
+<td style="text-align: left;">Comparison</td>
+<td style="text-align: left;">Equal to</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>!=</code></td>
+<td style="text-align: left;">Comparison</td>
+<td style="text-align: left;">Not equal to</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>&gt;=</code></td>
+<td style="text-align: left;">Comparison</td>
+<td style="text-align: left;">Greater than or equal to</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>&lt;=</code></td>
+<td style="text-align: left;">Comparison</td>
+<td style="text-align: left;">Less than or equal to</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>&amp;</code></td>
+<td style="text-align: left;">Logical</td>
+<td style="text-align: left;">And</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>|</code></td>
+<td style="text-align: left;">Logical</td>
+<td style="text-align: left;">Or</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>!</code></td>
+<td style="text-align: left;">Logical</td>
+<td style="text-align: left;">Not</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</center>
 <p>In this particular situation of generating and recoding a new 3-category variable from a 7-category variable, I actually prefer <code>case_when</code>, which is a bit more intuitive:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
