@@ -1258,11 +1258,48 @@ NA                 556 10.1   NA</code></pre>
 <p>In this section, I will provide some streamlining techniques that can make data analysis more manageable and also simplify the task in an intuitive way. Many of the commands I will use are from the <code>tidyverse</code>.</p>
 <section id="subsetting-observations" class="level3" data-number="3.4.1">
 <h3 data-number="3.4.1" class="anchored" data-anchor-id="subsetting-observations"><span class="header-section-number">3.4.1</span> Subsetting Observations</h3>
+<p>On some occasions, researchers will have their “full” dataset (either a stock dataset or their own) but may want to work with a reduced set of observations for some particular analysis. They will want to filter on some variable or drop certain observations for a particular reason. Recall my recommendation on recoding in <a href="#sec-gen" class="quarto-xref"><span>Section 3.3</span></a>: When recoding a variable, never overwrite the original variable. <em>Leave all original variables in the dataset as is</em>. Instead, create a <em>new</em> variable, with a descriptive variable name, and recode that new variable.</p>
+<p>The same recommendation goes for filtering out observations. Whenever subsetting observations (i.e., removing some observations), <em>generate a new dataset object</em>. Since RStudio is flexible with the use multiple data objects in a given session, this move comes at no cost whatsoever.</p>
+<p>One example where this subsetting might be practical is if we were working with the ANES dataset, but we wanted to do an analysis comparing Democrats and Republicans only without considering Independents (for the time being). We could create a new data object that removes Independents using the <code>filter</code> command from the <code>dplyer</code> package within the <code>tidyverse</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>anes_noind <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(party3 <span class="sc">!=</span> <span class="dv">2</span> <span class="sc">|</span> <span class="fu">is.na</span>(party3))</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_noind<span class="sc">$</span>party3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   n    % val%
+[1] Democrat    2644 51.4 51.8
+[2] Independent    0  0.0  0.0
+[3] Republican  2459 47.8 48.2
+NA                38  0.7   NA</code></pre>
+</div>
+</div>
+<p>The <code>filter</code> command works seamlessly with piping. I am telling RStudio to give me a new data object, “anes_noind” (which has a descriptive name for what I am doing) that takes the existing “anes” data object and removes Independents. Think of <code>filter</code> as synonomous with “keep.” I use <code>filter</code> to tell RStudio to “keep” observations under the following conditions. Recall that for the “party3” variable, Independents=2, and I use the “not equal to” comparison operator to remove them, or “not keep” them (see <a href="#tbl-ops" class="quarto-xref">Table&nbsp;<span>3.3</span></a>).</p>
+<p>In addition to removing Independents, I want to preserve the missing data (<code>NA</code>). Therefore, I use the logical operator, <code>|</code> (for “or”), so that I can keep the missing data. <code>is.na(party3)</code> means “missing data for the party3 variable.” <code>is.na</code> is special RStudio syntax to denote <code>NA</code> values in our data. We would <em>not</em> want to type <code>party3 == NA</code> here, as it would remove all observations. If we did not include <code>| is.na(party3)</code>, we would remove those missing data observations for the entire dataset (across all variables), which would transform the dataset in ways we do not want to do. In sum, the <code>filter</code> command is keeping observations for which party3 is not equal to “2” <em>OR</em> for which party3 has missing data. Put another way, it is removing <em>only</em> observations for which party3 is equal to “2.”</p>
+<p>After removing Independents, analysts may then want to recode this revised party3 variable as a dummy variable, taking on values “1” for Republicans and “0” for Democrats. We could also do the reverse, but analysts should simply keep track of which party is 1 and which is 0. In instances like it, researchers may want to create a dummy variable that is specifically called “republican” to signal that 1=Republican and 0=Democrat.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>anes_noind <span class="ot">&lt;-</span> anes_noind <span class="sc">|&gt;</span> </span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">republican =</span> <span class="fu">case_when</span>(</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>    party3 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>    party3 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span> </span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_value_labels</span>(<span class="at">republican =</span> <span class="fu">c</span>(<span class="st">"Democrat"</span><span class="ot">=</span><span class="dv">0</span>, <span class="st">"Republican"</span><span class="ot">=</span><span class="dv">1</span>))</span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_noind<span class="sc">$</span>republican)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  n    % val%
+[0] Democrat   2644 51.4 51.8
+[1] Republican 2459 47.8 48.2
+NA               38  0.7   NA</code></pre>
+</div>
+</div>
+<p>And note that I have created, recoded, and labeled (<code>set_value_labels</code> from the <code>labelled</code> package) this new variable all in one command.</p>
 <p>filter, drop_na</p>
 </section>
 <section id="subsetting-variables" class="level3" data-number="3.4.2">
 <h3 data-number="3.4.2" class="anchored" data-anchor-id="subsetting-variables"><span class="header-section-number">3.4.2</span> Subsetting Variables</h3>
 <p>select</p>
+<p><strong><em>Creating an Analysis Dataset</em></strong></p>
 </section>
 <section id="grouped-and-clustered-data" class="level3" data-number="3.4.3">
 <h3 data-number="3.4.3" class="anchored" data-anchor-id="grouped-and-clustered-data"><span class="header-section-number">3.4.3</span> Grouped and Clustered Data</h3>
