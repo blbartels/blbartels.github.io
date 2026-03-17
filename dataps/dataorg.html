@@ -864,7 +864,7 @@ NA   38  0.7   NA</code></pre>
 <div id="tbl-ops" class="table-striped table-hover table-bordered table-sm column quarto-float quarto-figure quarto-figure-center anchored" style="width:70%;">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ops-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.3: <strong>Data Formats, R Packages, and R Commands for Importing Datasets</strong>
+Table&nbsp;3.3: <strong>Comparison and Logical Operators in RStudio</strong>
 </figcaption>
 <div aria-describedby="tbl-ops-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped table-hover table-bordered table-sm column small caption-top table">
@@ -1260,7 +1260,7 @@ NA                 556 10.1   NA</code></pre>
 <h3 data-number="3.4.1" class="anchored" data-anchor-id="subsetting-observations"><span class="header-section-number">3.4.1</span> Subsetting Observations</h3>
 <p>On some occasions, researchers will have their “full” dataset (either a stock dataset or their own) but may want to work with a reduced set of observations for some particular analysis. They will want to filter on some variable or drop certain observations for a particular reason. Recall my recommendation on recoding in <a href="#sec-gen" class="quarto-xref"><span>Section 3.3</span></a>: When recoding a variable, never overwrite the original variable. <em>Leave all original variables in the dataset as is</em>. Instead, create a <em>new</em> variable, with a descriptive variable name, and recode that new variable.</p>
 <p>The same recommendation goes for filtering out observations. Whenever subsetting observations (i.e., removing some observations), <em>generate a new dataset object</em>. Since RStudio is flexible with the use multiple data objects in a given session, this move comes at no cost whatsoever.</p>
-<p>One example where this subsetting might be practical is if we were working with the ANES dataset, but we wanted to do an analysis comparing Democrats and Republicans only without considering Independents (for the time being). We could create a new data object that removes Independents using the <code>filter</code> command from the <code>dplyer</code> package within the <code>tidyverse</code>:</p>
+<p>One example where this subsetting might be practical is if we were working with the ANES dataset, but we wanted to do an analysis comparing Democrats and Republicans only without considering Independents (for the time being). We could create a new data object that removes Independents using the <code>filter</code> command from the <code>dplyr</code> package within the <code>tidyverse</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>anes_noind <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(party3 <span class="sc">!=</span> <span class="dv">2</span> <span class="sc">|</span> <span class="fu">is.na</span>(party3))</span>
@@ -1274,9 +1274,9 @@ NA                 556 10.1   NA</code></pre>
 NA                38  0.7   NA</code></pre>
 </div>
 </div>
-<p>The <code>filter</code> command works seamlessly with piping. I am telling RStudio to give me a new data object, “anes_noind” (which has a descriptive name for what I am doing) that takes the existing “anes” data object and removes Independents. Think of <code>filter</code> as synonomous with “keep.” I use <code>filter</code> to tell RStudio to “keep” observations under the following conditions. Recall that for the “party3” variable, Independents=2, and I use the “not equal to” comparison operator to remove them, or “not keep” them (see <a href="#tbl-ops" class="quarto-xref">Table&nbsp;<span>3.3</span></a>).</p>
-<p>In addition to removing Independents, I want to preserve the missing data (<code>NA</code>). Therefore, I use the logical operator, <code>|</code> (for “or”), so that I can keep the missing data. <code>is.na(party3)</code> means “missing data for the party3 variable.” <code>is.na</code> is special RStudio syntax to denote <code>NA</code> values in our data. We would <em>not</em> want to type <code>party3 == NA</code> here, as it would remove all observations. If we did not include <code>| is.na(party3)</code>, we would remove those missing data observations for the entire dataset (across all variables), which would transform the dataset in ways we do not want to do. In sum, the <code>filter</code> command is keeping observations for which party3 is not equal to “2” <em>OR</em> for which party3 has missing data. Put another way, it is removing <em>only</em> observations for which party3 is equal to “2.”</p>
-<p>After removing Independents, analysts may then want to recode this revised party3 variable as a dummy variable, taking on values “1” for Republicans and “0” for Democrats. We could also do the reverse, but analysts should simply keep track of which party is 1 and which is 0. In instances like it, researchers may want to create a dummy variable that is specifically called “republican” to signal that 1=Republican and 0=Democrat.</p>
+<p>The <code>filter</code> command works seamlessly with piping. The command above tells RStudio to give me a new data object, “anes_noind” (which has a descriptive name for what I am doing), that takes the existing “anes” data object and removes Independents. Think of <code>filter</code> as synonomous with “keep.” I use <code>filter</code> to tell RStudio to “keep” observations under the following conditions. Recall that for the “party3” variable, Independents=2, and I use the “not equal to” comparison operator to remove them, or “not keep” them (see <a href="#tbl-ops" class="quarto-xref">Table&nbsp;<span>3.3</span></a>).</p>
+<p>In addition to removing Independents, I want to preserve the missing data (<code>NA</code>). Therefore, I use the logical operator, <code>|</code> (for “or”), so that I can keep the missing data. <code>is.na(party3)</code> means “missing data for the party3 variable.” <code>is.na</code> is special RStudio syntax to denote <code>NA</code> values for a variable in our data. We would <em>not</em> want to type <code>party3 == NA</code> here, as it would remove all observations. If we did not include <code>| is.na(party3)</code>, we would remove those missing data observations for the entire dataset (across all variables), which would transform the dataset in ways we do not want to do. In sum, the <code>filter</code> command is keeping observations if party3 is not equal to “2” <em>OR</em> if party3 has missing data. Put another way, it is removing <em>only</em> observations for which party3 is equal to “2.”</p>
+<p>After removing Independents, analysts may then want to recode this revised party3 variable as a dummy variable, taking on values “1” for Republicans and “0” for Democrats. We could also do the reverse, but analysts should simply keep track of which party is 1 and which is 0. In instances like this one, researchers may want to create a dummy variable that is specifically called “republican” to signal that 1=Republican and 0=Democrat.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>anes_noind <span class="ot">&lt;-</span> anes_noind <span class="sc">|&gt;</span> </span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">republican =</span> <span class="fu">case_when</span>(</span>
@@ -1294,11 +1294,121 @@ NA               38  0.7   NA</code></pre>
 </div>
 </div>
 <p>And note that I have created, recoded, and labeled (<code>set_value_labels</code> from the <code>labelled</code> package) this new variable all in one command.</p>
-<p>filter, drop_na</p>
 </section>
 <section id="subsetting-variables" class="level3" data-number="3.4.2">
 <h3 data-number="3.4.2" class="anchored" data-anchor-id="subsetting-variables"><span class="header-section-number">3.4.2</span> Subsetting Variables</h3>
-<p>select</p>
+<p>Researchers sometimes have reason to create a new dataset with a reduced number of variables. The ANES and other stock datasets contain many variables. Sometimes, researchers want to be able to view the data but just for a select number of variables. Consider our new and recoded variables from the ANES data. We may want to view those variables to make sure they are are coded correctly. Here, we can use the <code>select</code> command from <code>dplyr</code> via the <code>tidyverse</code>. Once again, any time we’re subsetting on variables, we should always create a new data object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>anes_red <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(partyid, educ, income, partyid01, party3, educ01, income01) <span class="sc">|&gt;</span> </span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 5,521
+Columns: 7
+$ partyid   &lt;dbl+lbl&gt; 7, 4, 1, 6, 5, 3, 4, 6, 3, 1, 2, 5, 3, 7, 3, 1, 2, 7, 3,…
+$ educ      &lt;dbl+lbl&gt; 4, 3, 3, 3, 5, 3, 3, 3, 2, 2, 2, 2, 5, 3, 4, 4, 4, 4, 5,…
+$ income    &lt;dbl+lbl&gt; 27, 26, 24, 12, 15, 13, 12,  3,  1, 17, 25,  1, 28, 12, …
+$ partyid01 &lt;dbl&gt; 1.0000000, 0.5000000, 0.0000000, 0.8333333, 0.6666667, 0.333…
+$ party3    &lt;dbl+lbl&gt; 3, 2, 1, 3, 3, 1, 2, 3, 1, 1, 1, 3, 1, 3, 1, 1, 1, 3, 1,…
+$ educ01    &lt;dbl&gt; 0.75, 0.50, 0.50, 0.50, 1.00, 0.50, 0.50, 0.50, 0.25, 0.25, …
+$ income01  &lt;dbl&gt; 0.96296296, 0.92592593, 0.85185185, 0.40740741, 0.51851852, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>anes_red <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="at">n=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 7
+   partyid                    educ    income   partyid01 party3  educ01 income01
+   &lt;dbl+lbl&gt;                  &lt;dbl+l&gt; &lt;dbl+lb&gt;     &lt;dbl&gt; &lt;dbl+l&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+ 1 7 [7. Strong Republican]   4 [4. … 27 [27.…     1     3 [Rep…   0.75   0.963 
+ 2 4 [4. Independent]         3 [3. … 26 [26.…     0.5   2 [Ind…   0.5    0.926 
+ 3 1 [1. Strong Democrat]     3 [3. … 24 [24.…     0     1 [Dem…   0.5    0.852 
+ 4 6 [6. Not very strong Rep… 3 [3. … 12 [12.…     0.833 3 [Rep…   0.5    0.407 
+ 5 5 [5. Independent-Republi… 5 [5. … 15 [15.…     0.667 3 [Rep…   1      0.519 
+ 6 3 [3. Independent-Democra… 3 [3. … 13 [13.…     0.333 1 [Dem…   0.5    0.444 
+ 7 4 [4. Independent]         3 [3. … 12 [12.…     0.5   2 [Ind…   0.5    0.407 
+ 8 6 [6. Not very strong Rep… 3 [3. …  3 [3. …     0.833 3 [Rep…   0.5    0.0741
+ 9 3 [3. Independent-Democra… 2 [2. …  1 [1. …     0.333 1 [Dem…   0.25   0     
+10 1 [1. Strong Democrat]     2 [2. … 17 [17.…     0     1 [Dem…   0.25   0.593 
+11 2 [2. Not very strong Dem… 2 [2. … 25 [25.…     0.167 1 [Dem…   0.25   0.889 
+12 5 [5. Independent-Republi… 2 [2. …  1 [1. …     0.667 3 [Rep…   0.25   0     
+13 3 [3. Independent-Democra… 5 [5. … 28 [28.…     0.333 1 [Dem…   1      1     
+14 7 [7. Strong Republican]   3 [3. … 12 [12.…     1     3 [Rep…   0.5    0.407 
+15 3 [3. Independent-Democra… 4 [4. … 28 [28.…     0.333 1 [Dem…   0.75   1     
+16 1 [1. Strong Democrat]     4 [4. … 27 [27.…     0     1 [Dem…   0.75   0.963 
+17 2 [2. Not very strong Dem… 4 [4. … 20 [20.…     0.167 1 [Dem…   0.75   0.704 
+18 7 [7. Strong Republican]   4 [4. … 26 [26.…     1     3 [Rep…   0.75   0.926 
+19 3 [3. Independent-Democra… 5 [5. … 26 [26.…     0.333 1 [Dem…   1      0.926 
+20 1 [1. Strong Democrat]     4 [4. … 15 [15.…     0     1 [Dem…   0.75   0.519 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_red<span class="sc">$</span>party3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   n    % val%
+[1] Democrat    2644 47.9 48.2
+[2] Independent  380  6.9  6.9
+[3] Republican  2459 44.5 44.8
+NA                38  0.7   NA</code></pre>
+</div>
+</div>
+<p>Note that I call this new data object “anes_red” for “reduced.” I use <code>glimpse</code> and <code>head</code> to give a brief preview of this reduced dataset. I also include a frequency distribution of the party3 variable to show that this procedure preserves missing data. <code>select</code> only subsets variables but does nothing to transform anything about the observations.</p>
+<p>On the other hand, there may be some occasions where researchers will want to drop all missing data. A researcher’s “analysis data” is the “usable” data for a particular analysis, like a multiple linear regression analysis where each variable in the analysis must have no missing data. This usable data contains no missing data whatsoever for any one variable. That means if an observation has missing data for education but has non-missing data for income and party identification, that observation is not usable. Sometimes researchers will post their analysis data with usable observations in a regression analysis on a replication archive upon publication.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>anes_analysis <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(partyid, educ, income, partyid01, party3, educ01, income01) <span class="sc">|&gt;</span> </span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_analysis<span class="sc">$</span>educ01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        n    % val%
+0     243  4.9  4.9
+0.25  842 17.1 17.1
+0.5  1569 31.9 31.9
+0.75 1257 25.6 25.6
+1    1004 20.4 20.4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_analysis<span class="sc">$</span>partyid01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     n    % val%
+0                 1204 24.5 24.5
+0.166666666666667  566 11.5 11.5
+0.333333333333333  654 13.3 13.3
+0.5                326  6.6  6.6
+0.666666666666667  619 12.6 12.6
+0.833333333333333  519 10.6 10.6
+1                 1027 20.9 20.9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_analysis<span class="sc">$</span>income01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     n   % val%
+0                  394 8.0  8.0
+0.037037037037037   51 1.0  1.0
+0.0740740740740741 106 2.2  2.2
+0.111111111111111   35 0.7  0.7
+0.148148148148148   75 1.5  1.5
+0.185185185185185   30 0.6  0.6
+0.222222222222222  104 2.1  2.1
+0.259259259259259   44 0.9  0.9
+0.296296296296296   92 1.9  1.9
+0.333333333333333   29 0.6  0.6
+0.37037037037037   171 3.5  3.5
+0.407407407407407  147 3.0  3.0
+0.444444444444444  195 4.0  4.0
+0.481481481481481  123 2.5  2.5
+0.518518518518518  229 4.7  4.7
+0.555555555555556   99 2.0  2.0
+0.592592592592593  198 4.0  4.0
+0.62962962962963    98 2.0  2.0
+0.666666666666667  155 3.2  3.2
+0.703703703703704  141 2.9  2.9
+0.740740740740741  261 5.3  5.3
+0.777777777777778  194 3.9  3.9
+0.814814814814815  329 6.7  6.7
+0.851851851851852  267 5.4  5.4
+0.888888888888889  259 5.3  5.3
+0.925925925925926  297 6.0  6.0
+0.962962962962963  414 8.4  8.4
+1                  378 7.7  7.7</code></pre>
+</div>
+</div>
+<p>First, I append “analysis” at the end of the new data name for “analysis dataset.” The <code>drop_na()</code> command (which comes from the <code>tidyr</code> package in <code>tidyverse</code>) drops missing data across all of the variables in this transformed dataset. Note that the above command is thus subsetting both variables (via <code>select</code>) and observations (via <code>drop_na</code>); note that <code>drop_na</code> works like <code>filter</code> in that it subsets observations but only focuses on missing data.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <code>drop_na</code> looks across the 7 specified variables, and if at least one of the variables has an <code>NA</code> (missing data), that observation is removed. One important note is that this process is not always necessary because most commands in RStudio automatically drop missing data. I will highlight data analysis contexts where removing missing data is necessary to get the right kind of output one wants.</p>
 <p><strong><em>Creating an Analysis Dataset</em></strong></p>
 </section>
 <section id="grouped-and-clustered-data" class="level3" data-number="3.4.3">
@@ -1324,6 +1434,7 @@ NA               38  0.7   NA</code></pre>
 <ol>
 <li id="fn1"><p>Users often run into errors from RStudio with these kinds of commands that include lots of parentheses. One quick trick is to remember for the number of opening parentheses should equal the number of closing parentheses. Also, RStudio will highlight the opening parenthesis associated with your closing parenthesis when your cursor is next to, e.g., closing one.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>A baseline interpretation of a regression coefficient centers on communicating how much the dependent variable, <span class="math inline">\(y\)</span>, changes given a 1-unit increase in the independent variable, <span class="math inline">\(x\)</span>. When researchers recode their variables to range from 0 to 1, a 1-unit increase represents an change in <span class="math inline">\(x\)</span> from the minimum to maximum value.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>For a given variable, users could also use <code>filter</code> combined with <code>!is.na(x)</code>, but <code>drop_na</code> is a bit more streamlined and intuitive.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
