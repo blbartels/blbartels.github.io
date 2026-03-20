@@ -719,7 +719,7 @@ Table&nbsp;3.2: <strong>Associating Numeric Coding Values with Verbal Values Lab
 [7] 7. Strong Republican          1166 21.1 21.1</code></pre>
 </div>
 </div>
-<p>In brackets on the left side are the numeric values of the variable followed by verbal value labels that come with the stock dataset (again, someone had to code those and thankfully it wasn’t us!). One can see that the “core” party values range from strong Democrat (=1) to strong Republican (=7). ANES also manually codes values that we would normally categorize as “missing data,” i.e., values of the variable that are not amenable to quantitative analysis because they deviate from the core variable values. Those values are “Refused” (-9), “Don’t know” (-8), and “Error” (-4). I will discuss how to deal with and code missing data in <a href="#sec-org" class="quarto-xref"><span>Chapter 3</span></a>.</p>
+<p>In brackets on the left side are the numeric values of the variable followed by verbal value labels that come with the stock dataset (again, someone had to code those and thankfully it wasn’t us!). One can see that the “core” party values range from strong Democrat (=1) to strong Republican (=7). ANES also manually codes values that we would normally categorize as “missing data,” i.e., values of the variable that are not amenable to quantitative analysis because they deviate from the core variable values. Those values are “Refused” (-9), “Don’t know” (-8), and “Error” (-4). I will discuss how to deal with and code missing data in <a href="#sec-gen" class="quarto-xref"><span>Section 3.3</span></a>.</p>
 </section>
 <section id="sec-man" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="sec-man"><span class="header-section-number">3.2.2</span> Manually Adding Value Labels to Variables</h3>
@@ -733,8 +733,8 @@ Table&nbsp;3.2: <strong>Associating Numeric Coding Values with Verbal Values Lab
 <pre><code>[1] "haven_labelled" "vctrs_vctr"     "double"        </code></pre>
 </div>
 </div>
-<p>This first command “updates” the “states” data object with this new information. Note also that I can do a “hard return” after the …<code>states$Southern_State</code> in the first line in this command and RStudio recognizes it as one command. Now when I issue the <code>class</code> command, the “Southern_State” variable is now “haven-labelled” — it contains a verbal value label for each numeric value of the variable.</p>
-<p>Now when I do a <code>freq</code> command (from <code>questionr</code>), I get the following output that includes these newly-added value labels:</p>
+<p>This first command “updates” the “states” data object with this new information. Note also that I can do a “hard return” after the …<code>states$Southern_State</code> in the first line in this command and RStudio recognizes it as one command. Now when I issue the <code>class</code> command, the “Southern_State” variable is “haven-labelled” — it contains a verbal value label for each numeric value of the variable.</p>
+<p>When I do a <code>freq</code> command (from <code>questionr</code>), I get the following output that includes these newly-added value labels:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(states<span class="sc">$</span>Southern_State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -749,7 +749,7 @@ Table&nbsp;3.2: <strong>Associating Numeric Coding Values with Verbal Values Lab
 <section id="sec-gen" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="sec-gen"><span class="header-section-number">3.3</span> Generating and Recoding New Variables</h2>
 <p>Once researchers import data and understand how their variables are stored and labelled, they need to generate and recode new variables that they will subject to quantitative analysis. I will review procedures and strategies for coding variables and also introduce an extremely useful command for executing these steps called <code>mutate</code>, which comes from the widely-used <code>dplyr</code> package within the <code>tidyverse</code>.</p>
-<p>I will stick with the party identification variable from ANES to introduce the <code>mutate</code> command. After one has imported a dataset (whether it be a stock dataset or a dataset created by the researcher), researchers should never alter or recode the original variables in the dataset. Keep the original variables as is. For variables one wants to recode, <em>generate a new variable and make changes to that variable</em>. For the ANES data in particular, recall that the variable names make no sense in terms of indicating what the variable means. Instead of V241227x, we should create a new variable that is more desriptive of the actual variable. I like to keep variable names short, so something “partyid” is sufficient — it is short and descriptive.</p>
+<p>I will stick with the party identification variable from ANES to introduce the <code>mutate</code> command. After one has imported a dataset (whether it be a stock dataset or a dataset created by the researcher), researchers should never alter or recode the original variables in the dataset. Keep the original variables as is. For variables one wants to recode, <em>generate a new variable and make changes to that variable</em>. For the ANES data in particular, recall that the variable names make no sense in terms of indicating what the variable means. Instead of V241227x, we should create a new variable that is more desriptive of the actual variable. I like to keep variable names short, so something like “partyid” is sufficient — it is short and descriptive.</p>
 <p>The following command will generate a new variable in the ANES dataset:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> <span class="fu">mutate</span>(anes, <span class="at">partyid=</span>V241227x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -783,7 +783,7 @@ Table&nbsp;3.2: <strong>Associating Numeric Coding Values with Verbal Values Lab
 </div>
 <p>I will explain the syntax first. First, the anes data already includes the partyid variable that is a straight duplicate of V241227x. Using the assignment operator, I am telling RStudio to update this partyid variable within the anes dataset. The basic logic of <code>if_else</code> is to enter 3 pieces of information regarding partyid:</p>
 <blockquote class="blockquote">
-<p>if_else(<em>if</em> this condition is true, <em>then</em> code as this, else code as that)</p>
+<p>if_else(<em>if</em> this condition is true, <em>then</em> code as this, <em>else</em> code as that)</p>
 </blockquote>
 <p>The commmand tells RStudio, if partyid is less than zero (using the <code>&lt;</code> operator), then code those observations as missing data (<code>NA</code>), otherwise code them as they were coded before (the partyid values that already exist).</p>
 <p>Now when I generate a frequency distribution, the 38 observations that were either -9, -8, or -4 are recoded as <code>NA</code>.</p>
@@ -805,7 +805,7 @@ NA                                  38  0.7   NA</code></pre>
 </div>
 </div>
 <p>Note that the numeric values and value labels for -9, -8, and -4 remain preserved but there are now 0 observations for each. The <code>freq</code> output also makes an adjustment now that it officially recognizes missing data. The “n” column reports how many survey respondents/individuals are in each party category (e.g., 1,314 respondents are strong Democrats). The “%” column reports the percentage of all respondents, <em>including</em> missing data (<code>NA</code>) observations, that fall within each category (e.g., 23.8% of individuals in the survey are strong Democrats). In the final column, “val%” stands for “valid percentage” of respondents in each category, which <em>omits</em> missing data. Of the respondents who are <em>not</em> coded as missing data on this variable, 24% are strong Democrats.</p>
-<p>Finally, the command below shows how a user could both generate the new variable and recode in one single command. In other words, instead of issuing two commands, like above, one can do achieve this same result in one command:</p>
+<p>Finally, the command below shows how a user could both generate the new variable and recode in one single command. In other words, instead of issuing two commands, like above, one can achieve this same result in one command:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> <span class="fu">mutate</span>(anes, <span class="at">partyid =</span> <span class="fu">if_else</span>(V241227x<span class="sc">&lt;</span><span class="dv">0</span>, <span class="cn">NA</span>, V241227x))</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -827,7 +827,7 @@ NA                                  38  0.7   NA</code></pre>
 </div>
 <section id="introducing-the-pipe-operator-and" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="introducing-the-pipe-operator-and"><span class="header-section-number">3.3.1</span> Introducing the Pipe Operator (<code>%&gt;%</code> and <code>|&gt;</code>)</h3>
-<p>At this point, I will deviate somewhat from the core “generating and recoding” discussion to introduce an extremely useful operator at the heart of the <code>tidyverse</code>: The pipe operator. The pipe operator operates as a linking mechanism for different types of commands. In many data science and RStudio textbooks that emphasize the <code>tidyverse</code>, the pipe operator is omnipresent (the same goes for my own use of RStudio). The original pipe operator, <code>%&gt;%</code> came from the <code>magrittr</code> package within <code>tidyverse.</code> However, “base R” has now added an even more universal pipe operator called the “native pipe,” <code>|&gt;</code>, which I will use throughout this book. Just know that <code>%&gt;%</code> and <code>|&gt;</code> serve the same function.</p>
+<p>At this point, I will deviate somewhat from the core “generating and recoding” discussion to introduce an extremely useful operator at the heart of the <code>tidyverse</code>: The pipe operator. The pipe operator works as a linking mechanism for different types of commands. In many data science and RStudio textbooks that emphasize the <code>tidyverse</code>, the pipe operator is omnipresent (the same goes for my own use of RStudio). The original pipe operator, <code>%&gt;%</code> came from the <code>magrittr</code> package within <code>tidyverse.</code> However, “base R” has now added an even more universal pipe operator called the “native pipe,” <code>|&gt;</code>, which I will use throughout this book. Just know that <code>%&gt;%</code> and <code>|&gt;</code> serve the same function.</p>
 <p>Integration with the <code>mutate</code> command is a good, simple example of the pipe’s utility. Instead of issuing this command for recoding partyid:</p>
 <blockquote class="blockquote">
 <p><code>anes &lt;- mutate(anes, partyid = if_else(V241227x&lt;0, NA, V241227x))</code></p>
@@ -837,7 +837,7 @@ NA                                  38  0.7   NA</code></pre>
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">partyid =</span> <span class="fu">if_else</span>(V241227x<span class="sc">&lt;</span><span class="dv">0</span>, <span class="cn">NA</span>, V241227x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Both commands accomplish the exact same result. Looking at piped command, the assignment operator signals that I want RStudio to update the anes dataset. Recall that the pipe operator joins two commands together, which readers will see in more detail in examples throughout this chapter and the rest of the book. But whenever you see the pipe, the “stuff” before the pipe signals, “<em>First</em>, I’m going to do this thing.” The pipe signals, “<em>Then</em> I’m going to do this other thing.” So in this command, I am updating the anes dataset with the assignment operator. <em>First</em>, take the existing anes data. The <code>|&gt;</code> implies, <em>Then</em> generate and recode the partyid variable as I have detailed in this <code>mutate</code> command. Note that this command above, despite it being on two lines, is one command. Multiple commands (e.g., 3 or 4) joined together by <code>|&gt;</code> are part of one unified command.</p>
+<p>Both commands accomplish the exact same result. Looking at the piped command, the assignment operator signals that I want RStudio to update the anes dataset. Recall that the pipe operator joins two commands together, which readers will see in more detail in examples throughout this chapter and the rest of the book. But whenever you see the pipe, the “stuff” before the pipe signals, “<em>First</em>, I’m going to do this thing.” The pipe signals, “<em>Then</em> I’m going to do this other thing.” So in this command, I am updating the anes dataset with the assignment operator. <em>First</em>, take the existing anes data. The <code>|&gt;</code> implies, <em>Then</em> generate and recode the partyid variable as I have detailed in this <code>mutate</code> command. Note that this command above, despite it being on two lines, is one command. Multiple commands (e.g., 3 or 4) joined together by <code>|&gt;</code> are part of one unified command.</p>
 <p>Note the one additional contrast between the unipiped and piped commands: The <code>mutate</code> syntax in the unpiped command follows: <code>mutate(dataset, variable = ....)</code>. In the piped command, the dataset name (anes) gets pulled out of the <code>mutate</code> parentheses and goes immediately before <code>|&gt;</code>.</p>
 <p>Finally, users can type a keystroke — shift-command-M for Macs, shift-ctrl-M for PCs — to issue the pipe command. By default, when you type this keystroke, it will display <code>%&gt;%</code>, the <code>tidyverse</code> pipe. To change this to the “native” or base R pipe, <code>|&gt;</code>, click on Tools –&gt; Global Options. Then click Code on the left pane. Check the box next to “Use native pipe operator, |&gt;.”</p>
 </section>
@@ -932,7 +932,7 @@ Table&nbsp;3.3: <strong>Comparison and Logical Operators in RStudio</strong>
 </figure>
 </div>
 </center>
-<p>In this particular situation of generating and recoding a new 3-category variable from a 7-category variable, I actually prefer <code>case_when</code>, which is a bit more intuitive:</p>
+<p>In this particular situation of generating and recoding a new 3-category variable from a 7-category variable, I actually prefer <code>case_when</code>, which comes from <code>dyplr</code> via the <code>tidyverse</code> and is a bit more intuitive for contexts like these:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">party3 =</span> <span class="fu">case_when</span>(</span>
@@ -1294,14 +1294,26 @@ NA               38  0.7   NA</code></pre>
 </div>
 </div>
 <p>And note that I have created, recoded, and labeled (<code>set_value_labels</code> from the <code>labelled</code> package) this new variable all in one command.</p>
+<p>Another useful example where I may want to subset observations comes from the gapminder dataset. Recall that this is TSCS data: tracking countries over select years. Let’s say I wanted to examine a cross-sectional dataset of these 142 countries in just the most recent year in the data, which is 2007? I could issue the following command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>gm_2007 <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> </span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>)</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(gm_2007<span class="sc">$</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       n   % val%
+2007 142 100  100</code></pre>
+</div>
+</div>
+<p>From the frequency distributions, we can see that the dataset contains just 142 observations (1 per country) for the year 2007.</p>
 </section>
 <section id="subsetting-variables" class="level3" data-number="3.4.2">
 <h3 data-number="3.4.2" class="anchored" data-anchor-id="subsetting-variables"><span class="header-section-number">3.4.2</span> Subsetting Variables</h3>
 <p>Researchers sometimes have reason to create a new dataset with a reduced number of variables. The ANES and other stock datasets contain many variables. Sometimes, researchers want to be able to view the data but just for a select number of variables. Consider our new and recoded variables from the ANES data. We may want to view those variables to make sure they are are coded correctly. Here, we can use the <code>select</code> command from <code>dplyr</code> via the <code>tidyverse</code>. Once again, any time we’re subsetting on variables, we should always create a new data object.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>anes_red <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(partyid, educ, income, partyid01, party3, educ01, income01) <span class="sc">|&gt;</span> </span>
-<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>anes_red <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(partyid, educ, income, partyid01, party3, educ01, income01) <span class="sc">|&gt;</span> </span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 5,521
 Columns: 7
@@ -1313,7 +1325,7 @@ $ party3    &lt;dbl+lbl&gt; 3, 2, 1, 3, 3, 1, 2, 3, 1, 1, 1, 3, 1, 3, 1, 1, 1, 3
 $ educ01    &lt;dbl&gt; 0.75, 0.50, 0.50, 0.50, 1.00, 0.50, 0.50, 0.50, 0.25, 0.25, …
 $ income01  &lt;dbl&gt; 0.96296296, 0.92592593, 0.85185185, 0.40740741, 0.51851852, …</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>anes_red <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="at">n=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>anes_red <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="at">n=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 20 × 7
    partyid                    educ    income   partyid01 party3  educ01 income01
@@ -1339,7 +1351,7 @@ $ income01  &lt;dbl&gt; 0.96296296, 0.92592593, 0.85185185, 0.40740741, 0.518518
 19 3 [3. Independent-Democra… 5 [5. … 26 [26.…     0.333 1 [Dem…   1      0.926 
 20 1 [1. Strong Democrat]     4 [4. … 15 [15.…     0     1 [Dem…   0.75   0.519 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_red<span class="sc">$</span>party3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_red<span class="sc">$</span>party3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   n    % val%
 [1] Democrat    2644 47.9 48.2
@@ -1351,11 +1363,11 @@ NA                38  0.7   NA</code></pre>
 <p>Note that I call this new data object “anes_red” for “reduced.” I use <code>glimpse</code> and <code>head</code> to give a brief preview of this reduced dataset. I also include a frequency distribution of the party3 variable to show that this procedure preserves missing data. <code>select</code> only subsets variables but does nothing to transform anything about the observations.</p>
 <p>On the other hand, there may be some occasions where researchers will want to drop all missing data. A researcher’s “analysis data” is the “usable” data for a particular analysis, like a multiple linear regression analysis where each variable in the analysis must have no missing data. This usable data contains no missing data whatsoever for any one variable. That means if an observation has missing data for education but has non-missing data for income and party identification, that observation is not usable. Sometimes researchers will post their analysis data with usable observations in a regression analysis on a replication archive upon publication.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>anes_analysis <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(partyid, educ, income, partyid01, party3, educ01, income01) <span class="sc">|&gt;</span> </span>
-<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
-<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_analysis<span class="sc">$</span>educ01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>anes_analysis <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(partyid, educ, income, partyid01, party3, educ01, income01) <span class="sc">|&gt;</span> </span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_analysis<span class="sc">$</span>educ01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        n    % val%
 0     243  4.9  4.9
@@ -1364,7 +1376,7 @@ NA                38  0.7   NA</code></pre>
 0.75 1257 25.6 25.6
 1    1004 20.4 20.4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_analysis<span class="sc">$</span>partyid01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_analysis<span class="sc">$</span>partyid01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     n    % val%
 0                 1204 24.5 24.5
@@ -1375,7 +1387,7 @@ NA                38  0.7   NA</code></pre>
 0.833333333333333  519 10.6 10.6
 1                 1027 20.9 20.9</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_analysis<span class="sc">$</span>income01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_analysis<span class="sc">$</span>income01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     n   % val%
 0                  394 8.0  8.0
@@ -1408,8 +1420,8 @@ NA                38  0.7   NA</code></pre>
 1                  378 7.7  7.7</code></pre>
 </div>
 </div>
-<p>First, I append “analysis” at the end of the new data name for “analysis dataset.” The <code>drop_na()</code> command (which comes from the <code>tidyr</code> package in <code>tidyverse</code>) drops missing data across all of the variables in this transformed dataset. Note that the above command is thus subsetting both variables (via <code>select</code>) and observations (via <code>drop_na</code>); note that <code>drop_na</code> works like <code>filter</code> in that it subsets observations but only focuses on missing data.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <code>drop_na</code> looks across the 7 specified variables, and if at least one of the variables has an <code>NA</code> (missing data), that observation is removed. One important note is that this process is not always necessary because most commands in RStudio automatically drop missing data. I will highlight data analysis contexts where removing missing data is necessary to get the right kind of output one wants.</p>
-<p><strong><em>Creating an Analysis Dataset</em></strong></p>
+<p>First, I append “analysis” at the end of the new data name for “analysis dataset.” The <code>drop_na()</code> command (which comes from the <code>tidyr</code> package in <code>tidyverse</code>) drops missing data across all of the variables in this transformed dataset. Note that the above command is thus subsetting both variables (via <code>select</code>) and observations (via <code>drop_na</code>); note that <code>drop_na</code> works like <code>filter</code> in that it subsets observations but only focuses on missing data.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <code>drop_na</code> looks across the 7 specified variables, and if at least one of the variables has an <code>NA</code> (missing data), that observation is removed. Note in the variable frequency distributions that <code>NA</code> no longer appears at the end because we have removed it.</p>
+<p>One important note is that this process is not always necessary because most commands in RStudio automatically drop missing data. And moreover, we would <em>not</em> want to issue this command if we were, e.g., conducting univariate analyses of each variable one at a time. The above command would eliminate more observations that we would want it to. I will highlight data analysis contexts where removing missing data is necessary to get the right kind of output one wants.</p>
 </section>
 <section id="grouped-and-clustered-data" class="level3" data-number="3.4.3">
 <h3 data-number="3.4.3" class="anchored" data-anchor-id="grouped-and-clustered-data"><span class="header-section-number">3.4.3</span> Grouped and Clustered Data</h3>
