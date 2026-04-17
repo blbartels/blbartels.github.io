@@ -629,7 +629,7 @@ Figure&nbsp;3.4: <strong>Screen Shot After Importing “states.csv” from the W
 <blockquote class="blockquote">
 <p>“How much of the time do you think you can trust the government in Washington to do what is right?” <em>Always, Just about always, Some of the time, Hardly ever, Never</em></p>
 </blockquote>
-<p>Thus, I may want to associate each numeric value with these response options like what is displayed in <a href="#tbl-values" class="quarto-xref">Table&nbsp;<span>3.2</span></a>. Value labels are useful both for one’s own purposes (to remember which numeric value means what) and for when one starts analyzing data and reporting results in graphs and tables.</p>
+<p>Thus, I may want to associate each numeric value with these response options like what is displayed in <a href="#tbl-values" class="quarto-xref">Table&nbsp;<span>3.4</span></a>. Value labels are useful both for one’s own purposes (to remember which numeric value means what) and for when one starts analyzing data and reporting results in graphs and tables.</p>
 <center>
 <div id="tbl-values" class="table-striped table-hover table-bordered table-sm column quarto-float quarto-figure quarto-figure-center anchored" style="width:60%;">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1425,12 +1425,455 @@ NA                38  0.7   NA</code></pre>
 </section>
 <section id="grouped-and-clustered-data" class="level3" data-number="3.4.3">
 <h3 data-number="3.4.3" class="anchored" data-anchor-id="grouped-and-clustered-data"><span class="header-section-number">3.4.3</span> Grouped and Clustered Data</h3>
-<p>The first</p>
-<ul>
-<li>group_by, summarize, arrange</li>
-<li>Other coding conventions</li>
-<li>Generating numeric variables for country names</li>
-</ul>
+<p>When working with grouped or clustered data discussed in <a href="intro.html#sec-mult" class="quarto-xref"><span>Section 2.2.4</span></a> (e.g., mulitilevel, panel or time-series cross-sectional data), users will often want to generate new variables that can streamline subsequent analyses. The <code>tidyverse</code> contains many useful commands for working with grouped data more generally. Recall that the “gapminder” dataset is a standard panel or time-series cross-sectional (TSCS) dataset, where the groups (or clusters) are countries.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gm, <span class="at">n=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+11 Afghanistan Asia       2002    42.1 25268405      727.
+12 Afghanistan Asia       2007    43.8 31889923      975.
+13 Albania     Europe     1952    55.2  1282697     1601.
+14 Albania     Europe     1957    59.3  1476505     1942.
+15 Albania     Europe     1962    64.8  1728137     2313.
+16 Albania     Europe     1967    66.2  1984060     2760.
+17 Albania     Europe     1972    67.7  2263554     3313.
+18 Albania     Europe     1977    68.9  2509048     3533.
+19 Albania     Europe     1982    70.4  2780097     3631.
+20 Albania     Europe     1987    72    3075321     3739.</code></pre>
+</div>
+</div>
+<p>Each country has multiple data points across time. In this dataset, the temporal unit is years, and the years are spaced out by five years. In other panel/TSCS data, one may have yearly data for a specific time range.</p>
+<p>If you open the dataset and scroll down, you will see that the countries are sorted in alphabetical order. Within each country, as seen with Afghanistan, the data are sorted by year (earliest to latest). This is exactly the format we want for panel/TSCS data. To formalize this sorting, and in the event the data do not come sorted in this way, we can use the <code>arrange</code> command from tidyverse:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> <span class="fu">arrange</span>(country, year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This command first sorts the data by the country variable. Since country is a character variable, <code>arrange</code> will sort this variable alphabetically. When I add a second variable in the <code>arrange</code> command, it will sort on this second variable <em>within</em> each country. That is, within each country, the data will be sorted by year. Since year is numeric, the command will sort for lowest to highest. I always run this command when working with panel and TSCS data because it is the foundation for other subsequent commands we will run for organizing and working with this type of data.</p>
+<p>When I am working with panel/TSCS (and grouped data generally), I like to generate three variables that aid in easily analyzing this type of data: (1) a numeric identification variable for countries; (2) a numeric “counter” variable for each country (e.g., for Afghanistan, “1” for the first year, “2” for the second, etc.); and (3) a “group size” variable for the number of total observations per group (in this case, how many years of data per country).</p>
+<p>First, to generate numeric identification variable, I can execute the following command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">cid=</span><span class="fu">as.numeric</span>(country))</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gm, <span class="at">n=</span><span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 7
+   country     continent  year lifeExp      pop gdpPercap   cid
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.     1
+ 2 Afghanistan Asia       1957    30.3  9240934      821.     1
+ 3 Afghanistan Asia       1962    32.0 10267083      853.     1
+ 4 Afghanistan Asia       1967    34.0 11537966      836.     1
+ 5 Afghanistan Asia       1972    36.1 13079460      740.     1
+ 6 Afghanistan Asia       1977    38.4 14880372      786.     1
+ 7 Afghanistan Asia       1982    39.9 12881816      978.     1
+ 8 Afghanistan Asia       1987    40.8 13867957      852.     1
+ 9 Afghanistan Asia       1992    41.7 16317921      649.     1
+10 Afghanistan Asia       1997    41.8 22227415      635.     1
+11 Afghanistan Asia       2002    42.1 25268405      727.     1
+12 Afghanistan Asia       2007    43.8 31889923      975.     1
+13 Albania     Europe     1952    55.2  1282697     1601.     2
+14 Albania     Europe     1957    59.3  1476505     1942.     2
+15 Albania     Europe     1962    64.8  1728137     2313.     2</code></pre>
+</div>
+</div>
+<p>The “cid” variable now ranges from 1 to K, where K is the total number of countries. How do we know what K is in this data? We can summarize this variable using the “skimr” package (which we will use more extensively throughout this book).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>gm <span class="sc">|&gt;</span> <span class="fu">skim</span>(cid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">gm</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">1704</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 13%">
+<col style="width: 19%">
+<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">cid</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">71.5</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">71.5</td>
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">142</td>
+<td style="text-align: left;">▇▇▇▇▇</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>First, note that <code>skimr</code> is compatible with the <code>tidyverse</code> and also the “native pipe.” The <code>skim</code> command reports descriptive statistics, like mean and various percentiles in the data (e.g., p0, p25, etc.). p0 in the minimum value of the variable, or 1, while p100 is the maximum value of the variable, or 142. So we know there are 142 countries in the dataset. Thus, K=142.</p>
+<p>Next, we can generate the counter and size variables for each country. My own convention for these variables is to call them “cluster count” (a numeric counter variable within each country) and “cluster size” (a numeric variable that represents the total number of observations per country). Here, cluster=country. Note that within each country, cluster count will be a constant. To generate these variables, we use a very powerful command within the <code>tidyverse</code> called <code>group_by</code>, which will do operations for observations within groups or clusters in the data.</p>
+<p>Consider this command, which I will amend below because it contains a critical feature that we want to correct:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> </span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span> </span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ccount =</span> <span class="fu">row_number</span>(), </span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">csize =</span> <span class="fu">n</span>())</span>
+<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-6"><a href="#cb101-6" aria-hidden="true" tabindex="-1"></a>gm <span class="sc">|&gt;</span> <span class="fu">select</span>(country, cid, ccount, csize) <span class="sc">|&gt;</span> </span>
+<span id="cb101-7"><a href="#cb101-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 4
+# Groups:   country [2]
+   country       cid ccount csize
+   &lt;fct&gt;       &lt;dbl&gt;  &lt;int&gt; &lt;int&gt;
+ 1 Afghanistan     1      1    12
+ 2 Afghanistan     1      2    12
+ 3 Afghanistan     1      3    12
+ 4 Afghanistan     1      4    12
+ 5 Afghanistan     1      5    12
+ 6 Afghanistan     1      6    12
+ 7 Afghanistan     1      7    12
+ 8 Afghanistan     1      8    12
+ 9 Afghanistan     1      9    12
+10 Afghanistan     1     10    12
+11 Afghanistan     1     11    12
+12 Afghanistan     1     12    12
+13 Albania         2      1    12
+14 Albania         2      2    12
+15 Albania         2      3    12
+16 Albania         2      4    12
+17 Albania         2      5    12
+18 Albania         2      6    12
+19 Albania         2      7    12
+20 Albania         2      8    12</code></pre>
+</div>
+</div>
+<p>First, note that I use piping here to join <code>group_by</code> and <code>mutate</code>. I am telling RStudio: First group by country, <em>then</em> within each country, generate these variables ccount and csize. Note that <code>row_number()</code> just gives the observation number. So within each country, that is 1, 2, 3, up to the total number of observations per country. And this total number of observations per country is given specifically by the <code>n()</code> function, which the variable csize represents. Note the critical importance of sorting the data first (using <code>arrange</code>), which makes the ccount variable work in conjunction with the order of the years.</p>
+<p>Now let’s discuss the correction that I need to make. When we use <code>group_by</code> to “update” the dataset (à la <code>gm &lt;- gm |&gt;</code>), the clustering feature gets saved to the data object. That means if we run other commands on the “gm” data object, like the <code>skim</code> command, it will give us summary statistics for a particular variable <em>for each of the 142 countries separately</em>. While we may be interested in such reports, we want to make sure we “ungroup” the data to take that feature out of the “gm” data object. Thus, we need to add the <code>ungroup()</code> command at the end:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> </span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span> </span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ccount =</span> <span class="fu">row_number</span>(), </span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">csize =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>One convention I use when I want to summarize a variable by country is to select only observations where ccount equals “1”. Since every country has a 1 for this variable, that will summarize across the 142 countries. Let’s do this for the csize variable to see if there is variation in the number of observations per country:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>gm <span class="sc">|&gt;</span> </span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ccount<span class="sc">==</span><span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">skim</span>(csize)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">filter(gm, ccount == 1)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">142</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 13%">
+<col style="width: 19%">
+<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">csize</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">▁▁▇▁▁</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>First, the output verifies that we are indeed summarizing across the 142 countries (“Number of rows = 142”). The output also shows that the number of observations for country (csize) has a minimum and maximum value of 12, which means it is constant across countries. That means that each country has 12 years of data. In instances like these, panel/TSCS data are said to be “balanced”: Cluster size is the same for all countries.</p>
+<p>We can also use <code>group_by</code> to generate group-level averages of variables, which is common in some analyses of country data. We could adapt the command above to generate the average value of each variable <em>for each country</em> (i.e., “cluster means” or country-level means).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> </span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span> </span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pop_mean =</span> <span class="fu">mean</span>(pop)) <span class="sc">|&gt;</span> </span>
+<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb105-5"><a href="#cb105-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-6"><a href="#cb105-6" aria-hidden="true" tabindex="-1"></a>gm <span class="sc">|&gt;</span> <span class="fu">select</span>(country, ccount, csize, pop, pop_mean) <span class="sc">|&gt;</span> </span>
+<span id="cb105-7"><a href="#cb105-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 5
+   country     ccount csize      pop  pop_mean
+   &lt;fct&gt;        &lt;int&gt; &lt;int&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan      1    12  8425333 15823715.
+ 2 Afghanistan      2    12  9240934 15823715.
+ 3 Afghanistan      3    12 10267083 15823715.
+ 4 Afghanistan      4    12 11537966 15823715.
+ 5 Afghanistan      5    12 13079460 15823715.
+ 6 Afghanistan      6    12 14880372 15823715.
+ 7 Afghanistan      7    12 12881816 15823715.
+ 8 Afghanistan      8    12 13867957 15823715.
+ 9 Afghanistan      9    12 16317921 15823715.
+10 Afghanistan     10    12 22227415 15823715.
+11 Afghanistan     11    12 25268405 15823715.
+12 Afghanistan     12    12 31889923 15823715.
+13 Albania          1    12  1282697  2580249.
+14 Albania          2    12  1476505  2580249.
+15 Albania          3    12  1728137  2580249.
+16 Albania          4    12  1984060  2580249.
+17 Albania          5    12  2263554  2580249.
+18 Albania          6    12  2509048  2580249.
+19 Albania          7    12  2780097  2580249.
+20 Albania          8    12  3075321  2580249.</code></pre>
+</div>
+</div>
+<p>Once again, it is important to “ungroup” the data in cases where we are “updating” the data (<code>gm &lt;- gm |&gt;</code>). Now we have a new variable, pop_mean, that is a constant within each country. It represents the mean population size value for each country. If we wanted to analyze pop_mean, we would want to use <code>filter(ccount==1)</code> to analyze only one observation per country.</p>
+<p>Another way we could generate country-level variables (with country-level means of each variable) is to use <code>group_by</code> in conjunction with <code>summarize</code>. First, users should definitely create a new data object when using <code>summarize</code> because it fundamentally transforms the data. Recall that using <code>mutate</code> in conjunction with <code>group_by</code> keeps the data structure the same (total observations remains 1,704). On the other hand, <code>summarize</code> specifically retains <em>one observation per group</em> (one observation per country in our case here). Moreover, it retains only the grouping variable and the newly transformed variables. Consider this command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>gm_new <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> </span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span> </span>
+<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">pop_mean=</span><span class="fu">mean</span>(pop), </span>
+<span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">life_mean=</span><span class="fu">mean</span>(lifeExp), </span>
+<span id="cb107-5"><a href="#cb107-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">gdp_mean=</span><span class="fu">mean</span>(gdpPercap))</span>
+<span id="cb107-6"><a href="#cb107-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-7"><a href="#cb107-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gm_new, <span class="at">n=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 4
+   country                  pop_mean life_mean gdp_mean
+   &lt;fct&gt;                       &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+ 1 Afghanistan             15823715.      37.5     803.
+ 2 Albania                  2580249.      68.4    3255.
+ 3 Algeria                 19875406.      59.0    4426.
+ 4 Angola                   7309390.      37.9    3607.
+ 5 Argentina               28602240.      69.1    8956.
+ 6 Australia               14649312.      74.7   19981.
+ 7 Austria                  7583298.      73.1   20412.
+ 8 Bahrain                   373913.      65.6   18078.
+ 9 Bangladesh              90755395.      49.8     818.
+10 Belgium                  9725119.      73.6   19901.
+11 Benin                    4017497.      48.8    1155.
+12 Bolivia                  5610395.      52.5    2961.
+13 Bosnia and Herzegovina   3816525.      67.7    3485.
+14 Botswana                  971186.      54.6    5032.
+15 Brazil                 122312127.      62.2    5829.
+16 Bulgaria                 8182985.      69.7    6384.
+17 Burkina Faso             7548677.      44.7     844.
+18 Burundi                  4651608.      44.8     472.
+19 Cambodia                 8510431.      47.9     675.
+20 Cameroon                 9816648.      48.1    1775.</code></pre>
+</div>
+</div>
+<p>Just like the use of mutate command earlier, I create country-level means of certain variables (in this case, population, life expectancy, and GDP). Using the summarize variable creates these country level means and generates a new data object with one observation per country. This command is useful for generating country-level (cross-sectional data) based off of TSCS (or panel) data. It is also useful in other contexts when one wants to generate group level summaries. For example, we might want to generate averages of certain variables separately for Democrats, Republicans, and Independents in the ANES data.</p>
+<p>More generally, when using <code>group_by</code> in conjunction with either <code>mutate</code> or <code>summarize</code>, users can generate additional summary statistics other than the mean. These include:</p>
+<center>
+<div id="tbl-values" class="table-striped table-hover table-bordered table-sm column quarto-float quarto-figure quarto-figure-center anchored" style="width:70%;">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.4: <strong>Summary Statistics/Values Available for Use With <code>group_by</code> and Either <code>mutate</code> or <code>summarize</code></strong>
+</figcaption>
+<div aria-describedby="tbl-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover table-bordered table-sm column small caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Summary Statistic or Value</th>
+<th style="text-align: left;">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mean</td>
+<td style="text-align: left;">mean(x)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Median</td>
+<td style="text-align: left;">median(x)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Standard deviation</td>
+<td style="text-align: left;">sd(x)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Variance</td>
+<td style="text-align: left;">var(x)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Interquartile range</td>
+<td style="text-align: left;">IQR(x)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Minimum</td>
+<td style="text-align: left;">min(x)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maximum</td>
+<td style="text-align: left;">max(x)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Quantile (e.g., 75th percentile)</td>
+<td style="text-align: left;">quantile(x, probs = 0.5)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Count of observations</td>
+<td style="text-align: left;">n()</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sum of values</td>
+<td style="text-align: left;">sum(x)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of unique values</td>
+<td style="text-align: left;">n_distinct(x)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">How many obs. meet a condition (e.g., n&gt;4)</td>
+<td style="text-align: left;">sum(x &gt; 10)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">First value in the group</td>
+<td style="text-align: left;">first(x)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Last value in the group</td>
+<td style="text-align: left;">last(x)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nth value in the group</td>
+<td style="text-align: left;">nth(x, n)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</center>
 </section>
 </section>
 <section id="merging-two-datasets-together" class="level2" data-number="3.5">
