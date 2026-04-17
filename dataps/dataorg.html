@@ -293,6 +293,7 @@ window.Quarto = {
   <li><a href="#grouped-and-clustered-data" id="toc-grouped-and-clustered-data" class="nav-link" data-scroll-target="#grouped-and-clustered-data"><span class="header-section-number">3.4.3</span> Grouped and Clustered Data</a></li>
   </ul></li>
   <li><a href="#merging-two-datasets-together" id="toc-merging-two-datasets-together" class="nav-link" data-scroll-target="#merging-two-datasets-together"><span class="header-section-number">3.5</span> Merging Two Datasets Together</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">3.6</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -629,7 +630,7 @@ Figure&nbsp;3.4: <strong>Screen Shot After Importing “states.csv” from the W
 <blockquote class="blockquote">
 <p>“How much of the time do you think you can trust the government in Washington to do what is right?” <em>Always, Just about always, Some of the time, Hardly ever, Never</em></p>
 </blockquote>
-<p>Thus, I may want to associate each numeric value with these response options like what is displayed in <a href="#tbl-values" class="quarto-xref">Table&nbsp;<span>3.4</span></a>. Value labels are useful both for one’s own purposes (to remember which numeric value means what) and for when one starts analyzing data and reporting results in graphs and tables.</p>
+<p>Thus, I may want to associate each numeric value with these response options like what is displayed in <a href="#tbl-values" class="quarto-xref">Table&nbsp;<span>3.2</span></a>. Value labels are useful both for one’s own purposes (to remember which numeric value means what) and for when one starts analyzing data and reporting results in graphs and tables.</p>
 <center>
 <div id="tbl-values" class="table-striped table-hover table-bordered table-sm column quarto-float quarto-figure quarto-figure-center anchored" style="width:60%;">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1788,14 +1789,14 @@ NA                38  0.7   NA</code></pre>
 </div>
 </div>
 <p>Just like the use of mutate command earlier, I create country-level means of certain variables (in this case, population, life expectancy, and GDP). Using the summarize variable creates these country level means and generates a new data object with one observation per country. This command is useful for generating country-level (cross-sectional data) based off of TSCS (or panel) data. It is also useful in other contexts when one wants to generate group level summaries. For example, we might want to generate averages of certain variables separately for Democrats, Republicans, and Independents in the ANES data.</p>
-<p>More generally, when using <code>group_by</code> in conjunction with either <code>mutate</code> or <code>summarize</code>, users can generate additional summary statistics other than the mean. These include:</p>
+<p>More generally, when using <code>group_by</code> in conjunction with either <code>mutate</code> or <code>summarize</code>, users can generate additional summary statistics other than the mean. These are include in <a href="#tbl-ss" class="quarto-xref">Table&nbsp;<span>3.4</span></a>.</p>
 <center>
-<div id="tbl-values" class="table-striped table-hover table-bordered table-sm column quarto-float quarto-figure quarto-figure-center anchored" style="width:70%;">
+<div id="tbl-ss" class="table-striped table-hover table-bordered table-sm column quarto-float quarto-figure quarto-figure-center anchored" style="width:70%;">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3.4: <strong>Summary Statistics/Values Available for Use With <code>group_by</code> and Either <code>mutate</code> or <code>summarize</code></strong>
 </figcaption>
-<div aria-describedby="tbl-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-ss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped table-hover table-bordered table-sm column small caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -1838,7 +1839,7 @@ Table&nbsp;3.4: <strong>Summary Statistics/Values Available for Use With <code>g
 </tr>
 <tr class="even">
 <td style="text-align: left;">Quantile (e.g., 75th percentile)</td>
-<td style="text-align: left;">quantile(x, probs = 0.5)</td>
+<td style="text-align: left;">quantile(x, probs = 0.75)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Count of observations</td>
@@ -1854,7 +1855,7 @@ Table&nbsp;3.4: <strong>Summary Statistics/Values Available for Use With <code>g
 </tr>
 <tr class="even">
 <td style="text-align: left;">How many obs. meet a condition (e.g., n&gt;4)</td>
-<td style="text-align: left;">sum(x &gt; 10)</td>
+<td style="text-align: left;">sum(x &gt; 4)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">First value in the group</td>
@@ -1878,9 +1879,140 @@ Table&nbsp;3.4: <strong>Summary Statistics/Values Available for Use With <code>g
 </section>
 <section id="merging-two-datasets-together" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="merging-two-datasets-together"><span class="header-section-number">3.5</span> Merging Two Datasets Together</h2>
-<ul>
-<li>join, bind_rows, bind_cols</li>
-</ul>
+<p>In many data analysis contexts, researchers will want to analyze variables that are not in their dataset. However, those variables may be in an external dataset. In these instances, users can merge variables from a another dataset into their own dataset. The <code>tidyverse</code> has a number merging functions including <code>left_join</code>, <code>right_join</code>, <code>full_join</code>, and <code>inner_join</code>. For the purposes of this book, <code>left_join</code> is sufficient for most purposes.</p>
+<p>When using <code>left_join</code>, one thinks of the “master dataset” and the “using dataset” (or merging dataset). A user will merge variables from the using dataset into the master dataset. The key to the merge is a matching identification variable that is common to both datasets. In our gapminder data, the natural matching variable is country name. In some fields, there are unique and well known identification codes that datasets will use a sort of universal language. For example, some U.S. based datasets will use “fips” codes for states, counties, etc.</p>
+<p>Importantly, for a variable to merge successfully for each value of the matching variable, the values of the matching variable themselves must be exactly the same in the master and using datasets. This becomes a problem in world datasets like gapminder where some datasets refer to countries by different names. For example, if one dataset uses “United States” and the other uses “USA,” left_join will not merge the value for the U.S. observation in the master dataset. Some countries use different names now than what they used to use. The country “Swaziland” more commonly goes by “eSwatini” or “Eswatini” today. Thus, if country names are different across master and using datasets, the researcher must reconcile those differences so that the exact same names appear in both datasets. In my own practice, I will make the names in the using dataset match the names in the master by changing those names in the using dataset.</p>
+<p><code>left_join</code> merges in a variable by the matching variable and includes only observations from the using dataset that match values in master dataset. In other words, if the number of countries in the using dataset exceeds those from the master, those extra observations will be deleted in the merged dataset. <code>left_join</code> only brings in the values that match the country names in the master.</p>
+<p>Consider the following example. Let’s say we have a “regions” variable we want to merge into our gapminder data (the original TSCS dataset, “gm”).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>regions <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://blbartels.github.io/dataps/regions.csv"</span>)</span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(regions, <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 2
+   cname                  region                             
+   &lt;chr&gt;                  &lt;chr&gt;                              
+ 1 Afghanistan            Asia                               
+ 2 Albania                Europe                             
+ 3 Algeria                Middle East and North Africa (MENA)
+ 4 Angola                 Sub-Saharan Africa                 
+ 5 Argentina              Americas                           
+ 6 Australia              Oceania                            
+ 7 Austria                Europe                             
+ 8 Bahrain                Middle East and North Africa (MENA)
+ 9 Bangladesh             Asia                               
+10 Belgium                Europe                             
+11 Benin                  Sub-Saharan Africa                 
+12 Bolivia                Americas                           
+13 Bosnia and Herzegovina Europe                             
+14 Botswana               Sub-Saharan Africa                 
+15 Brazil                 Americas                           
+16 Bulgaria               Europe                             
+17 Burkina Faso           Sub-Saharan Africa                 
+18 Burundi                Sub-Saharan Africa                 
+19 Cambodia               Asia                               
+20 Cameroon               Sub-Saharan Africa                 </code></pre>
+</div>
+</div>
+<p>This regions dataset has 142 observations, which are countries. This is cross-sectional (or cross-national) data. This dataset happens to have the exact same countries as those contained in the gapminder dataset. And the country names are exactly the same across the master (gp) and using (regions) data objects. However, note that the variable name for country differs across datasets: “cname” in the using dataset, “country” in the master. Given this situation, there are two methods for merging in the regions variable that will produce the exact same merged dataset.</p>
+<p><strong><em>Method 1</em></strong>: Leave the country variable names as is and ensure they match on those differing names in the <code>left_join</code> command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>gm_region <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> <span class="fu">left_join</span>(regions, </span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">join_by</span>(country<span class="sc">==</span>cname))</span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb111-4"><a href="#cb111-4" aria-hidden="true" tabindex="-1"></a>gm_region <span class="sc">|&gt;</span> <span class="fu">select</span>(country, continent, region) <span class="sc">|&gt;</span> </span>
+<span id="cb111-5"><a href="#cb111-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 3
+   country     continent region
+   &lt;chr&gt;       &lt;fct&gt;     &lt;chr&gt; 
+ 1 Afghanistan Asia      Asia  
+ 2 Afghanistan Asia      Asia  
+ 3 Afghanistan Asia      Asia  
+ 4 Afghanistan Asia      Asia  
+ 5 Afghanistan Asia      Asia  
+ 6 Afghanistan Asia      Asia  
+ 7 Afghanistan Asia      Asia  
+ 8 Afghanistan Asia      Asia  
+ 9 Afghanistan Asia      Asia  
+10 Afghanistan Asia      Asia  
+11 Afghanistan Asia      Asia  
+12 Afghanistan Asia      Asia  
+13 Albania     Europe    Europe
+14 Albania     Europe    Europe
+15 Albania     Europe    Europe
+16 Albania     Europe    Europe
+17 Albania     Europe    Europe
+18 Albania     Europe    Europe
+19 Albania     Europe    Europe
+20 Albania     Europe    Europe</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(gm_region<span class="sc">$</span>region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                      n    % val%
+Americas                            300 17.6 17.6
+Asia                                252 14.8 14.8
+Europe                              360 21.1 21.1
+Middle East and North Africa (MENA) 216 12.7 12.7
+Oceania                              24  1.4  1.4
+Sub-Saharan Africa                  552 32.4 32.4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(gm_region<span class="sc">$</span>continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           n    % val%
+Africa   624 36.6 36.6
+Americas 300 17.6 17.6
+Asia     396 23.2 23.2
+Europe   360 21.1 21.1
+Oceania   24  1.4  1.4</code></pre>
+</div>
+</div>
+<p>Note the syntax in the <code>left_join</code> command. I am telling RStudio to give me a mew data object called “gm_region” is that going to be my merged dataset. I start with “gm,” which is my master dataset. Note that the dataset one puts before the pipe is the master. The comes the <code>left_join</code> command. The using dataset (regions) appears within the parentheses after <code>left_join.</code> Since the matching variable name for countries differs across master and using datasets, we have to use “join_by.” Put the country variable from the master dataset first (“country”), then double equals (==), followed by the country variable name from the using dataset (“cname”).</p>
+<p>Region is now merged into a new data object called “gm_region.” In my own experience, I will sometimes create a new data object with some indication that it is a merged dataset. One could also imagine simply “updating” the gm object with an additional region variable at the end. Note that there is a continent variable in the gapminder dataset as well. Sometimes reseachers will use slightly more nuanced regional variables. The one that is now merged in contains a specific designation for the Middle East and North Africa.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>gm_region <span class="sc">|&gt;</span>   </span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region<span class="sc">==</span><span class="st">"Middle East and North Africa (MENA)"</span>, ccount<span class="sc">==</span><span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, continent, region) <span class="sc">|&gt;</span> </span>
+<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 18 × 3
+   country            continent region                             
+   &lt;chr&gt;              &lt;fct&gt;     &lt;chr&gt;                              
+ 1 Algeria            Africa    Middle East and North Africa (MENA)
+ 2 Bahrain            Asia      Middle East and North Africa (MENA)
+ 3 Djibouti           Africa    Middle East and North Africa (MENA)
+ 4 Egypt              Africa    Middle East and North Africa (MENA)
+ 5 Iran               Asia      Middle East and North Africa (MENA)
+ 6 Iraq               Asia      Middle East and North Africa (MENA)
+ 7 Israel             Asia      Middle East and North Africa (MENA)
+ 8 Jordan             Asia      Middle East and North Africa (MENA)
+ 9 Kuwait             Asia      Middle East and North Africa (MENA)
+10 Lebanon            Asia      Middle East and North Africa (MENA)
+11 Libya              Africa    Middle East and North Africa (MENA)
+12 Morocco            Africa    Middle East and North Africa (MENA)
+13 Oman               Asia      Middle East and North Africa (MENA)
+14 Saudi Arabia       Asia      Middle East and North Africa (MENA)
+15 Syria              Asia      Middle East and North Africa (MENA)
+16 Tunisia            Africa    Middle East and North Africa (MENA)
+17 West Bank and Gaza Asia      Middle East and North Africa (MENA)
+18 Yemen, Rep.        Asia      Middle East and North Africa (MENA)</code></pre>
+</div>
+</div>
+<p>This output, for example, shows the difference between the categorizations between continent and region.</p>
+<p><strong><em>Method 2</em></strong>: Another way to deal with differing variable names for the matching variable is use the exact name across the datasets. My practice is to change the name in the using dataset to match the name in the master dataset. Just make sure there is not a variable in the using dataset that has this same name. Note that to preserve the original “regions” dataset (in the spirit of not changing variable names of the underlying dataset), I will create a new data object called “regions2.” Then I will left_join this regions2 dataset into the gm dataset, matching on the common “country” variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>regions2 <span class="ot">&lt;-</span> regions <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">country =</span> cname)</span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>gm_region <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> <span class="fu">left_join</span>(regions2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(country)`</code></pre>
+</div>
+</div>
+<p>Note that I have included the message you will see when you do this second method. It is confirming that it matched based on the “country” variable that is common to both datasets.</p>
+</section>
+<section id="conclusion" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">3.6</span> Conclusion</h2>
+<p>Armed with data organization, recoding, and streamlining tools, we are now ready to proceed with some actual <em>data analysis</em>. We will begin with data visualization, where these tools will come in handy.</p>
 
 
 </section>
