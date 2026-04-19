@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -240,10 +260,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-visualization-principles" id="toc-data-visualization-principles" class="nav-link active" data-scroll-target="#data-visualization-principles"><span class="header-section-number">4.1</span> Data Visualization Principles</a></li>
-  <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2"><span class="header-section-number">4.2</span> <code>ggplot2</code></a></li>
-  <li><a href="#univariate-graphical-displays" id="toc-univariate-graphical-displays" class="nav-link" data-scroll-target="#univariate-graphical-displays"><span class="header-section-number">4.3</span> Univariate Graphical Displays</a></li>
-  <li><a href="#bivariate-graphical-displays" id="toc-bivariate-graphical-displays" class="nav-link" data-scroll-target="#bivariate-graphical-displays"><span class="header-section-number">4.4</span> Bivariate Graphical Displays</a></li>
+  <li><a href="#data-visualization-principles" id="toc-data-visualization-principles" class="nav-link active" data-scroll-target="#data-visualization-principles"><span class="header-section-number">4.1</span> Data Visualization Principles</a>
+  <ul class="collapse">
+  <li><a href="#titles-and-axis-labels" id="toc-titles-and-axis-labels" class="nav-link" data-scroll-target="#titles-and-axis-labels"><span class="header-section-number">4.1.1</span> Titles and Axis Labels</a></li>
+  <li><a href="#color-and-thickness" id="toc-color-and-thickness" class="nav-link" data-scroll-target="#color-and-thickness"><span class="header-section-number">4.1.2</span> Color and Thickness</a></li>
+  <li><a href="#general-look-and-theme" id="toc-general-look-and-theme" class="nav-link" data-scroll-target="#general-look-and-theme"><span class="header-section-number">4.1.3</span> General Look and “Theme”</a></li>
+  </ul></li>
+  <li><a href="#univariate-graphical-displays" id="toc-univariate-graphical-displays" class="nav-link" data-scroll-target="#univariate-graphical-displays"><span class="header-section-number">4.2</span> Univariate Graphical Displays</a></li>
+  <li><a href="#bivariate-graphical-displays" id="toc-bivariate-graphical-displays" class="nav-link" data-scroll-target="#bivariate-graphical-displays"><span class="header-section-number">4.3</span> Bivariate Graphical Displays</a></li>
   </ul>
 </nav>
     </div>
@@ -271,62 +295,201 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>The topic of data visualization has become one the more exciting developments in data analysis in the contemporary era. Scholars and analysts have thought systematically about ways to distill complex information (in the form of large amounts of data) into graphical displays that people can readily understand and interpret. How many times have you heard it? “I consider myself a visual learner.” Many people fit this bill, of course. Presenting results visually as maximizes a researcher’s ability to communicate their findings with maximum efficacy.</p>
-<p>Data visualization developments have greatly benefited from the R package called <code>ggplot2</code>, which is perhaps the crown jewel of the <code>tidyverse</code>. This chapter will simultaneously introduce readers to the foundations and developments of data visualization and the basic and advanced features of <code>ggplot</code>.</p>
+<p>Data visualization developments have greatly benefited from the R package called <code>ggplot2</code>, which is perhaps the crown jewel of the <code>tidyverse</code>. This chapter will simultaneously introduce readers to the foundations and developments of data visualization and the basic and advanced features of <code>ggplot</code>. The chapter will first cover some basic data visualization principles that apply to all graphical displays. Readers interested in additional information about these principles can consult <span class="citation" data-cites="wickham2023">Wickham, Cetinkaya-Rundel, and Grolemund (<a href="references.html#ref-wickham2023" role="doc-biblioref">2023</a>)</span>. Next, the chapter covers the nuts and bolts of <em>univariate graphical displays</em>, i.e., summaries of just one variable where we want to evaluate and communicate the central tendency and dispersion of a variable. The third topic covers the nuts and bolts of <em>bivariate graphical displays</em>, i.e., summaries of the strength of an association or relationship between two variables.</p>
+<p>This chapter will also emphasize the importance of a variable’s <em>level of measurement</em> — nominal, ordinal, or interval/continuous from <a href="intro.html#sec-lom" class="quarto-xref"><span>Section 2.2.3</span></a> — as the critical driver of what type of graph a user will generate to communicate univariate and bivariate descriptions.</p>
 <section id="data-visualization-principles" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="data-visualization-principles"><span class="header-section-number">4.1</span> Data Visualization Principles</h2>
-<p>When users present a graphical display of some aspect of their data, I recommend that they “sweat the small stuff.” After all, the researcher is distilling sometimes vast amounts of information into a single plot, so one should take great care that the graph is accurate and conveys the intended information.</p>
-<div class="cell" data-layout-align="center">
+<p>When users present a graphical display of some aspect of their data, I recommend that they “sweat the small stuff.” After all, the researcher is distilling sometimes vast amounts of information into a single plot, so one should take great care that the graph is accurately conveys the intended summary information. Let’s begin with a very simple graph of a normal distribution, which is a univariate display that we will cover in the next section in greater detail. Most users are familiar with the well-known normal distribution as a bell-shaped, symmetric distribution that is centered around a single central tendency. The code below simulates a “random variable” for 100,000 observations based on the normal distribution.</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>mynorm <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">100000</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">score=</span><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>mynorm <span class="sc">|&gt;</span> </span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>score)) <span class="sc">+</span> </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">score=</span><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that I first “set a seed,” which allows me to replicate exactly the data that I have simulated (in this case the “score” variable) in future instances. If I set the same seed in the future, I will get the same underlying data values for score. The command creates a dataset object, “mynorm,” with 100,000 observations. I then create the score variable in this dataset which is a random variable based on a normal distribution via the use of the <code>rnorm</code> command. I next set the values of the mean and standard deviation (which the next section will discuss in greater detail). A distribution with a mean of 0 and a standard deviation of 1 is called a “standard normal distribution.” Each unit of measurement (from 1 to 2 to 3) for the score variable represents one standard deviation. Next, I use <code>ggplot</code> to create a “density plot.”</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mynorm <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>score)) <span class="sc">+</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="dataviz_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Since <code>ggplot</code> is part of the <code>tidyverse</code>, we can use piping, which I use here when I first call up the dataset “mynorm.” Inside the ggplot command is <code>aes()</code>, which stands for “aesthetic.” The aesthetic of a ggplot graph includes anything involving the basic structure of the graph, that is, what is included within the actual plot itself. Within the aesthetic is where I declare what variable will go on the x-axis. In this case, that is the “score” variable, which means I enter “x=score.” The following line declares what “geometry” I will use. Since I want a density plot, I use <code>geom_density</code>. I will give a full listing of univariate geometries below. Finally, in the third line, I tell ggplot what the range of the x-axis should be, ranging from -4 to 4. If I do not issue this command, ggplot will use defaults, which are often sensible and are good to use at the start. Importantly, note that each specification is separated by a <code>+</code> sign. My own practice is hit “enter” after each plus and make each specification a separate line. Note that even though this ggplot command has four lines, it is <strong>one</strong> command.</p>
+<p>I will now use this basic plot to walk through some basic principles of data visualization. When generating a graphical display, a researcher should make it a “stand-alone” plot to the greatest extent possible. Though a graph is always accompanied by textual interpretation, a researcher should strive to generate a graph that someone could observe and immediately glean a sufficient amount of information in that graph to make a basic interpretation of what it communicates.</p>
+<section id="titles-and-axis-labels" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="titles-and-axis-labels"><span class="header-section-number">4.1.1</span> Titles and Axis Labels</h3>
+<p>The first step in achieving this “stand-alone” goal requires giving the graph: (1) a descriptive graph title, (2) clear titles for the x-axis and y-axis, and (3) sensible numeric labels and increments for the x-axis and y-axis. The command below attempts to achieve all three goals using the <code>labs</code>, <code>scale_x_continuous</code>, and <code>scale_y_continuous</code> specifications added on to the ggplot command.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mynorm <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>score)) <span class="sc">+</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Density Plot for a Normal Distribution"</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Score (Random Variable)"</span>, <span class="at">y=</span><span class="st">"Density"</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">4</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, .<span class="dv">4</span>, .<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dataviz_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To include a graph title and titles for the x-axis and y-axis, I can use <code>labs</code>. The syntax is very self-explanatory. Simply separate each title by a comma. Because the score variable is continuous, or an interval variable, I use <code>scale_x_continuous</code> to specify values of the x-axis. In this case, I actually prefer to include x-axis numeric labels in increments of 1. The <code>limits</code> specification defines the minimum and maximum limits of the x-axis (like <code>xlim</code> did in the prior graph). <code>breaks</code> specifies which numeric labels I want to include. This syntax, <code>seq(-4, 4, 1)</code>, means make numeric labels go from -4 to 4 in increments of 1.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> If I were to put a “2” at the end instead of a “1” (i.e., <code>seq(-4, 4, 2)</code>), the x-axis would include numeric labels -4, -2, 0, 2, 4. For the y-axis, I like the default provided by ggplot, but I formalize it in the <code>scale_y_continuous</code> command.</p>
+<p>So far so good with our objectives for titles and axis labels. One final consideration concerns font sizes for all the facets we have worked with. By default, the title has the largest font, the axis titles have the second-largest font, and the axis numeric labels have the smallest font. Also, some researchers will want to center the graph title. We can change these features in the <code>theme()</code> command in <code>ggplot</code>. Let’s center the graph title and set the font size to be the same (12pt) for all features to see what it looks like.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mynorm <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>score)) <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Density Plot for a Normal Distribution"</span>, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Score (Random Variable)"</span>, <span class="at">y=</span><span class="st">"Density"</span>) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">4</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, .<span class="dv">4</span>, .<span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">12</span>), <span class="co"># Graph title</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),  <span class="co"># Axis titles</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))  <span class="co"># Axis tick labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dataviz_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Within the <code>theme</code> command, I have included options for <code>plot.title</code> (for the overall graph title), <code>axis.title</code> (for the x-axis and y-axis titles), and <code>axis.text</code> (for x-axis and y-axis numeric labels). Typically, we want the elements of the x-axis and y-axis to match. However, options exist for making disctinctions between the axes. For each of these three specifications within <code>theme</code>, we specify settings for the <code>element_text</code>. For plot title, I use <code>hjust=0.5</code> to center the graph title. I use <code>size=12</code> for all three features to make the font size 12pt for all text in the graph. Some researchers might actually prefer a hierarchy of font sizes, as the default graph above did. Let’s use a 10pt font the axis numeric labels and 12pt font for the titles:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mynorm <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>score)) <span class="sc">+</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Density Plot for a Normal Distribution"</span>, </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Score (Random Variable)"</span>, <span class="at">y=</span><span class="st">"Density"</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">4</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, .<span class="dv">4</span>, .<span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">12</span>), <span class="co"># Graph title</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),  <span class="co"># Axis titles</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))  <span class="co"># Axis tick labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dataviz_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Users will naturally experiment with different font sizes. One wants make sure to accommodate accessibility concerns by making the font big enough and readable enough. Font sizes smaller than 10pt can get hard to read.</p>
+</section>
+<section id="color-and-thickness" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="color-and-thickness"><span class="header-section-number">4.1.2</span> Color and Thickness</h3>
+<p>One can also change the thickness and color of line in the plot using</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> mynorm <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>score)) <span class="sc">+</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">linewidth=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"linewidth=1"</span>, </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Score (Random Variable)"</span>, <span class="at">y=</span><span class="st">"Density"</span>) <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">4</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, .<span class="dv">4</span>, .<span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">12</span>), </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>), </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> mynorm <span class="sc">|&gt;</span> </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>score)) <span class="sc">+</span> </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color=</span><span class="st">"dodgerblue"</span>) <span class="sc">+</span> </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">'color="dodgerblue"'</span>, </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Score (Random Variable)"</span>, <span class="at">y=</span><span class="st">"Density"</span>) <span class="sc">+</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">4</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, .<span class="dv">4</span>, .<span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">12</span>), <span class="co"># Graph title</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),  <span class="co"># Axis titles</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))  <span class="co"># Axis tick labels</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> mynorm <span class="sc">|&gt;</span> </span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>score)) <span class="sc">+</span> </span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">linetype=</span><span class="st">"dashed"</span>) <span class="sc">+</span> </span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">'linetype="dashed"'</span>, </span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Score (Random Variable)"</span>, <span class="at">y=</span><span class="st">"Density"</span>) <span class="sc">+</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">4</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, .<span class="dv">4</span>, .<span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">12</span>), <span class="co"># Graph title</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),  <span class="co"># Axis titles</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))  <span class="co"># Axis tick labels</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> mynorm <span class="sc">|&gt;</span> </span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>score)) <span class="sc">+</span> </span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill=</span><span class="st">"dodgerblue"</span>, <span class="at">alpha=</span>.<span class="dv">4</span>, <span class="at">linewidth=</span><span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">'fill="dodgerblue", alpha=.4, linewidth=0'</span>, </span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Score (Random Variable)"</span>, <span class="at">y=</span><span class="st">"Density"</span>) <span class="sc">+</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">4</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, .<span class="dv">4</span>, .<span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">12</span>), <span class="co"># Graph title</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),  <span class="co"># Axis titles</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))  <span class="co"># Axis tick labels</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b <span class="sc">+</span> c <span class="sc">+</span> d <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dataviz_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="ggplot2" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="ggplot2"><span class="header-section-number">4.2</span> <code>ggplot2</code></h2>
+<section id="general-look-and-theme" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="general-look-and-theme"><span class="header-section-number">4.1.3</span> General Look and “Theme”</h3>
 </section>
-<section id="univariate-graphical-displays" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="univariate-graphical-displays"><span class="header-section-number">4.3</span> Univariate Graphical Displays</h2>
+</section>
+<section id="univariate-graphical-displays" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="univariate-graphical-displays"><span class="header-section-number">4.2</span> Univariate Graphical Displays</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mynorm2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">100000</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">score=</span><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">2</span>))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> mynorm <span class="sc">|&gt;</span> </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>score)) <span class="sc">+</span> </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="dv">8</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>b<span class="ot">&lt;-</span> mynorm2 <span class="sc">|&gt;</span> </span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>score)) <span class="sc">+</span> </span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="dv">8</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>a<span class="sc">+</span>b <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mynorm2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">100000</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">score=</span><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">3</span>))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> mynorm <span class="sc">|&gt;</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>score)) <span class="sc">+</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="dv">8</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>b<span class="ot">&lt;-</span> mynorm2 <span class="sc">|&gt;</span> </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>score)) <span class="sc">+</span> </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="dv">8</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="dataviz_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="bivariate-graphical-displays" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="bivariate-graphical-displays"><span class="header-section-number">4.4</span> Bivariate Graphical Displays</h2>
+<section id="bivariate-graphical-displays" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="bivariate-graphical-displays"><span class="header-section-number">4.3</span> Bivariate Graphical Displays</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-wickham2023" class="csl-entry" role="listitem">
+Wickham, Hadley, Mine Cetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. Beijing ; Sebastopol, CA: O’Reilly Media. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>.
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Note that equivalent syntax is <code>seq(-4, 4, by = 1)</code>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
