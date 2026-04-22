@@ -299,6 +299,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#dispersion" id="toc-dispersion" class="nav-link" data-scroll-target="#dispersion"><span class="header-section-number">4.2.1</span> Dispersion</a></li>
   <li><a href="#univariate-graphs-and-levels-of-measurement" id="toc-univariate-graphs-and-levels-of-measurement" class="nav-link" data-scroll-target="#univariate-graphs-and-levels-of-measurement"><span class="header-section-number">4.2.2</span> Univariate Graphs and Levels of Measurement</a></li>
+  <li><a href="#density-plots" id="toc-density-plots" class="nav-link" data-scroll-target="#density-plots"><span class="header-section-number">4.2.3</span> Density Plots</a></li>
   </ul></li>
   <li><a href="#bivariate-graphical-displays" id="toc-bivariate-graphical-displays" class="nav-link" data-scroll-target="#bivariate-graphical-displays"><span class="header-section-number">4.3</span> Bivariate Graphical Displays</a></li>
   </ul>
@@ -712,7 +713,7 @@ window.Quarto = {
 <p>Let’s now dive into types of univariate graphs used to describe variables. Importantly, the selection of the graph to use is directly connected to levels of measurement. For example, the density plots from above are clearly most appropriate for interval/continuous variables. It would make zero sense to do a density plot for a nominal (unordered) variable with 4 or 5 discrete categories. It <em>may</em> make sense, under certain circumstances, to do density plots for ordinal variables with several categories — these variables can sometimes be in a gray area.</p>
 <p>The table below provides a summary of the univariate graphs we will examine in this section and a description of what types of variables for which they are most appropriate (based on levels of measurement).</p>
 <center>
-<div id="tbl-univ" class="table-striped table-hover table-bordered table-sm column quarto-float quarto-figure quarto-figure-center anchored" style="width:70%;">
+<div id="tbl-univ" class="table-striped table-hover table-bordered table-sm column quarto-float quarto-figure quarto-figure-center anchored" style="width:75%;">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-univ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;4.1: <strong>Summary of Univariate Graphs</strong>
@@ -720,9 +721,9 @@ Table&nbsp;4.1: <strong>Summary of Univariate Graphs</strong>
 <div aria-describedby="tbl-univ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped table-hover table-bordered table-sm column small caption-top table">
 <colgroup>
-<col style="width: 30%">
-<col style="width: 40%">
-<col style="width: 30%">
+<col style="width: 27%">
+<col style="width: 35%">
+<col style="width: 38%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -749,8 +750,8 @@ Table&nbsp;4.1: <strong>Summary of Univariate Graphs</strong>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Bar graph</td>
-<td style="text-align: left;"><code>geom_bar</code> or <code>geom_col</code></td>
-<td style="text-align: left;">Ordinal or nominal</td>
+<td style="text-align: left;"><code>geom_bar</code>, <code>geom_col</code></td>
+<td style="text-align: left;">Ordinal, nominal</td>
 </tr>
 </tbody>
 </table>
@@ -758,6 +759,43 @@ Table&nbsp;4.1: <strong>Summary of Univariate Graphs</strong>
 </figure>
 </div>
 </center>
+</section>
+<section id="density-plots" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="density-plots"><span class="header-section-number">4.2.3</span> Density Plots</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>house <span class="ot">&lt;-</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="st">"https://voteview.com/static/data/out/members/HSall_members.csv"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(chamber<span class="sc">==</span><span class="st">"House"</span>, district_code <span class="sc">&gt;</span> <span class="dv">0</span>, party_code<span class="sc">&lt;</span><span class="dv">300</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(congress <span class="sc">%in%</span> <span class="fu">seq</span>(<span class="dv">79</span>, <span class="dv">119</span>, <span class="at">by =</span> <span class="dv">5</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(congress, state_abbrev, district_code)  <span class="sc">|&gt;</span> </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(nominate_number_of_votes, <span class="at">n =</span> <span class="dv">1</span>)  <span class="sc">|&gt;</span> </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">1789</span> <span class="sc">+</span> (congress <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">2</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>house <span class="sc">|&gt;</span> </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> nominate_dim1, <span class="at">y=</span><span class="fu">factor</span>(year), <span class="at">fill=</span><span class="fu">factor</span>(party_code))) <span class="sc">+</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>(<span class="at">alpha=</span>.<span class="dv">6</span>, <span class="at">linewidth=</span>.<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"dodgerblue"</span>, <span class="st">"red"</span>), </span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>                    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Democrats"</span>, <span class="st">"Republicans"</span>), </span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>                    <span class="at">name=</span><span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Partisan Polarization in the House of Representatives"</span>, </span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Ideology Score (NOMINATE), Ranging from Lib. to Cons."</span>) <span class="sc">+</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>, </span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">12</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>), </span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dataviz_files/figure-html/ridges-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
 <!-- Show example of the House of Representatives. -->
 </section>
 </section>
