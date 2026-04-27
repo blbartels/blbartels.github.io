@@ -1,0 +1,2461 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Data Importing and Organization – Data Analysis and Statistics for Political Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./dataviz.html" rel="next">
+<link href="./intro.html" rel="prev">
+<link href="./images/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-427913099b0a9f0709402a55d3c778ba.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataorg.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Importing and Organization</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Analysis and Statistics for Political Science</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the Author</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Using R and RStudio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Research and Data: The Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataorg.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Importing and Organization</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataviz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./choropleth.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Choropleth Maps</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inferential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linreg1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Putting it All Together</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendixa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Widely-Used Political Science Datasets</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-import" id="toc-sec-import" class="nav-link active" data-scroll-target="#sec-import"><span class="header-section-number">3.1</span> Importing Data</a>
+  <ul class="collapse">
+  <li><a href="#sec-hd" id="toc-sec-hd" class="nav-link" data-scroll-target="#sec-hd"><span class="header-section-number">3.1.1</span> Importing Data Saved to Your Hard Drive</a></li>
+  <li><a href="#importing-data-from-a-dataset-saved-on-a-website" id="toc-importing-data-from-a-dataset-saved-on-a-website" class="nav-link" data-scroll-target="#importing-data-from-a-dataset-saved-on-a-website"><span class="header-section-number">3.1.2</span> Importing Data From a Dataset Saved on a Website</a></li>
+  <li><a href="#importing-data-from-an-r-package" id="toc-importing-data-from-an-r-package" class="nav-link" data-scroll-target="#importing-data-from-an-r-package"><span class="header-section-number">3.1.3</span> Importing Data From an R Package</a></li>
+  </ul></li>
+  <li><a href="#value-labels-for-variables" id="toc-value-labels-for-variables" class="nav-link" data-scroll-target="#value-labels-for-variables"><span class="header-section-number">3.2</span> Value Labels for Variables</a>
+  <ul class="collapse">
+  <li><a href="#stock-data-with-preexisting-value-labels" id="toc-stock-data-with-preexisting-value-labels" class="nav-link" data-scroll-target="#stock-data-with-preexisting-value-labels"><span class="header-section-number">3.2.1</span> Stock Data with Preexisting Value Labels</a></li>
+  <li><a href="#sec-man" id="toc-sec-man" class="nav-link" data-scroll-target="#sec-man"><span class="header-section-number">3.2.2</span> Manually Adding Value Labels to Variables</a></li>
+  </ul></li>
+  <li><a href="#sec-gen" id="toc-sec-gen" class="nav-link" data-scroll-target="#sec-gen"><span class="header-section-number">3.3</span> Generating and Recoding New Variables</a>
+  <ul class="collapse">
+  <li><a href="#introducing-the-pipe-operator-and" id="toc-introducing-the-pipe-operator-and" class="nav-link" data-scroll-target="#introducing-the-pipe-operator-and"><span class="header-section-number">3.3.1</span> Introducing the Pipe Operator (<code>%&gt;%</code> and <code>|&gt;</code>)</a></li>
+  <li><a href="#additional-recoding-procedures-using-if_else-and-case_when" id="toc-additional-recoding-procedures-using-if_else-and-case_when" class="nav-link" data-scroll-target="#additional-recoding-procedures-using-if_else-and-case_when"><span class="header-section-number">3.3.2</span> Additional Recoding Procedures Using <code>if_else</code> and <code>case_when</code></a></li>
+  <li><a href="#recoding-variables-to-range-from-0-to-1" id="toc-recoding-variables-to-range-from-0-to-1" class="nav-link" data-scroll-target="#recoding-variables-to-range-from-0-to-1"><span class="header-section-number">3.3.3</span> Recoding Variables to Range from 0 to 1</a></li>
+  </ul></li>
+  <li><a href="#streamlining-and-simplifying-data-analysis" id="toc-streamlining-and-simplifying-data-analysis" class="nav-link" data-scroll-target="#streamlining-and-simplifying-data-analysis"><span class="header-section-number">3.4</span> Streamlining and Simplifying Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#subsetting-observations" id="toc-subsetting-observations" class="nav-link" data-scroll-target="#subsetting-observations"><span class="header-section-number">3.4.1</span> Subsetting Observations</a></li>
+  <li><a href="#subsetting-variables" id="toc-subsetting-variables" class="nav-link" data-scroll-target="#subsetting-variables"><span class="header-section-number">3.4.2</span> Subsetting Variables</a></li>
+  <li><a href="#sec-cluster" id="toc-sec-cluster" class="nav-link" data-scroll-target="#sec-cluster"><span class="header-section-number">3.4.3</span> Grouped and Clustered Data</a></li>
+  </ul></li>
+  <li><a href="#merging-two-datasets-together" id="toc-merging-two-datasets-together" class="nav-link" data-scroll-target="#merging-two-datasets-together"><span class="header-section-number">3.5</span> Merging Two Datasets Together</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">3.6</span> Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<img src="images/banner.png" style="width: 100%; height: auto; margin-bottom: 20px;">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-org" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Importing and Organization</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Once researchers have either collected their data or have accessed stock data from a public website (such as in <a href="appendixa.html#tbl-psdata" class="quarto-xref">Table&nbsp;<span>A.1</span></a> in <a href="appendixa.html" class="quarto-xref"><span>Appendix A</span></a>), they will need to engage with the following steps in preparation for data analysis in the subsequent chapters:</p>
+<ol type="1">
+<li>Import data into RStudio and understand data features.</li>
+<li>Understand and/or create value labels for variables in your dataset.</li>
+<li>Generate and recode new variables.</li>
+<li>Execute procedures to streamline and simplify data analysis. <!-- 5.  Organize and clean data.  --></li>
+<li>Merge two datasets together.</li>
+</ol>
+<p>This chapter will make extensive use of many of the <code>tidyverse</code> packages and commands, which are extremely useful for the topics discussed in this chapter.</p>
+<section id="sec-import" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="sec-import"><span class="header-section-number">3.1</span> Importing Data</h2>
+<p>Three general ways exist for importing data into RStudio: (1) save the dataset on your hard drive (using the “projects” approach I recommended in <a href="rstudio.html#sec-rp" class="quarto-xref"><span>Section 1.5.1</span></a>) and import it within RStudio; (2) import a dataset that is stored on a website (via a url); and (3) use and/or import a dataset that is stored within an R package that you have installed and loaded.</p>
+<section id="sec-hd" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="sec-hd"><span class="header-section-number">3.1.1</span> Importing Data Saved to Your Hard Drive</h3>
+<p>RStudio can easily and seamlessly import data in just about any format you can imagine with both base R packages and certain add-on packages. <a href="#tbl-import" class="quarto-xref">Table&nbsp;<span>3.1</span></a> includes the most common data formats in political science, the R packages required (I focus here on add-on packages), and the command from the package to import the data.</p>
+<div id="tbl-import" class="table-striped table-hover table-bordered table-sm quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-import-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.1: <strong>Data Formats, R Packages, and R Commands for Importing Datasets</strong>
+</figcaption>
+<div aria-describedby="tbl-import-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover table-bordered table-sm small caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 25%">
+<col style="width: 22%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">File Extension</th>
+<th style="text-align: left;">Source Software</th>
+<th style="text-align: left;">R Package</th>
+<th style="text-align: left;">Import Command</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>.rds</code></td>
+<td style="text-align: left;">R (Single Object)</td>
+<td style="text-align: left;"><code>readr</code> (<code>tidyverse</code>)</td>
+<td style="text-align: left;"><code>read_rds()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>.csv</code></td>
+<td style="text-align: left;">Universal (Spreadsheet)</td>
+<td style="text-align: left;"><code>readr</code> (<code>tidyverse</code>)</td>
+<td style="text-align: left;"><code>read_csv()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>.dta</code></td>
+<td style="text-align: left;">Stata</td>
+<td style="text-align: left;"><code>haven</code></td>
+<td style="text-align: left;"><code>read_dta()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>.sav</code> / <code>.por</code></td>
+<td style="text-align: left;">SPSS</td>
+<td style="text-align: left;"><code>haven</code></td>
+<td style="text-align: left;"><code>read_sav()</code> / <code>read_por()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>.xls</code> / <code>.xlsx</code></td>
+<td style="text-align: left;">Excel</td>
+<td style="text-align: left;"><code>readxl</code></td>
+<td style="text-align: left;"><code>read_excel()</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Again, these are the most common data formats in political science, but this is not an exhaustive list. I will start with a simple example of importing a small dataset containing information on the 50 states. Following the “projects” recommendation from <a href="rstudio.html#sec-rp" class="quarto-xref"><span>Section 1.5.1</span></a>, I have created a folder called “Data Analysis” on my hard drive. Inside that folder is an .Rproj called “Data Analysis.Rproj.” Recall that anytime I want to work in this project, I simply double click on the .Rproj file to begin a new RStudio session, and RStudio will automatically set my “Data Analysis” folder as the home directory. That means when I import my data, I do not need enter the entire file path. If my dataset is in my home directory, I can simply type the name of the file when importing it (see <a href="rstudio.html#sec-rp" class="quarto-xref"><span>Section 1.5.1</span></a>). <a href="#fig-importcsv" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> displays my screen upon starting my RStudio session. Looking to the lower-right quadrant, the dataset called “states.csv” appears in my home directory.</p>
+<div id="fig-importcsv" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-importcsv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: <strong>Screen Shot Showing the Dataset “states.csv” Saved on my Hard Drive Folder Set as the Home Directory</strong>
+</figcaption>
+<div aria-describedby="fig-importcsv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/import_csv.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+</figure>
+</div>
+<p>Now we need to issue a command to RStudio to import the data. Recall from <a href="rstudio.html" class="quarto-xref"><span>Chapter 1</span></a> that users can run commands in R in two ways: (1) Entering the command in the “Console” (lower-left quadrant) where the cursor is blinking or (2) entering commands in an .R script file (which opens in the upper-left quadrant) that you can save to your hard drive for future use (keeping them as a record of the packages you need to load and the commands that you ran). I will mostly do the latter in this book. Recall from <a href="rstudio.html" class="quarto-xref"><span>Chapter 1</span></a> that to open an .R script, click on File –&gt; New File –&gt; R Script. <a href="#fig-importcsv" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> shows that I have an opened .R script that by default is called “Untitled.” I will show that I saved the file below.</p>
+<p>Users can run commands within an .R script in multiple ways:</p>
+<ul>
+<li>Simply place your cursor anywhere in the command line and click the “Run” button in the menu bar right above the .R script (the one with a green arrow to the left of it).</li>
+<li>Use a keystroke: For Macs, put the cursor anywhere on the line and type command-return. For PCs, type ctrl-enter.</li>
+<li>Highlight all of the text in a command line and then type this same keystroke.</li>
+<li>Users can also run multiple commands with one keystroke: Simply highlight multiple command lines and use the same keystroke (or click on “Run”).</li>
+</ul>
+<p>As <a href="#tbl-import" class="quarto-xref">Table&nbsp;<span>3.1</span></a> highlights, we will need the <code>readr</code> package to import a .csv (“comma separated values”) file. <code>readr</code> is in the <code>tidyverse</code> suite of packages; when you load the <code>tidyverse</code> package, <code>readr</code> is 1 of the 9 packages that is loaded. If you already installed <code>tidyverse</code> after reading <a href="rstudio.html#sec-tv" class="quarto-xref"><span>Section 1.4</span></a>, then you do not need to install it again. If you have not yet installed <code>tidyverse</code>, you can do so now by typing: <code>install.packages("tidyverse")</code>. Here is the code to import the states.csv dataset into RStudio. Note that I have called up the <code>tidyverse</code> package (see <a href="rstudio.html" class="quarto-xref"><span>Chapter 1</span></a>), which also calls up the <code>readr</code> package needed to import the .csv. file.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"states.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the second line, notice the notation I have used. I am creating a new data object called “states.” I use the <strong>assignment operator</strong>, <code>&lt;-</code>, to tell RStudio, “Give me a data object called ‘states’ that is the ‘states.csv’ file in my home directory.” <code>read_csv</code> is the command (from the <code>readr</code> package) that imports the dataset into the RStudio environment.</p>
+<p>Now, my RStudio screen looks like <a href="#fig-importcsvpost" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>:</p>
+<div id="fig-importcsvpost" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-importcsvpost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: <strong>Screen Shot After Importing “states.csv”</strong>
+</figcaption>
+<div aria-describedby="fig-importcsvpost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/import_csv_post.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+</figure>
+</div>
+<p>First, I saved my .R script as “Commands to Run.R,” which also now appears in my home directory. The same two command lines as above are in the .R script. After I load states.csv, the object “states” appears in the “Environment” window in the upper-right quadrant. That means the data are successfully loaded. Next to the data name, the Environment tab lists that the states data has 50 observations (rows) and 6 variables (columns). In a dataset, the units of analysis are rows, while the columns are the variables. States are the units of analysis (<em>N</em>=50), and the dataset contains 6 variables.</p>
+<p>To view the data, users can click on the “states” object in the Environment window or type <code>View(states)</code> in the command window or the .R script. <a href="#fig-csv-data" class="quarto-xref">Figure&nbsp;<span>3.3</span></a> shows a zoomed-in view of the upper-left quadrant. Notice this cross-sectional data. Each row is a state, and one can see the state name and abbreviation. The data also include turnout percentage in the 2024 presidential election, the percentage of voters voting for Trump, whether the state is a Southern state or not, and the percentage of adults in the state with a college degree or higher.</p>
+<div id="fig-csv-data" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-csv-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: <strong>Screen Shot of the States Data</strong>
+</figcaption>
+<div aria-describedby="fig-csv-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/csv_data.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
+</div>
+</figure>
+</div>
+<p>Another way to see the first few observations in the state is use the <code>head</code> command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  state_name state_abb turnout trumppct south collegepct
+  &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+1 Alabama    AL           58.8     64.8     1       29.9
+2 Alaska     AK           63.7     55.5     0       32.8
+3 Arizona    AZ           63.6     52.6     0       34.7
+4 Arkansas   AR           53.5     64.2     1       27.1
+5 California CA           62.1     38.3     0       38.1
+6 Colorado   CO           73.1     43.5     0       47.8</code></pre>
+</div>
+</div>
+<p>Or I can specify the number of observations I want to see:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(states, <span class="at">n=</span><span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 6
+   state_name  state_abb turnout trumppct south collegepct
+   &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+ 1 Alabama     AL           58.8     64.8     1       29.9
+ 2 Alaska      AK           63.7     55.5     0       32.8
+ 3 Arizona     AZ           63.6     52.6     0       34.7
+ 4 Arkansas    AR           53.5     64.2     1       27.1
+ 5 California  CA           62.1     38.3     0       38.1
+ 6 Colorado    CO           73.1     43.5     0       47.8
+ 7 Connecticut CT           67.1     41       0       42.6
+ 8 Delaware    DE           67       41       1       36  
+ 9 Florida     FL           66.7     56.1     1       35.8
+10 Georgia     GA           68.3     50.7     1       36.3
+11 Hawaii      HI           50.3     38       0       37.8
+12 Idaho       ID           63.4     66.9     0       33  </code></pre>
+</div>
+</div>
+<p>Note that it includes as many variables as it can fit on the screen. Connecting to the discussion of “levels of measurement” (<a href="intro.html#sec-lom" class="quarto-xref"><span>Section 2.2.3</span></a>), the output includes the labels <code>chr</code> and <code>dbl</code> at the top of each variable. <code>chr</code> = “character” or a string variable (letters only or a mix of letters and numbers). <code>dbl</code> = “double,” which in RStudio means a numeric variable (in this case an interval variable) with decimal points. Note that even the South variable has the <code>dbl</code> format despite not having decimals.</p>
+<p>A similar command that comes from the <code>tidyverse</code> is called <code>glimpse</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 50
+Columns: 6
+$ state_name &lt;chr&gt; "Alabama", "Alaska", "Arizona", "Arkansas", "California", "…
+$ state_abb  &lt;chr&gt; "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",…
+$ turnout    &lt;dbl&gt; 58.8, 63.7, 63.6, 53.5, 62.1, 73.1, 67.1, 67.0, 66.7, 68.3,…
+$ trumppct   &lt;dbl&gt; 64.8, 55.5, 52.6, 64.2, 38.3, 43.5, 41.0, 41.0, 56.1, 50.7,…
+$ south      &lt;dbl&gt; 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1,…
+$ collegepct &lt;dbl&gt; 29.9, 32.8, 34.7, 27.1, 38.1, 47.8, 42.6, 36.0, 35.8, 36.3,…</code></pre>
+</div>
+</div>
+<p>Notice that <code>glimpse</code> inverts the rows and columns, which makes it a bit counterintuitive to some. However, one point of <code>glimpse</code> is to highlight the variables in the dataset.</p>
+<p>In datasets with many variables, another helpful command is <code>names</code>, which lists all of the variables in the dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "state_name" "state_abb"  "turnout"    "trumppct"   "south"     
+[6] "collegepct"</code></pre>
+</div>
+</div>
+<p>Another way to see how the variables are stored (e.g., numeric, character) is by using the “class” command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>state_name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>state_abb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>turnout)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>trumppct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>south)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>collegepct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+</div>
+<p>The <code>class</code> command tells the user how the variable is stored. Note the naming convention used here, which is common in “base R.” To specify a variable, we use the “dollar sign” method: Before the dollar sign is the name of the data object (states) and after is the variable name. “state_name” and “state_abb” are character variables (strings), while the remaining variables are numeric. Knowing the class of a variable, and the level of measurement a variable takes on, becomes very important for many subsequent analyses in RStudio. I will return to that issue throughout the book.</p>
+<p>The “south” variable, which takes on a value of 1 for Southern states and 0 for non-Southern states, gets a special name in data analysis and statistics: a <strong>dummy variable.</strong> A dummy variable is a binary variable (i.e., a variable that takes on only two values); researchers typically refer to independent variables (not dependent variables) as dummy variables. Note that dummy variables are always coded as 0 or 1 (as opposed to 1 versus 2 or 3 versus 4).</p>
+</section>
+<section id="importing-data-from-a-dataset-saved-on-a-website" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="importing-data-from-a-dataset-saved-on-a-website"><span class="header-section-number">3.1.2</span> Importing Data From a Dataset Saved on a Website</h3>
+<p>Some datasets are stored on institutional websites or on a researcher’s website. Instead of having to download the dataset to your hard drive, you can simply tell RStudio to import the data from the website into your RStudio environment. You need to have an internet connection to execute this procedure, of course. The procedure is simple and requires the same packages and commands as discussed in <a href="#sec-hd" class="quarto-xref"><span>Section 3.1.1</span></a>. But instead of inserting the dataset name (e.g., “states.csv”), one enters the entire url. I have stored this same “states.csv” dataset on a website, which means the dataset has its own unique url. To import it straight from the web, I execute the following command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>states_web <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://blbartels.github.io/dataps/states.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="#fig-importcsvweb" class="quarto-xref">Figure&nbsp;<span>3.4</span></a> shows my screen after importing this same states.csv dataset but from a website instead. I named this dataset “states_web,” but it is the exact same dataset as “states.” This object now appears in the Environment window (upper-right quadrant) in addition to the “states” object. Herein lies a major advantage of RStudio over other statistical software packages such as Stata and SPSS: <em>The ability to import multiple datasets at a time</em>. This feature is extremely useful in many data analysis contexts, which I will highlight in other parts of the book. Moreover, users can save objects other than datasets, including regression model results or a stored value from a particular calculation or equation.</p>
+<div id="fig-importcsvweb" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-importcsvweb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.4: <strong>Screen Shot After Importing “states.csv” from the Web</strong>
+</figcaption>
+<div aria-describedby="fig-importcsvweb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/import_csv_web.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+</figure>
+</div>
+</section>
+<section id="importing-data-from-an-r-package" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="importing-data-from-an-r-package"><span class="header-section-number">3.1.3</span> Importing Data From an R Package</h3>
+<p>Some R packages contain datasets that researchers can analyze in RStudio without having to download them on one’s hard drive or even having to import them to one’s RStudio environment. An example is a well-known dataset called “gapminder,” which contains data on 142 countries over a select number of years from 1952-2007. To install the gapminder package, type: <code>install.packages("gapminder")</code></p>
+<p>Once you load the package using the <code>library</code> command, you can actually begin analyzing the dataset called “gapminder” without even having to import it into your RStudio environment. For instance, consider this code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "country"   "continent" "year"      "lifeExp"   "pop"       "gdpPercap"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gapminder, <span class="at">n=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+11 Afghanistan Asia       2002    42.1 25268405      727.
+12 Afghanistan Asia       2007    43.8 31889923      975.
+13 Albania     Europe     1952    55.2  1282697     1601.
+14 Albania     Europe     1957    59.3  1476505     1942.
+15 Albania     Europe     1962    64.8  1728137     2313.
+16 Albania     Europe     1967    66.2  1984060     2760.
+17 Albania     Europe     1972    67.7  2263554     3313.
+18 Albania     Europe     1977    68.9  2509048     3533.
+19 Albania     Europe     1982    70.4  2780097     3631.
+20 Albania     Europe     1987    72    3075321     3739.</code></pre>
+</div>
+</div>
+<p>Note that I did not import the data to my RStudio environment in order to begin analyzing the data. However, users can import datasets like this one into their environment by issuing the following command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gapminder</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(gm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "country"   "continent" "year"      "lifeExp"   "pop"       "gdpPercap"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gm, <span class="at">n=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+11 Afghanistan Asia       2002    42.1 25268405      727.
+12 Afghanistan Asia       2007    43.8 31889923      975.
+13 Albania     Europe     1952    55.2  1282697     1601.
+14 Albania     Europe     1957    59.3  1476505     1942.
+15 Albania     Europe     1962    64.8  1728137     2313.
+16 Albania     Europe     1967    66.2  1984060     2760.
+17 Albania     Europe     1972    67.7  2263554     3313.
+18 Albania     Europe     1977    68.9  2509048     3533.
+19 Albania     Europe     1982    70.4  2780097     3631.
+20 Albania     Europe     1987    72    3075321     3739.</code></pre>
+</div>
+</div>
+<p>After running this command, one will see the “gm” object (the gapminder dataset) in the “Environment” window. Since the dataset in the <code>gapminder</code> package is “R-ready,” I do not need to issue a “read_” command like in <a href="#sec-hd" class="quarto-xref"><span>Section 3.1.1</span></a>. All the user needs to do is import it to one’s current RStudio environment as is. Now when I begin analyzing the data, I can specify “gm” as the data object, as I have done in the command above; the same output appears as in the previous command that did not import the dataset into the RStudio environment. Note also that this dataset is time-series cross-sectional (TSCS) data. It is tracking 147 over time multiple years on a variety of characteristics.</p>
+</section>
+</section>
+<section id="value-labels-for-variables" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="value-labels-for-variables"><span class="header-section-number">3.2</span> Value Labels for Variables</h2>
+<p>Researchers often find it useful to provide verbal “value labels” associated with a variable’s numeric values. For interval/continuous levels of measurement (e.g., voter turnout percentages in the states data), defining such value labels is neither practical nor necessary. The values (e.g., 55.6% turnout) are self-explanatory. However, for certain ordinal variables and most nominal variables, it is often helpful to associate the numerical values of the variable with an intuitive verbal label. Returning to our trust in government example (from <a href="intro.html#sec-var" class="quarto-xref"><span>Section 2.2.2</span></a>), recall the first question:</p>
+<blockquote class="blockquote">
+<p>“How much of the time do you think you can trust the government in Washington to do what is right?” <em>Always, Just about always, Some of the time, Hardly ever, Never</em></p>
+</blockquote>
+<p>Thus, I may want to associate each numeric value with these response options like what is displayed in <a href="#tbl-values" class="quarto-xref">Table&nbsp;<span>3.2</span></a>. Value labels are useful both for one’s own purposes (to remember which numeric value means what) and for when one starts analyzing data and reporting results in graphs and tables.</p>
+<center>
+<div id="tbl-values" class="table-striped table-hover table-bordered table-sm column quarto-float quarto-figure quarto-figure-center anchored" style="width:60%;">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.2: <strong>Associating Numeric Coding Values with Verbal Values Labels</strong>
+</figcaption>
+<div aria-describedby="tbl-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover table-bordered table-sm column small caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Numeric Value</th>
+<th style="text-align: left;">Verbal Value Label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Never</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Hardly ever</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Some of the time</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Just about always</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">Always</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</center>
+<p>Note that neither of the two datasets I have discussed so far — states and gapminder — has value labels attached to the numeric values (for the numeric variables). Many publicly available stock datasets contain preexisting value labels that the organization coordinating the data effort has added in manually. Researchers can always change those labels or add their own labels for variables that lack value labels.</p>
+<section id="stock-data-with-preexisting-value-labels" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="stock-data-with-preexisting-value-labels"><span class="header-section-number">3.2.1</span> Stock Data with Preexisting Value Labels</h3>
+<p>For stock data with preexisting value labels attached to the numeric values, I will often download the Stata version (.dta). Stata datasets have a very clean way of attaching verbal value labels. I will use an example from the 2024 American National Election Studies (ANES). Users who go to the <a href="https://electionstudies.org/data-center/2024-time-series-study/" target="_blank">ANES website</a> to download data the 2024 data will see options to download a .csv, .dta (Stata), or .sav (SPSS) file. The downloadable file from the site is actually a .zip file that contains both the dataset and the codebook. I take this opportunity to emphasize that users should definitely consult the codebooks associated with stock datasets so that they can read the variable explanations and understand how they are coded.</p>
+<p>I have created a unique url for users to import the 2024 ANES data; I have also created this <a href="https://blbartels.github.io/dataps/anes24.pdf" target="_blank">link to the codebook</a>. Recall from <a href="#tbl-import" class="quarto-xref">Table&nbsp;<span>3.1</span></a> that to import a Stata (.dta) dataset into RStudio, users need to use the <code>haven</code> package. To install <code>haven</code>, simply run the following command: <code>install.packages("haven")</code>. Next, users should load the package and import the data into the RStudio environment using the <code>read_dta</code> command from <code>haven</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"https://blbartels.github.io/dataps/anes24.dta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Readers will see that this dataset contains 5,521 voters (i.e., <em>N</em>=5,521) and 1,722 variables. This cross-sectional dataset comes from a nationally representative probability sample of American voters. This is quite a large dataset. Readers who want to run the <code>names(anes)</code> command to list all 1,722 variables can do so on their own. Users who view this dataset will immediately see that the variable names make no sense. Nearly all variables begin with “V24” (for 2024) and then contain a series of numbers and perhaps a letter. This makes the codebook especially critical when analyzing a stock dataset like this one. I will discuss some more themes for generating and recoding new variables in <a href="#sec-org" class="quarto-xref"><span>Chapter 3</span></a>.</p>
+<p>The example variable I will below is party identification; the variable name is “V241227x.” Below, I include a command to show the “class” of this variable:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(anes<span class="sc">$</span>V241227x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "haven_labelled" "vctrs_vctr"     "double"        </code></pre>
+</div>
+</div>
+<p>First, “double” means that the variable is stored as a numeric variable capable of having decimal points (even if it doesn’t in this case). The description “haven_labelled” and “vctsr_vctr” are associated with the importation into RStudio via the <code>read_dta</code> command from <code>haven</code>. These descriptions mean that the variables have verbal value labels associated with the numeric values for the variable. The “anes” data object in our RStudio environment includes both the numeric values and the verbal value labels. Some RStudio commands that we enter will only recognize the numeric values. Consider the “base R” command <code>table</code>, which gives a frequency distribution of this party identification variable:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(anes<span class="sc">$</span>V241227x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  -9   -8   -4    1    2    3    4    5    6    7 
+  31    5    2 1314  616  714  380  716  577 1166 </code></pre>
+</div>
+</div>
+<p>Without consulting the codebook, we would have no idea what these numeric values mean. Which ones represent Republicans versus Democrats? Of course, we should definitely consult the codebook, but since we have value labels attached, we can use “value-label-friendly” packages that report <em>both</em> the numeric values <em>and</em> the verbal value labels. One option for a categorical variable like party identification is the <code>freq</code> command from the <code>questionr</code> package (make sure to install <code>questionr</code> first):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(questionr)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>V241227x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                     n    % val%
+[-9] -9. Refused                    31  0.6  0.6
+[-8] -8. Don't know                  5  0.1  0.1
+[-4] -4. Error                       2  0.0  0.0
+[1] 1. Strong Democrat            1314 23.8 23.8
+[2] 2. Not very strong Democrat    616 11.2 11.2
+[3] 3. Independent-Democrat        714 12.9 12.9
+[4] 4. Independent                 380  6.9  6.9
+[5] 5. Independent-Republican      716 13.0 13.0
+[6] 6. Not very strong Republican  577 10.5 10.5
+[7] 7. Strong Republican          1166 21.1 21.1</code></pre>
+</div>
+</div>
+<p>In brackets on the left side are the numeric values of the variable followed by verbal value labels that come with the stock dataset (again, someone had to code those and thankfully it wasn’t us!). One can see that the “core” party values range from strong Democrat (=1) to strong Republican (=7). ANES also manually codes values that we would normally categorize as “missing data,” i.e., values of the variable that are not amenable to quantitative analysis because they deviate from the core variable values. Those values are “Refused” (-9), “Don’t know” (-8), and “Error” (-4). I will discuss how to deal with and code missing data in <a href="#sec-gen" class="quarto-xref"><span>Section 3.3</span></a>.</p>
+</section>
+<section id="sec-man" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="sec-man"><span class="header-section-number">3.2.2</span> Manually Adding Value Labels to Variables</h3>
+<p>Adding value labels to variables that do not contain preexisting value labels is simple. Several packages and commands exist for adding value labels, and I will show an example using the <code>labelled</code> command from the <code>haven</code> package. Returning to our “states” data, let’s say we wanted to add value labels to the “south” variable, where 0=“Non-Southern State” and 1=“Southern State”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>south <span class="ot">&lt;-</span> <span class="fu">labelled</span>(states<span class="sc">$</span>south, </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Non-Southern State"</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">"Southern State"</span> <span class="ot">=</span> <span class="dv">1</span>))</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>south)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "haven_labelled" "vctrs_vctr"     "double"        </code></pre>
+</div>
+</div>
+<p>This first command “updates” the “states” data object with this new information. Note also that I can do a “hard return” after the …<code>states$south</code> in the first line in this command and RStudio recognizes it as one command. Now when I issue the <code>class</code> command, the “south” variable is “haven-labelled” — it contains a verbal value label for each numeric value of the variable.</p>
+<p>When I do a <code>freq</code> command (from <code>questionr</code>), I get the following output that includes these newly-added value labels:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(states<span class="sc">$</span>south)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                        n  % val%
+[0] Non-Southern State 34 68   68
+[1] Southern State     16 32   32</code></pre>
+</div>
+</div>
+<p><a href="#sec-gen" class="quarto-xref"><span>Section 3.3</span></a> below will introduce commands to create and recode new variables in a dataset. It will also cover additional ways to add value labels within those commands.</p>
+</section>
+</section>
+<section id="sec-gen" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="sec-gen"><span class="header-section-number">3.3</span> Generating and Recoding New Variables</h2>
+<p>Once researchers import data and understand how their variables are stored and labelled, they need to generate and recode new variables that they will subject to quantitative analysis. I will review procedures and strategies for coding variables and also introduce an extremely useful command for executing these steps called <code>mutate</code>, which comes from the widely-used <code>dplyr</code> package within the <code>tidyverse</code>.</p>
+<p>I will stick with the party identification variable from ANES to introduce the <code>mutate</code> command. After one has imported a dataset (whether it be a stock dataset or a dataset created by the researcher), researchers should never alter or recode the original variables in the dataset. Keep the original variables as is. For variables one wants to recode, <em>generate a new variable and make changes to that variable</em>. For the ANES data in particular, recall that the variable names make no sense in terms of indicating what the variable means. Instead of V241227x, we should create a new variable that is more desriptive of the actual variable. I like to keep variable names short, so something like “partyid” is sufficient — it is short and descriptive.</p>
+<p>The following command will generate a new variable in the ANES dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> <span class="fu">mutate</span>(anes, <span class="at">partyid=</span>V241227x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This command updates the anes data object via the assignment operator, <code>&lt;-</code>. The <code>mutate</code> command generates a new variable, “partyid”, at the end of the dataset that is a duplicate of the “V241227x” variable we analyzed earlier. Note the syntax used here. In the parentheses of the mutate command, the data object (anes) comes first followed by a comma and then the variable creation command. As discussed, <code>mutate</code> represents the <code>tidyverse</code> way of generating new variables. The “base R” equivalent of generating this partyid variable is:</p>
+<blockquote class="blockquote">
+<p><code>anes$partyid &lt;- anes$V241227x</code></p>
+</blockquote>
+<p>An advantage of <code>mutate</code> over “base R” is that <code>mutate</code> allows a user to combine commands for generating multiple variables or running multiple operations within a single <code>mutate</code> command.</p>
+<p>The frequency distribution of “partyid” is the same as for V241227x we analyzed earlier:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>partyid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                     n    % val%
+[-9] -9. Refused                    31  0.6  0.6
+[-8] -8. Don't know                  5  0.1  0.1
+[-4] -4. Error                       2  0.0  0.0
+[1] 1. Strong Democrat            1314 23.8 23.8
+[2] 2. Not very strong Democrat    616 11.2 11.2
+[3] 3. Independent-Democrat        714 12.9 12.9
+[4] 4. Independent                 380  6.9  6.9
+[5] 5. Independent-Republican      716 13.0 13.0
+[6] 6. Not very strong Republican  577 10.5 10.5
+[7] 7. Strong Republican          1166 21.1 21.1</code></pre>
+</div>
+</div>
+<p>Note that <code>mutate</code> preserves the verbal value labels for partyid that were already in V241227x.</p>
+<p>Next, we need to deal with missing data. In this situation, most researchers would treat “Refused,” “Don’t konw,” and “Error” as missing data. When an observation is treated as missing data, quantitative analysis procedures do not include those missing data in the results. In RStudio, missing data is denoted by <code>NA</code>. Since the numeric values of partyid that I want to be missing data are given numeric values (i.e., -9, -8, and -4), I need to recode those values to <code>NA</code> using the <code>if_else</code> command (also from <code>dplyr</code> within the <code>tidyverse</code>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> <span class="fu">mutate</span>(anes, <span class="at">partyid =</span> <span class="fu">if_else</span>(partyid<span class="sc">&lt;</span><span class="dv">0</span>, <span class="cn">NA</span>, partyid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I will explain the syntax first. First, the anes data already includes the partyid variable that is a straight duplicate of V241227x. Using the assignment operator, I am telling RStudio to update this partyid variable within the anes dataset. The basic logic of <code>if_else</code> is to enter 3 pieces of information regarding partyid:</p>
+<blockquote class="blockquote">
+<p>if_else(<em>if</em> this condition is true, <em>then</em> code as this, <em>else</em> code as that)</p>
+</blockquote>
+<p>The commmand tells RStudio, if partyid is less than zero (using the <code>&lt;</code> operator), then code those observations as missing data (<code>NA</code>), otherwise code them as they were coded before (the partyid values that already exist).</p>
+<p>Now when I generate a frequency distribution, the 38 observations that were either -9, -8, or -4 are recoded as <code>NA</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>partyid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                     n    % val%
+[-9] -9. Refused                     0  0.0  0.0
+[-8] -8. Don't know                  0  0.0  0.0
+[-4] -4. Error                       0  0.0  0.0
+[1] 1. Strong Democrat            1314 23.8 24.0
+[2] 2. Not very strong Democrat    616 11.2 11.2
+[3] 3. Independent-Democrat        714 12.9 13.0
+[4] 4. Independent                 380  6.9  6.9
+[5] 5. Independent-Republican      716 13.0 13.1
+[6] 6. Not very strong Republican  577 10.5 10.5
+[7] 7. Strong Republican          1166 21.1 21.3
+NA                                  38  0.7   NA</code></pre>
+</div>
+</div>
+<p>Note that the numeric values and value labels for -9, -8, and -4 remain preserved but there are now 0 observations for each. The <code>freq</code> output also makes an adjustment now that it officially recognizes missing data. The “n” column reports how many survey respondents/individuals are in each party category (e.g., 1,314 respondents are strong Democrats). The “%” column reports the percentage of all respondents, <em>including</em> missing data (<code>NA</code>) observations, that fall within each category (e.g., 23.8% of individuals in the survey are strong Democrats). In the final column, “val%” stands for “valid percentage” of respondents in each category, which <em>omits</em> missing data. Of the respondents who are <em>not</em> coded as missing data on this variable, 24% are strong Democrats.</p>
+<p>Finally, the command below shows how a user could both generate the new variable and recode in one single command. In other words, instead of issuing two commands, like above, one can achieve this same result in one command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> <span class="fu">mutate</span>(anes, <span class="at">partyid =</span> <span class="fu">if_else</span>(V241227x<span class="sc">&lt;</span><span class="dv">0</span>, <span class="cn">NA</span>, V241227x))</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>partyid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                     n    % val%
+[-9] -9. Refused                     0  0.0  0.0
+[-8] -8. Don't know                  0  0.0  0.0
+[-4] -4. Error                       0  0.0  0.0
+[1] 1. Strong Democrat            1314 23.8 24.0
+[2] 2. Not very strong Democrat    616 11.2 11.2
+[3] 3. Independent-Democrat        714 12.9 13.0
+[4] 4. Independent                 380  6.9  6.9
+[5] 5. Independent-Republican      716 13.0 13.1
+[6] 6. Not very strong Republican  577 10.5 10.5
+[7] 7. Strong Republican          1166 21.1 21.3
+NA                                  38  0.7   NA</code></pre>
+</div>
+</div>
+<section id="introducing-the-pipe-operator-and" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="introducing-the-pipe-operator-and"><span class="header-section-number">3.3.1</span> Introducing the Pipe Operator (<code>%&gt;%</code> and <code>|&gt;</code>)</h3>
+<p>At this point, I will deviate somewhat from the core “generating and recoding” discussion to introduce an extremely useful operator at the heart of the <code>tidyverse</code>: The pipe operator. The pipe operator works as a linking mechanism for different types of commands. In many data science and RStudio textbooks that emphasize the <code>tidyverse</code>, the pipe operator is omnipresent (the same goes for my own use of RStudio). The original pipe operator, <code>%&gt;%</code> came from the <code>magrittr</code> package within <code>tidyverse.</code> However, “base R” has now added an even more universal pipe operator called the “native pipe,” <code>|&gt;</code>, which I will use throughout this book. Just know that <code>%&gt;%</code> and <code>|&gt;</code> serve the same function.</p>
+<p>Integration with the <code>mutate</code> command is a good, simple example of the pipe’s utility. Instead of issuing this command for recoding partyid:</p>
+<blockquote class="blockquote">
+<p><code>anes &lt;- mutate(anes, partyid = if_else(V241227x&lt;0, NA, V241227x))</code></p>
+</blockquote>
+<p>I could issue this command instead, which uses the pipe:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">partyid =</span> <span class="fu">if_else</span>(V241227x<span class="sc">&lt;</span><span class="dv">0</span>, <span class="cn">NA</span>, V241227x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Both commands accomplish the exact same result. Looking at the piped command, the assignment operator signals that I want RStudio to update the anes dataset. Recall that the pipe operator joins two commands together, which readers will see in more detail in examples throughout this chapter and the rest of the book. But whenever you see the pipe, the “stuff” before the pipe signals, “<em>First</em>, I’m going to do this thing.” The pipe signals, “<em>Then</em> I’m going to do this other thing.” So in this command, I am updating the anes dataset with the assignment operator. <em>First</em>, take the existing anes data. The <code>|&gt;</code> implies, <em>Then</em> generate and recode the partyid variable as I have detailed in this <code>mutate</code> command. Note that this command above, despite it being on two lines, is one command. Multiple commands (e.g., 3 or 4) joined together by <code>|&gt;</code> are part of one unified command.</p>
+<p>Note the one additional contrast between the unipiped and piped commands: The <code>mutate</code> syntax in the unpiped command follows: <code>mutate(dataset, variable = ....)</code>. In the piped command, the dataset name (anes) gets pulled out of the <code>mutate</code> parentheses and goes immediately before <code>|&gt;</code>.</p>
+<p>Finally, users can type a keystroke — shift-command-M for Macs, shift-ctrl-M for PCs — to issue the pipe command. By default, when you type this keystroke, it will display <code>%&gt;%</code>, the <code>tidyverse</code> pipe. To change this to the “native” or base R pipe, <code>|&gt;</code>, click on Tools –&gt; Global Options. Then click Code on the left pane. Check the box next to “Use native pipe operator, |&gt;.”</p>
+</section>
+<section id="additional-recoding-procedures-using-if_else-and-case_when" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="additional-recoding-procedures-using-if_else-and-case_when"><span class="header-section-number">3.3.2</span> Additional Recoding Procedures Using <code>if_else</code> and <code>case_when</code></h3>
+<p>Assume we wanted to recode the 7-category party identification variable into a 3-category variable, where 1=Democrat, 2=Independent, and 3=Republican. We could use the <code>if_else</code> command like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">party3 =</span> <span class="fu">if_else</span>(partyid<span class="sc">&gt;</span><span class="dv">0</span> <span class="sc">&amp;</span> partyid<span class="sc">&lt;</span><span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>), </span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">party3 =</span> <span class="fu">if_else</span>(partyid<span class="sc">==</span><span class="dv">4</span>, <span class="dv">2</span>, party3))</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>party3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      n    % val%
+1  2644 47.9 48.2
+2   380  6.9  6.9
+3  2459 44.5 44.8
+NA   38  0.7   NA</code></pre>
+</div>
+</div>
+<p>Notice my use of comparison operators, <code>&gt;</code> and <code>&lt;</code>, in the syntax above. That is separated by <code>&amp;</code> for “and.” The first line of the <code>mutate</code> code says if partyid is greater than 0 <em>and</em> less than 4 (i.e., values 1, 2, or 3), then party3 should equal 1 (Democrat). Otherwise, it should equal 3 (Republican). Also, in the third line, note the use of two equal signs, <code>==</code> to indicate equality. I then update the measure by changing party3 to 2 (Independent) if partyid is equal to 4, and otherwise, other values should remain at the party3 values defined in the prior line.</p>
+<p>Since I have now used these comparison and logical operators on a few occasions, <a href="#tbl-ops" class="quarto-xref">Table&nbsp;<span>3.3</span></a> below summarizes these comparison and logical operators and what they do:</p>
+<center>
+<div id="tbl-ops" class="table-striped table-hover table-bordered table-sm column quarto-float quarto-figure quarto-figure-center anchored" style="width:70%;">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ops-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.3: <strong>Comparison and Logical Operators in RStudio</strong>
+</figcaption>
+<div aria-describedby="tbl-ops-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover table-bordered table-sm column small caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 35%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Operator</th>
+<th style="text-align: left;">Type of Operator</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>&gt;</code></td>
+<td style="text-align: left;">Comparison</td>
+<td style="text-align: left;">Greater than</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>&lt;</code></td>
+<td style="text-align: left;">Comparison</td>
+<td style="text-align: left;">Less than</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>==</code></td>
+<td style="text-align: left;">Comparison</td>
+<td style="text-align: left;">Equal to</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>!=</code></td>
+<td style="text-align: left;">Comparison</td>
+<td style="text-align: left;">Not equal to</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>&gt;=</code></td>
+<td style="text-align: left;">Comparison</td>
+<td style="text-align: left;">Greater than or equal to</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>&lt;=</code></td>
+<td style="text-align: left;">Comparison</td>
+<td style="text-align: left;">Less than or equal to</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>&amp;</code></td>
+<td style="text-align: left;">Logical</td>
+<td style="text-align: left;">And</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>|</code></td>
+<td style="text-align: left;">Logical</td>
+<td style="text-align: left;">Or</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>!</code></td>
+<td style="text-align: left;">Logical</td>
+<td style="text-align: left;">Not</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</center>
+<p>In this particular situation of generating and recoding a new 3-category variable from a 7-category variable, I actually prefer <code>case_when</code>, which comes from <code>dyplr</code> via the <code>tidyverse</code> and is a bit more intuitive for contexts like these:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">party3 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>           partyid<span class="sc">&gt;</span><span class="dv">0</span> <span class="sc">&amp;</span> partyid<span class="sc">&lt;</span><span class="dv">4</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>           partyid <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>           partyid<span class="sc">&gt;</span><span class="dv">4</span> <span class="sc">~</span> <span class="dv">3</span>)</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>party3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      n    % val%
+1  2644 47.9 48.2
+2   380  6.9  6.9
+3  2459 44.5 44.8
+NA   38  0.7   NA</code></pre>
+</div>
+</div>
+<p>Using <code>case_when</code>, I tell <code>mutate</code> the three conditions of partyid that should translate to the new coding of the party3 variable. <code>case_when</code> also uses if-then logic. In the first line, <em>if</em> partyid is greater than 0 and less than 4 (i.e., for values 1, 2, and 3), <em>then</em> the new party3 variable will equal 1. And note the use of straigtforward syntax in the remaining lines.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>If I wanted to add verbal value labels to the 3-category party variable, I could use <code>haven</code> as I did in <a href="#sec-man" class="quarto-xref"><span>Section 3.2.2</span></a>, or I could use the <code>labelled</code> package (make sure to install it first), which is particularly useful in this context because it can be combined with <code>mutate</code> (and <code>case_when</code>) using the pipe operator:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(labelled)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">party3 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    partyid<span class="sc">&gt;</span><span class="dv">0</span> <span class="sc">&amp;</span> partyid<span class="sc">&lt;</span><span class="dv">4</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    partyid <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>    partyid<span class="sc">&gt;</span><span class="dv">4</span> <span class="sc">~</span> <span class="dv">3</span>)</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_value_labels</span>(<span class="at">party3=</span><span class="fu">c</span>(<span class="st">"Democrat"</span><span class="ot">=</span><span class="dv">1</span>, <span class="st">"Independent"</span><span class="ot">=</span><span class="dv">2</span>, <span class="st">"Republican"</span><span class="ot">=</span><span class="dv">3</span>))</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>party3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   n    % val%
+[1] Democrat    2644 47.9 48.2
+[2] Independent  380  6.9  6.9
+[3] Republican  2459 44.5 44.8
+NA                38  0.7   NA</code></pre>
+</div>
+</div>
+<p>Now the party3 variable is both recoded and labelled, all in one unified command.</p>
+<p>A final note on the <code>mutate</code> command is that users can generate and recode multiple variables in one <code>mutate</code> command. Let’s say that in addition to party identification, we also want to code education and income (in reality, we would have several variables up to generate and code for a project). ANES has a variable, “V241465x,” that measures education level and “V241566x,” which measures family income. The variables are measured as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>V241465x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                                              n
+[-9] -9. Refused                                                             26
+[-8] -8. Don't know                                                           1
+[-4] -4. Error                                                                6
+[-2] -2. Insufficent information to code other/specify open-ended response   23
+[1] 1. Less than high school credential                                     283
+[2] 2. High school credential                                               973
+[3] 3. Some post-high school, no bachelor's degree                         1738
+[4] 4. Bachelor's degree                                                   1384
+[5] 5. Graduate degree                                                     1087
+                                                                              %
+[-9] -9. Refused                                                            0.5
+[-8] -8. Don't know                                                         0.0
+[-4] -4. Error                                                              0.1
+[-2] -2. Insufficent information to code other/specify open-ended response  0.4
+[1] 1. Less than high school credential                                     5.1
+[2] 2. High school credential                                              17.6
+[3] 3. Some post-high school, no bachelor's degree                         31.5
+[4] 4. Bachelor's degree                                                   25.1
+[5] 5. Graduate degree                                                     19.7
+                                                                           val%
+[-9] -9. Refused                                                            0.5
+[-8] -8. Don't know                                                         0.0
+[-4] -4. Error                                                              0.1
+[-2] -2. Insufficent information to code other/specify open-ended response  0.4
+[1] 1. Less than high school credential                                     5.1
+[2] 2. High school credential                                              17.6
+[3] 3. Some post-high school, no bachelor's degree                         31.5
+[4] 4. Bachelor's degree                                                   25.1
+[5] 5. Graduate degree                                                     19.7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>V241566x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                         n   % val%
+[-9] -9. Refused                       301 5.5  5.5
+[-5] -5. Break off, sufficient partial  10 0.2  0.2
+[-4] -4. Error                           0 0.0  0.0
+[-1] -1. Inapplicable                  245 4.4  4.4
+[1] 1. Under $5,000                    405 7.3  7.3
+[2] 2. $5,000-9,999                     51 0.9  0.9
+[3] 3. $10,000-12,499                  108 2.0  2.0
+[4] 4. $12,500-14,999                   37 0.7  0.7
+[5] 5. $15,000-17,499                   75 1.4  1.4
+[6] 6. $17,500-19,999                   31 0.6  0.6
+[7] 7. $20,000-22,499                  104 1.9  1.9
+[8] 8. $22,500-24,999                   45 0.8  0.8
+[9] 9. $25,000-27,499                   92 1.7  1.7
+[10] 10. $27,500-29,999                 29 0.5  0.5
+[11] 11. $30,000-34,999                171 3.1  3.1
+[12] 12. $35,000-39,999                149 2.7  2.7
+[13] 13. $40,000-44,999                199 3.6  3.6
+[14] 14. $45,000-49,999                124 2.2  2.2
+[15] 15. $50,000-54,999                233 4.2  4.2
+[16] 16. $55,000-59,999                102 1.8  1.8
+[17] 17. $60,000-64,999                204 3.7  3.7
+[18] 18. $65,000-69,999                 98 1.8  1.8
+[19] 19. $70,000-74,999                156 2.8  2.8
+[20] 20. $75,000-79,999                142 2.6  2.6
+[21] 21. $80,000-89,999                262 4.7  4.7
+[22] 22. $90,000-99,999                194 3.5  3.5
+[23] 23. $100,000-109,999              331 6.0  6.0
+[24] 24. $110,000-124,999              268 4.9  4.9
+[25] 25. $125,000-149,999              260 4.7  4.7
+[26] 26. $150,000-174,999              297 5.4  5.4
+[27] 27. $175,000-249,999              416 7.5  7.5
+[28] 28. $250,000 or more              382 6.9  6.9</code></pre>
+</div>
+</div>
+<p>Note that with the long verbal value labels for education, the output is a bit messy and separates the output by “n,” “%,” and “val%.”</p>
+<p>I could do all of the prior coding for party, education, and income in one <code>mutate</code> command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">partyid =</span> <span class="fu">if_else</span>(V241227x<span class="sc">&lt;</span><span class="dv">0</span>, <span class="cn">NA</span>, V241227x), </span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">party3 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>           partyid<span class="sc">&gt;</span><span class="dv">0</span> <span class="sc">&amp;</span> partyid<span class="sc">&lt;</span><span class="dv">4</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>           partyid <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>           partyid<span class="sc">&gt;</span><span class="dv">4</span> <span class="sc">~</span> <span class="dv">3</span>), </span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">educ =</span> <span class="fu">if_else</span>(V241465x <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="cn">NA</span>, V241465x), </span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">income =</span> <span class="fu">if_else</span>(V241566x <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="cn">NA</span>, V241566x)</span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">|&gt;</span> </span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_value_labels</span>(<span class="at">party3=</span><span class="fu">c</span>(<span class="st">"Democrat"</span><span class="ot">=</span><span class="dv">1</span>, <span class="st">"Independent"</span><span class="ot">=</span><span class="dv">2</span>, <span class="st">"Republican"</span><span class="ot">=</span><span class="dv">3</span>))</span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>partyid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                     n    % val%
+[-9] -9. Refused                     0  0.0  0.0
+[-8] -8. Don't know                  0  0.0  0.0
+[-4] -4. Error                       0  0.0  0.0
+[1] 1. Strong Democrat            1314 23.8 24.0
+[2] 2. Not very strong Democrat    616 11.2 11.2
+[3] 3. Independent-Democrat        714 12.9 13.0
+[4] 4. Independent                 380  6.9  6.9
+[5] 5. Independent-Republican      716 13.0 13.1
+[6] 6. Not very strong Republican  577 10.5 10.5
+[7] 7. Strong Republican          1166 21.1 21.3
+NA                                  38  0.7   NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>party3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   n    % val%
+[1] Democrat    2644 47.9 48.2
+[2] Independent  380  6.9  6.9
+[3] Republican  2459 44.5 44.8
+NA                38  0.7   NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>educ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                                              n
+[-9] -9. Refused                                                              0
+[-8] -8. Don't know                                                           0
+[-4] -4. Error                                                                0
+[-2] -2. Insufficent information to code other/specify open-ended response    0
+[1] 1. Less than high school credential                                     283
+[2] 2. High school credential                                               973
+[3] 3. Some post-high school, no bachelor's degree                         1738
+[4] 4. Bachelor's degree                                                   1384
+[5] 5. Graduate degree                                                     1087
+NA                                                                           56
+                                                                              %
+[-9] -9. Refused                                                            0.0
+[-8] -8. Don't know                                                         0.0
+[-4] -4. Error                                                              0.0
+[-2] -2. Insufficent information to code other/specify open-ended response  0.0
+[1] 1. Less than high school credential                                     5.1
+[2] 2. High school credential                                              17.6
+[3] 3. Some post-high school, no bachelor's degree                         31.5
+[4] 4. Bachelor's degree                                                   25.1
+[5] 5. Graduate degree                                                     19.7
+NA                                                                          1.0
+                                                                           val%
+[-9] -9. Refused                                                            0.0
+[-8] -8. Don't know                                                         0.0
+[-4] -4. Error                                                              0.0
+[-2] -2. Insufficent information to code other/specify open-ended response  0.0
+[1] 1. Less than high school credential                                     5.2
+[2] 2. High school credential                                              17.8
+[3] 3. Some post-high school, no bachelor's degree                         31.8
+[4] 4. Bachelor's degree                                                   25.3
+[5] 5. Graduate degree                                                     19.9
+NA                                                                           NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>income)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                         n    % val%
+[-9] -9. Refused                         0  0.0  0.0
+[-5] -5. Break off, sufficient partial   0  0.0  0.0
+[-4] -4. Error                           0  0.0  0.0
+[-1] -1. Inapplicable                    0  0.0  0.0
+[1] 1. Under $5,000                    405  7.3  8.2
+[2] 2. $5,000-9,999                     51  0.9  1.0
+[3] 3. $10,000-12,499                  108  2.0  2.2
+[4] 4. $12,500-14,999                   37  0.7  0.7
+[5] 5. $15,000-17,499                   75  1.4  1.5
+[6] 6. $17,500-19,999                   31  0.6  0.6
+[7] 7. $20,000-22,499                  104  1.9  2.1
+[8] 8. $22,500-24,999                   45  0.8  0.9
+[9] 9. $25,000-27,499                   92  1.7  1.9
+[10] 10. $27,500-29,999                 29  0.5  0.6
+[11] 11. $30,000-34,999                171  3.1  3.4
+[12] 12. $35,000-39,999                149  2.7  3.0
+[13] 13. $40,000-44,999                199  3.6  4.0
+[14] 14. $45,000-49,999                124  2.2  2.5
+[15] 15. $50,000-54,999                233  4.2  4.7
+[16] 16. $55,000-59,999                102  1.8  2.1
+[17] 17. $60,000-64,999                204  3.7  4.1
+[18] 18. $65,000-69,999                 98  1.8  2.0
+[19] 19. $70,000-74,999                156  2.8  3.1
+[20] 20. $75,000-79,999                142  2.6  2.9
+[21] 21. $80,000-89,999                262  4.7  5.3
+[22] 22. $90,000-99,999                194  3.5  3.9
+[23] 23. $100,000-109,999              331  6.0  6.7
+[24] 24. $110,000-124,999              268  4.9  5.4
+[25] 25. $125,000-149,999              260  4.7  5.2
+[26] 26. $150,000-174,999              297  5.4  6.0
+[27] 27. $175,000-249,999              416  7.5  8.4
+[28] 28. $250,000 or more              382  6.9  7.7
+NA                                     556 10.1   NA</code></pre>
+</div>
+</div>
+<p>Note that this one mutate command generates and recodes four variables. Each variable creation is separated by a comma.</p>
+</section>
+<section id="recoding-variables-to-range-from-0-to-1" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="recoding-variables-to-range-from-0-to-1"><span class="header-section-number">3.3.3</span> Recoding Variables to Range from 0 to 1</h3>
+<p>Researchers will often use various coding conventions to make interpretations of results easier to communicate. For some variables, keeping the variable coded as is makes sense, e.g., in the states dataset for percent voter turnout. In many survey research contexts, and other contexts as well, researchers often find it useful for interpretation purposes to recode their variables to range from 0 to 1. Readers will see the utility of this strategy once we get to linear regression analysis in <a href="linreg1.html" class="quarto-xref"><span>Chapter 8</span></a>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>Sticking with the party identification example, let’s say we want recode the 7-category variable (partyid) to range from 0 to 1. The following code represents the most inuitive way to execute this strategy:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">partyid01 =</span> partyid <span class="sc">-</span> <span class="dv">1</span>,</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">partyid01 =</span> partyid01<span class="sc">/</span><span class="dv">6</span>)</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>partyid01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     n    % val%
+0                 1314 23.8 24.0
+0.166666666666667  616 11.2 11.2
+0.333333333333333  714 12.9 13.0
+0.5                380  6.9  6.9
+0.666666666666667  716 13.0 13.1
+0.833333333333333  577 10.5 10.5
+1                 1166 21.1 21.3
+NA                  38  0.7   NA</code></pre>
+</div>
+</div>
+<p>First, notice the <code>mutate</code> notation. Recall that the partyid ranges from 1 to 7. Recoding that variable therefore requires two steps: (1) subtract 1 from each value to get it to range from 0 to 6 and (2) divided that new 0 to 6 variable by 6, its maximum value. The first line in the <code>mutate</code> notation executes the first step. The second line in the <code>mutate</code> command takes that newly-created partyid01 variable from the first line and divides it by 6. The result of this newly transformed variable, partyid01, is displayed in the frequency distribution. “0” is now strong Democrat, and “1” is now strong Republican.</p>
+<p>When it comes to variables recoded to range from 0 to 1, my own practice is to: (1) name the new variable the old variable plus “01” appended at the end (like I have done here) and (2) leave the transformed variable unlabelled. Any analyses users want to conduct on the 7-category variable (e.g., data visualization in <a href="dataviz.html" class="quarto-xref"><span>Chapter 4</span></a>) can be done on the originally coded variable, partyid, that ranges from 1 to 7 and contains value labels. The utility of the 0-1 recoding is mainly for inclusion in a regression analysis (<a href="linreg1.html" class="quarto-xref"><span>Chapter 8</span></a>).</p>
+<p>Researchers love automated code. While the above code is intuitive and works perfectly well (and could accommodate recoding multiple variables at a time using similar code), some users will want more automated code that can recode multiple variables at a time. The code below does exactly that, based on the general formula for recoding variables from 0 to 1:</p>
+<p><span class="math display">\[x_{i01} = \frac{x_i - x_{min}}{x_{max} - x_{min}}\]</span></p>
+<p>The command is below, followed by frequency distributions to verify that the formula did the coding correctly. The formula is automated because a researcher could run this one command for as many variables as they want to enter. The third line of the code specifies the variables that the researcher wants to recode from 0 to 1. Once again, a user could specify many variables here. I have speicified three. The following line implements the formula from above equation preceded by <code>~</code>. The equation uses built-in RStudio functions for the minimum and maximum values of a variable. The code gets complicated with the use of <code>na.rm = TRUE</code>. That addition is required to handle missing data. <code>na.rm</code> means “remove missing data” from the calculation. Since it is set to <code>TRUE</code>, it will indeed omit any observation with <code>NA</code> when calculating the formula. If we did not put that in lines 4 and 5, the command would try to include missing data for each calculation and we get <code>NA</code> for every observation. The last line (<code>.names = ....</code>) is also automated. It automatically names each new recoded variable with the original name (e.g., “partyid”) plus “01” appended to the end.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>anes <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.cols =</span> <span class="fu">c</span>(partyid, educ, income), </span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span> (.x <span class="sc">-</span> <span class="fu">min</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> </span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>           (<span class="fu">max</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.names =</span> <span class="st">"{.col}01"</span></span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>partyid01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     n    % val%
+0                 1314 23.8 24.0
+0.166666666666667  616 11.2 11.2
+0.333333333333333  714 12.9 13.0
+0.5                380  6.9  6.9
+0.666666666666667  716 13.0 13.1
+0.833333333333333  577 10.5 10.5
+1                 1166 21.1 21.3
+NA                  38  0.7   NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>educ01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        n    % val%
+0     283  5.1  5.2
+0.25  973 17.6 17.8
+0.5  1738 31.5 31.8
+0.75 1384 25.1 25.3
+1    1087 19.7 19.9
+NA     56  1.0   NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes<span class="sc">$</span>income01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     n    % val%
+0                  405  7.3  8.2
+0.037037037037037   51  0.9  1.0
+0.0740740740740741 108  2.0  2.2
+0.111111111111111   37  0.7  0.7
+0.148148148148148   75  1.4  1.5
+0.185185185185185   31  0.6  0.6
+0.222222222222222  104  1.9  2.1
+0.259259259259259   45  0.8  0.9
+0.296296296296296   92  1.7  1.9
+0.333333333333333   29  0.5  0.6
+0.37037037037037   171  3.1  3.4
+0.407407407407407  149  2.7  3.0
+0.444444444444444  199  3.6  4.0
+0.481481481481481  124  2.2  2.5
+0.518518518518518  233  4.2  4.7
+0.555555555555556  102  1.8  2.1
+0.592592592592593  204  3.7  4.1
+0.62962962962963    98  1.8  2.0
+0.666666666666667  156  2.8  3.1
+0.703703703703704  142  2.6  2.9
+0.740740740740741  262  4.7  5.3
+0.777777777777778  194  3.5  3.9
+0.814814814814815  331  6.0  6.7
+0.851851851851852  268  4.9  5.4
+0.888888888888889  260  4.7  5.2
+0.925925925925926  297  5.4  6.0
+0.962962962962963  416  7.5  8.4
+1                  382  6.9  7.7
+NA                 556 10.1   NA</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="streamlining-and-simplifying-data-analysis" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="streamlining-and-simplifying-data-analysis"><span class="header-section-number">3.4</span> Streamlining and Simplifying Data Analysis</h2>
+<p>In this section, I will provide some streamlining techniques that can make data analysis more manageable and also simplify the task in an intuitive way. Many of the commands I will use are from the <code>tidyverse</code>.</p>
+<section id="subsetting-observations" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="subsetting-observations"><span class="header-section-number">3.4.1</span> Subsetting Observations</h3>
+<p>On some occasions, researchers will have their “full” dataset (either a stock dataset or their own) but may want to work with a reduced set of observations for some particular analysis. They will want to filter on some variable or drop certain observations for a particular reason. Recall my recommendation on recoding in <a href="#sec-gen" class="quarto-xref"><span>Section 3.3</span></a>: When recoding a variable, never overwrite the original variable. <em>Leave all original variables in the dataset as is</em>. Instead, create a <em>new</em> variable, with a descriptive variable name, and recode that new variable.</p>
+<p>The same recommendation goes for filtering out observations. Whenever subsetting observations (i.e., removing some observations), <em>generate a new dataset object</em>. Since RStudio is flexible with the use multiple data objects in a given session, this move comes at no cost whatsoever.</p>
+<p>One example where this subsetting might be practical is if we were working with the ANES dataset, but we wanted to do an analysis comparing Democrats and Republicans only without considering Independents (for the time being). We could create a new data object that removes Independents using the <code>filter</code> command from the <code>dplyr</code> package within the <code>tidyverse</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>anes_noind <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(party3 <span class="sc">!=</span> <span class="dv">2</span> <span class="sc">|</span> <span class="fu">is.na</span>(party3))</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_noind<span class="sc">$</span>party3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   n    % val%
+[1] Democrat    2644 51.4 51.8
+[2] Independent    0  0.0  0.0
+[3] Republican  2459 47.8 48.2
+NA                38  0.7   NA</code></pre>
+</div>
+</div>
+<p>The <code>filter</code> command works seamlessly with piping. The command above tells RStudio to give me a new data object, “anes_noind” (which has a descriptive name for what I am doing), that takes the existing “anes” data object and removes Independents. Think of <code>filter</code> as synonomous with “keep.” I use <code>filter</code> to tell RStudio to “keep” observations under the following conditions. Recall that for the “party3” variable, Independents=2, and I use the “not equal to” comparison operator to remove them, or “not keep” them (see <a href="#tbl-ops" class="quarto-xref">Table&nbsp;<span>3.3</span></a>).</p>
+<p>In addition to removing Independents, I want to preserve the missing data (<code>NA</code>). Therefore, I use the logical operator, <code>|</code> (for “or”), so that I can keep the missing data. <code>is.na(party3)</code> means “missing data for the party3 variable.” <code>is.na</code> is special RStudio syntax to denote <code>NA</code> values for a variable in our data. We would <em>not</em> want to type <code>party3 == NA</code> here, as it would remove all observations. If we did not include <code>| is.na(party3)</code>, we would remove those missing data observations for the entire dataset (across all variables), which would transform the dataset in ways we do not want to do. In sum, the <code>filter</code> command is keeping observations if party3 is not equal to “2” <em>OR</em> if party3 has missing data. Put another way, it is removing <em>only</em> observations for which party3 is equal to “2.”</p>
+<p>After removing Independents, analysts may then want to recode this revised party3 variable as a dummy variable, taking on values “1” for Republicans and “0” for Democrats. We could also do the reverse, but analysts should simply keep track of which party is 1 and which is 0. In instances like this one, researchers may want to create a dummy variable that is specifically called “republican” to signal that 1=Republican and 0=Democrat.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>anes_noind <span class="ot">&lt;-</span> anes_noind <span class="sc">|&gt;</span> </span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">republican =</span> <span class="fu">case_when</span>(</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>    party3 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>    party3 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span> </span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_value_labels</span>(<span class="at">republican =</span> <span class="fu">c</span>(<span class="st">"Democrat"</span><span class="ot">=</span><span class="dv">0</span>, <span class="st">"Republican"</span><span class="ot">=</span><span class="dv">1</span>))</span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_noind<span class="sc">$</span>republican)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  n    % val%
+[0] Democrat   2644 51.4 51.8
+[1] Republican 2459 47.8 48.2
+NA               38  0.7   NA</code></pre>
+</div>
+</div>
+<p>And note that I have created, recoded, and labeled (<code>set_value_labels</code> from the <code>labelled</code> package) this new variable all in one command.</p>
+<p>Another useful example where I may want to subset observations comes from the gapminder dataset. Recall that this is TSCS data: tracking countries over select years. Let’s say I wanted to examine a cross-sectional dataset of these 142 countries in just the most recent year in the data, which is 2007? I could issue the following command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>gm_2007 <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> </span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>)</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(gm_2007<span class="sc">$</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       n   % val%
+2007 142 100  100</code></pre>
+</div>
+</div>
+<p>From the frequency distributions, we can see that the dataset contains just 142 observations (1 per country) for the year 2007.</p>
+</section>
+<section id="subsetting-variables" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="subsetting-variables"><span class="header-section-number">3.4.2</span> Subsetting Variables</h3>
+<p>Researchers sometimes have reason to create a new dataset with a reduced number of variables. The ANES and other stock datasets contain many variables. Sometimes, researchers want to be able to view the data but just for a select number of variables. Consider our new and recoded variables from the ANES data. We may want to view those variables to make sure they are are coded correctly. Here, we can use the <code>select</code> command from <code>dplyr</code> via the <code>tidyverse</code>. Once again, any time we’re subsetting on variables, we should always create a new data object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>anes_red <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(partyid, educ, income, partyid01, party3, educ01, income01) <span class="sc">|&gt;</span> </span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 5,521
+Columns: 7
+$ partyid   &lt;dbl+lbl&gt; 7, 4, 1, 6, 5, 3, 4, 6, 3, 1, 2, 5, 3, 7, 3, 1, 2, 7, 3,…
+$ educ      &lt;dbl+lbl&gt; 4, 3, 3, 3, 5, 3, 3, 3, 2, 2, 2, 2, 5, 3, 4, 4, 4, 4, 5,…
+$ income    &lt;dbl+lbl&gt; 27, 26, 24, 12, 15, 13, 12,  3,  1, 17, 25,  1, 28, 12, …
+$ partyid01 &lt;dbl&gt; 1.0000000, 0.5000000, 0.0000000, 0.8333333, 0.6666667, 0.333…
+$ party3    &lt;dbl+lbl&gt; 3, 2, 1, 3, 3, 1, 2, 3, 1, 1, 1, 3, 1, 3, 1, 1, 1, 3, 1,…
+$ educ01    &lt;dbl&gt; 0.75, 0.50, 0.50, 0.50, 1.00, 0.50, 0.50, 0.50, 0.25, 0.25, …
+$ income01  &lt;dbl&gt; 0.96296296, 0.92592593, 0.85185185, 0.40740741, 0.51851852, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>anes_red <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="at">n=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 7
+   partyid                    educ    income   partyid01 party3  educ01 income01
+   &lt;dbl+lbl&gt;                  &lt;dbl+l&gt; &lt;dbl+lb&gt;     &lt;dbl&gt; &lt;dbl+l&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+ 1 7 [7. Strong Republican]   4 [4. … 27 [27.…     1     3 [Rep…   0.75   0.963 
+ 2 4 [4. Independent]         3 [3. … 26 [26.…     0.5   2 [Ind…   0.5    0.926 
+ 3 1 [1. Strong Democrat]     3 [3. … 24 [24.…     0     1 [Dem…   0.5    0.852 
+ 4 6 [6. Not very strong Rep… 3 [3. … 12 [12.…     0.833 3 [Rep…   0.5    0.407 
+ 5 5 [5. Independent-Republi… 5 [5. … 15 [15.…     0.667 3 [Rep…   1      0.519 
+ 6 3 [3. Independent-Democra… 3 [3. … 13 [13.…     0.333 1 [Dem…   0.5    0.444 
+ 7 4 [4. Independent]         3 [3. … 12 [12.…     0.5   2 [Ind…   0.5    0.407 
+ 8 6 [6. Not very strong Rep… 3 [3. …  3 [3. …     0.833 3 [Rep…   0.5    0.0741
+ 9 3 [3. Independent-Democra… 2 [2. …  1 [1. …     0.333 1 [Dem…   0.25   0     
+10 1 [1. Strong Democrat]     2 [2. … 17 [17.…     0     1 [Dem…   0.25   0.593 
+11 2 [2. Not very strong Dem… 2 [2. … 25 [25.…     0.167 1 [Dem…   0.25   0.889 
+12 5 [5. Independent-Republi… 2 [2. …  1 [1. …     0.667 3 [Rep…   0.25   0     
+13 3 [3. Independent-Democra… 5 [5. … 28 [28.…     0.333 1 [Dem…   1      1     
+14 7 [7. Strong Republican]   3 [3. … 12 [12.…     1     3 [Rep…   0.5    0.407 
+15 3 [3. Independent-Democra… 4 [4. … 28 [28.…     0.333 1 [Dem…   0.75   1     
+16 1 [1. Strong Democrat]     4 [4. … 27 [27.…     0     1 [Dem…   0.75   0.963 
+17 2 [2. Not very strong Dem… 4 [4. … 20 [20.…     0.167 1 [Dem…   0.75   0.704 
+18 7 [7. Strong Republican]   4 [4. … 26 [26.…     1     3 [Rep…   0.75   0.926 
+19 3 [3. Independent-Democra… 5 [5. … 26 [26.…     0.333 1 [Dem…   1      0.926 
+20 1 [1. Strong Democrat]     4 [4. … 15 [15.…     0     1 [Dem…   0.75   0.519 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_red<span class="sc">$</span>party3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   n    % val%
+[1] Democrat    2644 47.9 48.2
+[2] Independent  380  6.9  6.9
+[3] Republican  2459 44.5 44.8
+NA                38  0.7   NA</code></pre>
+</div>
+</div>
+<p>Note that I call this new data object “anes_red” for “reduced.” I use <code>glimpse</code> and <code>head</code> to give a brief preview of this reduced dataset. I also include a frequency distribution of the party3 variable to show that this procedure preserves missing data. <code>select</code> only subsets variables but does nothing to transform anything about the observations.</p>
+<p>On the other hand, there may be some occasions where researchers will want to drop all missing data. A researcher’s “analysis data” is the “usable” data for a particular analysis, like a multiple linear regression analysis where each variable in the analysis must have no missing data. This usable data contains no missing data whatsoever for any one variable. That means if an observation has missing data for education but has non-missing data for income and party identification, that observation is not usable. Sometimes researchers will post their analysis data with usable observations in a regression analysis on a replication archive upon publication.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>anes_analysis <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(partyid, educ, income, partyid01, party3, educ01, income01) <span class="sc">|&gt;</span> </span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_analysis<span class="sc">$</span>educ01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        n    % val%
+0     243  4.9  4.9
+0.25  842 17.1 17.1
+0.5  1569 31.9 31.9
+0.75 1257 25.6 25.6
+1    1004 20.4 20.4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_analysis<span class="sc">$</span>partyid01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     n    % val%
+0                 1204 24.5 24.5
+0.166666666666667  566 11.5 11.5
+0.333333333333333  654 13.3 13.3
+0.5                326  6.6  6.6
+0.666666666666667  619 12.6 12.6
+0.833333333333333  519 10.6 10.6
+1                 1027 20.9 20.9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(anes_analysis<span class="sc">$</span>income01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     n   % val%
+0                  394 8.0  8.0
+0.037037037037037   51 1.0  1.0
+0.0740740740740741 106 2.2  2.2
+0.111111111111111   35 0.7  0.7
+0.148148148148148   75 1.5  1.5
+0.185185185185185   30 0.6  0.6
+0.222222222222222  104 2.1  2.1
+0.259259259259259   44 0.9  0.9
+0.296296296296296   92 1.9  1.9
+0.333333333333333   29 0.6  0.6
+0.37037037037037   171 3.5  3.5
+0.407407407407407  147 3.0  3.0
+0.444444444444444  195 4.0  4.0
+0.481481481481481  123 2.5  2.5
+0.518518518518518  229 4.7  4.7
+0.555555555555556   99 2.0  2.0
+0.592592592592593  198 4.0  4.0
+0.62962962962963    98 2.0  2.0
+0.666666666666667  155 3.2  3.2
+0.703703703703704  141 2.9  2.9
+0.740740740740741  261 5.3  5.3
+0.777777777777778  194 3.9  3.9
+0.814814814814815  329 6.7  6.7
+0.851851851851852  267 5.4  5.4
+0.888888888888889  259 5.3  5.3
+0.925925925925926  297 6.0  6.0
+0.962962962962963  414 8.4  8.4
+1                  378 7.7  7.7</code></pre>
+</div>
+</div>
+<p>First, I append “analysis” at the end of the new data name for “analysis dataset.” The <code>drop_na()</code> command (which comes from the <code>tidyr</code> package in <code>tidyverse</code>) drops missing data across all of the variables in this transformed dataset. Note that the above command is thus subsetting both variables (via <code>select</code>) and observations (via <code>drop_na</code>); note that <code>drop_na</code> works like <code>filter</code> in that it subsets observations but only focuses on missing data.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <code>drop_na</code> looks across the 7 specified variables, and if at least one of the variables has an <code>NA</code> (missing data), that observation is removed. Note in the variable frequency distributions that <code>NA</code> no longer appears at the end because we have removed it.</p>
+<p>One important note is that this process is not always necessary because most commands in RStudio automatically drop missing data. And moreover, we would <em>not</em> want to issue this command if we were, e.g., conducting univariate analyses of each variable one at a time. The above command would eliminate more observations that we would want it to. I will highlight data analysis contexts where removing missing data is necessary to get the right kind of output one wants.</p>
+</section>
+<section id="sec-cluster" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="sec-cluster"><span class="header-section-number">3.4.3</span> Grouped and Clustered Data</h3>
+<p>When working with grouped or clustered data discussed in <a href="intro.html#sec-mult" class="quarto-xref"><span>Section 2.2.4</span></a> (e.g., mulitilevel, panel or time-series cross-sectional data), users will often want to generate new variables that can streamline subsequent analyses. The <code>tidyverse</code> contains many useful commands for working with grouped data more generally. Recall that the “gapminder” dataset is a standard panel or time-series cross-sectional (TSCS) dataset, where the groups (or clusters) are countries.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gm, <span class="at">n=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+11 Afghanistan Asia       2002    42.1 25268405      727.
+12 Afghanistan Asia       2007    43.8 31889923      975.
+13 Albania     Europe     1952    55.2  1282697     1601.
+14 Albania     Europe     1957    59.3  1476505     1942.
+15 Albania     Europe     1962    64.8  1728137     2313.
+16 Albania     Europe     1967    66.2  1984060     2760.
+17 Albania     Europe     1972    67.7  2263554     3313.
+18 Albania     Europe     1977    68.9  2509048     3533.
+19 Albania     Europe     1982    70.4  2780097     3631.
+20 Albania     Europe     1987    72    3075321     3739.</code></pre>
+</div>
+</div>
+<p>Each country has multiple data points across time. In this dataset, the temporal unit is years, and the years are spaced out by five years. In other panel/TSCS data, one may have yearly data for a specific time range.</p>
+<p>If you open the dataset and scroll down, you will see that the countries are sorted in alphabetical order. Within each country, as seen with Afghanistan, the data are sorted by year (earliest to latest). This is exactly the format we want for panel/TSCS data. To formalize this sorting, and in the event the data do not come sorted in this way, we can use the <code>arrange</code> command from tidyverse:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> <span class="fu">arrange</span>(country, year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This command first sorts the data by the country variable. Since country is a character variable, <code>arrange</code> will sort this variable alphabetically. When I add a second variable in the <code>arrange</code> command, it will sort on this second variable <em>within</em> each country. That is, within each country, the data will be sorted by year. Since year is numeric, the command will sort for lowest to highest. I always run this command when working with panel and TSCS data because it is the foundation for other subsequent commands we will run for organizing and working with this type of data.</p>
+<p>When I am working with panel/TSCS (and grouped data generally), I like to generate three variables that aid in easily analyzing this type of data: (1) a numeric identification variable for countries; (2) a numeric “counter” variable for each country (e.g., for Afghanistan, “1” for the first year, “2” for the second, etc.); and (3) a “group size” variable for the number of total observations per group (in this case, how many years of data per country).</p>
+<p>First, to generate numeric identification variable, I can execute the following command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">cid=</span><span class="fu">as.numeric</span>(country))</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gm, <span class="at">n=</span><span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 7
+   country     continent  year lifeExp      pop gdpPercap   cid
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.     1
+ 2 Afghanistan Asia       1957    30.3  9240934      821.     1
+ 3 Afghanistan Asia       1962    32.0 10267083      853.     1
+ 4 Afghanistan Asia       1967    34.0 11537966      836.     1
+ 5 Afghanistan Asia       1972    36.1 13079460      740.     1
+ 6 Afghanistan Asia       1977    38.4 14880372      786.     1
+ 7 Afghanistan Asia       1982    39.9 12881816      978.     1
+ 8 Afghanistan Asia       1987    40.8 13867957      852.     1
+ 9 Afghanistan Asia       1992    41.7 16317921      649.     1
+10 Afghanistan Asia       1997    41.8 22227415      635.     1
+11 Afghanistan Asia       2002    42.1 25268405      727.     1
+12 Afghanistan Asia       2007    43.8 31889923      975.     1
+13 Albania     Europe     1952    55.2  1282697     1601.     2
+14 Albania     Europe     1957    59.3  1476505     1942.     2
+15 Albania     Europe     1962    64.8  1728137     2313.     2</code></pre>
+</div>
+</div>
+<p>The “cid” variable now ranges from 1 to K, where K is the total number of countries. How do we know what K is in this data? We can summarize this variable using the “skimr” package (which we will use more extensively throughout this book).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>gm <span class="sc">|&gt;</span> <span class="fu">skim</span>(cid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">gm</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">1704</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 13%">
+<col style="width: 19%">
+<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">cid</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">71.5</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">71.5</td>
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">142</td>
+<td style="text-align: left;">▇▇▇▇▇</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>First, note that <code>skimr</code> is compatible with the <code>tidyverse</code> and also the “native pipe.” The <code>skim</code> command reports descriptive statistics, like mean and various percentiles in the data (e.g., p0, p25, etc.). p0 in the minimum value of the variable, or 1, while p100 is the maximum value of the variable, or 142. So we know there are 142 countries in the dataset. Thus, K=142.</p>
+<p>Next, we can generate the counter and size variables for each country. My own convention for these variables is to call them “cluster count” (a numeric counter variable within each country) and “cluster size” (a numeric variable that represents the total number of observations per country). Here, cluster=country. Note that within each country, cluster count will be a constant. To generate these variables, we use a very powerful command within the <code>tidyverse</code> called <code>group_by</code>, which will do operations for observations within groups or clusters in the data.</p>
+<p>Consider this command, which I will amend below because it contains a critical feature that we want to correct:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> </span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span> </span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ccount =</span> <span class="fu">row_number</span>(), </span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">csize =</span> <span class="fu">n</span>())</span>
+<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-6"><a href="#cb101-6" aria-hidden="true" tabindex="-1"></a>gm <span class="sc">|&gt;</span> <span class="fu">select</span>(country, cid, ccount, csize) <span class="sc">|&gt;</span> </span>
+<span id="cb101-7"><a href="#cb101-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 4
+# Groups:   country [2]
+   country       cid ccount csize
+   &lt;fct&gt;       &lt;dbl&gt;  &lt;int&gt; &lt;int&gt;
+ 1 Afghanistan     1      1    12
+ 2 Afghanistan     1      2    12
+ 3 Afghanistan     1      3    12
+ 4 Afghanistan     1      4    12
+ 5 Afghanistan     1      5    12
+ 6 Afghanistan     1      6    12
+ 7 Afghanistan     1      7    12
+ 8 Afghanistan     1      8    12
+ 9 Afghanistan     1      9    12
+10 Afghanistan     1     10    12
+11 Afghanistan     1     11    12
+12 Afghanistan     1     12    12
+13 Albania         2      1    12
+14 Albania         2      2    12
+15 Albania         2      3    12
+16 Albania         2      4    12
+17 Albania         2      5    12
+18 Albania         2      6    12
+19 Albania         2      7    12
+20 Albania         2      8    12</code></pre>
+</div>
+</div>
+<p>First, note that I use piping here to join <code>group_by</code> and <code>mutate</code>. I am telling RStudio: First group by country, <em>then</em> within each country, generate these variables ccount and csize. Note that <code>row_number()</code> just gives the observation number. So within each country, that is 1, 2, 3, up to the total number of observations per country. And this total number of observations per country is given specifically by the <code>n()</code> function, which the variable csize represents. Note the critical importance of sorting the data first (using <code>arrange</code>), which makes the ccount variable work in conjunction with the order of the years.</p>
+<p>Now let’s discuss the correction that I need to make. When we use <code>group_by</code> to “update” the dataset (à la <code>gm &lt;- gm |&gt;</code>), the clustering feature gets saved to the data object. That means if we run other commands on the “gm” data object, like the <code>skim</code> command, it will give us summary statistics for a particular variable <em>for each of the 142 countries separately</em>. While we may be interested in such reports, we want to make sure we “ungroup” the data to take that feature out of the “gm” data object. Thus, we need to add the <code>ungroup()</code> command at the end:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> </span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span> </span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ccount =</span> <span class="fu">row_number</span>(), </span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">csize =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>One convention I use when I want to summarize a variable by country is to select only observations where ccount equals “1”. Since every country has a 1 for this variable, that will summarize across the 142 countries. Let’s do this for the csize variable to see if there is variation in the number of observations per country:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>gm <span class="sc">|&gt;</span> </span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ccount<span class="sc">==</span><span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">skim</span>(csize)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">filter(gm, ccount == 1)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">142</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 13%">
+<col style="width: 19%">
+<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">csize</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">▁▁▇▁▁</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>First, the output verifies that we are indeed summarizing across the 142 countries (“Number of rows = 142”). The output also shows that the number of observations for country (csize) has a minimum and maximum value of 12, which means it is constant across countries. That means that each country has 12 years of data. In instances like these, panel/TSCS data are said to be “balanced”: Cluster size is the same for all countries.</p>
+<p>We can also use <code>group_by</code> to generate group-level averages of variables, which is common in some analyses of country data. We could adapt the command above to generate the average value of each variable <em>for each country</em> (i.e., “cluster means” or country-level means).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> </span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span> </span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pop_mean =</span> <span class="fu">mean</span>(pop)) <span class="sc">|&gt;</span> </span>
+<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb105-5"><a href="#cb105-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-6"><a href="#cb105-6" aria-hidden="true" tabindex="-1"></a>gm <span class="sc">|&gt;</span> <span class="fu">select</span>(country, ccount, csize, pop, pop_mean) <span class="sc">|&gt;</span> </span>
+<span id="cb105-7"><a href="#cb105-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 5
+   country     ccount csize      pop  pop_mean
+   &lt;fct&gt;        &lt;int&gt; &lt;int&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan      1    12  8425333 15823715.
+ 2 Afghanistan      2    12  9240934 15823715.
+ 3 Afghanistan      3    12 10267083 15823715.
+ 4 Afghanistan      4    12 11537966 15823715.
+ 5 Afghanistan      5    12 13079460 15823715.
+ 6 Afghanistan      6    12 14880372 15823715.
+ 7 Afghanistan      7    12 12881816 15823715.
+ 8 Afghanistan      8    12 13867957 15823715.
+ 9 Afghanistan      9    12 16317921 15823715.
+10 Afghanistan     10    12 22227415 15823715.
+11 Afghanistan     11    12 25268405 15823715.
+12 Afghanistan     12    12 31889923 15823715.
+13 Albania          1    12  1282697  2580249.
+14 Albania          2    12  1476505  2580249.
+15 Albania          3    12  1728137  2580249.
+16 Albania          4    12  1984060  2580249.
+17 Albania          5    12  2263554  2580249.
+18 Albania          6    12  2509048  2580249.
+19 Albania          7    12  2780097  2580249.
+20 Albania          8    12  3075321  2580249.</code></pre>
+</div>
+</div>
+<p>Once again, it is important to “ungroup” the data in cases where we are “updating” the data (<code>gm &lt;- gm |&gt;</code>). Now we have a new variable, pop_mean, that is a constant within each country. It represents the mean population size value for each country. If we wanted to analyze pop_mean, we would want to use <code>filter(ccount==1)</code> to analyze only one observation per country.</p>
+<p>Another way we could generate country-level variables (with country-level means of each variable) is to use <code>group_by</code> in conjunction with <code>summarize</code>. First, users should definitely create a new data object when using <code>summarize</code> because it fundamentally transforms the data. Recall that using <code>mutate</code> in conjunction with <code>group_by</code> keeps the data structure the same (total observations remains 1,704). On the other hand, <code>summarize</code> specifically retains <em>one observation per group</em> (one observation per country in our case here). Moreover, it retains only the grouping variable and the newly transformed variables. Consider this command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>gm_new <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> </span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span> </span>
+<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">pop_mean=</span><span class="fu">mean</span>(pop), </span>
+<span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">life_mean=</span><span class="fu">mean</span>(lifeExp), </span>
+<span id="cb107-5"><a href="#cb107-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">gdp_mean=</span><span class="fu">mean</span>(gdpPercap))</span>
+<span id="cb107-6"><a href="#cb107-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-7"><a href="#cb107-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gm_new, <span class="at">n=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 4
+   country                  pop_mean life_mean gdp_mean
+   &lt;fct&gt;                       &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+ 1 Afghanistan             15823715.      37.5     803.
+ 2 Albania                  2580249.      68.4    3255.
+ 3 Algeria                 19875406.      59.0    4426.
+ 4 Angola                   7309390.      37.9    3607.
+ 5 Argentina               28602240.      69.1    8956.
+ 6 Australia               14649312.      74.7   19981.
+ 7 Austria                  7583298.      73.1   20412.
+ 8 Bahrain                   373913.      65.6   18078.
+ 9 Bangladesh              90755395.      49.8     818.
+10 Belgium                  9725119.      73.6   19901.
+11 Benin                    4017497.      48.8    1155.
+12 Bolivia                  5610395.      52.5    2961.
+13 Bosnia and Herzegovina   3816525.      67.7    3485.
+14 Botswana                  971186.      54.6    5032.
+15 Brazil                 122312127.      62.2    5829.
+16 Bulgaria                 8182985.      69.7    6384.
+17 Burkina Faso             7548677.      44.7     844.
+18 Burundi                  4651608.      44.8     472.
+19 Cambodia                 8510431.      47.9     675.
+20 Cameroon                 9816648.      48.1    1775.</code></pre>
+</div>
+</div>
+<p>Just like the use of mutate command earlier, I create country-level means of certain variables (in this case, population, life expectancy, and GDP). Using the summarize variable creates these country level means and generates a new data object with one observation per country. This command is useful for generating country-level (cross-sectional data) based off of TSCS (or panel) data. It is also useful in other contexts when one wants to generate group level summaries. For example, we might want to generate averages of certain variables separately for Democrats, Republicans, and Independents in the ANES data.</p>
+<p>More generally, when using <code>group_by</code> in conjunction with either <code>mutate</code> or <code>summarize</code>, users can generate additional summary statistics other than the mean. These are include in <a href="#tbl-ss" class="quarto-xref">Table&nbsp;<span>3.4</span></a>.</p>
+<center>
+<div id="tbl-ss" class="table-striped table-hover table-bordered table-sm column quarto-float quarto-figure quarto-figure-center anchored" style="width:70%;">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.4: <strong>Summary Statistics/Values Available for Use With <code>group_by</code> and Either <code>mutate</code> or <code>summarize</code></strong>
+</figcaption>
+<div aria-describedby="tbl-ss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover table-bordered table-sm column small caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Summary Statistic or Value</th>
+<th style="text-align: left;">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mean</td>
+<td style="text-align: left;">mean(x)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Median</td>
+<td style="text-align: left;">median(x)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Standard deviation</td>
+<td style="text-align: left;">sd(x)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Variance</td>
+<td style="text-align: left;">var(x)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Interquartile range</td>
+<td style="text-align: left;">IQR(x)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Minimum</td>
+<td style="text-align: left;">min(x)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maximum</td>
+<td style="text-align: left;">max(x)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Quantile (e.g., 75th percentile)</td>
+<td style="text-align: left;">quantile(x, probs = 0.75)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Count of observations</td>
+<td style="text-align: left;">n()</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sum of values</td>
+<td style="text-align: left;">sum(x)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of unique values</td>
+<td style="text-align: left;">n_distinct(x)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">How many obs. meet a condition (e.g., n&gt;4)</td>
+<td style="text-align: left;">sum(x &gt; 4)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">First value in the group</td>
+<td style="text-align: left;">first(x)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Last value in the group</td>
+<td style="text-align: left;">last(x)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nth value in the group</td>
+<td style="text-align: left;">nth(x, n)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</center>
+</section>
+</section>
+<section id="merging-two-datasets-together" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="merging-two-datasets-together"><span class="header-section-number">3.5</span> Merging Two Datasets Together</h2>
+<p>In many data analysis contexts, researchers will want to analyze variables that are not in their dataset. However, those variables may be in an external dataset. In these instances, users can merge variables from a another dataset into their own dataset. The <code>tidyverse</code> has a number merging functions including <code>left_join</code>, <code>right_join</code>, <code>full_join</code>, and <code>inner_join</code>. For the purposes of this book, <code>left_join</code> is sufficient for most purposes.</p>
+<p>When using <code>left_join</code>, one thinks of the “master dataset” and the “using dataset” (or merging dataset). A user will merge variables from the using dataset into the master dataset. The key to the merge is a matching identification variable that is common to both datasets. In our gapminder data, the natural matching variable is country name. In some fields, there are unique and well known identification codes that datasets will use a sort of universal language. For example, some U.S. based datasets will use “fips” codes for states, counties, etc.</p>
+<p>Importantly, for a variable to merge successfully for each value of the matching variable, the values of the matching variable themselves must be exactly the same in the master and using datasets. This becomes a problem in world datasets like gapminder where some datasets refer to countries by different names. For example, if one dataset uses “United States” and the other uses “USA,” left_join will not merge the value for the U.S. observation in the master dataset. Some countries use different names now than what they used to use. The country “Swaziland” more commonly goes by “eSwatini” or “Eswatini” today. Thus, if country names are different across master and using datasets, the researcher must reconcile those differences so that the exact same names appear in both datasets. In my own practice, I will make the names in the using dataset match the names in the master by changing those names in the using dataset.</p>
+<p><code>left_join</code> merges in a variable by the matching variable and includes only observations from the using dataset that match values in master dataset. In other words, if the number of countries in the using dataset exceeds those from the master, those extra observations will be deleted in the merged dataset. <code>left_join</code> only brings in the values that match the country names in the master.</p>
+<p>Consider the following example. Let’s say we have a “regions” variable we want to merge into our gapminder data (the original TSCS dataset, “gm”).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>regions <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://blbartels.github.io/dataps/regions.csv"</span>)</span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(regions, <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 2
+   cname                  region                             
+   &lt;chr&gt;                  &lt;chr&gt;                              
+ 1 Afghanistan            Asia                               
+ 2 Albania                Europe                             
+ 3 Algeria                Middle East and North Africa (MENA)
+ 4 Angola                 Sub-Saharan Africa                 
+ 5 Argentina              Americas                           
+ 6 Australia              Oceania                            
+ 7 Austria                Europe                             
+ 8 Bahrain                Middle East and North Africa (MENA)
+ 9 Bangladesh             Asia                               
+10 Belgium                Europe                             
+11 Benin                  Sub-Saharan Africa                 
+12 Bolivia                Americas                           
+13 Bosnia and Herzegovina Europe                             
+14 Botswana               Sub-Saharan Africa                 
+15 Brazil                 Americas                           
+16 Bulgaria               Europe                             
+17 Burkina Faso           Sub-Saharan Africa                 
+18 Burundi                Sub-Saharan Africa                 
+19 Cambodia               Asia                               
+20 Cameroon               Sub-Saharan Africa                 </code></pre>
+</div>
+</div>
+<p>This regions dataset has 142 observations, which are countries. This is cross-sectional (or cross-national) data. This dataset happens to have the exact same countries as those contained in the gapminder dataset. And the country names are exactly the same across the master (gp) and using (regions) data objects. However, note that the variable name for country differs across datasets: “cname” in the using dataset, “country” in the master. Given this situation, there are two methods for merging in the regions variable that will produce the exact same merged dataset.</p>
+<p><strong><em>Method 1</em></strong>: Leave the country variable names as is and ensure they match on those differing names in the <code>left_join</code> command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>gm_region <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> <span class="fu">left_join</span>(regions, </span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">join_by</span>(country<span class="sc">==</span>cname))</span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb111-4"><a href="#cb111-4" aria-hidden="true" tabindex="-1"></a>gm_region <span class="sc">|&gt;</span> <span class="fu">select</span>(country, continent, region) <span class="sc">|&gt;</span> </span>
+<span id="cb111-5"><a href="#cb111-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 3
+   country     continent region
+   &lt;chr&gt;       &lt;fct&gt;     &lt;chr&gt; 
+ 1 Afghanistan Asia      Asia  
+ 2 Afghanistan Asia      Asia  
+ 3 Afghanistan Asia      Asia  
+ 4 Afghanistan Asia      Asia  
+ 5 Afghanistan Asia      Asia  
+ 6 Afghanistan Asia      Asia  
+ 7 Afghanistan Asia      Asia  
+ 8 Afghanistan Asia      Asia  
+ 9 Afghanistan Asia      Asia  
+10 Afghanistan Asia      Asia  
+11 Afghanistan Asia      Asia  
+12 Afghanistan Asia      Asia  
+13 Albania     Europe    Europe
+14 Albania     Europe    Europe
+15 Albania     Europe    Europe
+16 Albania     Europe    Europe
+17 Albania     Europe    Europe
+18 Albania     Europe    Europe
+19 Albania     Europe    Europe
+20 Albania     Europe    Europe</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(gm_region<span class="sc">$</span>region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                      n    % val%
+Americas                            300 17.6 17.6
+Asia                                252 14.8 14.8
+Europe                              360 21.1 21.1
+Middle East and North Africa (MENA) 216 12.7 12.7
+Oceania                              24  1.4  1.4
+Sub-Saharan Africa                  552 32.4 32.4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(gm_region<span class="sc">$</span>continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           n    % val%
+Africa   624 36.6 36.6
+Americas 300 17.6 17.6
+Asia     396 23.2 23.2
+Europe   360 21.1 21.1
+Oceania   24  1.4  1.4</code></pre>
+</div>
+</div>
+<p>Note the syntax in the <code>left_join</code> command. I am telling RStudio to give me a mew data object called “gm_region” that is going to be my merged dataset. I start with “gm,” which is my master dataset. The dataset I put before the pipe is the master. Then comes the <code>left_join</code> command. The using dataset (regions) appears within the parentheses after <code>left_join.</code> Since the matching variable name for countries differs across master and using datasets, we have to use “join_by.” Put the country variable from the master dataset first (“country”), then double equals (==), then the country variable name from the using dataset (“cname”).</p>
+<p>Region is now merged into a new data object called “gm_region.” In my own experience, I will sometimes create a new data object with some indication that it is a merged dataset. One could also imagine simply “updating” the gm object with an additional region variable at the end. Note that there is a continent variable in the gapminder dataset as well. Sometimes reseachers will use slightly more nuanced regional variables. The one that is now merged in contains a specific designation for the Middle East and North Africa.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>gm_region <span class="sc">|&gt;</span>   </span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region<span class="sc">==</span><span class="st">"Middle East and North Africa (MENA)"</span>, ccount<span class="sc">==</span><span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, continent, region) <span class="sc">|&gt;</span> </span>
+<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 18 × 3
+   country            continent region                             
+   &lt;chr&gt;              &lt;fct&gt;     &lt;chr&gt;                              
+ 1 Algeria            Africa    Middle East and North Africa (MENA)
+ 2 Bahrain            Asia      Middle East and North Africa (MENA)
+ 3 Djibouti           Africa    Middle East and North Africa (MENA)
+ 4 Egypt              Africa    Middle East and North Africa (MENA)
+ 5 Iran               Asia      Middle East and North Africa (MENA)
+ 6 Iraq               Asia      Middle East and North Africa (MENA)
+ 7 Israel             Asia      Middle East and North Africa (MENA)
+ 8 Jordan             Asia      Middle East and North Africa (MENA)
+ 9 Kuwait             Asia      Middle East and North Africa (MENA)
+10 Lebanon            Asia      Middle East and North Africa (MENA)
+11 Libya              Africa    Middle East and North Africa (MENA)
+12 Morocco            Africa    Middle East and North Africa (MENA)
+13 Oman               Asia      Middle East and North Africa (MENA)
+14 Saudi Arabia       Asia      Middle East and North Africa (MENA)
+15 Syria              Asia      Middle East and North Africa (MENA)
+16 Tunisia            Africa    Middle East and North Africa (MENA)
+17 West Bank and Gaza Asia      Middle East and North Africa (MENA)
+18 Yemen, Rep.        Asia      Middle East and North Africa (MENA)</code></pre>
+</div>
+</div>
+<p>This output, for example, shows the difference between the categorizations between continent and region.</p>
+<p><strong><em>Method 2</em></strong>: Another way to deal with differing variable names for the matching variable is use the exact name across the datasets. My practice is to change the name in the using dataset to match the name in the master dataset. Just make sure there is not a variable in the using dataset that has this same name. Note that to preserve the original “regions” dataset (in the spirit of not changing variable names of the underlying dataset), I will create a new data object called “regions2.” Then I will <code>left_join</code> this regions2 dataset into the gm dataset, matching on the common “country” variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>regions2 <span class="ot">&lt;-</span> regions <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">country =</span> cname)</span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>gm_region <span class="ot">&lt;-</span> gm <span class="sc">|&gt;</span> <span class="fu">left_join</span>(regions2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(country)`</code></pre>
+</div>
+</div>
+<p>Note that I have included the message you will see when you do this second method. It is confirming that it matched based on the “country” variable that is common to both datasets.</p>
+</section>
+<section id="conclusion" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">3.6</span> Conclusion</h2>
+<p>Armed with data organization, recoding, and streamlining tools, we are now ready to proceed with some actual <em>data analysis</em>. We will begin with data visualization, where these tools will come in handy.</p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Users often run into errors from RStudio with these kinds of commands that include lots of parentheses. One quick trick is to remember for the number of opening parentheses should equal the number of closing parentheses. Also, RStudio will highlight the opening parenthesis associated with your closing parenthesis when your cursor is next to, e.g., closing one.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>A baseline interpretation of a regression coefficient centers on communicating how much the dependent variable, <span class="math inline">\(y\)</span>, changes given a 1-unit increase in the independent variable, <span class="math inline">\(x\)</span>. When researchers recode their variables to range from 0 to 1, a 1-unit increase represents an change in <span class="math inline">\(x\)</span> from the minimum to maximum value.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>For a given variable, users could also use <code>filter</code> combined with <code>!is.na(x)</code>, but <code>drop_na</code> is a bit more streamlined and intuitive.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./intro.html" class="pagination-link" aria-label="Research and Data: The Basics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Research and Data: The Basics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./dataviz.html" class="pagination-link" aria-label="Data Visualization">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualization</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
