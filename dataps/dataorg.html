@@ -445,15 +445,14 @@ Figure&nbsp;3.3: <strong>Screen Shot of the States Data</strong>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
-  State      Abbreviation Turnout_2024_Pct Trump_2024_Pct Southern_State
-  &lt;chr&gt;      &lt;chr&gt;                   &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
-1 Alabama    AL                       58.8           64.8              1
-2 Alaska     AK                       63.7           55.5              0
-3 Arizona    AZ                       63.6           52.6              0
-4 Arkansas   AR                       53.5           64.2              1
-5 California CA                       62.1           38.3              0
-6 Colorado   CO                       73.1           43.5              0
-# ℹ 1 more variable: College_Grad_Pct &lt;dbl&gt;</code></pre>
+  state_name state_abb turnout trumppct south collegepct
+  &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+1 Alabama    AL           58.8     64.8     1       29.9
+2 Alaska     AK           63.7     55.5     0       32.8
+3 Arizona    AZ           63.6     52.6     0       34.7
+4 Arkansas   AR           53.5     64.2     1       27.1
+5 California CA           62.1     38.3     0       38.1
+6 Colorado   CO           73.1     43.5     0       47.8</code></pre>
 </div>
 </div>
 <p>Or I can specify the number of observations I want to see:</p>
@@ -461,21 +460,20 @@ Figure&nbsp;3.3: <strong>Screen Shot of the States Data</strong>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(states, <span class="at">n=</span><span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 12 × 6
-   State       Abbreviation Turnout_2024_Pct Trump_2024_Pct Southern_State
-   &lt;chr&gt;       &lt;chr&gt;                   &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
- 1 Alabama     AL                       58.8           64.8              1
- 2 Alaska      AK                       63.7           55.5              0
- 3 Arizona     AZ                       63.6           52.6              0
- 4 Arkansas    AR                       53.5           64.2              1
- 5 California  CA                       62.1           38.3              0
- 6 Colorado    CO                       73.1           43.5              0
- 7 Connecticut CT                       67.1           41                0
- 8 Delaware    DE                       67             41                1
- 9 Florida     FL                       66.7           56.1              1
-10 Georgia     GA                       68.3           50.7              1
-11 Hawaii      HI                       50.3           38                0
-12 Idaho       ID                       63.4           66.9              0
-# ℹ 1 more variable: College_Grad_Pct &lt;dbl&gt;</code></pre>
+   state_name  state_abb turnout trumppct south collegepct
+   &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+ 1 Alabama     AL           58.8     64.8     1       29.9
+ 2 Alaska      AK           63.7     55.5     0       32.8
+ 3 Arizona     AZ           63.6     52.6     0       34.7
+ 4 Arkansas    AR           53.5     64.2     1       27.1
+ 5 California  CA           62.1     38.3     0       38.1
+ 6 Colorado    CO           73.1     43.5     0       47.8
+ 7 Connecticut CT           67.1     41       0       42.6
+ 8 Delaware    DE           67       41       1       36  
+ 9 Florida     FL           66.7     56.1     1       35.8
+10 Georgia     GA           68.3     50.7     1       36.3
+11 Hawaii      HI           50.3     38       0       37.8
+12 Idaho       ID           63.4     66.9     0       33  </code></pre>
 </div>
 </div>
 <p>Note that it includes as many variables as it can fit on the screen. Connecting to the discussion of “levels of measurement” (<a href="intro.html#sec-lom" class="quarto-xref"><span>Section 2.2.3</span></a>), the output includes the labels <code>chr</code> and <code>dbl</code> at the top of each variable. <code>chr</code> = “character” or a string variable (letters only or a mix of letters and numbers). <code>dbl</code> = “double,” which in RStudio means a numeric variable (in this case an interval variable) with decimal points. Note that even the South variable has the <code>dbl</code> format despite not having decimals.</p>
@@ -485,12 +483,12 @@ Figure&nbsp;3.3: <strong>Screen Shot of the States Data</strong>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 50
 Columns: 6
-$ State            &lt;chr&gt; "Alabama", "Alaska", "Arizona", "Arkansas", "Californ…
-$ Abbreviation     &lt;chr&gt; "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL",…
-$ Turnout_2024_Pct &lt;dbl&gt; 58.8, 63.7, 63.6, 53.5, 62.1, 73.1, 67.1, 67.0, 66.7,…
-$ Trump_2024_Pct   &lt;dbl&gt; 64.8, 55.5, 52.6, 64.2, 38.3, 43.5, 41.0, 41.0, 56.1,…
-$ Southern_State   &lt;dbl&gt; 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1,…
-$ College_Grad_Pct &lt;dbl&gt; 29.9, 32.8, 34.7, 27.1, 38.1, 47.8, 42.6, 36.0, 35.8,…</code></pre>
+$ state_name &lt;chr&gt; "Alabama", "Alaska", "Arizona", "Arkansas", "California", "…
+$ state_abb  &lt;chr&gt; "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",…
+$ turnout    &lt;dbl&gt; 58.8, 63.7, 63.6, 53.5, 62.1, 73.1, 67.1, 67.0, 66.7, 68.3,…
+$ trumppct   &lt;dbl&gt; 64.8, 55.5, 52.6, 64.2, 38.3, 43.5, 41.0, 41.0, 56.1, 50.7,…
+$ south      &lt;dbl&gt; 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1,…
+$ collegepct &lt;dbl&gt; 29.9, 32.8, 34.7, 27.1, 38.1, 47.8, 42.6, 36.0, 35.8, 36.3,…</code></pre>
 </div>
 </div>
 <p>Notice that <code>glimpse</code> inverts the rows and columns, which makes it a bit counterintuitive to some. However, one point of <code>glimpse</code> is to highlight the variables in the dataset.</p>
@@ -498,39 +496,39 @@ $ College_Grad_Pct &lt;dbl&gt; 29.9, 32.8, 34.7, 27.1, 38.1, 47.8, 42.6, 36.0, 3
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "State"            "Abbreviation"     "Turnout_2024_Pct" "Trump_2024_Pct"  
-[5] "Southern_State"   "College_Grad_Pct"</code></pre>
+<pre><code>[1] "state_name" "state_abb"  "turnout"    "trumppct"   "south"     
+[6] "collegepct"</code></pre>
 </div>
 </div>
 <p>Another way to see how the variables are stored (e.g., numeric, character) is by using the “class” command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>state_name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "character"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Abbreviation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>state_abb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "character"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Turnout_2024_Pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>turnout)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "numeric"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Trump_2024_Pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>trumppct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "numeric"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Southern_State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>south)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "numeric"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>College_Grad_Pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>collegepct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "numeric"</code></pre>
 </div>
 </div>
-<p>The <code>class</code> command tells the user how the variable is stored. Note the naming convention used here, which is common in “base R.” To specify a variable, we use the “dollar sign” method: Before the dollar sign is the name of the data object (states) and after is the variable name. “State” and “Abbreviation” are character variables (strings), while the remaining variables are numeric. Knowing the class of a variable, and the level of measurement a variable takes on, becomes very important for many subsequent analyses in RStudio. I will return to that issue throughout the book.</p>
-<p>The “Southern_State” variable, which takes on a value of 1 for Southern states and 0 for non-Southern states, gets a special name in data analysis and statistics: a <strong>dummy variable.</strong> A dummy variable is a binary variable (i.e., a variable that takes on only two values); researchers typically refer to independent variables (not dependent variables) as dummy variables. Note that dummy variables are always coded as 0 or 1 (as opposed to 1 versus 2 or 3 versus 4).</p>
+<p>The <code>class</code> command tells the user how the variable is stored. Note the naming convention used here, which is common in “base R.” To specify a variable, we use the “dollar sign” method: Before the dollar sign is the name of the data object (states) and after is the variable name. “state_name” and “state_abb” are character variables (strings), while the remaining variables are numeric. Knowing the class of a variable, and the level of measurement a variable takes on, becomes very important for many subsequent analyses in RStudio. I will return to that issue throughout the book.</p>
+<p>The “south” variable, which takes on a value of 1 for Southern states and 0 for non-Southern states, gets a special name in data analysis and statistics: a <strong>dummy variable.</strong> A dummy variable is a binary variable (i.e., a variable that takes on only two values); researchers typically refer to independent variables (not dependent variables) as dummy variables. Note that dummy variables are always coded as 0 or 1 (as opposed to 1 versus 2 or 3 versus 4).</p>
 </section>
 <section id="importing-data-from-a-dataset-saved-on-a-website" class="level3" data-number="3.1.2">
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="importing-data-from-a-dataset-saved-on-a-website"><span class="header-section-number">3.1.2</span> Importing Data From a Dataset Saved on a Website</h3>
@@ -724,20 +722,20 @@ Table&nbsp;3.2: <strong>Associating Numeric Coding Values with Verbal Values Lab
 </section>
 <section id="sec-man" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="sec-man"><span class="header-section-number">3.2.2</span> Manually Adding Value Labels to Variables</h3>
-<p>Adding value labels to variables that do not contain preexisting value labels is simple. Several packages and commands exist for adding value labels, and I will show an example using the <code>labelled</code> command from the <code>haven</code> package. Returning to our “states” data, let’s say we wanted to add value labels to the “Southern_state” variable, where 0=“Non-Southern State” and 1=“Southern State”:</p>
+<p>Adding value labels to variables that do not contain preexisting value labels is simple. Several packages and commands exist for adding value labels, and I will show an example using the <code>labelled</code> command from the <code>haven</code> package. Returning to our “states” data, let’s say we wanted to add value labels to the “south” variable, where 0=“Non-Southern State” and 1=“Southern State”:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>Southern_State <span class="ot">&lt;-</span> <span class="fu">labelled</span>(states<span class="sc">$</span>Southern_State, </span>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>south <span class="ot">&lt;-</span> <span class="fu">labelled</span>(states<span class="sc">$</span>south, </span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Non-Southern State"</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">"Southern State"</span> <span class="ot">=</span> <span class="dv">1</span>))</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>Southern_State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(states<span class="sc">$</span>south)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "haven_labelled" "vctrs_vctr"     "double"        </code></pre>
 </div>
 </div>
-<p>This first command “updates” the “states” data object with this new information. Note also that I can do a “hard return” after the …<code>states$Southern_State</code> in the first line in this command and RStudio recognizes it as one command. Now when I issue the <code>class</code> command, the “Southern_State” variable is “haven-labelled” — it contains a verbal value label for each numeric value of the variable.</p>
+<p>This first command “updates” the “states” data object with this new information. Note also that I can do a “hard return” after the …<code>states$south</code> in the first line in this command and RStudio recognizes it as one command. Now when I issue the <code>class</code> command, the “south” variable is “haven-labelled” — it contains a verbal value label for each numeric value of the variable.</p>
 <p>When I do a <code>freq</code> command (from <code>questionr</code>), I get the following output that includes these newly-added value labels:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(states<span class="sc">$</span>Southern_State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(states<span class="sc">$</span>south)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                        n  % val%
 [0] Non-Southern State 34 68   68

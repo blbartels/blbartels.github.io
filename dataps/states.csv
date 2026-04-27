@@ -1,4 +1,4 @@
-State,Abbreviation,Turnout_2024_Pct,Trump_2024_Pct,Southern_State,College_Grad_Pct
+state_name,state_abb,turnout,trumppct,south,collegepct
 Alabama,AL,58.8,64.8,1,29.9
 Alaska,AK,63.7,55.5,0,32.8
 Arizona,AZ,63.6,52.6,0,34.7
