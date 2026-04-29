@@ -289,7 +289,7 @@ window.Quarto = {
   <li><a href="#streamlining-and-simplifying-data-analysis" id="toc-streamlining-and-simplifying-data-analysis" class="nav-link" data-scroll-target="#streamlining-and-simplifying-data-analysis"><span class="header-section-number">3.4</span> Streamlining and Simplifying Data Analysis</a>
   <ul class="collapse">
   <li><a href="#subsetting-observations" id="toc-subsetting-observations" class="nav-link" data-scroll-target="#subsetting-observations"><span class="header-section-number">3.4.1</span> Subsetting Observations</a></li>
-  <li><a href="#subsetting-variables" id="toc-subsetting-variables" class="nav-link" data-scroll-target="#subsetting-variables"><span class="header-section-number">3.4.2</span> Subsetting Variables</a></li>
+  <li><a href="#sec-subset" id="toc-sec-subset" class="nav-link" data-scroll-target="#sec-subset"><span class="header-section-number">3.4.2</span> Subsetting Variables</a></li>
   <li><a href="#sec-cluster" id="toc-sec-cluster" class="nav-link" data-scroll-target="#sec-cluster"><span class="header-section-number">3.4.3</span> Grouped and Clustered Data</a></li>
   </ul></li>
   <li><a href="#merging-two-datasets-together" id="toc-merging-two-datasets-together" class="nav-link" data-scroll-target="#merging-two-datasets-together"><span class="header-section-number">3.5</span> Merging Two Datasets Together</a></li>
@@ -1306,8 +1306,8 @@ NA               38  0.7   NA</code></pre>
 </div>
 <p>From the frequency distributions, we can see that the dataset contains just 142 observations (1 per country) for the year 2007.</p>
 </section>
-<section id="subsetting-variables" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="subsetting-variables"><span class="header-section-number">3.4.2</span> Subsetting Variables</h3>
+<section id="sec-subset" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="sec-subset"><span class="header-section-number">3.4.2</span> Subsetting Variables</h3>
 <p>Researchers sometimes have reason to create a new dataset with a reduced number of variables. The ANES and other stock datasets contain many variables. Sometimes, researchers want to be able to view the data but just for a select number of variables. Consider our new and recoded variables from the ANES data. We may want to view those variables to make sure they are are coded correctly. Here, we can use the <code>select</code> command from <code>dplyr</code> via the <code>tidyverse</code>. Once again, any time we’re subsetting on variables, we should always create a new data object.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>anes_red <span class="ot">&lt;-</span> anes <span class="sc">|&gt;</span> </span>
