@@ -1,0 +1,52 @@
+state_name,state_abb,turnout,trumppct,harrispct,south,collegepct,winner,coi_score,coi_rating,coi_label,bidenpct20,trumppct20,winner20
+Alabama,AL,58.8,64.8,34.2,1,29.9,Trump,88.6,0,Low Cost,36.57,62.03,Trump
+Alaska,AK,63.7,55.5,40.4,0,32.8,Trump,124.9,3,High Cost,42.77,52.83,Trump
+Arizona,AZ,63.6,52.6,46.7,0,34.7,Trump,110.7,2,Above Average,49.36,49.06,Biden
+Arkansas,AR,53.5,64.2,33.5,1,27.1,Trump,89.6,0,Low Cost,34.78,62.4,Trump
+California,CA,62.1,38.3,57.3,0,38.1,Harris,142.3,3,High Cost,63.48,34.32,Biden
+Colorado,CO,73.1,43.5,54.4,0,47.8,Harris,102.7,2,Above Average,55.4,41.9,Biden
+Connecticut,CT,67.1,41,55.9,0,42.6,Harris,112.7,2,Above Average,59.26,39.19,Biden
+Delaware,DE,67,41,56.4,1,36,Harris,101.9,2,Above Average,58.74,39.77,Biden
+District of Columbia,DC,70.8,6.5,90.3,0,65.5,Harris,138.8,3,High Cost,92.15,5.4,Biden
+Florida,FL,66.7,56.1,43,1,35.8,Trump,102.2,2,Above Average,47.86,51.22,Trump
+Georgia,GA,68.3,50.7,48.5,1,36.3,Trump,92.5,1,Below Average,49.47,49.24,Biden
+Hawaii,HI,50.3,38,60.6,0,37.8,Harris,185,3,High Cost,63.73,34.27,Biden
+Idaho,ID,63.4,66.9,30.4,0,33,Trump,99.9,1,Below Average,33.07,63.84,Trump
+Illinois,IL,62.6,43.5,54,0,39.2,Harris,94.7,1,Below Average,57.54,40.55,Biden
+Indiana,IN,58.6,58.6,39.7,0,30.7,Trump,91,0,Low Cost,40.96,57.02,Trump
+Iowa,IA,70.8,56,42.7,0,32.1,Trump,89.7,0,Low Cost,44.89,53.09,Trump
+Kansas,KS,63.2,57.2,41,0,36,Trump,88.8,0,Low Cost,41.56,56.21,Trump
+Kentucky,KY,62.1,64.6,33.9,1,27.9,Trump,92.5,1,Below Average,36.15,62.09,Trump
+Louisiana,LA,60.8,60.2,38.2,1,27.8,Trump,92.3,1,Below Average,39.85,58.46,Trump
+Maine,ME,74.2,45.3,52,0,37.1,Harris,113,2,Above Average,53.09,44.02,Biden
+Maryland,MD,66,33,61.5,1,44.7,Harris,115.4,3,High Cost,65.36,32.15,Biden
+Massachusetts,MA,68.4,36.5,61.2,0,48.3,Harris,141.2,3,High Cost,65.6,32.14,Biden
+Michigan,MI,74.7,49.7,48.3,0,33.3,Trump,90.1,0,Low Cost,50.62,47.84,Biden
+Minnesota,MN,76.4,47.5,51,0,40,Harris,94.6,1,Below Average,52.4,45.28,Biden
+Mississippi,MS,57.5,61.4,37.5,1,27,Trump,87.3,0,Low Cost,41.06,57.6,Trump
+Missouri,MO,64.4,58.5,40.1,0,33.5,Trump,89,0,Low Cost,41.41,56.8,Trump
+Montana,MT,70,58.5,38.4,0,36.3,Trump,95.5,1,Below Average,40.54,56.92,Trump
+Nebraska,NE,68,59.8,38.9,0,35.4,Trump,92.6,1,Below Average,39.17,58.22,Trump
+Nevada,NV,65.8,50.6,47.5,0,28.5,Trump,100.2,2,Above Average,50.06,47.67,Biden
+New Hampshire,NH,74.4,48.1,50.9,0,41.5,Harris,111.4,2,Above Average,52.71,45.36,Biden
+New Jersey,NJ,67.8,46.5,51.5,0,44.5,Harris,115.1,3,High Cost,57.33,41.45,Biden
+New Mexico,NM,63,45.8,51.7,0,31.8,Harris,93.7,1,Below Average,54.29,43.5,Biden
+New York,NY,63.5,44.2,55.4,0,41.2,Harris,125.1,3,High Cost,60.87,37.75,Biden
+North Carolina,NC,70.3,51.1,47.6,1,37.1,Trump,97.8,1,Below Average,48.59,49.93,Trump
+North Dakota,ND,63,67.6,30.8,0,34,Trump,91.4,0,Low Cost,31.76,65.11,Trump
+Ohio,OH,67.5,55.2,43.9,0,32.4,Trump,94.3,1,Below Average,45.24,53.27,Trump
+Oklahoma,OK,53.3,66.2,31.9,1,29.3,Trump,86,0,Low Cost,32.29,65.37,Trump
+Oregon,OR,71,42,55.2,0,37.8,Harris,111.8,2,Above Average,56.45,40.37,Biden
+Pennsylvania,PA,71.2,50.4,48.7,0,36.4,Trump,97.2,1,Below Average,50.01,48.84,Biden
+Rhode Island,RI,64,42.1,55.4,0,39,Harris,110.6,2,Above Average,59.39,38.61,Biden
+South Carolina,SC,65,58.2,40.4,1,33.3,Trump,94.7,1,Below Average,43.43,55.11,Trump
+South Dakota,SD,64,63.4,34.2,0,34.2,Trump,91.9,0,Low Cost,35.61,61.77,Trump
+Tennessee,TN,59,64.2,34.5,1,32.4,Trump,90.3,0,Low Cost,37.45,60.66,Trump
+Texas,TX,56.6,56.3,42.4,1,35.2,Trump,92.1,1,Below Average,46.48,52.06,Trump
+Utah,UT,68,59.2,38.2,0,39.1,Trump,102.2,2,Above Average,37.65,58.13,Trump
+Vermont,VT,68,33,64.3,0,45.1,Harris,113.6,2,Above Average,66.09,30.67,Biden
+Virginia,VA,69.8,46.5,51.6,1,43.3,Harris,100.8,2,Above Average,54.11,44,Biden
+Washington,WA,72,39,58.1,0,41,Harris,114.1,2,Above Average,57.97,38.77,Biden
+West Virginia,WV,55.5,70.2,28,1,24.4,Trump,88.3,0,Low Cost,29.69,68.62,Trump
+Wisconsin,WI,76.4,49.7,48.7,0,34.6,Trump,97.7,1,Below Average,49.45,48.82,Biden
+Wyoming,WY,64,72.3,26.1,0,32.3,Trump,93.7,1,Below Average,26.55,69.94,Trump
