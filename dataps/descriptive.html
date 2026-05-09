@@ -206,10 +206,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#univariate-descriptive-statistics" id="toc-univariate-descriptive-statistics" class="nav-link active" data-scroll-target="#univariate-descriptive-statistics"><span class="header-section-number">6.1</span> Univariate Descriptive Statistics</a></li>
+  <li><a href="#univariate-descriptive-statistics" id="toc-univariate-descriptive-statistics" class="nav-link active" data-scroll-target="#univariate-descriptive-statistics"><span class="header-section-number">6.1</span> Univariate Descriptive Statistics</a>
+  <ul class="collapse">
+  <li><a href="#measures-of-central-tendency" id="toc-measures-of-central-tendency" class="nav-link" data-scroll-target="#measures-of-central-tendency"><span class="header-section-number">6.1.1</span> Measures of Central Tendency</a></li>
+  <li><a href="#connecting-dispersion-and-central-tendency-measures" id="toc-connecting-dispersion-and-central-tendency-measures" class="nav-link" data-scroll-target="#connecting-dispersion-and-central-tendency-measures"><span class="header-section-number">6.1.2</span> Connecting Dispersion and Central Tendency Measures</a></li>
+  <li><a href="#measuring-dispersion" id="toc-measuring-dispersion" class="nav-link" data-scroll-target="#measuring-dispersion"><span class="header-section-number">6.1.3</span> Measuring Dispersion</a></li>
+  </ul></li>
   <li><a href="#bivariate-descriptive-statistics" id="toc-bivariate-descriptive-statistics" class="nav-link" data-scroll-target="#bivariate-descriptive-statistics"><span class="header-section-number">6.2</span> Bivariate Descriptive Statistics</a>
   <ul class="collapse">
-  <li><a href="#crosstabs" id="toc-crosstabs" class="nav-link" data-scroll-target="#crosstabs"><span class="header-section-number">6.2.1</span> Crosstabs</a></li>
+  <li><a href="#correlations" id="toc-correlations" class="nav-link" data-scroll-target="#correlations"><span class="header-section-number">6.2.1</span> Correlations</a></li>
+  <li><a href="#crosstabs" id="toc-crosstabs" class="nav-link" data-scroll-target="#crosstabs"><span class="header-section-number">6.2.2</span> Crosstabs</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -237,14 +243,71 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This chapter will lay out the basics of RStudio. Online textbooks have exploded in popularity.</p>
+<p>This chapter covers the first branch of statistics: <em>Descriptive statistics</em>, which seeks to formalize many of the core elements covered in <a href="dataviz.html" class="quarto-xref"><span>Chapter 4</span></a>. Those elements include:</p>
+<ol type="1">
+<li><p><strong>Univariate descriptive statistics</strong>: Describing a variable’s central tendency and dispersion.</p></li>
+<li><p><strong>Bivariate descriptive statistics</strong>: Describing the relationship or association between two variables.</p></li>
+</ol>
+<p>This chapter will formalize many of <a href="dataviz.html" class="quarto-xref"><span>Chapter 4</span></a>’s visual intuitions and insights with statistical measures of the aforementioned elements. Importantly, it will also continue to place a heavy emphasis on how the choice of which statistical measures to use is contingent on a variable’s <em>level of measurement</em>. This chapter will also highlight how the choice of certain statistical measures, like central tendency, turn on the nature of the variable’s dispersion (e.g., skewed, bimodal).</p>
 <section id="univariate-descriptive-statistics" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="univariate-descriptive-statistics"><span class="header-section-number">6.1</span> Univariate Descriptive Statistics</h2>
+<p>The core pieces of univariate descriptive statistics — describing one variable at a time — are measures of central tendency (mean, median, and mode) and measures of dispersion (including standard deviation, range, and interquartile range). One quick point of clarification is in order with my use of “measures” of central tendency and dispersion. <a href="dataorg.html" class="quarto-xref"><span>Chapter 3</span></a> described measuring variables and the properties of measurement — validity and reliability — for evaluating the appropriate means of measuring concepts at the heart of one’s theory and hypothesis.</p>
+<p>In this chapter, I will introduce several <em>statistical measures</em>, which use mathematical formulas to summarize key elements of the data writ large. Descriptive statistics seeks to achieve the goal of <em>generalization</em> (emphasized in <a href="intro.html" class="quarto-xref"><span>Chapter 2</span></a>). In “descriptive inference,” researchers want to take large amounts of data and observations and summarize what they observe at a very general level.</p>
+<section id="measures-of-central-tendency" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="measures-of-central-tendency"><span class="header-section-number">6.1.1</span> Measures of Central Tendency</h3>
+<center>
+<div id="tbl-ct" class="table-striped table-hover table-bordered table-sm column quarto-float quarto-figure quarto-figure-center anchored" style="width:60%;">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ct-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.1: <strong>Levels of Measurement and Central Tendency Measures</strong>
+</figcaption>
+<div aria-describedby="tbl-ct-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover table-bordered table-sm column small caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Level of Measurement</th>
+<th style="text-align: left;">Options for Measures of Central Tendency</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Nominal</td>
+<td style="text-align: left;">Mode</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ordinal</td>
+<td style="text-align: left;">Mode, Median, or Mean</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Interval</td>
+<td style="text-align: left;">Median or Mean</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</center>
+<p>Connecting Levels of Measurement and</p>
+</section>
+<section id="connecting-dispersion-and-central-tendency-measures" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="connecting-dispersion-and-central-tendency-measures"><span class="header-section-number">6.1.2</span> Connecting Dispersion and Central Tendency Measures</h3>
+</section>
+<section id="measuring-dispersion" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="measuring-dispersion"><span class="header-section-number">6.1.3</span> Measuring Dispersion</h3>
+</section>
 </section>
 <section id="bivariate-descriptive-statistics" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="bivariate-descriptive-statistics"><span class="header-section-number">6.2</span> Bivariate Descriptive Statistics</h2>
-<section id="crosstabs" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="crosstabs"><span class="header-section-number">6.2.1</span> Crosstabs</h3>
+<section id="correlations" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="correlations"><span class="header-section-number">6.2.1</span> Correlations</h3>
+</section>
+<section id="crosstabs" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="crosstabs"><span class="header-section-number">6.2.2</span> Crosstabs</h3>
 
 
 </section>
