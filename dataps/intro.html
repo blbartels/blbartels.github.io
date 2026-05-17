@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Research and Data: The Basics – Data Analysis and Statistics for Political Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./dataorg.html" rel="next">
+<link href="./rstudio.html" rel="prev">
+<link href="./images/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-427913099b0a9f0709402a55d3c778ba.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Research and Data: The Basics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Analysis and Statistics for Political Science</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the Author</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Using R and RStudio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Research and Data: The Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataorg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Importing and Organization</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataviz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./choropleth.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Choropleth Maps</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inferential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linreg1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendixa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Widely-Used Political Science Datasets</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-ssr" id="toc-sec-ssr" class="nav-link active" data-scroll-target="#sec-ssr"><span class="header-section-number">2.1</span> Social Science Research</a>
+  <ul class="collapse">
+  <li><a href="#sec-rq" id="toc-sec-rq" class="nav-link" data-scroll-target="#sec-rq"><span class="header-section-number">2.1.1</span> Research Questions</a></li>
+  <li><a href="#sec-concept" id="toc-sec-concept" class="nav-link" data-scroll-target="#sec-concept"><span class="header-section-number">2.1.2</span> Concepts</a></li>
+  <li><a href="#sec-theory" id="toc-sec-theory" class="nav-link" data-scroll-target="#sec-theory"><span class="header-section-number">2.1.3</span> Theory and Hypotheses</a></li>
+  <li><a href="#sec-rd" id="toc-sec-rd" class="nav-link" data-scroll-target="#sec-rd"><span class="header-section-number">2.1.4</span> Research Design and Causal Inference</a></li>
+  </ul></li>
+  <li><a href="#sec-data" id="toc-sec-data" class="nav-link" data-scroll-target="#sec-data"><span class="header-section-number">2.2</span> Data</a>
+  <ul class="collapse">
+  <li><a href="#where-do-data-come-from" id="toc-where-do-data-come-from" class="nav-link" data-scroll-target="#where-do-data-come-from"><span class="header-section-number">2.2.1</span> Where Do Data Come From?</a></li>
+  <li><a href="#sec-var" id="toc-sec-var" class="nav-link" data-scroll-target="#sec-var"><span class="header-section-number">2.2.2</span> Measurement: From Concepts to Variables</a></li>
+  <li><a href="#sec-lom" id="toc-sec-lom" class="nav-link" data-scroll-target="#sec-lom"><span class="header-section-number">2.2.3</span> Levels of Measurement</a></li>
+  <li><a href="#sec-mult" id="toc-sec-mult" class="nav-link" data-scroll-target="#sec-mult"><span class="header-section-number">2.2.4</span> Cross-Sectional Data versus More Complex Data Structures</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<img src="images/banner.png" style="width: 100%; height: auto; margin-bottom: 20px;">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-intro" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Research and Data: The Basics</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This chapter seeks to accomplish two major tasks. First, <a href="#sec-ssr" class="quarto-xref"><span>Section 2.1</span></a> explains the nuts and bolts of the social science research process. It provides a bit of a “whirlwind tour” of how research analysts get from a substantive research question about a political phenomenon to an empirical, quantitative analysis of the topic. Readers who want more detail on these topics can consult <span class="citation" data-cites="king2021">King, Keohane, and Verba (<a href="references.html#ref-king2021" role="doc-biblioref">2021</a>)</span> and <span class="citation" data-cites="brady2010">Brady and Collier (<a href="references.html#ref-brady2010" role="doc-biblioref">2010</a>)</span>.</p>
+<p>Second, <a href="#sec-data" class="quarto-xref"><span>Section 2.2</span></a> covers the basic building blocks of understanding and analyzing data and the variables within the data. This section will cover some concrete RStudio tasks, including methods of importing data for analysis in RStudio and understanding key characteristics of the data and variables.</p>
+<section id="sec-ssr" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="sec-ssr"><span class="header-section-number">2.1</span> Social Science Research</h2>
+<p>Political science research falls within the broader social science research umbrella that contains shared principles for explaining phenomena. Additional social science disciplines include economics, sociology, and psychology. The social science research approach centers on both <em>substance</em> and <em>method</em>.</p>
+<p>By <em>substance</em>, I mean that social scientists are focused on describing and explaining phenomena, outcomes, and processes. Broadly conceived, we want to “understand how the world works” and “<em>why</em> it works the way it does.” Social scientists seek to attain explanations of certain quantities and effects that were either previously unknown or previously disputed. This is why all research begins with a question, usually centering on “Why?” Thus, perhaps the core mission for social scientists is <em>to create and disseminate new knowledge about a phenomenon of interest</em>. Social scientists use <em>theory</em> — a comprehensive explanation for a phenomenon (see <a href="#sec-theory" class="quarto-xref"><span>Section 2.1.3</span></a>) — as currency for engaging in discourse with other social scientists.</p>
+<p>A large part of theory building and knowledge accumulation centers on scholarly disagreement: All research is essentially a response, a dispute, or a disagreement with prior research. Researchers contribute new knowledge in the context of prior knowledge. Attaining knowledge is fundamentally a cumulative process. This logic informs another critical component at the heart of knowledge creation: <em>Inference</em>, or the discovery of previously “unknown facts” based on “known facts” <span class="citation" data-cites="king2021">(see <a href="references.html#ref-king2021" role="doc-biblioref">King, Keohane, and Verba 2021</a>)</span>. Inference is at the heart of both substance and method.</p>
+<p>By <em>method</em>, I mean the set of procedures and tools social scientists use to analyze, evaluate, and test social science explanations, theories, and hypotheses. Many students are likely aware of the folk definition of a hypothesis as an “educated guess.” A social science research hypothesis is more than just a guess, of course. Most hypotheses represent a statement about “cause and effect.” What is the effect or impact of a factor <span class="math inline">\(x\)</span> on another factor <span class="math inline">\(y\)</span>? The theory one brings to bear for explaining a phenomenon implies the hypothesis. “Hypothesis testing” centers on using methods — means of analyzing data — to evaluate whether a hypothesis is right or wrong. Does <span class="math inline">\(x\)</span> influence <span class="math inline">\(y\)</span> or doesn’t it? Method includes both a “research design” that can objectively render a verdict on the hypothesis and “data analysis and statistics” that carries out that plan.</p>
+<p>Importantly, and bringing it back to substance, data analysis and statistics are means to substantive ends, which include answering research questions, creating new knowledge, evaluating hypotheses, and building theory.</p>
+<p>Data analysis and statistics are at the heart of this book, of course. The process I have been describing is <em>empirical research</em>, which seeks to explain “how stuff <em>actually</em> works” and “why it works the way that it does.” In political science, empirical research is often contrasted with <em>normative research</em>, which focuses on “how stuff <em>should</em> work.” Normative queries in political science are associated with political philosophy. This branch of research is also referred to as “normative political theory.” In contrast, the type of theory described in this chapter is “empirically-oriented theory.” Empirical = “is,” normative = “ought.”</p>
+<p>Empirical research includes both quantitative and qualitative analysis. This book centers on quantitative analysis, which involves the use of large amounts of data that can be examined and summarized using data analysis and statistics. Qualitative research includes case studies of a select number of observations (e.g., comparing countries or an in-depth examination of a particular country), interviews with important players in a particular political setting, and “process-tracing” to understand changes over time in a particular context or for an observation. Quantitative analysis involves analysis of large amounts of data, while qualitative analysis involves analysis of small, select amounts of data. Both approaches are widely used in political science research.</p>
+<p>A key principle of quantitative analysis and statistics is <em>generalization</em>, which means making very broad conclusions that have application to the population we are trying to explain. For example, in explanations of how people vote in elections, we want to generate explanations that apply as much as possible to <em>all</em> voters in the population. Generalization allows one to make broad-based conclusions such as, “When voting for president, voters are highly reliant on their party identification.” While that conclusion may not apply to every single voter, it applies generally to many voters and/or the “typical” voter. Generalization is also referred to as “external validity,” i.e., how representative of the population a finding is.</p>
+<p>For example, when confronted with such a generalization, someone might say, “Well that certainly does not apply to me — I am a true independent voter and vote for both Democrats and Republicans.” Someone may also bring up members of their family who do this. This person may very well be correct — perhaps this generalization does indeed not apply to him or her. They may be an exception to an otherwise generally applicable “rule.” Social scientists will sometimes refer to such exceptions as “anecdotal evidence” that goes against a particular generalization. But the key aspect of a generalization is that it applies to substantially more observations in the population than it does not apply to. A generalization is a <em>representation</em> of reality as opposed to a pure reflection of reality.</p>
+<p>“Statistics” provide the vehicle for engaging in quantitative data analysis and making generalizations. For now, think of statistics as a means of: (1) describing variables (in terms of central tendency and dispersion) and associations between variables (at the center of <a href="descriptive.html" class="quarto-xref"><span>Chapter 6</span></a>); and (2) making inferences about such descriptions and associations that can apply to the population of interest (at the center of <a href="inferential.html" class="quarto-xref"><span>Chapter 7</span></a>). A key aspect of statistics is defining the reach of a generalization by capturing how much <em>uncertainty</em> surrounds it. How much could we be <em>wrong</em> by? That aspect will be at the center of <a href="inferential.html" class="quarto-xref"><span>Chapter 7</span></a> and also <a href="descriptive.html" class="quarto-xref"><span>Chapter 6</span></a>.</p>
+<section id="sec-rq" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="sec-rq"><span class="header-section-number">2.1.1</span> Research Questions</h3>
+<!-- ![](images/why.png){fig-align="left" width="90%"} -->
+<p>All research begins with a question. Readers are most likely familiar with the phrase “intellectual curiosity.” This trait applies to political and social scientists in how they conduct research. They may read a large group of studies (articles and books) and be curious why scholarship has not addressed a particular topic. Political scientists are always asking, “Why?” That curiosity forms more concrete questions in their minds, which then winnows down to a particular research question at the heart of an article or book. Posing a research question may seem like a simple task, but framing it in the right way takes time and incurs revisions. One’s research question structures the entire research process.</p>
+<p>In general, a good research question:</p>
+<ol type="1">
+<li><p><strong>Is “answerable.”</strong> Political scientists want to ask questions but also answer them. As discussed above, drawing inferences and answering questions comes with some level of uncertainty that researchers quantify and communicate. But researchers seek to be clear about which side of the question the evidence leans toward; sometimes the evidence is overwhelming thus begging a clear answer while other times the evidence is tepid. Research questions being answerable also relates to the issue of “falsifiability” discussed below in <a href="#sec-theory" class="quarto-xref"><span>Section 2.1.3</span></a>. Some questions are answerable with a “yes or no,” while others are answerable with an explanation or theory. I return to this immediately following this list.</p></li>
+<li><p><strong>Confronts a knowledge gap in the scholarly literature</strong>: Since researchers seek to create and disseminate new knowledge about how the world works, research questions should advance a query regarding something we do not know about. This aspect implies that researchers are widely aware of existing knowledge and research on the subject, which is another important part of the research process. Three Rs of being a researcher and asking good research questions: <em>Read, read, and read</em>.</p></li>
+<li><p><strong>Structures the entire research process</strong>: Coming up with a good research question structures the rest of the research process, from theory to hypotheses to research design to data analysis.</p></li>
+<li><p><strong>Sets up the direction of causality between an “explanatory factor” and an “outcome”</strong>: Almost all research examines the effect of some “explanatory factor,” <span class="math inline">\(x\)</span>, on an outcome, <span class="math inline">\(y\)</span>. In my prior voting example, the explanatory factor is one’s party identification and the outcome is vote choice. When we operationalize these concepts (<a href="#sec-concept" class="quarto-xref"><span>Section 2.1.2</span></a>) as variables (<a href="#sec-var" class="quarto-xref"><span>Section 2.2.2</span></a>), we refer to <span class="math inline">\(x\)</span> as the “independent variable” and <span class="math inline">\(y\)</span> as the “dependent variable” (see <a href="#sec-var" class="quarto-xref"><span>Section 2.2.2</span></a>). Theory and explanation specify the causal nature of this relationship, i.e., <span class="math inline">\(x\)</span> causes <span class="math inline">\(y\)</span>, or <span class="math inline">\(x\)</span> <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(y\)</span>. <a href="#sec-rd" class="quarto-xref"><span>Section 2.1.4</span></a> will discuss issues of cause-and-effect in greater detail.</p></li>
+</ol>
+<p>Extending these points, the next sections discuss research employing different types of research questions. Each section uses examples from political science research. I will continue to use those examples in the concepts and theory and hypotheses sections.</p>
+<p><strong><em>Research Questions Answerable with “Yes” or “No”</em></strong>: Some questions are answerable with a “yes” or “no.” A good example involves the longstanding debate on “modernization theory” in comparative politics research <span class="citation" data-cites="treisman2020 przeworski1997">(see, e.g., <a href="references.html#ref-treisman2020" role="doc-biblioref">Treisman 2020</a>; <a href="references.html#ref-przeworski1997" role="doc-biblioref">Przeworski and Limongi 1997</a>)</span>. A recurring research question persists throughout this research: <em>Does economic development lead to and sustain democracy</em>? First, related to point #3 above, this research question immediately makes clear what the “explanatory factor” (<span class="math inline">\(x\)</span>) is and what the outcome (<span class="math inline">\(y\)</span>) is:</p>
+<ul>
+<li><span class="math inline">\(x\)</span> = economic development (how rich or poor a country is)</li>
+<li><span class="math inline">\(y\)</span> = democracy (how democratic versus authoritarian a country is)</li>
+</ul>
+<p>Second, as mentioned, this research question is answerable with a “yes” or “no.” Those who answer “yes” claim that economic development does indeed influence levels of democracies in regimes around the world. Those who answer “no” would say that economic development does not influence democracy (or what researchers often call a “null effect”). When a research question persists for decades, like this one, another answer often becomes “it depends,” or “yes <em>and</em> no.” This issue relates to “conditional effects” and “scope conditions.” A corollary style of research question reflecting this aspect is <em>When</em> or <em>under what conditions</em> does economic development influence democracy?</p>
+<p>Immediate qualities of this research question are its importance and broad scope. The answer to this question matters for political regimes around the world. In fact, some of the best research questions often have very interesting “normative implications” — they matter for what we deem as good or bad outcomes. One can also envision how research on this question will spur lots of future research; scholars will inevitability disagree with prior perspectives, which will spur additional research. This type of research also sets up the remaining steps in the research process. One’s theory derives from the <em>why</em> underlying the researcher’s answer (yes or no) to the research question; e.g., if yes, <em>why</em> does economic development influence democracy? If no, <em>why not</em>? As discussed more below, the question clearly sets up the core hypothesis and also the basics of the empirical analysis. The next type of research question is even more explicit about the use of “why” right in the question.</p>
+<p><strong><em>Research Questions Answerable with an Explanation — Why</em></strong>: Another type of research questions asks “Why?” This type of question is answerable with an explanation, which forms the basis for a theory. An example from American politics voting behavior research is, “Why do voters’ evaluations of economic performance influence presidential vote choice?” One answer, which forms the basis for a theory of “economic voting,” is that voters hold the president — as the sole nationally-elected representative — accountable for a good or bad economy <span class="citation" data-cites="fiorina1981 kinder1981">(see, e.g., <a href="references.html#ref-fiorina1981" role="doc-biblioref">Fiorina 1981</a>; <a href="references.html#ref-kinder1981" role="doc-biblioref">Kinder and Kiewiet 1981</a>)</span>. When the economy is bad, the incumbent (or the incumbent’s party) will do worse in the election than when the economy is good. Like for the prior question style, the question sets up the core causal relationship at the center of the theory hypothesis: Economic performance (or evaluations thereof) is the explanatory factor, <span class="math inline">\(x\)</span>, while presidential vote choice is the outcome, <span class="math inline">\(y\)</span>.</p>
+<p>Another type of research question under this umbrella asks <em>why</em> but does not list the explanatory factor. What makes a question like this interesting is that implies a counterintuitive or unexpected behavior, particularly related to existing theory and findings. It sets the foundation for the next type of question I will discuss related to “puzzles.” An example from comparative judicial politics literature is, “Why do politicians support and facilitate judicial independence?” Note that this question implies the outcome (judicial independence) but not the explanatory factor. The theory will need to specify the explanatory factor as a central feature. Note also that “politicians supporting judicial independence” is not exactly a straightforward behavior, particularly in worldwide context. After all, a core judicial power is to contrain political power and keep politicians in check to ensure they are following the law. When courts frustrate politicians’ agendas, politicians should want to reduce judicial independence, not enhance it.</p>
+<p>Scholarship on “insurance theory” provide an answer to this research question and also implies the explanatory factor: <em>political competition</em> <span class="citation" data-cites="ramseyer1994 ginsburg2003 staton2022">(see, e.g., <a href="references.html#ref-ramseyer1994" role="doc-biblioref">Ramseyer 1994</a>; <a href="references.html#ref-ginsburg2003" role="doc-biblioref">Ginsburg 2003</a>; <a href="references.html#ref-staton2022" role="doc-biblioref">Staton, Reenock, and Holsinger 2022</a>)</span>. As a country becomes more politically competitive, leaders will seek to maintain judicial independence because they perceive their time horizon for holding power is limited; they want to ensure that the courts hold opposition parties to account, including applying laws passed under the current regime against a future one. When competition is low, leaders perceive longer time horizons for holding power and thus feel less of a need to use the courts to enforce current bargains on future opposition governments.</p>
+<p><strong><em>Puzzle-Driven Questions</em></strong>: Political scientists love coming up with puzzles and also solving them. Puzzles are great motivator for a great research question because they involve a sort of “head fake” or contradiction: By all accounts, some outcome should happen under these conditions, but it does not. Puzzles are developed by discovering observations that seem to defy expectations from longstanding theory and findings. An example comes from the aforementioned modernization theory, which explains why economic development (ranging from poor to rich) helps build and sustain democracy. Well-known exceptions to this “rule” are oil-rich countries, which tend to fall into patterns of authoritarianism and corruption. The puzzle centers on why this set of rich countries seems to buck a well-known trend central to modernization theory, and why the <em>source</em> of wealth (oil versus, e.g., trade or industrialization) seem to matter for regime type <span class="citation" data-cites="ross2001">(<a href="references.html#ref-ross2001" role="doc-biblioref">Ross 2001</a>)</span>.</p>
+<p><strong><em>“Why” versus “How”</em></strong>: As I will discuss in <a href="#sec-theory" class="quarto-xref"><span>Section 2.1.3</span></a>, a theory explains <em>why</em> some event or process occurred, <em>why</em> someone holds the attitudes or beliefs they do on a topic, or <em>why</em> an object possesses some characteristic occurs. <em>Why</em> also implies why some event <em>does not</em> occur, why someone holds beliefs on the high <em>or</em> low end of the spectrum, or why an object <em>lacks</em> some characteristic. The <em>why</em> signals that an explanatory factor, <span class="math inline">\(x\)</span>, influences <span class="math inline">\(y\)</span>. Ramping up some, questions that begin with “why” signal subsequent discussion of a <em>causal effect</em> of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span>. This causal relationship is more fully elaborated by theory.</p>
+<p>Questions that begin with <em>how</em> signal discussion of a <em>process</em> as opposed to a causal effect per se of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span>. This process can take multiple forms, such as “process tracing” to explain the multi-step manner in which one gets <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span>. Process (and “how”) also signals discussion “mediational accounts,” e.g., where some factor <span class="math inline">\(z\)</span> mediates the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Using causal arrow notation: <span class="math inline">\(x\)</span> <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(z\)</span> <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(y\)</span>. Related, “how” typically signals a focus on mechanisms underlying an established effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span>. <a href="#sec-theory" class="quarto-xref"><span>Section 2.1.3</span></a> will elaborate further on this topic.</p>
+</section>
+<section id="sec-concept" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="sec-concept"><span class="header-section-number">2.1.2</span> Concepts</h3>
+<p>In political and social science research, a concept is a theoretical construct that captures a phenomenon, identity, a “state of the world,” or a characteristic or property of some entity. Concepts are the building blocks of research questions and theories: Concepts central to research are the explanatory factors and the outcome central to a theory. Importantly, concepts contain variation and levels ranging from from low to high; a concept can range from the absence of a characteristic to the presence of a characteristic. Other concepts are more binary in nature, e.g., did one vote in the election or not? In modernization theory example, the two critical concepts are economic development and democracy. Both are large-scale theoretical constructs.</p>
+<p>To set up subsequent research processes, one must define the core properties of the concept — a process sometimes referred to as <em>conceptualization</em>. For example, economic development in its simplest terms could be defined as whether a country is rich or poor, which is captured by factors like GDP or unemployment rate. Other key aspects of a mature economic state are industrialization, urbanization, and education: Each signals a move from a rural, agrarian economy to a more advanced manufacturing society, which also helps build a robust middle class and a steady stream of government revenue. One can think of economic development at low (the absence of many of these characteristics) and high ends (the presence of them) of a spectrum (with values in between).</p>
+<p>Democracy is often conceptualized as countries having: free and fair elections, the ability of people to form and organize political parties that can seek political power, robust political competition between parties, and elected officials are the people making laws (as opposed to the military).</p>
+</section>
+<section id="sec-theory" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="sec-theory"><span class="header-section-number">2.1.3</span> Theory and Hypotheses</h3>
+<p>In its broadest terms, a theory is a comprehensive explanation of why <span class="math inline">\(x\)</span> causes <span class="math inline">\(y\)</span>, including an elaboration on the mechanisms that underlay this effect. A theory also provides a clear answer to a research question. Recall that social science theory discussed in this book is empirically-oriented theory: It seeks to explain why things are the way are, as opposed to how they ought to be, which is the basis of normative theories.</p>
+<p>Returning to the example of economic voting, the basic outlines of the theory are that people associate the president with ecomomic performance. The president is the only elected official who represents the entire United States. If people think of the president as a CEO, then they hold the president partly responsible for economic performance. When the economy is strong, voters are more likely to vote for the president (or more generally, the party of the incumbent president). When the economy is weak, they are more likely to vote against the president’s party.</p>
+<p>Theories generate hypotheses, which are statements of the effect of an explanatory factor on an outcome. Hypotheses should do three things: (1) be explicit about the population observations or entities over which the hypothesis operates; (2) be explicit about what the explanatory variable is and what the outcome is; and (3) state the <em>direction</em> of the relationship <span class="citation" data-cites="pollock2024">(see <a href="references.html#ref-pollock2024" role="doc-biblioref">Pollock and Edwards 2024</a>)</span>. By direction, the hypothesis should state the nature of the effect in substantive terms — how <em>change</em> in the explanatory variable leads to <em>change</em> in the outcome. What is the direction of that change that describes the relationship? Here is an example of a hypothesis that achieves all three goals:</p>
+<blockquote class="blockquote">
+<p>In comparing countries, as economic development increases, degrees of democracy will increase as well.</p>
+</blockquote>
+<p>Here is an example from the economic voting theory:</p>
+<blockquote class="blockquote">
+<p>In comparing voters, those who believe the economy is strong will be more likely vote for the incumbent president’s party than those who believe the economy is weak.</p>
+</blockquote>
+<p>Note how these hypotheses achieve each of the three goals of writing hypotheses. The observations or entities are countries in the first hypothesis and individuals (voters) in the second. Each hypothesis makes clear what the explanatory variable is: Economic development in the first, state of the economy in the second. Those are the drivers of the outcome, which is democracy in the first and vote choice in the second. Note also how the hypothesis states the direction of the relationship. It discusses how increasing values of economic performance (from weak to strong) lead to an increasing likelihood of voting for the president’s party. The hypothesis is stated in <em>substantive</em> terms — in a way that is intuitive and clear to an average person reading this who may have limited knowledge of the subject. The hypotheses are also written in causal terms.</p>
+<p>Another core property of social science theory and hypothesis generation is <em>falsifiability</em>: Theories and hypotheses are required to have the capacity to be proven right <em>or</em> wrong via evidence obtained by empirical observation. This property is a key setup for research design and empirical hypothesis testing. One has to set up theory and hypotheses so the evidence can either support them or reject them. A theory that is not falsifiable is one that can never be proven wrong. Think of conspiracy theories as unfalsifiable: There is no evidence that could be brought to bear that would render such a theory as false. Theories that ultimately rely on the <em>absence</em> of evidence are not falsifiable. Unfalsifiable theories also rely on post hoc rationalization to “rescue” the theory.</p>
+<p>Consider the following example of an <em>unfalsifiable</em> claim in the aforementioned modernization theory example. Imagine I defined a “sweet spot” of economic development wherein once countries surpass this line, they will remain democratic forever. Imagine some other scholar claims that country A has indeed surpassed this sweet spot but has still not democracratized. The time horizon nature of my claim, though, gives me an out to rescue my theory. I could come back and say, “No, country A has not yet reached this sweet spot. It needs more time. But once it does, it will democratize.” I could seemingly make that point forever if I can argue that country A has yet to surpass this sweet spot.</p>
+<p>This sort of logic is a type of “deterministic” or “overdetermined” theory. One outcome must occur, and no capacity exists for the theory being wrong. A deterministic theory is always right and never wrong. But a theory that explains everything explains nothing. In other words, the “explanatory factor,” which is central the theory, is useless and completely uninformative because it is not actually this factor that is truly <em>explaining</em> the outcome. Deterministic explanations are thus the antithesis of causal explanations.</p>
+<p>This point underscores that a falsifiable theory or hypothesis needs to possess clear and explicit benchmarks that the scientific community agrees are conditions for rendering the hypothesis as valid or invalid. Recall that the focus on “Why” in <a href="#sec-rq" class="quarto-xref"><span>Section 2.1.1</span></a> emphasized that research and theory should seek to explain why some event does <em>or does not</em> occur or why some object or entity has high or low values of some characteristic or property.</p>
+</section>
+<section id="sec-rd" class="level3" data-number="2.1.4">
+<h3 data-number="2.1.4" class="anchored" data-anchor-id="sec-rd"><span class="header-section-number">2.1.4</span> Research Design and Causal Inference</h3>
+<p>A research design is a plan or blueprint for conducting an empirical analysis capable of testing hypotheses emanating from a theory. Since theory specifies a causal relation between an explanatory factor and an outcome, scholars develop research designs that can maximize causality with respect to the effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span>. As discussed below, some research designs (experiments) are better equipped to generate causal inferences than others. Readers have probably heard the phrase “correlation is not causation.” Correlation is a general association between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> (they “go together”), but causation captures something deeper: The effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> when controlling for, or holding constant, alternative influences. A causal inference about the effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> rules out all alternative causes.</p>
+<p>This causal goal is sometimes called <em>internal validity</em>. Recall that external validity is generalization, so researchers are often attuned to whether causal inferences, which have high internal validity, are also generalizable, or have high external validity as well.</p>
+<p><strong><em>Causality in Theory</em></strong>: Causal inference is rooted in the notion of “counterfactual reasoning” and is often referred to by social scientists as the “potential outcomes framework,” which was formalized by statistician Donald Rubin <span class="citation" data-cites="rubin1974">(<a href="references.html#ref-rubin1974" role="doc-biblioref">1974</a>)</span>. A counterfactual is a state of the world that never existed — it is a “what if?” Contrast that with the state of the world did exist, what might colloquially be called a “factual.” If we wanted to generate a genuine causal effect of some explanatory factor, <span class="math inline">\(x\)</span>, on an outcome, <span class="math inline">\(y\)</span>, we would first need to observe that outcome for one value of <span class="math inline">\(x\)</span> (let’s say the presence of <span class="math inline">\(x\)</span>) as it actually happened. Then, we would need to re-run history — the counterfactual — by changing <em>only</em> the value <span class="math inline">\(x\)</span> (the absence of <span class="math inline">\(x\)</span>) and then observe <span class="math inline">\(y\)</span> under this alternative state of the world. When we rerun history in the counterfactual, every aspect of the process remains the same, or is held constant, <em>except for the value</em> <span class="math inline">\(x\)</span> (which is changed to the absence of <span class="math inline">\(x\)</span>). That is the key to defining a causal inference in theory.</p>
+<p>If we define <span class="math inline">\(y_i^O\)</span> as the value of outcome for a particular observation, <span class="math inline">\(i\)</span>, in the observed state of the world (the “O” superscript is for “observed”) and <span class="math inline">\(y_i^C\)</span> as the value of the outcome under the counterfactual, then we can define the causal effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> as:</p>
+<blockquote class="blockquote">
+<p><em>Causal effect</em> = <span class="math inline">\(y_i^O - y_i^C\)</span></p>
+</blockquote>
+<p>Scholars who apply the logic of causal inference often define <span class="math inline">\(x\)</span> as the <em>treatment</em> factor. As discussed below, this is analogous language used in experiments. In causal inference logic (and also experiments), the treatment factor is the explanatory variable, <span class="math inline">\(x\)</span>. The presence of this factor or characteristic (e.g., <span class="math inline">\(x=1\)</span>) is actually called the “treatment,” whereas the absence of it (e.g., <span class="math inline">\(x=0\)</span>) is called the “control.” We want to observe whether varying this treatment factor (from absence to presence) alters the outcome, <span class="math inline">\(y\)</span>.</p>
+<p>A classic example involves a person (we will call her Lucy) with a headache. Lucy takes two ibuprofen tablets and reports that her headache is gone one hour later. Did the ibuprofen actually <em>cause</em> her headache to go away? How would we actually know? Using our causal inference logic, we would have to rerun history — the counterfactual, or alternative state of the world — changing only the treatment factor. Under the counterfactual, Lucy does not take ibuprofen but does everything in the course of her day exactly the same. We would then observe whether Lucy’s headache persisted or went away. Using the notation above, we could define the causal effect of the “treatment” (taking ibuprofen) by comparing two states of the world: headache severity when taking the treatment, <span class="math inline">\(y_i^O\)</span>, versus headache severity when not taking the treatment, <span class="math inline">\(y_i^C\)</span>.</p>
+<p>The causal effect would be the same as above: <span class="math inline">\(y_i^O - y_i^C\)</span>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> In this example, if the treatment “worked” — if ibuprofen caused the headache to go away — the causal effect, or “treatment effect,” would have a negative value: Taking ibuprofen caused decreased headache severity relative to not taking ibuprofen.</p>
+<p>Returning to the “economic voting” example, how can we think of a theoretical causal effect of economic performance on presidential vote choice within this framework. Assume that a “booming economy” (low inflation, low unemployment, and a “bull market”) is the treatment, while a “normal” economy (the absence of a booming economy) is the absence of the treatment. Assume that we observe one’s vote choice for an incumbent president, <span class="math inline">\(y_i^O\)</span>, under an observed state of a booming economy (the treatment). How would we know whether economic performance genuinely causes one to have a higher likelihood of voting for the incumbent president? We would have to rerun history changing <span class="math inline">\(x\)</span> to the absence of a booming economy and then observe the likelihood of voting for the incumbent president (<span class="math inline">\(y_i^C\)</span>). Once again, the causal/treatment effect would be defined as <span class="math inline">\(y_i^O - y_i^C\)</span>.</p>
+<p>Researchers obviously do not have the luxury of rerunning history, yet defining a true causal effect requires observing an outcome under two alternative states of the world, or for two potential outcomes of <span class="math inline">\(y\)</span>. However, we only observe one of those states, with the other being a counterfactual that we never observe. This dilemma is called the “fundamental problem of causal inference”: Estimating causal effects requires data we can never observe or retrieve, i.e., <span class="math inline">\(y\)</span> under the counterfactual condition. <span class="citation" data-cites="cunningham2021">(For an accessible overview of causality and the potential outcomes framework, see <a href="references.html#ref-cunningham2021" role="doc-biblioref">Cunningham 2021</a>, Ch. 4.)</span></p>
+<p>This dilemma means that researchers need to “simulate” this counterfactual, potential outcomes logic using observed data. That means researchers will <em>estimate</em> causal effects with some degree of uncertainty. Quantitative empirical researchers employ two general types of research design: Experiments and observational studies. As I will discuss, this book will focus on observational studies but will make occasional reference to experimental studies since they are benchmarks for causal inference. Within observational studies, researchers employ two types of designs: (1) classic statistical analysis where “statistics” attempt to do the heavy lifting on controlling for (or holding constant) alternative causes in efforts to generate causal inferences; and (2) design-based studies (“natural experiments”) that leverage certain features of the data or events in order to mimic how an experiment generates treatment effects with high causal validity. Within this observational data umbrella, this book will focus on the first aspect (statistics-based analysis). <span class="citation" data-cites="dunning2012">(Readers who would like more information on this topic should consult <a href="references.html#ref-dunning2012" role="doc-biblioref">Dunning 2012</a> for an accessible and comprehensive overview of design-based inference for observational data.)</span></p>
+<p><strong><em>Experiments</em></strong>: Experimental design is the gold standard for causal inference and essentially defines what it means to generate causal inferences. Experiments simulate the two alternative universes (or potential outcomes) central to causal inference by using <strong>random assignment</strong> of large numbers of respondents (participants for a research study) to a <strong>treatment group</strong> (where <span class="math inline">\(x = 1\)</span>, the presence of the treatment) or a <strong>control group</strong> (where <span class="math inline">\(x = 0\)</span>, the absence of the treatment). In experiments, the treatment group is analogous to the “observed state of the world,” while the control group is analogous to the counterfactual.</p>
+<p>Random assignment to treatment versus control groups makes the two groups equal, on average, on every single characteristic except for the treatment factor, <span class="math inline">\(x\)</span>. Thus, experiments are like simulating the two alternative states of the world, or potential outcomes. The “on average” part is satisfied by having large numbers of individuals in each group so we can average over differences within each group. If random assignment is done correctly and if the numbers of individuals in each group is sufficiently large, those two groups will have extremely similar average levels of all potential alternative explanations, e.g., sex, race, ideology, party, education, age (using political science explanations). Again, the <em>only</em> thing that will differ between the two groups is treatment versus control. That means that <em>we can attribute any differences between two groups in the outcome,</em> <span class="math inline">\(y\)</span>, to the treatment.</p>
+<p>The causal effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> is called a “treatment effect.” An “average treatment effect” (ATE) is defined simply as the average value of <span class="math inline">\(y\)</span> for the treatment group minus the average value of <span class="math inline">\(y\)</span> for the control group. The more formal notation for an ATE in “population form” is: <span class="math inline">\(E(y^T) - E(y^C)\)</span>. The superscript T is for treatment group; C is for control group. E represents “expected value,” which is a population quantity related to an average (and will be discussed in <a href="inferential.html" class="quarto-xref"><span>Chapter 7</span></a>). In sample form, an ATE estimate is: <span class="math inline">\(ATE = \bar{y}^T - \bar{y}^C\)</span>, where <span class="math inline">\(\bar{y}^T\)</span> is the sample mean of <span class="math inline">\(y\)</span> for the treatment group, and <span class="math inline">\(\bar{y}^C\)</span> is the sample mean of <span class="math inline">\(y\)</span> for the control group.</p>
+<p>Beyond doing comparing the means of the two groups (which does require some statistics; see <a href="inferential.html" class="quarto-xref"><span>Chapter 7</span></a>), experiments do not require “statistics” to do any of the heavy lifting in generating a causal inference. All of the causal inference capacity is rooted in random assignment of respondents to treatment and control groups. Prominent examples of experimental studies in political science include:</p>
+<ol type="1">
+<li><p>The effect of exposure to negative advertising (treatment) versus lack of exposure (control) on voter turnout <span class="citation" data-cites="ansolabehere1995">(<a href="references.html#ref-ansolabehere1995" role="doc-biblioref">Ansolabehere and Iyengar 1995</a>)</span>.</p></li>
+<li><p>The effect of social pressure to vote on voter turnout <span class="citation" data-cites="gerber2008">(<a href="references.html#ref-gerber2008" role="doc-biblioref">Gerber, Green, and Larimer 2008</a>)</span>.</p></li>
+<li><p>Whether implicit versus explicit racial appeals influence vote choice <span class="citation" data-cites="mendelberg2001">(<a href="references.html#ref-mendelberg2001" role="doc-biblioref">Mendelberg 2001</a>)</span>.</p></li>
+<li><p>Motivated reasoning in political judgments; such judgments are rationalizations for preexisting attitudes and beliefs as opposed to deliberative, learning processes <span class="citation" data-cites="lodge2013">(<a href="references.html#ref-lodge2013" role="doc-biblioref">Lodge and Taber 2013</a>)</span>.</p></li>
+</ol>
+<p>While experiments carry high appeal for making causal inferences, not every explanatory variable, <span class="math inline">\(x\)</span>, can be subjected to “experimental manipulation,” which is a phrase that explains the process of random assignment and the creation of a treatment factor that carries a substantive political science meaning. In modernization theory, researchers cannot randomly assign countries to treatment versus control groups that capture variation in economic development. The goes for economic voting in presidential elections. These examples and many others imply the necessity of observational studies.</p>
+<p><strong><em>Observational Studies</em></strong>: In observational studies, researchers do not experimentally manipulate the explanatory factors (<span class="math inline">\(x\)</span>) but instead observe and <em>measure</em> those factors (on which <a href="#sec-var" class="quarto-xref"><span>Section 2.2.2</span></a> will elaborate). Many of the aforementioned examples in this chapter — modernization theory, oil-rich countries, economic voting, insurance theory and judicial independence — rely on observational studies to analyze their theoretical claims. Studies of economic voting rely on survey research and public opinion polls; we observe survey respondents’ answers to questions in order to measure concepts. Studies of countries around the world require researchers to collect and code the data themselves, which is a time-consuming endeavor (<a href="#sec-data" class="quarto-xref"><span>Section 2.2</span></a> picks up on this point immediately below).</p>
+<p>Observational studies can never achieve the degree of causal inference, or internal validity, that experimental studies attain. As discussed, some observational studies exploit natural experiments to mimic random assignment (“as-if” random assignment). But the lion’s share of observational studies instead rely on statistics to make inferences that do not reach the standard of causality central to the potential outcomes framework. As discussed, this book focuses on these types of analyses. Statistical analyses of observational data tend toward this goal by estimating the effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> while <em>controlling for alternative factors</em>. But the researcher manually specifies a finite set of factors to control for, meaning that such analyses can never attain the causal standards that experimental studies reach. Multiple regression analysis (at the heart of <a href="linreg1.html" class="quarto-xref"><span>Chapter 8</span></a>) is the widely-used tool for carrying out empirical analyses of observational data.</p>
+</section>
+</section>
+<section id="sec-data" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sec-data"><span class="header-section-number">2.2</span> Data</h2>
+<p>What are “data?” (And yes, <em>data are plural</em>.) Data are pieces of information that represent how a concept varies across units of observation. A “dataset” contains a record of this information in the form of numbers and strings, e.g., economic development and democracy for each country and perhaps over time.</p>
+<section id="where-do-data-come-from" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="where-do-data-come-from"><span class="header-section-number">2.2.1</span> Where Do Data Come From?</h3>
+<p>Many researchers frequently analyze data from “stock datasets,” which large organizations organize, fund, and coordinate data collection for. An example that I will use in this book is the <a href="https://electionstudies.org/" target="_blank">American National Election Studies</a> (ANES), which has been conducting regular surveys of Americans since 1948. This survey data has been a mainstay in political science research elections and voting behavior. Another stock dataset that I will use in this book is the <a href="https://www.v-dem.net/" target="_blank">Varieties of Democracy</a> data (V-Dem), which is increasingly used in comparative politics research. In international relations research, the <a href="https://correlatesofwar.org/" target="_blank">Correlates of War</a> dataset is a popular stock dataset. <a href="appendixa.html#tbl-psdata" class="quarto-xref">Table&nbsp;<span>A.1</span></a> in <a href="appendixa.html" class="quarto-xref"><span>Appendix A</span></a> includes a table of publicly available datasets frequently used in political science research.</p>
+<p>Some data come from commercial public opinion surveys conducted by media organizations (e.g., the New York Times or CBS News) that measure people’s attitudes, preferences, and evaluations of political issues and politicians. The <a href="https://ropercenter.cornell.edu/" target="_blank">Roper Center</a> maintains an archive of survey questions from these surveys, and for some surveys, it provides the full dataset (typically requires an institutional subscription).</p>
+<p>Another massive archive of data is the <a href="https://dataverse.harvard.edu/" target="_blank">Harvard Dataverse</a>, which is a repository for researchers to place their data in a public archive that anyone can access. All major journals in political science and other disciplines now require that authors deposit their data in archives such as this one. The Harvard Dataverse is probably the most prominent of these public archives.</p>
+<p>Other data come from researchers’ efforts to measure characteristics of countries around the world or the 50 states (in the U.S.). When researchers do experiments, they generate data consisting of individuals who are randomly assigned to a treatment or a control group. Still other researchers may combine their own measures of characteristics with stock datasets by merging the two together.</p>
+<p>Finally, readers may have heard of “big data,” which can entail analyzing and attempting to synthesize extremely large volumes of information, e.g., millions of social media posts on a particular topic. Artificial intelligence (AI) and the use the large language models (LLMs) are essentially the epitome of “big data” efforts.</p>
+<p>This book will use relatively large datasets consisting of many observations, or “units of analysis” (individuals, countries, U.S. states), and many “variables” (empirical measures of concepts for those observations). These datasets are often called “large-<em>N</em>” data, where “<em>N</em>” is the number of observations in a dataset. For many researchers, “large” implies an <em>N</em> that exceeds 1,000. In many public opinion surveys, <em>N</em> is greater than 1,000. For other researchers, large may entail an <em>N</em> greater than 100 (e.g., studying countries around the world). We will analyze datasets in this book with <em>N</em>s larger than 1,000 or around 100. The “states” data example I will use below has an <em>N</em> of 50. Researchers analyze a large number of observations so as to maximize the quality of generalizations and inferences about the population.</p>
+<p>The datasets we will examine in this book include various types of survey data (including political and public opinion surveys) and data analyzing characteristics of countries around the world and the U.S. states.</p>
+</section>
+<section id="sec-var" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="sec-var"><span class="header-section-number">2.2.2</span> Measurement: From Concepts to Variables</h3>
+<p>The core aspect of data collection is the <strong>measurement of concepts</strong> that are central to one’s theory. Measurement is the process by which concepts are converted into <strong>variables</strong> that one can analyze empirically and quantitatively. A variable captures variation in a concept across <strong>units of analysis</strong>, which are the observations we are studying (e.g., individual persons in a survey, countries, states, congressional districts). A <strong>dataset</strong> is a collection of variables for <em>N</em> units of analysis. As <a href="dataorg.html#sec-import" class="quarto-xref"><span>Section 3.1</span></a> will discuss, each column of a dataset is a variable, while each row of a dataset is a unit of analysis.</p>
+<p>In a dataset, a variable records a value (a numeric value or a string) for each unit of analysis. For example, a democracy variable would record degrees of democracy versus authoritarianism across countries; each country contains a value of this variable (typically as a numeric value; see <a href="#sec-lom" class="quarto-xref"><span>Section 2.2.3</span></a> below). A variable is true to its name: <em>Able to vary</em>. That may seem obvious, but variables must maintain at least some variation across units of analysis. The opposite of a variable is a “constant,” where the value would be exactly the same for every unit of analysis. Constants are not amenable to quantitative data analysis; variables are.</p>
+<p>The two core properties of measurement are: Validity and reliability.</p>
+<p><strong><em>Validity</em></strong>: Validity is the extent to which a variable reflects the essence of the concept or its core characteristics. When researchers measure concepts, they seek to maximize congruence between the concept and the measure. A concept is a theoretical construct, however, so we can never truly evaluate whether a measure has 100% validity. Instead, we use methods to estimate and evaluate validity. One way to evaluate a measure is to consider the types of measurement errors that are present. A measure is a function of the underlying concept plus underlying sources of error: Systematic and random measurement error.</p>
+<p>The primary threat to validity is <strong>systematic measurement error</strong>. This type of error biases a measure. It systematically undermines concept-measure congruence. A systematic measurement error is one that will consistently bias a measure every time we attempt to measure a concept. Revisiting the democracy example from <a href="#sec-concept" class="quarto-xref"><span>Section 2.1.2</span></a>, recall that democracy is often associated with free and fair elections, organizing political parties that can seek political power, robust political competition between parties, and elected officials (as opposed to the military) making laws. Imagine our measure failed to incorporate the first facet of free and fair elections. As a critical characteristic of this concept, omission of it in any democracy measure would be deemed as something less than valid.</p>
+<p>The second type of error is <strong>random measurement error</strong>. Unlike systematic error, random error is more idiosyncratic and will not consistently bias a measure over and over again. For example, if we are measuring students’ math ability, perhaps one class experienced background noise from a loud lawnmower in the courtyard. That noise may have affected those students taking the test this one time, but it would not consistently threaten a measure’s validity in repeated attempts. It is merely a temporary and random “shock.” In survey research, a respondent may not have heard a survey question accurately because their dog was barking in the background. That may have led them to answer a question incorrectly. But again, that is a random event that would not happen over and over again to respondents. Random error is definitely error we want to minimize, but it does not threaten validity per se.</p>
+<p>The first way to evaluate validity is called <strong>face validity</strong>. That is, “on its face,” or at first blush, does the measure seem valid? From the above example, a measure that omits free and fair elections may raise a red flag on face validity grounds. Another way to evaluate face validity is to evaluate how the measure codes certain observations and whether the coding accords with one’s understanding of the context. Back to the democracy example, the widely-used <a href="https://www.systemicpeace.org/polityproject.html" target="_blank">Polity</a> measure, which relies on multiple facets of a regime to measure democracy (akin to my example above), rank orders the following countries from most democratic to most authoritarian:</p>
+<ol type="1">
+<li>Norway</li>
+<li>United Kingdom</li>
+<li>United States</li>
+<li>Turkey</li>
+<li>Russia</li>
+<li>China</li>
+<li>North Korea</li>
+</ol>
+<p>Political scientists who study comparative politics and regime types around the world might look at that list and say that it accords with their knowledge of democracies and autocracies around the world. It has high face validity.</p>
+<p>What if the list looked like this instead?</p>
+<ol type="1">
+<li>Norway</li>
+<li>Turkey</li>
+<li>Russia</li>
+<li>China</li>
+<li>United Kingdom</li>
+<li>United States</li>
+<li>North Korea</li>
+</ol>
+<p>Any measure that shows that Turkey, China, and Russia are more democratic than the U.S. and the U.K. would not have face validity. This is an extreme example, of course, but it demonstrates an example where face validity would most likely steer us away from using a measure that creates such a rank ordering.</p>
+<p>The second way to evaluate validity is <strong>content validity</strong>, which means evaluating whether the measure taps a comprehensive range or breadth of the concept’s core characteristics. Does it measure every facet of the concept? Consider again the democracy measure and the aforementioned key facets of democracy that any measure should seek to capture.</p>
+<p>Finally, the third way to evaluate validity is called <strong>construct validity</strong>, or correlational validity. In this approach, a researcher finds a second measure that their measure <em>should be correlated with</em>, given theoretical expectations. For example, education levels should be highly correlated with democracy. We could examine correlations between the measures to see if it accords with theoretical expectations. If the correlation were sufficiently low, we would have reason to question the measure’s validity. One can also examine variables with which a new measure should have a low correlation.</p>
+<p><strong><em>Reliability</em></strong>: Reliability centers how <em>consistently</em> we would measure the same thing if we were to measure it in repeated attempts. Reliability is about minimizing random measurement error. Recall from the example above about how noise from a lawnmower (a form of random error) may undermine a measure’s accuracy but not on a systematic basis — it does not systematically threaten validity. However, this random error would undermine the consistency of a measure from a repeated measures standpoint. These random errors block one’s ability to measure the same thing in repeated attempts.</p>
+<p>Moreover, it is possible to have “reliability without validity,” that is, a variable could be measured consistently over repeated attempts, but it could be wrong every time (i.e., “consistently wrong”) if some systematic measurement error is operative each attempt.</p>
+<p>One means of evaluating reliability rests with this over-time concept. In survey data, for example, one could use a “test-retest” method: Administer the measure to the same subjects at two different points in time. Similarity of the measures at the two time points provides evidence of reliability. One problem with this approach is the presence of an intervening factor that could substantively shift attitudes.</p>
+<p>Another common method to evaluate reliability is by assessing the “internal consistency” of multiple survey items used to measure an underlying concept. One example is “trust in government” <span class="citation" data-cites="hetherington1998">(see, e.g., <a href="references.html#ref-hetherington1998" role="doc-biblioref">Hetherington 1998</a>)</span>, which has been commonly measured using the following four measures:</p>
+<ol type="1">
+<li>“How much of the time do you think you can trust the government in Washington to do what is right?” <em>Always, Just about always, Some of the time, Hardly ever, Never</em></li>
+<li>“Do you think that people in government waste a lot of the money we pay in taxes, waste some of it, or don’t waste very much of it?” <em>Waste a lot, Waste some, Don’t waste very much</em></li>
+<li>“Would you say the government is pretty much run by a few big interests looking out for themselves or that it is run for the benefit of all people?” <em>Run by a few big interests, run for the benefit of all</em></li>
+<li>“Do you think that quite a few of the people running the government are crooked, not very many are, or do you think hardly any of them are crooked?” <em>Quite a few, not very many, hardly any</em></li>
+</ol>
+<p>The goal is generate a single measure of trust that averages over these four items (a scale). “Internal consistency” means that survey respondents answer the questions in same way given their underlying level of trust. Someone high in trust would reflect that level of trust across each of the four measures. Methods like factor analysis and statistics such as Cronbach’s alpha assess this form of reliability <span class="citation" data-cites="devellis2021">(see <a href="references.html#ref-devellis2021" role="doc-biblioref">DeVellis and Thorpe 2021</a> for a comprehensive primer on these topics)</span>.</p>
+<p><strong><em>Independent versus Dependent Variables</em></strong>: In the discussion of the causal effect of an explanatory factor, <span class="math inline">\(x\)</span>, on an outcome, <span class="math inline">\(y\)</span>, these factors are concepts at the heart of theory. Once we measure, or “operationalize,” those concepts and they become variables in our dataset, these variables get special names. The explanatory factor, <span class="math inline">\(x\)</span>, is called the <strong>independent variable</strong>. The outcome, <span class="math inline">\(y\)</span>, is called the <strong>dependent variable</strong>. Once we discuss bivariate (i.e., two-variable) associations in <a href="dataviz.html" class="quarto-xref"><span>Chapter 4</span></a> and <a href="descriptive.html" class="quarto-xref"><span>Chapter 6</span></a>, each analysis will consist of one independent variable and one dependent variable. Once we cover multiple regression in <a href="linreg1.html" class="quarto-xref"><span>Chapter 8</span></a>, each analysis will consist of <em>multiple</em> independent variables but still one dependent variable.</p>
+</section>
+<section id="sec-lom" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="sec-lom"><span class="header-section-number">2.2.3</span> Levels of Measurement</h3>
+<p>A critical consideration in both measuring and analyzing variables centers on the level of measurement they take on. Readers may have heard about “continuous” variables that have lots of values, like age, income, or gross domestic product (GDP). Other variables are “categorical” in nature — they have just a few values and capture group differences, like sex, race, or education level, and regional or geographic characterizations. Below, I discuss three specific levels of measurement that provide a deeper meaning underlying who variables are measured. Each level of measurement varies in specificity or precision regarding the nature of the differences between values of the variable.</p>
+<ol type="1">
+<li><p><strong>Interval</strong>, or continuous: Variables measured at the interval level capture <em>exact numerical differences</em> between values of a variable. A classic example is age measured in years. If observation A is 85 years old and observation B is 45 years old, we can communicate an exact numerical difference (40 years) between these two observations. Measuring GDP for countries around the world allows researchers to communicate exact numeric differences in GDP between countries.</p></li>
+<li><p><strong>Ordinal</strong>: Ordinal variables capture <em>relative differences</em> between values of a variable. Consider item #1 in the trust battery above. The variable captures the degree of trust in the government to do what is right and is measured with five categories. The differences between values are not exact numerical differences but instead communicate that one value is higher or lower than another. “Always” is a higher value than “just about always,” which is in turn higher than “some of the time.” We cannot communicate exact numeric differences but instead relative orderings and differences. We can also define extremes of high trust versus low trust.</p></li>
+<li><p><strong>Nominal</strong>: Nominal variables capture merely <em>differences</em> between values of a variable. These variables capture the lowest degree of precision in values of a variable, whereas interval variables capture the highest degree of precision. An example of a nominal variable is race, where individuals may be white, black, Hispanic, or Asian-American. Unlike ordinal variables, nominal variables contain no relative ordering across values of the variable. No one value is “higher” or “lower” than another value. The variable does not have a spectrum. World region is another nominal variable with no relative ordering: the Americas, Western Europe, Eastern Europe, Sub-Saharan Africa, Middle East/North Africa, and Asia-Pacific.</p></li>
+</ol>
+<p>Nominal variables are “categorical” in nature, but ordinal variables with few categories are often considered categorical as well. Ordinal variables with lots and lots of categories/values can sometimes fall into a gray area between ordinal and interval. Importantly, the level of measurement associated with a variable dictates how one will analyze that variable in all aspects of data analysis — data visualization, descriptive statistics, and regression analysis. I will revisit levels of measurement on a recurring basis throughout this book.</p>
+</section>
+<section id="sec-mult" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="sec-mult"><span class="header-section-number">2.2.4</span> Cross-Sectional Data versus More Complex Data Structures</h3>
+<p>I have defined a dataset as having units of analysis that are the rows and variables that are the columns. In survey data at a given point in time, we may have surveyed 2,000 individuals. Those 2,000 individuals are our units of analysis, with each person getting his or her own row in the dataset. Then let’s say we have measured their attitudes on 20 different topics, so we have 20 columns, each of which is a variable. We could have an analogous situation with, say, measuring characteristics of 150 countries around the world in a given year. Each of these examples describes <strong>cross-sectional data</strong>. We are examining a large number of units of analysis at one point in time; we have one observation per person</p>
+<p>What if we measured <em>these same 2,000 individuals over multiple time periods</em>, e.g., once per year over 5 years. That means we would no longer have individuals’ opinions measured in just one point in time but over multiple points in time. This type of data is called <strong>panel data</strong>. Once again, we track these same individuals over time, meaning we now have 5 observations per person instead of just 1 like in cross-sectional data. Some researchers will refer to this as longitudinal data given the temporal aspect. In this case, we would have 10,000 rows of data.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Our observations in panel data would now be “person-years”; a given observation measures person <em>i</em>’s opinion in year <em>t</em>.</p>
+<p>The same structure would apply if we measured country characteristics over multiple years — again, we would track each country’s change over time in these characteristics. This type of data is also panel data, but when applied to countries, political scientists use a special name for it: <strong>time-series cross-sectional (TSCS) data</strong>. Panel data is typically used to describe individuals tracked over time.</p>
+<p>We may also have situations where we want to measure different random samples of individuals in a survey over multiple period of times. Instead of measuring the same individuals over time, like in panel data, we measure fresh random samples (of different sets of individuals) over each temporal unit (e.g., monthly or yearly). This type of data is called <strong>rolling cross-sectional data</strong>.</p>
+<p><strong>Time-series data</strong> is slightly different from TSCS data. In typical time-series data, researchers examine just one entity (e.g., a country) over many years (e.g., 100) or other temporal units (e.g., quarterly data). For example, we may want to examine monthly unemployment over time in the United States or presidential approval for the U.S. president over time.</p>
+<p>Finally, panel and TSCS data are particular types of data sometimes called <strong>clustered data</strong> or grouped data, where observations (in the rows) are nested within groups. In the panel data example above, we have 10,000 “person-years” or “measurement occasions” nested within 2,000 “individuals.” The situation is analogous in TSCS data. In typical clustered data, each lower-level observation belongs to one and only one higher-level group. This specific sort of data is also called <strong>hierarchical data</strong> or <strong>multilevel data</strong>. In this type of data, there are explicitly two types of units of analysis that are connected, e.g., voters nested within congressional districts. Moreover, one can say that there are two “levels of analysis”: (1) The individual level, in which voters are the units of analysis, and (2) an aggregate level, where congressional districts are the units of analysis.</p>
+<p>The types of methods this book covers are mostly applicable to cross-sectional data. I will discuss some extensions, however, when it comes to TSCS data. <a href="dataorg.html" class="quarto-xref"><span>Chapter 3</span></a> will introduce readers to both cross-sectional and TSCS datasets.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-ansolabehere1995" class="csl-entry" role="listitem">
+Ansolabehere, Stephen, and Shanto Iyengar. 1995. <em>Going Negative: How Political Advertisements Shrink &amp; Polarize the Electorate</em>. New York, NY: The Free Press.
+</div>
+<div id="ref-brady2010" class="csl-entry" role="listitem">
+Brady, Henry E, and David Collier. 2010. <em>Rethinking Social Inquiry: Diverse Tools, Shared Standards</em>. Lanham, MD: Rowman &amp; Littlefield Publishers.
+</div>
+<div id="ref-cunningham2021" class="csl-entry" role="listitem">
+Cunningham, Scott. 2021. <em>Causal Inference: The Mixtape</em>. New Haven, CT: Yale University Press. <a href="https://mixtape.scunning.com/">https://mixtape.scunning.com/</a>.
+</div>
+<div id="ref-devellis2021" class="csl-entry" role="listitem">
+DeVellis, Robert F., and Carolyn T. Thorpe. 2021. <em>Scale Development: Theory and Applications</em>. Thousand Oaks, CA: Sage.
+</div>
+<div id="ref-dunning2012" class="csl-entry" role="listitem">
+Dunning, Thad. 2012. <em>Natural Experiments in the Social Sciences: A Design-Based Approach</em>. New York, NY: Cambridge University Press. <a href="https://doi.org/10.1017/CBO9781139084444">https://doi.org/10.1017/CBO9781139084444</a>.
+</div>
+<div id="ref-fiorina1981" class="csl-entry" role="listitem">
+Fiorina, Morris P. 1981. <em>Retrospective Voting in American National Elections</em>. New Haven, CT: Yale University Press.
+</div>
+<div id="ref-gerber2008" class="csl-entry" role="listitem">
+Gerber, Alan S., Donald P. Green, and Christopher W. Larimer. 2008. <span>“Social Pressure and Voter Turnout: Evidence from a Large-Scale Field Experiment.”</span> <em>American Political Science Review</em> 102 (1): 33–48. <a href="https://doi.org/10.1017/S000305540808009X">https://doi.org/10.1017/S000305540808009X</a>.
+</div>
+<div id="ref-ginsburg2003" class="csl-entry" role="listitem">
+Ginsburg, Tom. 2003. <em>Judicial Review in New Democracies: Constitutional Courts in Asian Cases</em>. New York, NY: Cambridge University Press.
+</div>
+<div id="ref-hetherington1998" class="csl-entry" role="listitem">
+Hetherington, Marc J. 1998. <span>“The Political Relevance of Political Trust.”</span> <em>American Political Science Review</em> 92 (4): 791–808. <a href="https://doi.org/10.2307/2586304">https://doi.org/10.2307/2586304</a>.
+</div>
+<div id="ref-kinder1981" class="csl-entry" role="listitem">
+Kinder, Donald R., and D. Roderick Kiewiet. 1981. <span>“Sociotropic Politics: The American Case.”</span> <em>British Journal of Political Science</em> 11 (2): 129–61. <a href="https://www.jstor.org/stable/193580">https://www.jstor.org/stable/193580</a>.
+</div>
+<div id="ref-king2021" class="csl-entry" role="listitem">
+King, Gary, Robert O. Keohane, and Sidney Verba. 2021. <em>Designing Social Inquiry: Scientific Inference in Qualitative Research, New Edition</em>. Princeton, NJ: Princeton University Press.
+</div>
+<div id="ref-lodge2013" class="csl-entry" role="listitem">
+Lodge, Milton, and Charles S Taber. 2013. <em>The Rationalizing Voter</em>. New York, NY: Cambridge University Press.
+</div>
+<div id="ref-mendelberg2001" class="csl-entry" role="listitem">
+Mendelberg, Tali. 2001. <em>The Race Card: Campaign Strategy, Implicit Messages, and the Norm of Equality</em>. Princeton, NJ: Princeton University Press.
+</div>
+<div id="ref-pollock2024" class="csl-entry" role="listitem">
+Pollock, Philip H. III., and Barry C. Edwards. 2024. <em>The Essentials of Political Analysis</em>. Washington, DC: CQ Press.
+</div>
+<div id="ref-przeworski1997" class="csl-entry" role="listitem">
+Przeworski, Adam, and Fernando Limongi. 1997. <span>“Modernization: Theories and Facts.”</span> <em>World Politics</em> 49 (2): 155–83. <a href="https://doi.org/10.1353/wp.1997.0004">https://doi.org/10.1353/wp.1997.0004</a>.
+</div>
+<div id="ref-ramseyer1994" class="csl-entry" role="listitem">
+Ramseyer, J Mark. 1994. <span>“The Puzzling (<span>I</span>n)dependence of Courts: A Comparative Approach.”</span> <em>The Journal of Legal Studies</em> 23 (2): 721–47. <a href="https://doi.org/10.1086/467943">https://doi.org/10.1086/467943</a>.
+</div>
+<div id="ref-ross2001" class="csl-entry" role="listitem">
+Ross, Michael L. 2001. <span>“Does Oil Hinder Democracy?”</span> <em>World Politics</em> 53 (3): 325–61. <a href="https://doi.org/10.1353/wp.2001.0011">https://doi.org/10.1353/wp.2001.0011</a>.
+</div>
+<div id="ref-rubin1974" class="csl-entry" role="listitem">
+Rubin, Donald B. 1974. <span>“Estimating Causal Effects of Treatments in Randomized and Nonrandomized Studies.”</span> <em>Journal of Educational Psychology</em> 66 (5): 688–701. <a href="https://doi.org/10.1037/h0037350">https://doi.org/10.1037/h0037350</a>.
+</div>
+<div id="ref-staton2022" class="csl-entry" role="listitem">
+Staton, Jeffrey K., Christopher Reenock, and Jordan Holsinger. 2022. <em>Can Courts Be Bulwarks of Democracy? Judges and the Politics of Prudence</em>. New York, NY: Cambridge University Press. <a href="https://doi.org/10.1017/9781009030939">https://doi.org/10.1017/9781009030939</a>.
+</div>
+<div id="ref-treisman2020" class="csl-entry" role="listitem">
+Treisman, Daniel. 2020. <span>“Economic Development and Democracy: Predispositions and Triggers.”</span> <em>Annual Review of Political Science</em> 23 (1): 241–57. <a href="https://doi.org/10.1146/annurev-polisci-050718-043546">https://doi.org/10.1146/annurev-polisci-050718-043546</a>.
+</div>
+</div>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>The more technical specification for deriving the treatment effect involves the following notation <span class="citation" data-cites="cunningham2021">(see <a href="references.html#ref-cunningham2021" role="doc-biblioref">Cunningham 2021</a>, Ch. 4)</span>: <span class="math inline">\(y_i = D_iy_i^O + (1-D_i)y_i^C\)</span>, where <span class="math inline">\(D_i=1\)</span> if observation <span class="math inline">\(i\)</span> received the treatment and <span class="math inline">\(D_i=0\)</span> if observation <span class="math inline">\(i\)</span> did not receive the treatment. The treatment effect is the difference between the potential outcomes of <span class="math inline">\(y_i\)</span> when <span class="math inline">\(D_i=1\)</span> compared to when <span class="math inline">\(D_i=0\)</span>. When <span class="math inline">\(D_i=1\)</span>, <span class="math inline">\(y_i=y_i^O\)</span> (the outcome under the observed state of the world). When <span class="math inline">\(D_i=0\)</span>, <span class="math inline">\(y_i=y_i^C\)</span> (the outcome under the counterfactual state of the world). Thus the treatment effect, <span class="math inline">\(\delta_i\)</span>, is: <span class="math inline">\(\delta_i = y_i^O - y_i^C\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>A critical design and analysis problem in panel data is “attrition,” which occurs in the survey context when the survey firm can no longer reach certain respondents in subsequent contact attempts. For example, some participants may respond in just 1 survey wave. Others may respond in all 5 survey waves. Still others may participate in 2, 3, or 4 waves. Some level of attrition will always occur, meaning that the total number of observations will be less than 10,000, and the data will be “unbalanced.”<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./rstudio.html" class="pagination-link" aria-label="Using R and RStudio">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Using R and RStudio</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./dataorg.html" class="pagination-link" aria-label="Data Importing and Organization">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Importing and Organization</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
